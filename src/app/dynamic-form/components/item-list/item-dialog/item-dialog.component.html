@@ -1,0 +1,23 @@
+<nb-card>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>
+    <div class="form-group row" *ngFor="let field of fields">
+      <div class="col-4">
+        <label>{{ field.text }}</label>
+      </div>
+      <div [ngSwitch]="field.type" class="col-8">
+        <nb-select *ngSwitchCase="'drop-down'"
+                   placeholder="请选择"
+                   [(selected)]="data[field.value]">
+          <nb-option value="">请选择</nb-option>
+          <nb-option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.text }}</nb-option>
+        </nb-select>
+        <input *ngSwitchDefault placeholder="请输入" class="form-control" [(ngModel)]="data[field.value]" />
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton hero status="warning" (click)="close()">取消</button>
+    <button class="btn" nbButton hero status="info" (click)="submit()">确认</button>
+  </nb-card-footer>
+</nb-card>

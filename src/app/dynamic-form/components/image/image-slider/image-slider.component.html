@@ -1,0 +1,26 @@
+<div *ngIf="items && items.length > 0" [ngClass]="{'small': size === 'small'}">
+  <nb-actions *ngIf="items.length > 1" size="small" fullWidth>
+    <nb-action (click)="backward()">
+      <nb-icon icon="arrow-ios-back-outline" status="basic"></nb-icon>
+    </nb-action>
+    <nb-action (click)="forward()">
+      <nb-icon icon="arrow-ios-forward-outline" status="basic"></nb-icon>
+    </nb-action>
+    <nb-action (click)="delete()" title="删除">
+      <nb-icon icon="close" status="warning"></nb-icon>
+    </nb-action>
+    <nb-action>{{ +currentIndex + 1 }} / {{ items.length }}</nb-action>
+  </nb-actions>
+  <div class="slider" [ngClass]="{'auto-slider': readonly}">
+    <img [src]="items[currentIndex].url | safeURL" class="img-thumbnail" [ngClass]="{'active': active && active.includes(items[currentIndex].url)}">
+  </div>
+  <input *ngIf="! readonly"
+         #descriptionBox
+         class="form-control desciption"
+         placeholder="请输入图片描述"
+         [(ngModel)]="items[currentIndex].title"
+         (input)="desc(descriptionBox.value)">
+</div>
+<div *ngIf="! items || items.length === 0" class="slider" [ngClass]="{'small-slider': size === 'small'}">
+  <img src="assets/images/cover.jpg" class="img-thumbnail">
+</div>

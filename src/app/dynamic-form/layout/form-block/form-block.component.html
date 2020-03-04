@@ -1,0 +1,11 @@
+<div *ngFor="let item of models" class="form-group row">
+  <label [attr.for]="item.name" class="col-{{ column[0] }} col-form-label text-right">
+    {{ item.label }}
+    <small *ngIf="item.help" class="form-text text-muted">{{ item.help }}</small>
+    <small *ngIf="item.require" class="form-text text-status-info">必填</small>
+  </label>
+  <div class="col-{{ column[1] }}">
+    <ng-container ngxDynamicField [model]="item" [form]="form">
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div [formGroup]="form" class="row">
+  <ng-container *ngIf="! model.disabled">
+    <div class="col-3 left">
+      <input type="text"
+             class="form-control form-value"
+             [value]="model.value"
+             [formControlName]="model.name">
+    </div>
+    <div class="col-9 right col-value">
+      <div class="input-group">
+        <input class="form-control"
+               disabled
+               type="text"
+               [value]="text">
+        <span class="input-group-append">
+          <a nbButton status="info" (click)="choose()">选择</a>
+        </span>
+        <span *ngIf="model.value" class="input-group-append">
+          <a nbButton status="warning" (click)="destroy()">清空</a>
+        </span>
+      </div>
+    </div>
+  </ng-container>
+  <div *ngIf="model.disabled" class="col-12">
+    <input class="form-control" disabled value="{{ model.value }} / {{ text }}">
+  </div>
+</div>
+
+<ng-template #contentTemplate>
+  <div [nbSpinner]="loading" nbSpinnerStatus="info">
+    <input nbInput [nbFilterInput]="dataSource" id="search" placeholder="可输入关键字搜索" class="form-control">    
+    <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+        <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+        <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns" (click)="select(row)"></tr>
+        <ng-container [nbTreeGridColumnDef]="customColumn">
+          <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
+            {{customColumn}}
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row" [title]="row.data[customColumn]">
+            <nb-icon *ngIf="isChecked(row.data)"
+                     status="info"
+                     style="position: absolute; left: 1.5rem;"
+                     icon="checkmark-square-outline"></nb-icon>
+            <ngx-tree-node-icon [row]="row" [expanded]="row.expanded"></ngx-tree-node-icon>
+            {{row.data[customColumn]}}
+          </td>
+        </ng-container>
+        <ng-container *ngFor="let column of defaultColumns; let i = index"
+                      [nbTreeGridColumnDef]="column"
+                      [showOn]="getShowOn(i)">           
+          <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+            {{column}}
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row" [title]="row.data[column]">{{row.data[column] || '-'}}</td>
+        </ng-container>
+      </table>
+  </div>
+  <div>
+    <button style="margin-right: 0.5rem" nbButton hero status="warning" (click)="cancel()">取消</button>
+    <button nbButton hero status="info" (click)="submit()">确认</button>
+  </div>
+</ng-template>

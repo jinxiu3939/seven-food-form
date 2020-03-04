@@ -1,0 +1,70 @@
+<div [formGroup]="form" class="row">
+  <ng-container [ngSwitch]="model.display">
+    <div *ngSwitchCase="'input'">
+      <div *ngIf="thumbnails" class="full-image-table">
+        <div class="full-image-inputs">
+          <h5>图片</h5>
+          <h5>描述</h5>
+        </div>
+        <div *ngFor="let thumb of thumbnails" class="full-image-inputs">
+          <input type="text" class="form-control" readonly nbInput fullWidth [value]="thumb.url" [title]="thumb.url">
+          <input type="text" class="form-control" nbInput fullWidth [value]="thumb.title" [title]="thumb.title">
+        </div>
+      </div>
+    </div>
+    <ngx-image-slider *ngSwitchDefault
+                      [items]="thumbnails"
+                      currentIndex="0"
+                      [readonly]="! model.multiple"
+                      size="small"
+                      (destroy)="delete($event)"
+                      (edit)="desc($event)">
+    </ngx-image-slider>
+  </ng-container>
+  
+  <ng-container *ngIf="! model.disabled">
+    <a nbButton
+       size="tiny"
+       status="info"
+       type="button"
+       (click)="chooseImage()">选择</a>
+    <a *ngIf="model.value"
+       nbButton
+       size="tiny"
+       status="warning"
+       type="button"
+       (click)="destroyImage()">清空</a>
+    <input [formControlName]="model.name" type="hidden" [value]="model.value">
+  </ng-container>
+
+</div>
+
+<ng-template #contentTemplate>
+  <nb-tabset style="width: 500px; height: 500px;">
+    <nb-tab tabTitle="本地图片">
+      <ngx-image-upload [config]="model.uploadConfig"
+                        [multiple]="model.multiple"
+                        (finish)="submitImage($event)"></ngx-image-upload>
+    </nb-tab>
+    <nb-tab tabTitle="网络图片">
+      <ngx-image-web [config]="model.crawlConfig"
+                     [multiple]="model.multiple"
+                     (finish)="submitImage($event)"></ngx-image-web>
+    </nb-tab>
+    <nb-tab tabTitle="历史图片">
+      <ngx-image-search [config]="model.searchConfig"
+                        [multiple]="model.multiple"
+                        (finish)="submitImage($event)"></ngx-image-search>
+    </nb-tab>
+    <nb-tab tabTitle="待选图片">
+      <ngx-image-cache [images]="tmpImage"
+                       (active)="changeImage($event)"></ngx-image-cache>
+    </nb-tab>
+  </nb-tabset>
+  <div>
+    <button nbButton status="danger" (click)="cancelImage()"  style="margin-right: 1rem;">取消</button>
+    <button *ngIf="tmpImage.length" nbButton status="info" (click)="sureImage()">
+      确定 {{ tmpFilter ? tmpFilter.length : tmpImage.length }} / {{ tmpImage.length }}
+    </button>
+  </div>
+</ng-template>

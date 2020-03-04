@@ -1,0 +1,8 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '../../../theme/styles';
+
+@include nb-install-component() {
+  .col-value {
+    padding-left: 0;
+  }
+}

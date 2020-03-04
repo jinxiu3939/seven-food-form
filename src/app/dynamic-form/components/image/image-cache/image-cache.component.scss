@@ -1,0 +1,36 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '~bootstrap/scss/mixins/image';
+@import '../../../theme/styles';
+
+@include nb-install-component() {
+  .show-grid {
+    height: 380px;
+
+    .row {
+      margin: -0.3rem;
+    }
+
+    div[class^=col-] {
+      padding: 0.3rem;
+      box-sizing: border-box;
+
+      div {
+        display: flex;
+        height: 116px;
+        max-height: 116px;
+        align-items: center;
+        justify-content: center;
+        background-color: nb-theme(background-basic-color-4);
+      }
+    }
+  }
+
+  .img-thumbnail {
+    max-height: 100%;
+    border-color: nb-theme(color-success-500);
+  }
+
+  .cancel {
+    border-color: nb-theme(color-basic-400);
+  }
+}

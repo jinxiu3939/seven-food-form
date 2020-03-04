@@ -1,0 +1,51 @@
+<div [formGroup]="form" class="row">
+  <ng-container *ngIf="! model.disabled">
+    <div class="col-3 left">
+      <input type="text"
+             class="form-control form-value"
+             [value]="model.value"
+             [formControlName]="model.name">
+    </div>
+    <div class="col-9 right col-value">
+      <div class="input-group">
+        <input class="form-control"
+               disabled
+               type="text"
+               [value]="text">
+        <span class="input-group-append">
+          <a nbButton status="info" (click)="choose()">选择</a>
+        </span>
+        <span *ngIf="model.value" class="input-group-append">
+          <a nbButton status="warning" (click)="destroy()">清空</a>
+        </span>
+      </div>
+    </div>
+  </ng-container>
+  <div *ngIf="model.disabled" class="col-12">
+    <input class="form-control" disabled value="{{ model.value }} / {{ text }}">
+  </div>
+</div>
+
+<ng-template #contentTemplate>
+  <ngx-simple-search [config]="model.searchConfig"
+                     [items]="model.options"
+                     [page]="page"
+                     (reload)="resetRecords($event)"
+                     (finish)="search($event)"></ngx-simple-search>
+  <nb-list style="height: 400px; overflow: auto;" nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext()">
+    <nb-list-item *ngFor="let item of records" style="position: relative;">
+      <nb-radio [checked]="item.value === model.value" [value]="item.value" (click)="selectedItem(item)">
+        <b>{{ item.text }}</b>
+        <small *ngIf="item.title" class="ml-2 text-muted" title="{{ item.title }}">{{ item.title }}</small>
+      </nb-radio>
+      <nb-badge *ngIf="item.items" [text]="item.items" style="top: 1.6rem; right: 0.5rem"></nb-badge>
+    </nb-list-item>
+    <nb-list-item *ngIf="!records || records.length === 0">
+      <nb-alert status="info">暂无结果，更换检索条件试一下</nb-alert>
+    </nb-list-item>
+  </nb-list>
+  <div>
+    <button style="margin-right: 0.5rem" nbButton hero status="warning" (click)="cancel()">取消</button>
+    <button nbButton hero status="info" (click)="submit()">确认</button>
+  </div>
+</ng-template>

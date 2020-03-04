@@ -1,0 +1,12 @@
+<div *ngIf="images && images.length > 0" class="row show-grid">
+  <div *ngFor="let item of images; let id = index" class="col-md-4">
+    <div>
+      <img [src]="item.url | safeURL"
+           class="img-thumbnail"
+           [ngClass]="{'cancel': deleted.indexOf(id) >= 0}"
+           [title]="item.title"
+           (click)="choose(id)">
+    </div>
+  </div>
+</div>
+<nb-alert *ngIf="! images || images.length === 0" status="info">暂无图片</nb-alert>

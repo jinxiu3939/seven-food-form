@@ -1,0 +1,47 @@
+<div [formGroup]="form" class="row" [nbSpinner]="loading" nbSpinnerStatus="info">
+  <div class="col-12 mb-1">
+    <input type="file"
+           class="spreadsheet-file"
+           ng2FileSelect
+           [uploader]="uploader"
+           (change)="selectedFileOnChanged($event)" />
+    <a nbButton
+       size="tiny"
+       *ngIf="finished"
+       type="button"
+       class="btn btn-success btn-xs"
+       (click)="uploadFile()">
+      上传
+    </a>
+    <nb-badge *ngIf="table" [status]="status" [text]="table.length"></nb-badge>
+    <input [formControlName]="model.name" type="hidden" [value]="model.value">
+  </div>
+  <div *ngIf="model.view" class="col-12 vertical-scroll table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead *ngIf="model.header">
+        <tr>
+          <th *ngFor="let h of model.header">
+            {{ h }}
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="table">
+        <tr *ngFor="let row of table">
+          <td *ngFor="let val of row">
+            {{val}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>提示</nb-card-header>
+    <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()" status="info">关闭</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

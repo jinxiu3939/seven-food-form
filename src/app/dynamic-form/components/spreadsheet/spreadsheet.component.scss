@@ -1,0 +1,34 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '../../theme/styles';
+
+@include nb-install-component() {
+  .spreadsheet-file {
+    margin-top: 0.5rem;
+  }
+
+  nb-badge {
+    top: 10px;
+  }
+
+  .vertical-scroll {
+    max-height: 180px;
+    overflow: auto;
+  }
+
+  .table {
+    margin: 0;
+  }
+
+  .table td, .table th {
+    padding: .25rem;
+    max-width: 150px;
+    overflow: hidden;
+    font-size: .5rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  table thead {
+    color: nb-theme(text-primary-color);
+  }
+}

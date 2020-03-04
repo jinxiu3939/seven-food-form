@@ -1,0 +1,20 @@
+<div class="form-group row" [nbSpinner]="loading" nbSpinnerStatus="info">
+  <ng-container *ngFor="let item of config.conditions">
+    <label [attr.for]="item.value" class="col-2 col-form-label text-right">
+      {{ item.text }}
+    </label>
+    <div [ngSwitch]="item.type" class="col-4 col-value">
+      <nb-select *ngSwitchCase="'drop-down'" placeholder="请选择" [(selected)]="condition[item.value]">
+        <nb-option value="">全部</nb-option>
+        <nb-option *ngFor="let opt of item.options" [value]="opt.value">{{ opt.text }}</nb-option>
+      </nb-select>
+      <input *ngSwitchDefault
+             class="form-control"
+             placeholder="请输入"
+             [(ngModel)]="condition[item.value]">
+    </div>
+  </ng-container>
+  <div class="col-6">
+    <button nbButton status="primary" (click)="search()">搜索</button>
+  </div>
+</div>

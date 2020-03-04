@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+  <nb-radio-group [formControlName]="model.name"
+                  [name]="model.name"
+                  [(value)]="model.value"
+                  class="row boxes">
+    <nb-radio *ngFor="let opt of model.options"
+              [value]="opt.value"
+              [title]="opt.title ? opt.title : ''"
+              [disabled]="model.disabled"
+              class="col-{{model.width}}"
+              [ngClass]="{'form-badge': opt.items}">
+      {{ opt.text }}
+      <nb-badge *ngIf="opt.items" [text]="opt.items" [status]="opt.items > 999 ? 'danger' : 'info'" position="left"></nb-badge>
+    </nb-radio>
+  </nb-radio-group>
+</div>

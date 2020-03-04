@@ -1,0 +1,12 @@
+<div [formGroup]="form">
+  <ng-container *ngIf="! model.disabled">
+    <ckeditor [formControlName]="model.name"
+              [config]="model.editorConfig"
+              [editor]="model.editor"
+              [id]="model.name"
+              (change)="onChange($event)">
+    </ckeditor>
+  </ng-container>
+  <div *ngIf="model.disabled" class="ck-content view" [innerHTML]="model.value | safeHTML">
+  </div>
+</div>

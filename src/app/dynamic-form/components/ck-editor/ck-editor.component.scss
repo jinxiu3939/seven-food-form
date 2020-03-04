@@ -1,0 +1,13 @@
+@import '../../theme/styles';
+
+@include nb-install-component() {
+  ::ng-deep .ck-editor__editable_inline {
+    min-height: 320px;
+  }
+  .view {
+    max-width: 100%;
+    border: 1px dashed #bbb;
+    padding: 1rem;
+    overflow: scroll;
+  }
+}

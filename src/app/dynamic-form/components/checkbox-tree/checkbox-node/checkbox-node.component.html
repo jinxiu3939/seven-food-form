@@ -1,0 +1,25 @@
+<div *ngIf="tree" [ngClass]="{'tree-inline': !tree.children || tree.children.length === 0}">
+  <div class="form-check form-check-inline" [ngClass]="{'form-badge': tree.items}">
+    <nb-checkbox [checked]="tree.checked"
+                 [disabled]="disabled"
+                 [title]="tree.title ? tree.title : ''"
+                 (checkedChange)="switchChecked($event)">
+      {{ tree.text }}
+    </nb-checkbox>
+    <nb-badge *ngIf="tree.items"
+              position="right"
+              [status]="tree.items > 999 ? 'danger' : 'info'"
+              [text]="tree.items">
+    </nb-badge>
+  </div>
+  <ul *ngIf="tree.children && tree.children.length > 0">
+    <li>
+      <ngx-checkbox-node *ngFor="let child of tree.children"
+                         [checked]="checked"
+                         [disabled]="disabled"
+                         [tree]="child"
+                         (checkedChange)="notifyParent($event)">
+      </ngx-checkbox-node>
+    </li>
+  </ul>
+</div>

@@ -1,27 +1,62 @@
 # SevenFoodForm
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+This project has a module of dynamic form based on [nebular](https://github.com/akveo/nebular).
 
-## Development server
+## install
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- get package from npm.
 
-## Code scaffolding
+```
+npm install seven-food-form
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- import the module
 
-## Build
+```
+import { SfDynamicFormModule } from './seven-food-form/dynamic-form.module';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+@NgModule({
+  imports: [
+    SfDynamicFormModule,
+  ],
+})
+```
 
-## Running unit tests
+- use in template
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+<ngx-dynamic-form [models]="models"></ngx-dynamic-form>
+```
 
-## Running end-to-end tests
+- set the models in .ts like below
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+import { QuickFormFactory } from 'seven-food-form';
 
-## Further help
+models = [{
+    items: [
+      new QuickFormFactory({
+        label: '颜色',
+        name: 'color',
+        type: 'radio',
+        options: [
+          { text: '红色', value: 'red', title : '一种颜色', items: 1 },
+          { text: '绿色', value: 'green', title : '大自然的颜色', items: 1000 },
+        ],
+        value: 'red',
+      }).radio(),
+    ],
+  }];
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## form model
+
+You can get form model details from `src\app\dynamic-form\READEME.md`
+
+and the form model demo from `src\app\dynamic-form\DEMO.md`
+
+## dependencies
+
+The important thing is your project is from nebular.
+[how install nebular](https://akveo.github.io/nebular/docs/guides/install-nebular#install-nebular)
+[create nebular page](https://akveo.github.io/nebular/docs/guides/create-nebular-page#create-nebular-page)

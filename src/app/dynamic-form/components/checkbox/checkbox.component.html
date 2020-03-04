@@ -1,0 +1,20 @@
+<div [formGroup]="form" class="row">
+  <div *ngFor="let opt of model.options; let key = index" class="col-{{model.width}} box">
+    <div class="form-check form-check-inline" [ngClass]="{'form-badge': opt.items}">
+      <nb-checkbox [checked]="checkedStatus[key]"             
+                   [disabled]="model.disabled"
+                   [title]="opt.title ? opt.title : ''"
+                   (checkedChange)="switchChecked($event, opt.value)">
+        {{ opt.text }}
+      </nb-checkbox>
+      <nb-badge *ngIf="opt.items"
+                [status]="opt.items > 999 ? 'danger' : 'info'"
+                [text]="opt.items">
+      </nb-badge>
+    </div>
+  </div>
+  <div *ngIf="invalid" class="text-error">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+  </div>
+  <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
+</div>

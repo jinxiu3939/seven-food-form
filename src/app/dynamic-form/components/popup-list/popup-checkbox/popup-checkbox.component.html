@@ -1,0 +1,41 @@
+<div [formGroup]="form" class="row">
+  <ng-container *ngIf="model.value && model.value.length > 0">
+    <a *ngFor="let val of model.value; let i = index" size="tiny" nbButton outline status="basic" class="btn-basic">
+      {{ val }} / {{ text[i] ? text[i] : '' }}
+      <nb-icon *ngIf="! model.disabled" status="warning" icon="close" title="删除" (click)="delete(val)"></nb-icon>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="! model.disabled">
+    <a nbButton size="tiny" status="info" (click)="choose()">选择</a>
+    <a nbButton size="tiny" status="warning" (click)="destroy()">清空</a>
+    <div *ngIf="invalid" class="text-error">
+      <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+    </div>
+    <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
+  </ng-container>
+</div>
+
+<ng-template #contentTemplate>
+  <ngx-simple-search [config]="model.searchConfig"
+                     [items]="model.options"
+                     [page]="page"
+                     (reload)="resetRecords($event)"
+                     (finish)="search($event)"></ngx-simple-search>
+  <nb-list style="height: 400px; overflow: auto;" nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext()">
+    <nb-list-item *ngFor="let item of records" style="position: relative;">
+      <nb-checkbox [checked]="model.value.includes(item.value)"             
+                   (checkedChange)="selectedItem(item)">
+        {{ item.text }}
+        <small *ngIf="item.title" class="ml-2 text-muted" title="{{ item.title }}">{{ item.title }}</small>
+      </nb-checkbox>
+      <nb-badge *ngIf="item.items" [text]="item.items" style="top: 1.6rem; right: 0.5rem"></nb-badge>
+    </nb-list-item>
+    <nb-list-item *ngIf="!records || records.length === 0">
+      <nb-alert status="info">暂无结果，更换检索条件试一下</nb-alert>
+    </nb-list-item>
+  </nb-list>
+  <div>
+    <button style="margin-right: 0.5rem" nbButton hero status="warning" (click)="cancel()">取消</button>
+    <button nbButton hero status="info" (click)="submit()">确认</button>
+  </div>
+</ng-template>

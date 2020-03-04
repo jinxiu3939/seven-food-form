@@ -1,0 +1,46 @@
+<div class="input-group image-text" [nbSpinner]="loading" nbSpinnerStatus="info">
+  <input nbInput
+         class="form-control"
+         pattern="(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#\|]*[\w\-@?^=%&/~\+#])?"
+         [(ngModel)]="url"
+         #webUrl="ngModel"
+         placeholder="请输入网络图片地址"
+         [ngClass]="{'form-control-success': webUrl.valid, 'form-control-danger': webUrl.invalid}"
+         [attr.aria-invalid]="webUrl.invalid && webUrl.touched ? true : null">
+  <span class="input-group-append">
+    <nb-icon *ngIf="webUrl.value" icon="close-outline" (click)="clear()"></nb-icon>
+    <button nbButton
+            class="input-group-text"
+            size="small"
+            status="primary"
+            [disabled]="!webUrl.value || !webUrl.valid"
+            (click)="crawl()">抓取</button>
+  </span>
+</div>
+<p *ngIf="webUrl.invalid && webUrl.touched" class="caption status-danger">
+  网络图片地址格式错误（必须是http或https开头的真实网址）
+</p>
+<img *ngIf="tempUrl" [src]="tempUrl | safeURL" style="display: none;" (error)="loadError()" (load)="loadImage()">
+<ng-container *ngIf="thumbnails.length">
+  <ngx-image-slider [items]="thumbnails"
+                    [currentIndex]="currentIndex"
+                    [active]="submits"
+                    (change)="slide($event)"
+                    (destroy)="delete($event)"
+                    (edit)="desc($event)"></ngx-image-slider>
+  <a *ngIf="! loading" nbButton fullWidth size="small" status="success" type="button" (click)="save()">保存</a>
+  <nb-progress-bar *ngIf="start" [value]="saving" size="tiny" status="info">{{ submits.length }} / {{ max }}</nb-progress-bar>
+  <div *ngIf="start && saving === 0" class="progress-text">
+    <span>{{ submits.length }} / {{ max }}</span>
+  </div>
+</ng-container>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>温馨提示</nb-card-header>
+    <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()" status="info">ok</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
