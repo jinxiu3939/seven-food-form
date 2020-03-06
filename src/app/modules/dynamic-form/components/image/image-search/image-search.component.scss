@@ -1,0 +1,59 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '~bootstrap/scss/mixins/image';
+@import '../../../theme/styles';
+
+@include nb-install-component() {
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .form-control {
+    height: auto;
+  }
+
+  ::ng-deep nb-select {
+    max-width: 8rem;
+
+    .select-button {
+      min-width: 8rem;
+    }
+  }
+
+  .show-grid {
+    height: 380px;
+
+    .row {
+      margin: -0.3rem;
+    }
+
+    div[class^=col-] {
+      padding: 0.3rem;
+      box-sizing: border-box;
+
+      div {
+        display: flex;
+        height: 116px;
+        max-height: 116px;
+        align-items: center;
+        justify-content: center;
+        background-color: nb-theme(background-basic-color-4);
+      }
+    }
+  }
+
+  .infinite-grid {
+    overflow: auto;
+  }
+
+  .img-thumbnail {
+    max-height: 100%;
+  }
+
+  .active {
+    border-color: nb-theme(color-success-500);
+  }
+
+  nb-alert {
+    margin-top: 3rem;
+  }
+}

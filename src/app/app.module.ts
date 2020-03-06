@@ -9,7 +9,8 @@ import {
   NbButtonModule,
 } from '@nebular/theme';
 
-import { SfDynamicFormModule } from './dynamic-form/dynamic-form.module';
+import { SfDynamicFormModule } from './modules/dynamic-form/dynamic-form.module';
+import { TestFormModule } from './modules/test-form/test-form.module';
 
 import { AppComponent } from './app.component';
 
@@ -28,6 +29,7 @@ const routes: Routes = [];
     NbSidebarModule.forRoot(),
     NbButtonModule,
     SfDynamicFormModule,
+    TestFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

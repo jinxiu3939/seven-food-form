@@ -5,7 +5,8 @@
 
   <nb-layout-column>
     <nb-card>
-      <ngx-dynamic-form [models]="models"></ngx-dynamic-form>
+      <ngx-test-component></ngx-test-component>
+      <ngx-dynamic-form [models]="models" [loading]="submitting" (formSubmit)="submit($event)"></ngx-dynamic-form>
     </nb-card>
   </nb-layout-column>
 </nb-layout>

@@ -1,0 +1,17 @@
+<div [formGroup]="form">
+  <ng-container *ngIf="! model.disabled">
+    <textarea [formControlName]="model.name"
+              class="form-control"
+              [name]="model.name"
+              [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}"
+              [rows]="model.rows">
+      {{ model.value }}
+    </textarea>
+    <ng-container *ngIf="invalid">
+      <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="model.disabled">
+      <textarea class="form-control" disabled>{{ model.value }}</textarea>
+    </ng-container>
+</div>

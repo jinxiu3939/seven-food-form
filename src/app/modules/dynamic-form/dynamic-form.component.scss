@@ -1,0 +1,66 @@
+@import './theme/styles';
+
+@include nb-install-component() {
+  @each $status in nb-get-statuses() {
+    .text-status-#{$status} {
+      color: nb-theme(text-#{$status}-color);
+    }
+
+    .form-control-#{$status} {
+      border-color: nb-theme(text-#{$status}-color);
+    }
+  }
+
+  .btn-basic {
+    background-color: #edf1f7;
+    border-color: #edf1f7;
+    color: #222b45;
+  }
+
+  .form-control:disabled, .form-control[readonly] {
+    background-color: nb-theme(color-basic-disabled);
+    color: nb-theme(text-disabled-color);
+  }
+
+  .text-right {
+    text-align: right;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    margin-left: 1rem;
+  }
+
+  .text-error {
+    width: 100%;
+  }
+
+  .default-block {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+
+      h3 {
+        padding-right: 2rem;
+        border-bottom: 1px solid nb-theme(outline-color);
+        font-size: 1.25rem;
+        text-align: right;
+      }
+    }
+  }
+  .form-check-inline {
+    // margin-right: 0;
+    margin-right: 0.75rem;
+  }
+
+  .form-badge {
+    // margin-right: 0.75rem;
+    // padding-right: 0.25rem;
+    padding-right: 1.5rem;
+  }
+}

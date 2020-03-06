@@ -1,6 +1,6 @@
 # SevenFoodForm
 
-This project has a module of dynamic form based on [nebular](https://github.com/akveo/nebular).
+This project has a angular module of dynamic form based on [nebular](https://github.com/akveo/nebular).
 
 ## install
 
@@ -20,12 +20,6 @@ import { SfDynamicFormModule } from './seven-food-form/dynamic-form.module';
     SfDynamicFormModule,
   ],
 })
-```
-
-- use in template
-
-```
-<ngx-dynamic-form [models]="models"></ngx-dynamic-form>
 ```
 
 - set the models in .ts like below
@@ -48,6 +42,23 @@ models = [{
     ],
   }];
 ```
+
+- use in template
+
+```
+<ngx-dynamic-form [models]="models"></ngx-dynamic-form>
+```
+
+   input attribute:
+   
+   1. models
+   2. submitting
+   3. layout
+
+   output attribute:
+
+   1. formSubmit
+   2. formReset
 
 ## form model
 
