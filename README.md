@@ -52,7 +52,7 @@ models = [{
    input attribute:
    
    1. models
-   2. submitting
+   2. loading
    3. layout
 
    output attribute:
@@ -62,9 +62,9 @@ models = [{
 
 ## form model
 
-You can get form model details from `src\app\dynamic-form\READEME.md`
+You can get form model details from [src\app\dynamic-form\READEME.md](https://github.com/jinxiu3939/seven-food-form/tree/master/src/app/modules/dynamic-form)
 
-and the form model demo from `src\app\dynamic-form\DEMO.md`
+and the form model demo from [src\app\dynamic-form\DEMO.md](https://github.com/jinxiu3939/seven-food-form/blob/master/src/app/modules/dynamic-form/DEMO.md)
 
 ## dependencies
 
