@@ -13,11 +13,11 @@ npm install seven-food-form
 - import the module
 
 ```
-import { SfDynamicFormModule } from './seven-food-form/dynamic-form.module';
+import { SfDynamicFormModule } from 'seven-food-form';
 
 @NgModule({
   imports: [
-    SfDynamicFormModule,
+    SfDynamicFormModule.forRoot(),
   ],
 })
 ```
@@ -69,5 +69,5 @@ and the form model demo from [src\app\dynamic-form\DEMO.md](https://github.com/j
 ## dependencies
 
 The important thing is your project is from nebular.
-[how install nebular](https://akveo.github.io/nebular/docs/guides/install-nebular#install-nebular)
-[create nebular page](https://akveo.github.io/nebular/docs/guides/create-nebular-page#create-nebular-page)
+- [how install nebular](https://akveo.github.io/nebular/docs/guides/install-nebular#install-nebular)
+- [create nebular page](https://akveo.github.io/nebular/docs/guides/create-nebular-page#create-nebular-page)

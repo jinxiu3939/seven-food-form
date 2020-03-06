@@ -28,7 +28,7 @@ const routes: Routes = [];
     NbLayoutModule,
     NbSidebarModule.forRoot(),
     NbButtonModule,
-    SfDynamicFormModule,
+    SfDynamicFormModule.forRoot(),
     TestFormModule,
   ],
   providers: [],

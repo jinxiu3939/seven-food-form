@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 import { BaseModel } from '../dynamic-form.options';
 
+/* 导入组件写相对路径，不能从`index.ts`中导入，容易形成循环依赖 */
 import { CheckboxComponent } from '../components/checkbox/checkbox.component';
 import { CheckboxTreeComponent } from '../components/checkbox-tree/checkbox-tree.component';
 import { CKEditorComponent } from '../components/ck-editor/ck-editor.component';
@@ -20,7 +21,7 @@ import { ItemListComponent } from '../components/item-list/item-list.component';
 import { PasswordBoxComponent } from '../components/password-box/password-box.component';
 
 // 组件集合
-export const COMPONENTS = {
+const COMPONENTS = {
   checkbox: CheckboxComponent,
   'checkbox-tree': CheckboxTreeComponent,
   'ck-editor': CKEditorComponent,

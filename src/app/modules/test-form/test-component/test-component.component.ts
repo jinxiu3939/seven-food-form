@@ -12,8 +12,11 @@ export class TestComponentComponent implements OnInit {
 
   option: Option<string>;
   model: SpreadsheetModel;
+  form: any;
 
-  constructor(private provider: ResourceProvider) { }
+  constructor(private provider: ResourceProvider) {
+    this.form = 'hello';
+  }
 
   ngOnInit() {
     this.option = { text: '标签', value: '值'};

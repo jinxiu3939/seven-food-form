@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {
-  NbDatepickerModule,
   NbRadioModule,
   NbCardModule,
   NbCheckboxModule,
@@ -20,13 +19,15 @@ import {
   NbProgressBarModule,
   NbTreeGridModule,
   NbStepperModule,
-  NbWindowModule,
+  NbDatepickerModule,
   NbDialogModule,
+  NbWindowModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FileUploadModule } from 'ng2-file-upload';
 
+/* 导入组件写相对路径，不能从`index.ts`中导入，否则`npm`发布之后找不到组件 */
 import { DynamicFormComponent } from './dynamic-form.component';
 import { ResourceProvider, SearchProvider, TreeProvider } from './providers/data-provider.options';
 import { DemoResourceProvider } from './providers/demo/resource.provider';
@@ -37,32 +38,30 @@ import { InputEqualValidatorDirective } from './directive/input-equal-validator.
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { FormBlockComponent } from './layout/form-block/form-block.component';
-import {
-  CheckboxComponent,
-  CheckboxNodeComponent,
-  CheckboxTreeComponent,
-  CKEditorComponent,
-  DatePickerComponent,
-  DropDownBoxComponent,
-  ImageComponent,
-  ImageCacheComponent,
-  ImageSearchComponent,
-  ImageSliderComponent,
-  ImageUploadComponent,
-  ImageWebComponent,
-  ItemDialogComponent,
-  ItemListComponent,
-  PasswordBoxComponent,
-  PopupCheckBoxComponent,
-  PopupRadioComponent,
-  PopupTreeComponent,
-  SimpleSearchComponent,
-  TreeNodeIconComponent,
-  RadioComponent,
-  SpreadsheetComponent,
-  TextAreaComponent,
-  TextBoxComponent,
-} from './components';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { CheckboxNodeComponent } from './components/checkbox-tree/checkbox-node/checkbox-node.component';
+import { CheckboxTreeComponent } from './components/checkbox-tree/checkbox-tree.component';
+import { CKEditorComponent } from './components/ck-editor/ck-editor.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { DropDownBoxComponent } from './components/drop-down-box/drop-down-box.component';
+import { ImageComponent } from './components/image/image.component';
+import { ImageCacheComponent } from './components/image/image-cache/image-cache.component';
+import { ImageSearchComponent } from './components/image/image-search/image-search.compomemt';
+import { ImageSliderComponent } from './components/image/image-slider/image-slider.component';
+import { ImageUploadComponent } from './components/image/image-upload/image-upload.component';
+import { ImageWebComponent } from './components/image/image-web/image-web.component';
+import { ItemDialogComponent } from './components/item-list/item-dialog/item-dialog.component';
+import { ItemListComponent } from './components/item-list/item-list.component';
+import { PasswordBoxComponent } from './components/password-box/password-box.component';
+import { PopupCheckBoxComponent } from './components/popup-list/popup-checkbox/popup-checkbox.component';
+import { PopupRadioComponent } from './components/popup-list/popup-radio/popup-radio.component';
+import { PopupTreeComponent } from './components/popup-list/popup-tree/popup-tree.component';
+import { SimpleSearchComponent } from './components/popup-list/simple-search/simple-search.component';
+import { TreeNodeIconComponent } from './components/popup-list/tree-node-icon/tree-node-icon.component';
+import { RadioComponent } from './components/radio/radio.component';
+import { SpreadsheetComponent } from './components/spreadsheet/spreadsheet.component';
+import { TextAreaComponent } from './components/text-area/text-area.component';
+import { TextBoxComponent } from './components/text-box/text-box.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -108,7 +107,6 @@ const FORM_DIRECTIVE = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NbDatepickerModule.forRoot(),
     NbRadioModule,
     NbCardModule,
     NbCheckboxModule,
@@ -125,9 +123,10 @@ const FORM_DIRECTIVE = [
     NbProgressBarModule,
     NbTreeGridModule,
     NbStepperModule,
-    NbWindowModule.forRoot(),
-    NbDialogModule.forRoot(),
     NbEvaIconsModule,
+    NbDatepickerModule,
+    NbDialogModule,
+    NbWindowModule,
     CKEditorModule,
     FileUploadModule,
   ],
@@ -143,11 +142,19 @@ const FORM_DIRECTIVE = [
   entryComponents: [
     ...ENTRY_COMPONENTS,
   ],
-  providers: [
-    { provide: ResourceProvider, useClass: DemoResourceProvider },
-    { provide: SearchProvider, useClass: DemoSimpleSearchProvider },
-    { provide: TreeProvider, useClass: DemoTreeSearchProvider },
-  ],
 })
 export class SfDynamicFormModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SfDynamicFormModule,
+      providers: [
+        ...NbDatepickerModule.forRoot().providers,
+        ...NbDialogModule.forRoot().providers,
+        ...NbWindowModule.forRoot().providers,
+        { provide: ResourceProvider, useClass: DemoResourceProvider },
+        { provide: SearchProvider, useClass: DemoSimpleSearchProvider },
+        { provide: TreeProvider, useClass: DemoTreeSearchProvider },
+      ],
+    } as ModuleWithProviders;
+  }
 }
