@@ -4,7 +4,9 @@
 ### 使用
 
 ```
-<ngx-dynamic-form [models]="models"></ngx-dynamic-form>
+<ng-container *ngIf="models">
+  <ngx-dynamic-form [models]="models"></ngx-dynamic-form>
+</ng-container>
 ```
 
 #### 输入属性

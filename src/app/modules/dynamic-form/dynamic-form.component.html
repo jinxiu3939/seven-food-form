@@ -2,14 +2,14 @@
   <ng-container [ngSwitch]="layout">
     <nb-tabset *ngSwitchCase="'tab'">
       <nb-tab *ngFor="let block of models" [tabTitle]="block.title">
-        <ng-container *ngIf="block.items">
+        <ng-container *ngIf="block.column">
           <ngx-form-block [models]="block.items" [column]="block.column" [form]="form"></ngx-form-block>
         </ng-container>
       </nb-tab>
     </nb-tabset>
     <nb-stepper *ngSwitchCase="'step'" orientation="horizontal">
       <nb-step *ngFor="let block of models" [label]="block.title">
-        <ng-container *ngIf="block.items">
+        <ng-container *ngIf="block.column">
           <ngx-form-block [models]="block.items" [column]="block.column" [form]="form"></ngx-form-block>
         </ng-container>
       </nb-step>
@@ -17,7 +17,7 @@
     <ul *ngSwitchDefault class="default-block">
       <li *ngFor="let block of models">
         <h3 *ngIf="block.title">{{ block.title }}</h3>
-        <ng-container *ngIf="block.items">
+        <ng-container *ngIf="block.column">
           <ngx-form-block [models]="block.items" [column]="block.column" [form]="form"></ngx-form-block>
         </ng-container>
       </li>
