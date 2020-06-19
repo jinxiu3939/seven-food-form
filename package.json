@@ -1,10 +1,10 @@
 {
   "name": "seven-food-form",
-  "version": "0.2.0",
+  "version": "0.2.9",
   "description": "The dynamic form of angular based on nebular",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -78,7 +78,7 @@
     "nebular",
     "seven food"
   ],
-  "author": "hans <xiujixin@163.com> (http://www.xindejob.com)",
+  "author": "hans <xiujixin@163.com> (https://www.xindejob.com)",
   "license": "MIT",
   "homepage": "https://github.com/jinxiu3939/seven-food-form"
 }

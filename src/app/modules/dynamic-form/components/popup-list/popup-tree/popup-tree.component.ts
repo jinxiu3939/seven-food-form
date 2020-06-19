@@ -10,7 +10,7 @@ import {
 } from '@nebular/theme';
 
 import { TreeNode, Option, PopupTreeModel } from '../../../dynamic-form.options';
-import { TreeProvider } from '../../../providers';
+import { TreeProvider } from '../../../providers/data/tree-provider';
 
 @Component({
   selector: 'ngx-popup-tree',
@@ -37,8 +37,8 @@ export class PopupTreeComponent implements OnInit {
   private windowRef: NbWindowRef;
 
   constructor(private windowService: NbWindowService,
-              private provider: TreeProvider,
-              private dataSourceBuilder: NbTreeGridDataSourceBuilder<Option<string | number>>) {
+              private dataSourceBuilder: NbTreeGridDataSourceBuilder<Option<string | number>>,
+              private provider: TreeProvider) {
     this.loading = false;
   }
 

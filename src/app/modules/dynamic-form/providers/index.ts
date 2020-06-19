@@ -4,7 +4,6 @@ export * from './checkbox-model.factory';
 export * from './checkbox-tree-model.factory';
 export * from './chinese-word-text-box-model.factory';
 export * from './ck-editor-model.factory';
-export * from './data-provider.options';
 export * from './date-picker-model.factory';
 export * from './date-time-local-text-box-model.factory';
 export * from './drop-down-box-model.factory';

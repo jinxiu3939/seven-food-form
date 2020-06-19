@@ -29,6 +29,7 @@ export class ImageModelFactory extends BaseModelFactory {
       topic: '',
     },
     api: '', // 保存地址
+    headers: {}, // 保存接口请求头
     queueLimit: null,
   }; // 网络图片抓取配置
   private searchConfig: ResourceSearchConfig = {
@@ -40,10 +41,11 @@ export class ImageModelFactory extends BaseModelFactory {
       tag: null, // 标签
       title: null, // 标题/描述
       topic: null, // 主题
-      type: null, // 类型
+      type: 'image', // 类型
     },
     api: '',
     display: 'page',
+    headers: {}, // 检索接口请求头
     mode: 'sync',
     queueLimit: null,
     result: [],

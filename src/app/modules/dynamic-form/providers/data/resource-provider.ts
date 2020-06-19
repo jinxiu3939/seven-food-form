@@ -3,13 +3,39 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { FileResource, ResourceSearchParam } from '../../dynamic-form.options';
-import { ResourceProvider } from '../data-provider.options';
+import {
+  FileResource,
+  ResourceSearchParam,
+} from '../../dynamic-form.options';
+
+/**
+ * 资源提供者
+ */
+export abstract class ResourceProvider {
+  /**
+   * 解析上传结果
+   * @param response `json`解析后的上传结果
+   */
+  abstract parseUploadResult(response: any): { error: string, url: string };
+
+  /**
+   * 解析保存结果
+   * @param response `json`解析后的上传结果
+   */
+  abstract parseSaveResult(response: any): { error: string, url: string };
+
+  /**
+   * 获取检索结果
+   * @param api 检索地址
+   * @param param 检索参数
+   * @param headers 请求头
+   */
+  abstract getSearchResult(api: string, param: ResourceSearchParam, headers?: { [header: string]: string | string[]; })
+    : Observable<{ error: string, total: number, list: FileResource[] }>;
+}
 
 @Injectable()
 export class DemoResourceProvider extends ResourceProvider {
-
-  private api: string = '/api/index/index/lists';
 
   constructor(private http: HttpClient) {
     super();
@@ -62,7 +88,8 @@ export class DemoResourceProvider extends ResourceProvider {
    * 获取检索结果
    * @param param 检索参数
    */
-  getSearchResult(param: ResourceSearchParam): Observable<{ error: string, total: number, list: FileResource[] }> {
+  getSearchResult(api: string, param: ResourceSearchParam, headers?: { [header: string]: string | string[]; })
+    : Observable<{ error: string, total: number, list: FileResource[] }> {
     /* 构造检索参数 */
     let http_params = new HttpParams();
     for (const condition in param) {
@@ -71,7 +98,7 @@ export class DemoResourceProvider extends ResourceProvider {
       }
     }
     /* 检索 */
-    return this.http.get<any>(this.api, { params: http_params })
+    return this.http.get<any>(api, { params: http_params, headers })
     .pipe(
       catchError(this.handleHttpError), // 首先捕获异常，然后处理异常
       map((tempRes) => {

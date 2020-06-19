@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { ImageDescription, ImageItem, CrawlConfig } from '../../../dynamic-form.options';
-import { ResourceProvider } from '../../../providers';
+import { ResourceProvider } from '../../../providers/data/resource-provider';
 
 @Component({
   selector: 'ngx-image-web',
@@ -154,7 +154,7 @@ export class ImageWebComponent {
         form.url = image.thumb.url;
         form.title = image.thumb.title;
         if (this.canSave() && ! this.submits.includes(form.url)) { // 避免重复保存
-          this.http.post<any>(this.config.api, form).pipe(
+          this.http.post<any>(this.config.api, form, {headers: this.config.headers}).pipe(
             catchError(this.handleError),
           ).subscribe((tempRes) => {
             if (Math.min(this.thumbnails.length, this.max) === tmpNumber) {

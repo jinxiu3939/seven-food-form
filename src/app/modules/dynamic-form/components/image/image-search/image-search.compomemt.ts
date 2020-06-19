@@ -12,7 +12,7 @@ import {
   ResourceSearchConfig,
   ResourceSearchConditions,
 } from '../../../dynamic-form.options';
-import { ResourceProvider } from '../../../providers';
+import { ResourceProvider } from '../../../providers/data/resource-provider';
 
 @Component({
   selector: 'ngx-image-search',
@@ -126,7 +126,7 @@ export class ImageSearchComponent implements OnInit {
       });
     }
     /* 构造检索参数 */
-    return this.provider.getSearchResult(this.config.additionalParameter)
+    return this.provider.getSearchResult(this.config.api, this.config.additionalParameter, this.config.headers)
       .pipe(
         map((tempRes) => {
           let result: FileResource[] = [];
@@ -311,10 +311,9 @@ export class ImageSearchComponent implements OnInit {
    */
   private paginate() {
     if (this.config.mode === 'async') { // 异步
-      this.files$.subscribe((result) => {
-        this.records = result; // 当前图片
-        this.asyncItems(); // 全部图片
-      }); // 异步检索结果即为当前显示的图片
+      this.fetch(this.keyword).subscribe(records => {
+          this.records = records; // 当前页图片
+        });
     } else { // 同步
       this.files$.subscribe((result) => this.records = this.syncMore(result));
     }

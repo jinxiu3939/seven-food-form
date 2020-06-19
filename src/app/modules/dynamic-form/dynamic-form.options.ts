@@ -104,6 +104,9 @@ export interface UploadConfig {
 export interface CrawlConfig {
   additionalParameter: ResourceSaveParam; // 保存额外参数
   api: string; // 保存接口
+  headers: {
+    [header: string]: string | string[];
+  }; // 保存接口请求头
   queueLimit: number; // 可抓取最大数目
 }
 
@@ -114,6 +117,9 @@ export interface ResourceSearchConfig {
   additionalParameter: ResourceSearchParam; // 检索条件
   api: string; // 检索接口
   display: 'page' | 'list'; // 显示方式
+  headers: {
+    [header: string]: string | string[];
+  }; // 检索接口请求头
   mode: 'async' | 'sync'; // 检索方式
   queueLimit: number; // 可选择最大数目
   result: FileResource[]; // 默认结果集

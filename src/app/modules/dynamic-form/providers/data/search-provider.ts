@@ -3,8 +3,28 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { Option } from '../../dynamic-form.options';
-import { SearchProvider } from '../data-provider.options';
+import {
+  Option,
+} from '../../dynamic-form.options';
+
+/**
+ * 简单搜索提供者
+ */
+export abstract class SearchProvider {
+  /**
+   * 设置检索地址
+   * @param endpoint 地址
+   */
+  abstract setApi(endpoint: string): void;
+
+  /**
+   * 分页获取数据
+   * @param page 页码
+   * @param size 分页
+   * @param condition 参数
+   */
+  abstract getPage(page: number, size: number, condition?: any): Observable<Option<any>[]>;
+}
 
 @Injectable()
 export class DemoSimpleSearchProvider extends SearchProvider {

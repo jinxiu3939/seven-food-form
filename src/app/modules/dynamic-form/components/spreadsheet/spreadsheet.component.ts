@@ -9,7 +9,7 @@ import { FileUploader } from 'ng2-file-upload';
 import * as XLSX from 'xlsx';
 
 import { SpreadsheetModel } from '../../dynamic-form.options';
-import { ResourceProvider } from '../../providers';
+import { ResourceProvider } from '../../providers/data/resource-provider';
 
 type AOA = any[][];
 

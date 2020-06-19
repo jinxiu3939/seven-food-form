@@ -7,7 +7,7 @@ import { NbDialogService } from '@nebular/theme';
 import { FileUploader } from 'ng2-file-upload';
 
 import { ImageDescription, ImageItem, UploadConfig } from '../../../dynamic-form.options';
-import { ResourceProvider } from '../../../providers';
+import { ResourceProvider } from '../../../providers/data/resource-provider';
 
 @Component({
   selector: 'ngx-image-upload',
@@ -126,7 +126,7 @@ export class ImageUploadComponent implements OnInit {
       queue.onSuccess = (response, status, headers) => {
         // 上传成功
         if (status === 200) {
-          /* [todo] 上传结果处理，可以使用配置项 */
+          /* 上传结果处理 */
           try {
             const tempRes = JSON.parse(response);
             const result = $this.provider.parseUploadResult(tempRes);

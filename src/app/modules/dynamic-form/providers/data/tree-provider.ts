@@ -3,8 +3,27 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { Option, TreeNode } from '../../dynamic-form.options';
-import { TreeProvider } from '../data-provider.options';
+import {
+  Option,
+  TreeNode,
+} from '../../dynamic-form.options';
+
+/**
+ * 树结构提供者
+ */
+export abstract class TreeProvider {
+  /**
+   * 设置检索地址
+   * @param endpoint 地址
+   */
+  abstract setApi(endpoint: string): void;
+
+  /**
+   * 获取树结构
+   * @param condition 参数
+   */
+  abstract getTree(condition?: any): Observable<TreeNode<Option<string | number>>[]>;
+}
 
 @Injectable()
 export class DemoTreeSearchProvider extends TreeProvider {

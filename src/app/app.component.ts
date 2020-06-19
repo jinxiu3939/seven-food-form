@@ -114,6 +114,46 @@ export class AppComponent {
         require: true,
         value: '哈啊哈',
       }).datePicker(),
+      new QuickFormFactory({
+        display: 'input',
+        label: '图片',
+        multiple: true,
+        name: 'image-1',
+        uploadConfig: {
+          authTokenHeader: 'Token',
+          authToken: '85e4BvPZrX3O0VxWPrA6zvsdZh0tmy8aeeWjNkCAdUICLTY5AmXH',
+          url: '/api/upload/image',
+          additionalParameter: {
+            tag: ['参数吧'],
+            title: '是我的',
+            topic: '在这儿呢',
+            'app-key': 'sssssdddddddgg'
+          },
+        },
+        crawlConfig: {
+          api: '/api/my/resource',
+          additionalParameter: {
+            type: 'image',
+            'app-key': 'sssssdddddddgg'
+          },
+          headers: {
+            'Token': '85e4BvPZrX3O0VxWPrA6zvsdZh0tmy8aeeWjNkCAdUICLTY5AmXH',
+            'App-Key': 'sssssdddddddgg',
+          },
+        },
+        searchConfig: {
+          additionalParameter: {
+            page_size: 9.0,
+          },
+          api: '/api/my/resource',
+          display: 'list',
+          headers: {
+            'Token': '85e4BvPZrX3O0VxWPrA6zvsdZh0tmy8aeeWjNkCAdUICLTY5AmXH',
+            'App-Key': 'sssssdddddddgg',
+          },
+          mode: 'async',
+        },
+      }).image(),
     ],
   }];
   submitting = false;

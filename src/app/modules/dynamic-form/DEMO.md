@@ -1053,6 +1053,14 @@ images = [
   new ImageModelFactory({
     crawlConfig: {
       api: '/api/index/index/save',
+      additionalParameter: {
+        type: 'image',
+        'app-key': 'sssssdddddddgg'
+      },
+      headers: {
+        'Token': '85e4BvPZrX3O0VxWPrA6zvsdZh0tmy8aeeWjNkCAdUICLTY5AmXH',
+        'App-Key': 'sssssdddddddgg',
+      },
       queueLimit: 3,
     },
     display: 'input',
@@ -1062,9 +1070,20 @@ images = [
     multiple: true,
     name: 'image-2',
     searchConfig: {
+      headers: {
+        'Token': '85e4BvPZrX3O0VxWPrA6zvsdZh0tmy8aeeWjNkCAdUICLTY5AmXH',
+        'App-Key': 'sssssdddddddgg',
+      },
+      mode: 'async',
       queueLimit: 3,
     },
     uploadConfig: {
+      additionalParameter: {
+        tag: '七棵菜',
+        title: '春雨润物细无声',
+        topic: '自然',
+        'app-key': 'sssssdddddddgg'
+      },
       authTokenHeader: 'Token',
       authToken: '1949vx44zmVlndq4V9K9NeMgUX8WohaV/H+gBDFebNUTg0ufIg5t',
       queueLimit: 3,

@@ -29,10 +29,9 @@ import { FileUploadModule } from 'ng2-file-upload';
 
 /* 导入组件写相对路径，不能从`index.ts`中导入，否则`npm`发布之后找不到组件 */
 import { DynamicFormComponent } from './dynamic-form.component';
-import { ResourceProvider, SearchProvider, TreeProvider } from './providers/data-provider.options';
-import { DemoResourceProvider } from './providers/demo/resource.provider';
-import { DemoSimpleSearchProvider } from './providers/demo/simple-search.provider';
-import { DemoTreeSearchProvider } from './providers/demo/tree-search.provider';
+import { DemoResourceProvider, ResourceProvider } from './providers/data/resource-provider';
+import { DemoSimpleSearchProvider, SearchProvider } from './providers/data/search-provider';
+import { DemoTreeSearchProvider, TreeProvider } from './providers/data/tree-provider';
 import { DynamicFieldDirective } from './directive/dynamic-field.directive';
 import { InputEqualValidatorDirective } from './directive/input-equal-validator.directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';

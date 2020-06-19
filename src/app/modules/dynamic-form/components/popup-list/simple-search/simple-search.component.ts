@@ -8,7 +8,7 @@ import {
   Option,
   SearchConfig,
 } from '../../../dynamic-form.options';
-import { SearchProvider } from '../../../providers';
+import { SearchProvider } from '../../../providers/data/search-provider';
 
 @Component({
   selector: 'ngx-simple-search',
