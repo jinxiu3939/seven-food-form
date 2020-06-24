@@ -11,7 +11,7 @@ import {
 
 import { SfDynamicFormModule } from './modules/dynamic-form/dynamic-form.module';
 import { TestFormModule } from './modules/test-form/test-form.module';
-
+import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [];
@@ -31,7 +31,9 @@ const routes: Routes = [];
     SfDynamicFormModule.forRoot(),
     TestFormModule,
   ],
-  providers: [],
+  providers: [
+    ApiService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

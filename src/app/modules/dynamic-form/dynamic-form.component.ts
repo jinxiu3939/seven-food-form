@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BaseModel, ModelGroup, VALIDATORS } from './dynamic-form.options';
@@ -8,7 +8,7 @@ import { BaseModel, ModelGroup, VALIDATORS } from './dynamic-form.options';
   styleUrls: ['./dynamic-form.component.scss'],
   templateUrl: './dynamic-form.component.html',
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent implements OnChanges {
   @Input() models: ModelGroup[]; // 表单布局配置
   @Input() loading: boolean; // 表单状态
   @Input() layout: string; // 布局
@@ -17,11 +17,18 @@ export class DynamicFormComponent implements OnInit {
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
 
   form: FormGroup; // 响应式表单
+  complete: boolean; // 表单是否构建完毕
 
   constructor(private builder: FormBuilder) {}
 
-  ngOnInit() {
-    this.form = this.createGroup();
+  ngOnChanges(changes: SimpleChanges) {
+    for (const propName in changes) {
+      if (propName === 'models' && changes[propName].currentValue) {
+        this.complete = false; // 开始构建
+        this.form = this.createGroup(); // 重新构造表单
+        this.complete = true; // 构建完毕
+      }
+    }
   }
 
   createGroup() {
@@ -29,17 +36,21 @@ export class DynamicFormComponent implements OnInit {
     if (this.models) {
       const models = [];
       if (Array.isArray(this.models)) {
+        /* 格式化表单布局 */
         this.models = this.models.map(block => {
           if (block.items && Array.isArray(block.items)) {
             models.push(...block.items);
+            block.items = this.sort(block.items); // 排序
+          } else {
+            block.items = [];
           }
-          block.items = this.sort(block.items); // 排序
           block.column = [this.labelWidth(block.column), this.contentWidth(block.column)];
           return block;
         });
       } else {
         this.models = [];
       }
+      /* 构建表单 */
       models.forEach(model => group.addControl(model.name, this.builder.control(
         {value: model.value, disabled: model.disabled}, // 默认值
         this.fetchValidator(model),
@@ -53,7 +64,7 @@ export class DynamicFormComponent implements OnInit {
    * 可在初始化时确定
    */
   private labelWidth(column) {
-    return column && column[0] ? column[0] : 3;
+    return column && this.validateColumn(column[0]) ? column[0] : 3;
   }
 
   /**
@@ -61,7 +72,11 @@ export class DynamicFormComponent implements OnInit {
    * 可在初始化时确定
    */
   private contentWidth(column) {
-    return column && column[1] ? column[1] : 9;
+    return column && this.validateColumn(column[1]) ? column[1] : 9;
+  }
+
+  private validateColumn(column) {
+    return column && !isNaN(column) && column > 0 && column <=12
   }
 
   /**
