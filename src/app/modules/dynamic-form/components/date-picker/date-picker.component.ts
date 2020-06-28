@@ -13,6 +13,7 @@ import { DatePickerModel } from '../../dynamic-form.options';
   styles: [
     '.date-input {width: 7.5rem; height: 2.5rem;}',
     '.date-time-input {width: auto;}',
+    '.row {margin-left: 0;}',
   ],
   templateUrl: './date-picker.component.html',
 })

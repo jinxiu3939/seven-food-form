@@ -64,6 +64,16 @@ export class AppComponent implements OnInit {
           ],
           value: 'red',
         }).radio(),
+        new QuickFormFactory({
+          label: '颜色',
+          name: 'color',
+          type: 'radio',
+          options: [
+            { text: '红色', value: 'red', title : '一种颜色', items: 1 },
+            { text: '绿色', value: 'green', title : '大自然的颜色', items: 1000 },
+          ],
+          value: 'red',
+        }).checkbox(),
         {
           label: '颜色',
           name: 'color2',
