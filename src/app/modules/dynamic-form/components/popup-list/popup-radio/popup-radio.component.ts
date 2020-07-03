@@ -34,7 +34,7 @@ export class PopupRadioComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.text = this.model.text;
+    this.text = this.model.text || '';
     if (this.model.options) {
       const current = this.model.options.filter((item) => item.value === this.model.value);
       if (current.length > 0) {

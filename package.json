@@ -1,11 +1,12 @@
 {
   "name": "seven-food-form",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "description": "The dynamic form of angular based on nebular",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
+    "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

@@ -26,6 +26,7 @@ import { PopupCheckboxModelFactory } from './popup-checkbox-model.factory';
 import { PopupTreeModelFactory } from './popup-tree-model.factory';
 import { ItemListModelFactory } from './item-list-model.factory';
 import { PasswordBoxModelFactory } from './password-box-model.factory';
+import { LinkageBoxModelFactory } from './linkage-box-model.factory';
 
 /**
  * 快速表单工厂
@@ -234,5 +235,12 @@ export class QuickFormFactory {
    */
   passwordBox() {
     return new PasswordBoxModelFactory(this.config).instance();
+  }
+
+  /**
+   * 联动框
+   */
+  linkageBox() {
+    return new LinkageBoxModelFactory(this.config).instance();
   }
 }

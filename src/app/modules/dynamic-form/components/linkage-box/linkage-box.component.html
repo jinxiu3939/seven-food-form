@@ -1,0 +1,5 @@
+<div [formGroup]="form">
+  <ngx-linkage-node [parent]="model.root" [tree]="model.tree" (selectedChange)="getValue($event)">
+  </ngx-linkage-node>
+  <input [formControlName]="model.name" type="hidden" [id]="model.name" [value]="model.value" />
+</div>

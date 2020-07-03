@@ -1,0 +1,11 @@
+@import '../../../theme/styles';
+
+@include nb-install-component() {
+  .tree-inline {
+    display: inline-flex;
+  }
+
+  nb-select {
+    margin-right: 1rem;
+  }
+}

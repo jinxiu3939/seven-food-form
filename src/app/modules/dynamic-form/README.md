@@ -345,6 +345,22 @@
 - empty: boolean; // 是否空置密码
 - visible: boolean; //  是否可见
 
+#### LinkageBoxTreeModel
+
+联动框模型
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: (string | number)[]; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- root: string | number; // 根下拉框`parent`值
+- tree: LinkageBoxTree<string | number>; // 选项树
 
 ### 备注
 

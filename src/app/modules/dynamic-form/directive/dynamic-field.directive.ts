@@ -19,6 +19,7 @@ import { PopupCheckBoxComponent } from '../components/popup-list/popup-checkbox/
 import { PopupTreeComponent } from '../components/popup-list/popup-tree/popup-tree.component';
 import { ItemListComponent } from '../components/item-list/item-list.component';
 import { PasswordBoxComponent } from '../components/password-box/password-box.component';
+import { LinkageBoxComponent } from '../components/linkage-box/linkage-box.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -29,6 +30,7 @@ const COMPONENTS = {
   'drop-down-box': DropDownBoxComponent,
   image: ImageComponent,
   'item-list': ItemListComponent,
+  'linkage-box': LinkageBoxComponent,
   'password-box': PasswordBoxComponent,
   'popup-checkbox': PopupCheckBoxComponent,
   'popup-radio': PopupRadioComponent,

@@ -13,6 +13,7 @@ export * from './file-text-box-model.factory';
 export * from './image-model.factory';
 export * from './item-list-model.factory';
 export * from './letter-name-text-box-model.factory';
+export * from './linkage-box-model.factory';
 export * from './mobile-text-box-model.factory';
 export * from './number-text-box-model.factory';
 export * from './password-box-model.factory';

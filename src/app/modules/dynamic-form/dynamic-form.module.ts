@@ -51,6 +51,8 @@ import { ImageUploadComponent } from './components/image/image-upload/image-uplo
 import { ImageWebComponent } from './components/image/image-web/image-web.component';
 import { ItemDialogComponent } from './components/item-list/item-dialog/item-dialog.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
+import { LinkageBoxComponent } from './components/linkage-box/linkage-box.component';
+import { LinkageNodeComponent } from './components/linkage-box/linkage-node/linkage-node.component';
 import { PasswordBoxComponent } from './components/password-box/password-box.component';
 import { PopupCheckBoxComponent } from './components/popup-list/popup-checkbox/popup-checkbox.component';
 import { PopupRadioComponent } from './components/popup-list/popup-radio/popup-radio.component';
@@ -80,6 +82,8 @@ const ENTRY_COMPONENTS = [
   SpreadsheetComponent,
   TextAreaComponent,
   TextBoxComponent,
+  LinkageBoxComponent,
+  LinkageNodeComponent,
 ];
 
 const FORM_COMPONENTS = [

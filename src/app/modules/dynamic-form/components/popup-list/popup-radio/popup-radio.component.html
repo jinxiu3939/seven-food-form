@@ -27,7 +27,8 @@
 </div>
 
 <ng-template #contentTemplate>
-  <ngx-simple-search [config]="model.searchConfig"
+  <ngx-simple-search *ngIf="model.searchConfig"
+                     [config]="model.searchConfig"
                      [items]="model.options"
                      [page]="page"
                      (reload)="resetRecords($event)"

@@ -19,7 +19,7 @@ import { SearchProvider } from '../../../providers/data/search-provider';
 })
 export class SimpleSearchComponent implements OnInit, OnChanges {
 
-  @Input() config: SearchConfig; // 异步检索配置
+  @Input() config: SearchConfig; // 检索配置
   @Input() items: Option<string| number>[]; // 所有同步结果集
   @Input() page: number;
 
@@ -35,10 +35,11 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.config.conditions.forEach((cond) => this.condition[cond.value] = null);
+    this.config.conditions.forEach((cond) => this.condition[cond.value] = null); // 检索条件初始化
     if (this.config.endpoint) {
       this.provider.setApi(this.config.endpoint);
     }
+    
   }
 
   ngOnChanges(changes: SimpleChanges) {

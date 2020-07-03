@@ -18,6 +18,7 @@ export declare type ModelType = 'checkbox'
                                 | 'drop-down-box'
                                 | 'image'
                                 | 'item-list'
+                                | 'linkage-box'
                                 | 'password-box'
                                 | 'popup-checkbox'
                                 | 'popup-radio'
@@ -82,6 +83,26 @@ export interface CheckBoxTree<T> {
   items?: number; // 元素数量
   title?: string; // 标题
 }
+
+/**
+ * 联动下拉项
+ */
+export interface LinkageOption<T> {
+  text: string; // 文本
+  value: T; // 值
+  parent: T; // 上级下拉项的值
+}
+
+/**
+ * 联动下拉框
+ */
+export interface LinkageBoxTree<T> {
+  options: LinkageOption<T>[]; // 当前下拉框选项
+  selected: T; // 当前选中的值
+  children?: LinkageBoxTree<T>; // 子元素
+}
+
+
 
 /**
  * 文件上传配置
@@ -186,12 +207,12 @@ export interface ImportResultRow {
  * 检索配置
  */
 export interface SearchConfig {
-  additionalParameter: any; // 检索条件
+  additionalParameter: any; // 异步检索条件
   conditions: ConditionField[]; // 检索条件选项
   mode: 'async' | 'sync'; // 检索方式
   result: Option<string | number>[]; // 默认结果集
   size: number; // 分页大小
-  endpoint?: string; // 检索接口
+  endpoint?: string; // 异步检索接口
 }
 
 /**
@@ -384,4 +405,12 @@ export interface ItemListModel extends BaseModel<any[]> {
 export interface PasswordBoxModel extends BaseModel<string> {
   empty: boolean; // 是否空置密码
   visible: boolean; // 密码是否可见
+}
+
+/**
+ * 联动下拉框模型
+ */
+export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
+  root: string | number; // 根下拉框的复选项
+  tree: LinkageBoxTree<(string | number)>; // 选项树
 }
