@@ -171,6 +171,7 @@ export class AppComponent implements OnInit {
           label: '是否禁用',
           name: 'yes_no1',
           value: false,
+          options: null,
         }).booleanRadio(),
         {
           label: '是否禁用',
@@ -241,7 +242,9 @@ export class AppComponent implements OnInit {
           name: 'radio-2',
           options: this.options,
           searchConfig: {},
-          value: '',
+          value: '1',
+          text: '只读',
+          // readonly: true,
         }).popupRadio(),
       ],
     },
@@ -280,7 +283,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.service.get().subscribe(() => {
-      this.models = this.modesss;
+      this.models = this.defaultModels;
     });
   }
 

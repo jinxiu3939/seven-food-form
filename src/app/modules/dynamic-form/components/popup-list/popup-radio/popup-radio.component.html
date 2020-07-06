@@ -3,6 +3,7 @@
     <div class="col-3 left">
       <input type="text"
              class="form-control form-value"
+             [readonly]="model.readonly"
              [value]="model.value"
              [formControlName]="model.name">
     </div>
@@ -12,12 +13,14 @@
                disabled
                type="text"
                [value]="text">
-        <span class="input-group-append">
-          <a nbButton status="info" (click)="choose()">选择</a>
-        </span>
-        <span *ngIf="model.value" class="input-group-append">
-          <a nbButton status="warning" (click)="destroy()">清空</a>
-        </span>
+        <ng-container *ngIf="! model.readonly">
+          <span class="input-group-append">
+            <a nbButton status="info" (click)="choose()">选择</a>
+          </span>
+          <span *ngIf="model.value" class="input-group-append">
+            <a nbButton status="warning" (click)="destroy()">清空</a>
+          </span>
+        </ng-container>       
       </div>
     </div>
   </ng-container>

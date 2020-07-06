@@ -248,6 +248,7 @@ export interface BaseModel<T> {
   order?: number; // 排序
   require?: boolean; // 是否必填
   validator?: any; // 验证器
+  data?: any; // 自定义配置数据
 }
 
 /**
@@ -365,6 +366,7 @@ export interface TextBoxModel extends BaseModel<string> {
 export interface PopupRadioModel extends BaseModel<string | number> {
   disabled: boolean; // 是否禁用
   options: Option<string | number>[]; // 选项列表
+  readonly: boolean; // 是否只读
   searchConfig: SearchConfig; // 检索配置
   text: string; // 显示文本
 }

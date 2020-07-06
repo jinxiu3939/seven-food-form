@@ -16,9 +16,13 @@ export class DropDownBoxModelFactory extends BaseModelFactory {
   protected format(): void {
     // 非必填追加空值
     if (!this.model.require) {
-      const empty_values = this.model.options.filter((data) => !data.value);
-      if (empty_values.length === 0) {
-        this.model.options = [this.emptyOption].concat(this.model.options);
+      if (this.model.options) {
+        const empty_values = this.model.options.filter((data) => !data.value);
+        if (empty_values.length === 0) {
+          this.model.options = [this.emptyOption].concat(this.model.options);
+        }
+      } else {
+        this.model.options = [this.emptyOption];
       }
     }
   }

@@ -262,6 +262,7 @@
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
 - options: Option<string | number>[]; // 选项列表
+- readonly: boolean; // 是否只读
 - searchConfig: SearchConfig; // 检索配置
 - text: string; // 显示文本
 
@@ -359,6 +360,7 @@
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
+- data?: any; // 自定义配置数据
 - root: string | number; // 根下拉框`parent`值
 - tree: LinkageBoxTree<string | number>; // 选项树
 

@@ -37,14 +37,14 @@ export const deepExtend = function(...objects: Array<any>): any {
       val = obj[key]; // new value
 
       // recursion prevention
-      if (val === target) {
+      if (val === target || val === null) {
         return;
 
         /**
          * if new value isn't object then just overwrite by new value
          * instead of extending.
          */
-      } else if (typeof val !== 'object' || val === null) {
+      } else if (typeof val !== 'object') {
         target[key] = val;
         return;
 
