@@ -318,7 +318,7 @@ export interface ImageModel extends BaseModel<ImageItem[] | string> {
 /**
  * 电子表格模型
  */
-export interface SpreadsheetModel extends BaseModel<string> {
+export interface SpreadsheetModel extends BaseModel<any[]> {
   header: string[]; // 表格头
   kind: 'ng2-file-upload'; // 上传类别
   uploadConfig: UploadConfig; // 上传配置

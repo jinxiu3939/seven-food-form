@@ -82,8 +82,5 @@ export class ImageModelFactory extends BaseModelFactory {
     if (this.model.searchConfig.display === 'page') {
       this.model.searchConfig.additionalParameter.page_size = 9;
     }
-    if (this.model.value && this.model.value instanceof String) {
-      this.model.value = [{url: this.model.value, title: ''}];
-    }
   }
 }

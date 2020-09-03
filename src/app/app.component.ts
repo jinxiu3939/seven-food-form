@@ -70,6 +70,120 @@ export class AppComponent implements OnInit {
       },
     },
   };
+  checkboxTree: any = {
+    value: 1, // 值
+    title: '我是祖宗', // 标题
+    text: '祖宗', // 文本
+    items: '1', // 元素数量
+    children: [
+      {
+        value: 2, // 值
+        title: '我是爷爷', // 标题
+        text: '爷爷', // 文本
+        items: '3', // 元素数量
+        children: [
+          {
+            value: 3, // 值
+            title: '我是大伯', // 标题
+            text: '大伯', // 文本
+          },
+          {
+            value: 4, // 值
+            title: '我是爸爸', // 标题
+            text: '爸爸', // 文本
+            items: '1', // 元素数量
+            children: [
+              {
+                value: 5, // 值
+                title: '我就是我，不一样的花火', // 标题
+                text: '我自己', // 文本
+                children: [
+                  {
+                    value: 13, // 值
+                    title: '我的儿子', // 标题
+                    text: '大儿子', // 文本
+                    items: '1099',
+                  },
+                  {
+                    value: 14, // 值
+                    title: '我的儿子', // 标题
+                    text: '二儿子', // 文本
+                    items: '12', // 元素数量
+                  },
+                  {
+                    value: 15, // 值
+                    title: '我的儿子', // 标题
+                    text: '三儿子', // 文本
+                  },
+                  {
+                    value: 16, // 值
+                    title: '我的儿子', // 标题
+                    text: '四儿子', // 文本
+                  },
+                  {
+                    value: 17, // 值
+                    title: '我的儿子', // 标题
+                    text: '五儿子', // 文本
+                    items: '99+',
+                  },
+                  {
+                    value: 18, // 值
+                    title: '我的儿子', // 标题
+                    text: '六儿子', // 文本
+                  },
+                  {
+                    value: 19, // 值
+                    title: '我的儿子', // 标题
+                    text: '七儿子', // 文本
+                  },
+                ],
+              },
+              {
+                value: 8, // 值
+                title: '我的妹妹', // 标题
+                text: '妹妹', // 文本
+                items: '999', // 元素数量
+              },
+            ],
+          },
+          {
+            value: 6, // 值
+            title: '我是叔叔', // 标题
+            text: '三叔', // 文本
+            children: [
+              {
+                value: 11, // 值
+                title: '我的堂哥', // 标题
+                text: '哥哥', // 文本
+              },
+              {
+                value: 12, // 值
+                title: '我的堂妹', // 标题
+                text: '妹妹', // 文本
+              },
+            ],
+          },
+        ],
+      },
+      {
+        value: 7, // 值
+        title: '我是二爷爷', // 标题
+        text: '二爷爷', // 文本
+        children: [
+          {
+            value: 9, // 值
+            title: '我是小叔', // 标题
+            text: '小叔', // 文本
+          },
+          {
+            value: 10, // 值
+            title: '我是大叔', // 标题
+            text: '大叔', // 文本
+          },
+        ],
+      },
+    ],
+  };
   modesss: any = [
     {
       items: [
@@ -101,12 +215,31 @@ export class AppComponent implements OnInit {
       column: 3,
     }
   ];
+  images = [
+    {
+      id: 1,
+      creation_time: '2019-12-25 13:00:00',
+      file_name: 'screen.jpg',
+      size: 313,
+      tag: [],
+      title: '文化寻宝',
+      topic: 'game',
+      type: 'image',
+      url: 'http://shaimobao-10002753.image.myqcloud.com/shaimobao-10002753/0/8dc60954-f40d-4ddc-94a8-1624325d32e8/original',
+    },
+  ];
   models: any;
   defaultModels = [
     {
       title: "活命1",
       column: 3,
       items: [
+        new QuickFormFactory({
+          label: '族谱',
+          name: 'tree1',
+          tree: this.checkboxTree,
+          value: ['12', '11'],
+        }).checkboxTree(),
         new QuickFormFactory({
           label: '验证码',
           name: 'password-2',
@@ -116,9 +249,13 @@ export class AppComponent implements OnInit {
           label: '场馆',
           name: 'item-1',
           value: null,
+          attributes: [
+            {text: '名称', type: 'input', value: 'name'},
+            {text: '描述', type: 'input', value: 'description'},
+          ],
         }).itemList(),
         new QuickFormFactory({
-          display: 'input',
+          display: '',
           label: '图片',
           multiple: false,
           name: 'image-1',
@@ -127,6 +264,8 @@ export class AppComponent implements OnInit {
             authToken: '1949vx44zmVlndq4V9K9NeMgUX8WohaV/H+gBDFebNUTg0ufIg5t',
             url: '/api/upload/image',
           },
+          value: null,
+          list: this.images,
         }).image(),
         new QuickFormFactory({
           label: '颜色',
@@ -200,11 +339,11 @@ export class AppComponent implements OnInit {
         new QuickFormFactory({
           display: 'input',
           label: '图片',
-          multiple: true,
-          name: 'image-1',
+          multiple: false,
+          name: 'image-2',
           uploadConfig: {
             authTokenHeader: 'Token',
-            authToken: '85e4BvPZrX3O0VxWPrA6zvsdZh0tmy8aeeWjNkCAdUICLTY5AmXH',
+            authToken: '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
             url: '/api/upload/image',
             additionalParameter: {
               tag: ['参数吧'],
@@ -220,7 +359,7 @@ export class AppComponent implements OnInit {
               'app-key': 'sssssdddddddgg'
             },
             headers: {
-              'Token': '85e4BvPZrX3O0VxWPrA6zvsdZh0tmy8aeeWjNkCAdUICLTY5AmXH',
+              'Token': '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
               'App-Key': 'sssssdddddddgg',
             },
           },
@@ -231,7 +370,7 @@ export class AppComponent implements OnInit {
             api: '/api/my/resource',
             display: 'list',
             headers: {
-              'Token': '85e4BvPZrX3O0VxWPrA6zvsdZh0tmy8aeeWjNkCAdUICLTY5AmXH',
+              'Token': '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
               'App-Key': 'sssssdddddddgg',
             },
             mode: 'async',
@@ -246,6 +385,16 @@ export class AppComponent implements OnInit {
           text: '只读',
           // readonly: true,
         }).popupRadio(),
+        new QuickFormFactory({
+          label: '吃的',
+          name: 'text-1',
+          value: '系统（虚拟）',
+          text: '只读',
+          min: 0,
+          max: 0,
+          require: true,
+          // readonly: true,
+        }).textBox(),
       ],
     },
     {
@@ -284,6 +433,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.service.get().subscribe(() => {
       this.models = this.defaultModels;
+      console.log(this.models);
     });
   }
 

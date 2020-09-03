@@ -42,7 +42,7 @@ export class ImageSearchComponent implements OnInit {
   private total: number = 0; // 总数
   /* 数组由小到大依次如下 */
   public selected: number[]; // 选中的资源
-  public records: FileResource[]; // 显示的资源，异步数据，records.length === files$.subscribe().length
+  public records: FileResource[]; // 显示的资源。异步数据，records.length === files$.subscribe().length
   private files$: Observable<FileResource[]>; // 检索结果
   private items: FileResource[]; // 所有结果集
   private tmpItmes: FileResource[][]; // 异步检索临时结果集
@@ -59,7 +59,7 @@ export class ImageSearchComponent implements OnInit {
       this.items = this.config.result; // 同步检索所有结果集
     } else {
       this.items = []; // 异步检索所有结果集动态增长
-      this.tmpItmes = []; // 存放每次检索页码，防止重复结果集重复
+      this.tmpItmes = []; // 存放每次检索页码，防止结果集重复
     }
     this.size = this.config.additionalParameter.page_size;
     this.resetResult();
@@ -151,14 +151,14 @@ export class ImageSearchComponent implements OnInit {
     if (keyword) {
       result = this.items.filter((item) => {
         if (this.condition) { // 按照条件检索
-          if (item[this.condition] instanceof String || Array.isArray(item[this.condition])) {
+          if (typeof(item[this.condition]) === 'string' || Array.isArray(item[this.condition])) {
             if (item[this.condition].indexOf(keyword) >= 0) {
               return true;
             }
           }
         } else { // 检索所有条件
           for (const i in item) {
-            if (item[i] instanceof String || Array.isArray(item[i])) {
+            if (typeof(item[i]) === 'string' || Array.isArray(item[i])) {
               if (item[i].indexOf(keyword) >= 0) {
                 return true;
               }
@@ -178,14 +178,16 @@ export class ImageSearchComponent implements OnInit {
    * 提交
    */
   save() {
-    this.selected.forEach((index) => {
-      const result = {url: this.items[index].url, title: this.items[index].title};
+    const selected = this.items.filter((k) => this.selected.includes(k.id));
+    selected.forEach((item) => {
+      const result = {url: item.url, title: item.title};
       this.finish.emit(result);
     });
   }
 
   /**
    * 选择
+   * @param id 图片编号
    */
   choose(id: number) {
     if (this.selected.indexOf(id) >= 0) {
@@ -197,6 +199,7 @@ export class ImageSearchComponent implements OnInit {
 
   /**
    * 选中
+   * @param file 图片编号
    */
   private select(file: number) {
     if (this.multiple) { // 多选
@@ -258,10 +261,11 @@ export class ImageSearchComponent implements OnInit {
   private infiniteList() {
     this.files$.subscribe((result) => {
       let current: FileResource[];
-      if (this.config.mode === 'async') {
+      if (this.config.mode === 'sync') {
         current = this.syncMore(result); // 同步分页
       } else {
         current = result; // 异步结果即为当前页
+        this.items = result; // 初始化异步结果集
       }
       this.records = current;
       this.page ++;
@@ -280,7 +284,7 @@ export class ImageSearchComponent implements OnInit {
       this.fetch(this.keyword).subscribe(records => {
         if (records.length > 0) {
           this.records.push(...records); // 当前结果集
-          this.asyncItems();
+          this.asyncItems(); // 重新加载全部结果集
           this.page ++;
         } else {
           this.finished = true;
@@ -312,8 +316,9 @@ export class ImageSearchComponent implements OnInit {
   private paginate() {
     if (this.config.mode === 'async') { // 异步
       this.fetch(this.keyword).subscribe(records => {
-          this.records = records; // 当前页图片
-        });
+        this.records = records; // 当前页图片
+        this.items = records; // 初始化异步结果集
+      });
     } else { // 同步
       this.files$.subscribe((result) => this.records = this.syncMore(result));
     }

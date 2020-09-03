@@ -18,12 +18,12 @@
       <tbody>
         <ng-container *ngIf="model.value && model.value.length > 0">
           <tr *ngFor="let row of model.value; let i = index">
-            <td *ngFor="let attr of model.attributes">
+            <td *ngFor="let attr of model.attributes" [title]="row[attr.value]">
               {{ row[attr.value] }}
             </td>
             <td *ngIf="! model.disabled">
               <nb-icon icon="close" title="删除" status='warning' (click)="delete(row)"></nb-icon>
-              <nb-icon icon="edit-outline" title="编辑" status='control' (click)="edit(row, i)"></nb-icon>
+              <nb-icon icon="edit-outline" title="编辑" status='primary' (click)="edit(row, i)"></nb-icon>
             </td>
           </tr>
         </ng-container>

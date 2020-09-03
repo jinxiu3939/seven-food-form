@@ -6,7 +6,6 @@
            [id]="model.name"
            [type]="model.kind"
            [readonly]="model.readonly"
-           [maxlength]="model.max"
            [value]="model.value">
     <ng-container *ngIf="invalid">
       <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
