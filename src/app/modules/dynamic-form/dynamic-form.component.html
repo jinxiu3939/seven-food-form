@@ -19,10 +19,16 @@
       </ul>
     </ng-container>
   </ng-container>
-  <div class="form-group row">
+  <ng-content select="[name='other-models']"></ng-content>
+  <div class="form-group form-operation row">
     <div class="offset-4 col-8">
       <button type="submit" class="btn btn-success" [disabled]="!form.valid">提交</button>
       <button type="button" class="btn btn-warning" (click)="onReset()">重置</button>
+      <ng-container *ngIf="buttons">
+        <button *ngFor="let btn of buttons" type="button" class="btn btn-primary" (click)="onOperate(btn)">
+          {{ btn.value }}
+        </button>
+      </ng-container>
     </div>
   </div>
 </form>

@@ -8,6 +8,7 @@ import {
   Option,
   SearchConfig,
 } from '../../../dynamic-form.options';
+import { deepExtend } from '../../../helps';
 import { SearchProvider } from '../../../providers/data/search-provider';
 
 @Component({
@@ -39,7 +40,6 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
     if (this.config.endpoint) {
       this.provider.setApi(this.config.endpoint);
     }
-    
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -85,7 +85,8 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
    * 抓取异步结果集
    */
   private fetch(): Observable<Option<string| number>[]> {
-    return this.provider.getPage(this.page, this.config.size, this.condition);
+    const param = deepExtend({}, this.condition, this.config.additionalParameter);
+    return this.provider.getPage(this.page, this.config.size, param);
   }
 
   /**

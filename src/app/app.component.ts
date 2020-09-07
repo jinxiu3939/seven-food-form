@@ -10,7 +10,7 @@ import { ApiService } from './services/api.service';
 @Component({
   selector: 'ngx-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'seven-food-form';
@@ -72,75 +72,75 @@ export class AppComponent implements OnInit {
   };
   checkboxTree: any = {
     value: 1, // 值
-    title: '我是祖宗', // 标题
+    title: 'https://img.alicdn.com/i2/2074450097/O1CN01zMdiS61CaT1NADGbn_!!2074450097-0-lubanu-s.jpg_230x230', // 标题
     text: '祖宗', // 文本
     items: '1', // 元素数量
     children: [
       {
         value: 2, // 值
-        title: '我是爷爷', // 标题
+        title: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3416980019,137582677&fm=26&gp=0.jpg', // 标题
         text: '爷爷', // 文本
         items: '3', // 元素数量
         children: [
           {
             value: 3, // 值
-            title: '我是大伯', // 标题
+            title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
             text: '大伯', // 文本
           },
           {
             value: 4, // 值
-            title: '我是爸爸', // 标题
+            title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
             text: '爸爸', // 文本
             items: '1', // 元素数量
             children: [
               {
                 value: 5, // 值
-                title: '我就是我，不一样的花火', // 标题
+                title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                 text: '我自己', // 文本
                 children: [
                   {
                     value: 13, // 值
-                    title: '我的儿子', // 标题
+                    title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                     text: '大儿子', // 文本
                     items: '1099',
                   },
                   {
                     value: 14, // 值
-                    title: '我的儿子', // 标题
+                    title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                     text: '二儿子', // 文本
                     items: '12', // 元素数量
                   },
                   {
                     value: 15, // 值
-                    title: '我的儿子', // 标题
+                    title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                     text: '三儿子', // 文本
                   },
                   {
                     value: 16, // 值
-                    title: '我的儿子', // 标题
+                    title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                     text: '四儿子', // 文本
                   },
                   {
                     value: 17, // 值
-                    title: '我的儿子', // 标题
+                    title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                     text: '五儿子', // 文本
                     items: '99+',
                   },
                   {
                     value: 18, // 值
-                    title: '我的儿子', // 标题
+                    title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                     text: '六儿子', // 文本
                   },
                   {
                     value: 19, // 值
-                    title: '我的儿子', // 标题
+                    title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                     text: '七儿子', // 文本
                   },
                 ],
               },
               {
                 value: 8, // 值
-                title: '我的妹妹', // 标题
+                title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                 text: '妹妹', // 文本
                 items: '999', // 元素数量
               },
@@ -148,17 +148,17 @@ export class AppComponent implements OnInit {
           },
           {
             value: 6, // 值
-            title: '我是叔叔', // 标题
+            title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
             text: '三叔', // 文本
             children: [
               {
                 value: 11, // 值
-                title: '我的堂哥', // 标题
+                title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                 text: '哥哥', // 文本
               },
               {
                 value: 12, // 值
-                title: '我的堂妹', // 标题
+                title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
                 text: '妹妹', // 文本
               },
             ],
@@ -167,17 +167,17 @@ export class AppComponent implements OnInit {
       },
       {
         value: 7, // 值
-        title: '我是二爷爷', // 标题
+        title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
         text: '二爷爷', // 文本
         children: [
           {
             value: 9, // 值
-            title: '我是小叔', // 标题
+            title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
             text: '小叔', // 文本
           },
           {
             value: 10, // 值
-            title: '我是大叔', // 标题
+            title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
             text: '大叔', // 文本
           },
         ],
@@ -426,19 +426,109 @@ export class AppComponent implements OnInit {
       column: ['4', 14],
     },
   ];
+  goodsModels: any = [
+    {
+      items: [
+        new QuickFormFactory({
+          label: '名称',
+          name: 'title',
+          value: null,
+          min: 0,
+          max: 0,
+          require: true,
+        }).textBox(),
+        new QuickFormFactory({
+          label: '代码',
+          name: 'code',
+          value: null,
+          min: 0,
+          max: 0,
+          require: true,
+        }).textBox(),
+        new QuickFormFactory({
+          display: 'input',
+          label: '图片',
+          multiple: false,
+          name: 'image-2',
+          uploadConfig: {
+            authTokenHeader: 'Token',
+            authToken: '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
+            url: '/api/access/upload/image',
+            additionalParameter: {
+              tag: ['参数吧'],
+              title: '是我的',
+              topic: '在这儿呢',
+              'app-key': 'sssssdddddddgg'
+            },
+          },
+          crawlConfig: {
+            api: '/api/access/my/resource',
+            additionalParameter: {
+              type: 'image',
+              'app-key': 'sssssdddddddgg'
+            },
+            headers: {
+              'Token': '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
+              'App-Key': 'sssssdddddddgg',
+            },
+          },
+          searchConfig: {
+            additionalParameter: {
+              page_size: 9.0,
+            },
+            api: '/api/access/my/resource',
+            display: 'list',
+            headers: {
+              'Token': '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
+              'App-Key': 'sssssdddddddgg',
+            },
+            mode: 'async',
+          },
+        }).image(),
+        new QuickFormFactory({
+          label: '配件',
+          name: 'parts_id',
+          options: [],
+          searchConfig: {
+            format: "option",
+            conditions: [{type: "input", text: "名称", value: "title", options: null}],
+            endpoint: "/api/machine/parts",
+            mode: "async",
+            result: null,
+            size: 30,
+          },
+          value: '1',
+          text: '只读',
+          // readonly: true,
+        }).popupRadio(),
+      ],
+      title: "商品",
+      column: 3,
+    }
+  ];
   submitting = false;
+  buttons = [
+    {value: 'export', name: 'export'},
+    {value: 'import', name: 'import'},
+  ];
+  trees = [];
 
   constructor(private service: ApiService) {}
 
   ngOnInit() {
+    this.trees.push(this.checkboxTree);
+    this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.defaultModels;
-      console.log(this.models);
+      this.models = this.goodsModels;
     });
   }
 
   submit(value) {
     console.log(value);
     this.submitting = true;
+  }
+
+  operate(value) {
+    console.log(value);
   }
 }

@@ -32,8 +32,9 @@ import { TestComponentComponent } from './test-component/test-component.componen
 import { ResourceProvider } from './test-form.provider';
 import { DemoResourceProvider } from './providers/resource.provider';
 import { InComponentComponent } from './in-component/in-component.component';
+import { ImageTreeComponent } from './image-tree/image-tree.component';
 @NgModule({
-  declarations: [TestComponentComponent, InComponentComponent, TestFieldDirective],
+  declarations: [TestComponentComponent, InComponentComponent, TestFieldDirective, ImageTreeComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -65,6 +66,7 @@ import { InComponentComponent } from './in-component/in-component.component';
   exports: [
     TestComponentComponent,
     InComponentComponent,
+    ImageTreeComponent,
   ],
   providers: [
     { provide: ResourceProvider, useClass: DemoResourceProvider },

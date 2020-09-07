@@ -48,6 +48,14 @@ export interface ModelGroup {
 }
 
 /**
+ * 操作按钮
+ */
+export interface FormButton {
+  name: string; // 按钮标识
+  value: string; // 按钮文本
+}
+
+/**
  * 文件资源
  */
 export interface FileResource {

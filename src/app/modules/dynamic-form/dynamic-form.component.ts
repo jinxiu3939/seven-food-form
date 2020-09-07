@@ -1,7 +1,7 @@
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { BaseModel, ModelGroup, VALIDATORS } from './dynamic-form.options';
+import { BaseModel, FormButton, ModelGroup, VALIDATORS } from './dynamic-form.options';
 
 @Component({
   selector: 'ngx-dynamic-form',
@@ -12,9 +12,11 @@ export class DynamicFormComponent implements OnChanges {
   @Input() models: ModelGroup[]; // 表单布局配置
   @Input() loading: boolean; // 表单状态
   @Input() layout: string; // 布局
+  @Input() buttons: FormButton[]; // 操作按钮
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
+  @Output() public formCustom = new EventEmitter<any>(); // 其他点击事件
 
   form: FormGroup; // 响应式表单
   complete: boolean; // 表单是否构建完毕
@@ -103,6 +105,13 @@ export class DynamicFormComponent implements OnChanges {
   onReset() {
     this.form.reset();
     this.formReset.emit(true);
+  }
+
+  /**
+   * 其他按钮操作
+   */
+  onOperate(operation: FormButton) {
+    this.formCustom.emit({ form: this.form.value, name: operation.name });
   }
 
   private fetchValidator(model: BaseModel<any>) {

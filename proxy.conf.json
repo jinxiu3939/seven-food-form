@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://seven-food.localhost/access",
+    "target": "http://seven-food.localhost",
     "secure": false,
     "pathRewrite": {
       "^/api": ""

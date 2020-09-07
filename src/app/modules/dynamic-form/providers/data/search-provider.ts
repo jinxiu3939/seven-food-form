@@ -29,7 +29,7 @@ export abstract class SearchProvider {
 @Injectable()
 export class DemoSimpleSearchProvider extends SearchProvider {
 
-  protected api: string = '/api/index/index/search';
+  protected api: string = '/api/index/index';
 
   constructor(private http: HttpClient) {
     super();

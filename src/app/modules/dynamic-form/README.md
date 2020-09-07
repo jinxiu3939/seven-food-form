@@ -9,6 +9,40 @@
 </ng-container>
 ```
 
+#### 表单中插入其他内容
+
+插入内容标签的`name`属性为`other-models`
+
+```
+<ng-container *ngIf="models">
+  <ngx-dynamic-form [models]="models">
+    <div name="other-models">hello world</div>
+  </ngx-dynamic-form>
+</ng-container>
+```
+
+#### 更改表单布局样式
+
+```
+::ng-deep ngx-dynamic-form {
+  .default-block {
+    width: 60%;
+    ngx-form-block {
+      width: 100%;
+    
+      .form-group {
+        float: left;
+        width: 33%;
+        overflow-x: scroll;
+      }
+    }
+  }
+  .form-operation {
+    width: 40%;
+  }
+}
+```
+
 #### 输入属性
 
 ##### loading
@@ -17,6 +51,12 @@
 
 例如：表单在提交触发之后，状态设为`true`，不可再次提交，
 直到父组件在提交结束之后，如果需要继续提交，则设置状态为`false`
+
+##### buttons
+
+操作按钮
+
+自定义操作按钮，类型：FormButton，参见`dynamic-form.options.ts`
 
 ##### layout
 
@@ -56,10 +96,11 @@
 
 > 推荐使用快捷表单工厂
 
-#### 输出参数
+#### 输出事件
 
-- formSubmit，返回表单值
-- formReset，返回`boolean`值
+- formSubmit，提交事件，返回表单值
+- formReset，重置事件，返回`boolean`值
+- formCustom，自定义事件，返回表单值和操作按钮名称
 
 ### 示例
 
