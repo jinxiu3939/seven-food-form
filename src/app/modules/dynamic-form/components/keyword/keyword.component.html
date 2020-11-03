@@ -1,0 +1,18 @@
+<div [formGroup]="form" class="row">
+  <div class="keyword-list col-12">
+    <ng-container *ngIf="model.value && model.value.length > 0">
+      <a *ngFor="let v of model.value" nbButton size="tiny">
+        {{ v }}
+        <nb-icon *ngIf="! model.readonly" status="danger" icon="close" (click)="delete(v)"></nb-icon>
+      </a>
+    </ng-container>
+    <ng-container *ngIf="! model.value || model.value.length === 0">
+      <a>暂无</a>
+    </ng-container>
+    <ng-container *ngIf="! model.readonly">
+      <input #keyword type="text" class="form-control-sm form-value">
+      <a nbButton status="info" size="tiny" (click)="add(keyword.value)">新增</a>
+    </ng-container>
+    <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
+  </div>
+</div>

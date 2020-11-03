@@ -12,4 +12,5 @@ export class FormBlockComponent {
   @Input() models: BaseModel<any>[]; // 表单项
   @Input() form: FormGroup; // 响应式表单
   @Input() column: number[]; // 列宽度
+  @Input() display: string = ''; // 样式
 }

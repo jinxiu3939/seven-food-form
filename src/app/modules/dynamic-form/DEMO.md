@@ -1358,6 +1358,13 @@ data = [
         { text: '选项A', value: 'A', title : '选项A', items: '99+' },
         { text: '选项B', value: 'B', title : '选项B' },
       ] },
+      { text: '学校', value: 'school', type: 'drop-down-filter', options: [
+        { text: '选项A', value: 'A', title : '选项A', items: '99+' },
+        { text: '选项B', value: 'B', title : '选项B' },
+        { text: '选项C', value: 'C', title : '选项C' },
+        { text: '选项D', value: 'D', title : '选项D' },
+        { text: '选项E', value: 'E', title : '选项E' },
+      ] },
     ],
   }).instance(),
   {
@@ -1468,6 +1475,81 @@ tree: any = {
     help: 'this is a password',
     order: 1,
     tree: tree,
+  },
+],
+```
+
+
+- 实例化`videoModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '视频',
+    multiple: false,
+    name: 'video-1',
+    uploadConfig: {
+      authTokenHeader: 'Token',
+      authToken: '1949vx44zmVlndq4V9K9NeMgUX8WohaV/H+gBDFebNUTg0ufIg5t',
+      url: '/api/upload/video',
+    },
+  }).video(),
+  new VideoModelFactory({
+    label: '视频',
+    max: 5,
+    multiple: true,
+    name: 'video-2',
+    uploadConfig: {
+      additionalParameter: {
+        tag: '七棵菜',
+        title: '春雨润物细无声',
+        topic: '自然',
+        'app-key': '123'
+      },
+      authTokenHeader: 'Token',
+      authToken: '1949vx44zmVlndq4V9K9NeMgUX8WohaV/H+gBDFebNUTg0ufIg5t',
+      queueLimit: 3,
+      url: '/api/upload/video',
+    },
+    value: '',
+  }).instance(),
+  {
+    label: '视频',
+    name: 'video-3',
+    type: 'video',
+    value: [{url: 'https://ss1.bdstatic.com/test.mp4', title: 'demo'}],
+    disabled: true,
+    help: 'this is a video',
+    order: 1,
+    validator: '',
+  },
+],
+```
+
+- 实例化`KeywordModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '标签',
+    name: 'tag',
+    value: ['三国', '武当']
+  }).keyword(),
+  new KeywordModelFactory({
+    label: '关键字',
+    name: 'keyword',
+    value: '',
+    readonly: false,
+  }).instance(),
+  {
+    label: '标签',
+    name: 'tag-3',
+    type: 'keyword',
+    value: ['demo'],
+    help: 'this is a video',
+    order: 1,
+    validator: '',
+    readonly: true,
   },
 ],
 ```

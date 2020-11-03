@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   QuickFormFactory,
   LinkageBoxModelFactory,
+  KeywordModelFactory,
 } from './modules/dynamic-form';
 
 import { ApiService } from './services/api.service';
@@ -30,6 +31,445 @@ export class AppComponent implements OnInit {
     { text: '选项M', value: 'M', title : '选项M', items: '99+' },
     { text: '选项N', value: 'N', title : '选项N' },
     { text: '选项U', value: 'R', title : '选项R' },
+  ];
+  realModels = [
+    {
+      "column": [
+        "2",
+        "10"
+      ],
+      "title": "默认产品",
+      "items": [
+        {
+          "clear": false,
+          "disabled": false,
+          "kind": "text",
+          "placeholder": "",
+          "readonly": false,
+          "value": "",
+          "label": "编码",
+          "name": "code",
+          "type": "text-box",
+          "help": "",
+          "max": 100,
+          "min": 0,
+          "order": 0,
+          "require": true,
+          "validator": "",
+          "data": "textBox"
+        },
+        {
+          "clear": false,
+          "disabled": false,
+          "kind": "text",
+          "placeholder": "",
+          "readonly": false,
+          "value": "",
+          "label": "名称",
+          "name": "title",
+          "type": "text-box",
+          "help": "产品名称",
+          "max": 100,
+          "min": 0,
+          "order": 0,
+          "require": true,
+          "validator": "",
+          "data": "textBox"
+        },
+        {
+          "crawlConfig": {
+            "additionalParameter": {
+              "tag": [],
+              "title": "",
+              "topic": ""
+            },
+            "api": "/api/access/my/resource",
+            "headers": {
+              "Token": "96fbnL4A26KhpMuOKjMOMyFwYdQxeq4lg5t3jOG7fbkzXdfnvf/J",
+              "App-Key": "123"
+            },
+            "queueLimit": 1
+          },
+          "disabled": false,
+          "display": "image",
+          "kind": "ng2-file-upload",
+          "multiple": true,
+          "searchConfig": {
+            "additionalParameter": {
+              "page_number": 1,
+              "page_size": 9,
+              "type": "image"
+            },
+            "api": "/api/access/my/resource",
+            "display": "list",
+            "headers": {
+              "Token": "96fbnL4A26KhpMuOKjMOMyFwYdQxeq4lg5t3jOG7fbkzXdfnvf/J",
+              "App-Key": "123"
+            },
+            "mode": "async",
+            "result": []
+          },
+          "uploadConfig": {
+            "additionalParameter": {
+              "tag": [],
+              "title": "",
+              "topic": "",
+              "App-Key": "123"
+            },
+            "allowedFileType": [
+              "image"
+            ],
+            "authTokenHeader": "Token",
+            "authToken": "96fbnL4A26KhpMuOKjMOMyFwYdQxeq4lg5t3jOG7fbkzXdfnvf/J",
+            "itemAlias": "image",
+            "maxFileSize": 2097152,
+            "method": "POST",
+            "url": "/api/access/upload/image"
+          },
+          "label": "图片",
+          "name": "cover",
+          "type": "image",
+          "value": "",
+          "help": "",
+          "max": 100,
+          "min": 0,
+          "order": 0,
+          "require": false,
+          "validator": "",
+          "data": "image"
+        },
+        {
+          "disabled": false,
+          "mode": "sync",
+          "text": "",
+          "tree": [
+            {
+              "data": {
+                "text": "电子",
+                "value": 1,
+                "title": "电子",
+                "items": null
+              },
+              "children": [
+                {
+                  "data": {
+                    "text": "手机壳",
+                    "value": 4,
+                    "title": "手机壳",
+                    "items": null
+                  },
+                  "children": [
+                    {
+                      "data": {
+                        "text": "铁质",
+                        "value": 5,
+                        "title": "铁质",
+                        "items": null
+                      },
+                      "children": [],
+                      "expanded": true
+                    },
+                    {
+                      "data": {
+                        "text": "塑料",
+                        "value": 6,
+                        "title": "塑料",
+                        "items": null
+                      },
+                      "children": [],
+                      "expanded": true
+                    }
+                  ],
+                  "expanded": true
+                }
+              ],
+              "expanded": true
+            },
+            {
+              "data": {
+                "text": "化工",
+                "value": 2,
+                "title": "化工",
+                "items": null
+              },
+              "children": [],
+              "expanded": false
+            },
+            {
+              "data": {
+                "text": "设备",
+                "value": 7,
+                "title": "设备",
+                "items": null
+              },
+              "children": [
+                {
+                  "data": {
+                    "text": "电气设备",
+                    "value": 8,
+                    "title": "电气设备",
+                    "items": null
+                  },
+                  "children": [],
+                  "expanded": false
+                },
+                {
+                  "data": {
+                    "text": "机械设备",
+                    "value": 9,
+                    "title": "机械设备",
+                    "items": null
+                  },
+                  "children": [
+                    {
+                      "data": {
+                        "text": "1马力",
+                        "value": 10,
+                        "title": "1马力",
+                        "items": null
+                      },
+                      "children": [],
+                      "expanded": false
+                    },
+                    {
+                      "data": {
+                        "text": "2马力",
+                        "value": 11,
+                        "title": "2马力",
+                        "items": null
+                      },
+                      "children": [],
+                      "expanded": false
+                    }
+                  ],
+                  "expanded": false
+                }
+              ],
+              "expanded": false
+            },
+            {
+              "data": {
+                "text": "零件",
+                "value": 12,
+                "title": "零件",
+                "items": null
+              },
+              "children": [
+                {
+                  "data": {
+                    "text": "进口",
+                    "value": 13,
+                    "title": "进口",
+                    "items": null
+                  },
+                  "children": [
+                    {
+                      "data": {
+                        "text": "免税",
+                        "value": 15,
+                        "title": "免税",
+                        "items": null
+                      },
+                      "children": [],
+                      "expanded": false
+                    },
+                    {
+                      "data": {
+                        "text": "奢侈品",
+                        "value": 16,
+                        "title": "奢侈品",
+                        "items": null
+                      },
+                      "children": [],
+                      "expanded": false
+                    }
+                  ],
+                  "expanded": false
+                },
+                {
+                  "data": {
+                    "text": "国产",
+                    "value": 14,
+                    "title": "国产",
+                    "items": null
+                  },
+                  "children": [
+                    {
+                      "data": {
+                        "text": "本地",
+                        "value": 17,
+                        "title": "本地",
+                        "items": null
+                      },
+                      "children": [],
+                      "expanded": false
+                    },
+                    {
+                      "data": {
+                        "text": "外地",
+                        "value": 18,
+                        "title": "外地",
+                        "items": null
+                      },
+                      "children": [],
+                      "expanded": false
+                    }
+                  ],
+                  "expanded": false
+                }
+              ],
+              "expanded": false
+            }
+          ],
+          "value": "",
+          "label": "类别",
+          "name": "cat_id",
+          "type": "popup-tree",
+          "help": "关联类别",
+          "max": 0,
+          "min": 0,
+          "order": 0,
+          "require": true,
+          "validator": "",
+          "data": "popupTree"
+        },
+        {
+          "disabled": false,
+          "options": [],
+          "searchConfig": {
+            "additionalParameter": {
+              "format": "option"
+            },
+            "conditions": [
+              {
+                "type": "input",
+                "text": "编码",
+                "value": "keyword",
+                "options": null
+              }
+            ],
+            "mode": "async",
+            "result": [],
+            "size": 30,
+            "endpoint": "/api/machine/parts",
+            "headers": {
+              "Token": "96fbnL4A26KhpMuOKjMOMyFwYdQxeq4lg5t3jOG7fbkzXdfnvf/J",
+              "App-Key": "123"
+            },
+          },
+          "text": "",
+          "value": "",
+          "label": "图片编码",
+          "name": "parts_code",
+          "type": "popup-radio",
+          "help": "",
+          "max": 0,
+          "min": 0,
+          "order": 0,
+          "require": false,
+          "validator": "",
+          "data": "popupRadio"
+        },
+      ],
+      "is_default": false,
+      "id": 8
+    },
+    {
+      "column": [
+        2,
+        10
+      ],
+      "title": "",
+      "items": [
+        {
+          "disabled": false,
+          "options": [],
+          "searchConfig": {
+            "additionalParameter": {
+              "format": "option"
+            },
+            "conditions": [
+              {
+                "type": "input",
+                "text": "产品",
+                "value": "keyword",
+                "options": null
+              }
+            ],
+            "mode": "async",
+            "result": [],
+            "size": 30,
+            "endpoint": "/api/machine/goods",
+            "headers": {
+              "Token": "96fbnL4A26KhpMuOKjMOMyFwYdQxeq4lg5t3jOG7fbkzXdfnvf/J",
+              "App-Key": "123"
+            },
+          },
+          "text": "",
+          "value": "",
+          "label": "产品",
+          "name": "parts_code",
+          "type": "popup-checkbox",
+          "help": "",
+          "max": 0,
+          "min": 0,
+          "order": 0,
+          "require": false,
+          "validator": "",
+          "data": "popupCheckbox"
+        },
+        {
+          "disabled": false,
+          "rows": 3,
+          "label": "备注",
+          "name": "description",
+          "type": "text-area",
+          "value": "",
+          "help": "",
+          "max": 0,
+          "min": 0,
+          "order": 0,
+          "require": false,
+          "validator": "",
+          "data": "textArea"
+        },
+        {
+          "disabled": false,
+          "kind": "ng2-file-upload",
+          "multiple": false,
+          "uploadConfig": {
+            "additionalParameter": {
+              "tag": [],
+              "title": "",
+              "topic": "",
+              "App-Key": "123"
+            },
+            "allowedFileType": [
+              "video"
+            ],
+            "authTokenHeader": "Token",
+            "authToken": "96fbnL4A26KhpMuOKjMOMyFwYdQxeq4lg5t3jOG7fbkzXdfnvf/J",
+            "itemAlias": "video",
+            "maxFileSize": 314572800,
+            "method": "POST",
+            "url": "/api/access/upload/video"
+          },
+          "label": "视频",
+          "name": "video",
+          "type": "video",
+          "value": "",
+          "help": "",
+          "max": 0,
+          "min": 0,
+          "order": 0,
+          "require": false,
+          "validator": "",
+          "data": "video"
+        }
+      ],
+      "is_default": true,
+      "id": 0
+    }
   ];
   tree: any = {
     options: [
@@ -200,6 +640,18 @@ export class AppComponent implements OnInit {
           tree: this.tree,
           root: 0,
         }).linkageBox(),
+        new QuickFormFactory({
+          display: '',
+          label: '图片',
+          multiple: false,
+          name: 'image-1',
+          uploadConfig: {
+            authTokenHeader: 'Token',
+            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
+            url: '/api/access/upload/image',
+          },
+          value: null,
+        }).image(),
         {
           label: '族谱',
           name: 'zupu-3',
@@ -210,6 +662,25 @@ export class AppComponent implements OnInit {
           tree: this.tree,
           root: 0,
         },
+        new QuickFormFactory({
+          label: '吃的',
+          name: 'radio-2',
+          options: this.options,
+          searchConfig: {},
+          value: '1',
+          text: '只读',
+          // readonly: true,
+        }).popupRadio(),
+        new QuickFormFactory({
+          label: '视频',
+          multiple: false,
+          name: 'video-1',
+          uploadConfig: {
+            authTokenHeader: 'Token',
+            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
+            url: '/api/access/upload/video',
+          },
+        }).video(),
       ],
       title: "活命",
       column: 3,
@@ -246,12 +717,40 @@ export class AppComponent implements OnInit {
           max: 10,
         }).passwordBox(),
         new QuickFormFactory({
+          label: '标签',
+          name: 'tag',
+          value: ['三国', '武当']
+        }).keyword(),
+        new KeywordModelFactory({
+          label: '关键字',
+          name: 'keyword',
+          value: '',
+          readonly: false,
+        }).instance(),
+        {
+          label: '标签',
+          name: 'tag-3',
+          type: 'keyword',
+          value: ['demo'],
+          help: 'this is a video',
+          order: 1,
+          validator: '',
+          readonly: true,
+        },
+        new QuickFormFactory({
           label: '场馆',
           name: 'item-1',
           value: null,
           attributes: [
             {text: '名称', type: 'input', value: 'name'},
-            {text: '描述', type: 'input', value: 'description'},
+            {text: '描述', type: 'drop-down-filter', value: 'menu', options: [
+              { text: '苹果', value: 'apple', title : '一种水果' },
+              { text: '梨', value: 'pear', title : '一种水果' },
+            ]},
+            {text: '描述', type: 'drop-down-filter', value: 'sha', options: [
+              { text: '苹果', value: 'apple', title : '一种水果' },
+              { text: '梨', value: 'pear', title : '一种水果' },
+            ]},
           ],
         }).itemList(),
         new QuickFormFactory({
@@ -261,7 +760,7 @@ export class AppComponent implements OnInit {
           name: 'image-1',
           uploadConfig: {
             authTokenHeader: 'Token',
-            authToken: '1949vx44zmVlndq4V9K9NeMgUX8WohaV/H+gBDFebNUTg0ufIg5t',
+            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
             url: '/api/upload/image',
           },
           value: null,
@@ -343,7 +842,7 @@ export class AppComponent implements OnInit {
           name: 'image-2',
           uploadConfig: {
             authTokenHeader: 'Token',
-            authToken: '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
+            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
             url: '/api/upload/image',
             additionalParameter: {
               tag: ['参数吧'],
@@ -359,7 +858,7 @@ export class AppComponent implements OnInit {
               'app-key': 'sssssdddddddgg'
             },
             headers: {
-              'Token': '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
+              'Token': 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
               'App-Key': 'sssssdddddddgg',
             },
           },
@@ -370,7 +869,7 @@ export class AppComponent implements OnInit {
             api: '/api/my/resource',
             display: 'list',
             headers: {
-              'Token': '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
+              'Token': 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
               'App-Key': 'sssssdddddddgg',
             },
             mode: 'async',
@@ -380,7 +879,15 @@ export class AppComponent implements OnInit {
           label: '吃的',
           name: 'radio-2',
           options: this.options,
-          searchConfig: {},
+          searchConfig: {
+            conditions: [
+              {type: "input", text: "名称", value: "title", options: null},
+              {text: '描述', type: 'drop-down-filter', value: 'menu', options: [
+                { text: '苹果', value: 'apple', title : '一种水果' },
+                { text: '梨', value: 'pear', title : '一种水果' },
+              ]},
+            ],
+          },
           value: '1',
           text: '只读',
           // readonly: true,
@@ -415,11 +922,39 @@ export class AppComponent implements OnInit {
         },
         new QuickFormFactory({
           clear: true,
-          label: '日期时间',
-          name: 'date-time-1',
+          data: "datePicker",
+          disabled: false,
+          format: "YYYY-MM-DD HH:mm:ss",
+          help: "",
+          kind: "date-time",
+          label: "结束日期",
+          max: 0,
+          min: 0,
+          name: "end_date",
           now: true,
-          require: true,
-          value: '哈啊哈',
+          order: 0,
+          require: false,
+          type: "date-picker",
+          validator: "",
+          value: "",
+        }).datePicker(),
+        new QuickFormFactory({
+          clear: false,
+          data: "datePicker",
+          disabled: false,
+          format: "YYYY-MM-DD HH:mm:ss",
+          help: "",
+          kind: "date",
+          label: "开始日期",
+          max: 0,
+          min: 0,
+          name: "start_date",
+          now: false,
+          order: 0,
+          require: false,
+          type: "date-picker",
+          validator: "",
+          value: "",
         }).datePicker(),
       ],
       title: "活命1",
@@ -452,7 +987,7 @@ export class AppComponent implements OnInit {
           name: 'image-2',
           uploadConfig: {
             authTokenHeader: 'Token',
-            authToken: '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
+            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
             url: '/api/access/upload/image',
             additionalParameter: {
               tag: ['参数吧'],
@@ -468,7 +1003,7 @@ export class AppComponent implements OnInit {
               'app-key': 'sssssdddddddgg'
             },
             headers: {
-              'Token': '7710bLMWPJgk57Ac9F8EkCrb1NA3yUgPHwnff8OvLXsgxGoGVXML',
+              'Token': 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
               'App-Key': 'sssssdddddddgg',
             },
           },
@@ -516,10 +1051,10 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.trees.push(this.checkboxTree);
-    this.trees.push(this.checkboxTree);
+    // this.trees.push(this.checkboxTree);
+    // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.goodsModels;
+      this.models = this.defaultModels;
     });
   }
 

@@ -13,4 +13,12 @@
   label, .col-value, button {
     margin-bottom: 0.5rem;
   }
+
+  .form-control-small {
+    max-width: 40%;
+  }
+
+  .input-group-append {
+    max-width: 60%;
+  }
 }

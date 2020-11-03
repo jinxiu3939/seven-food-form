@@ -20,6 +20,8 @@ import { PopupTreeComponent } from '../components/popup-list/popup-tree/popup-tr
 import { ItemListComponent } from '../components/item-list/item-list.component';
 import { PasswordBoxComponent } from '../components/password-box/password-box.component';
 import { LinkageBoxComponent } from '../components/linkage-box/linkage-box.component';
+import { VideoComponent } from '../components/video/video.component';
+import { KeywordComponent } from '../components/keyword/keyword.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -30,6 +32,7 @@ const COMPONENTS = {
   'drop-down-box': DropDownBoxComponent,
   image: ImageComponent,
   'item-list': ItemListComponent,
+  keyword: KeywordComponent,
   'linkage-box': LinkageBoxComponent,
   'password-box': PasswordBoxComponent,
   'popup-checkbox': PopupCheckBoxComponent,
@@ -39,6 +42,7 @@ const COMPONENTS = {
   spreadsheet: SpreadsheetComponent,
   'text-area': TextAreaComponent,
   'text-box': TextBoxComponent,
+  video: VideoComponent,
 };
 
 @Directive({

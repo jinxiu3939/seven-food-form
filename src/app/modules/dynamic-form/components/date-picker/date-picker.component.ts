@@ -24,8 +24,8 @@ export class DatePickerComponent implements OnInit {
   hours = AllHours;
   minutes = AllMinutes;
   date: Date; // 日期默认值
-  hour: string; // 小时
-  minute: string; // 分钟
+  hour: string = '00'; // 小时
+  minute: string = '00'; // 分钟
 
   ngOnInit() {
     if (this.model && this.model.value) {

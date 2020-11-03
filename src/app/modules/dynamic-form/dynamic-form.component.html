@@ -1,4 +1,10 @@
-<form *ngIf="form" class="dynamic-form" [formGroup]="form" [nbSpinner]="loading" nbSpinnerStatus="info" (ngSubmit)="onSubmit()">
+<form *ngIf="form"
+      class="dynamic-form"
+      [ngClass]="{'form-inline': layout==='inline'}"
+      [formGroup]="form"
+      [nbSpinner]="loading"
+      nbSpinnerStatus="info"
+      (ngSubmit)="onSubmit()">
   <ng-container *ngIf="complete">
     <ng-container [ngSwitch]="layout">
       <nb-tabset *ngSwitchCase="'tab'">
@@ -11,16 +17,22 @@
           <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form"></ngx-form-block>
         </nb-step>
       </nb-stepper>
-      <ul *ngSwitchDefault class="default-block">
+      <ul *ngSwitchDefault class="default-block" [ngClass]="{'inline-block': layout==='inline'}">
         <li *ngFor="let block of models">
           <h3 *ngIf="block.title">{{ block.title }}</h3>
-          <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form"></ngx-form-block>
+          <ngx-form-block *ngIf="block.items"
+                          [models]="block.items"
+                          [column]="block.column"
+                          [form]="form"
+                          [display]="layout"
+                          [ngClass]="{'form-inline': layout==='inline'}">
+          </ngx-form-block>
         </li>
       </ul>
     </ng-container>
   </ng-container>
   <ng-content select="[name='other-models']"></ng-content>
-  <div class="form-group form-operation row">
+  <div class="form-group form-operation row" [ngClass]="{'inline-operation': layout==='inline'}">
     <div class="offset-4 col-8">
       <button type="submit" class="btn btn-success" [disabled]="!form.valid">提交</button>
       <button type="button" class="btn btn-warning" (click)="onReset()">重置</button>

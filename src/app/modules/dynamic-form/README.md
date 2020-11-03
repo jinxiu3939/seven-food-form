@@ -66,6 +66,7 @@
 
 - tab
 - step
+- inline
 - block，**default**
 
 ##### models
@@ -404,6 +405,43 @@
 - data?: any; // 自定义配置数据
 - root: string | number; // 根下拉框`parent`值
 - tree: LinkageBoxTree<string | number>; // 选项树
+
+#### VideoModel
+
+视频模型
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: ImageItem[] | string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- kind: 'ng2-file-upload'; // 上传类别
+- multiple: boolean; // 是否多选
+- uploadConfig: UploadConfig; // 上传配置
+
+> 应该自定义服务实现资源提供者接口：`ResourceProvider`
+
+#### KeywordModel
+
+关键字模型
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string[]; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- readonly: boolean; // 是否只读
 
 ### 备注
 

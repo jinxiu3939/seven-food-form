@@ -1,0 +1,24 @@
+@import '../../theme/styles';
+
+@include nb-install-component() {
+  .keyword-list {
+    display: flex;
+  }
+
+  a {
+    position: relative;
+    margin-right: .5rem;
+
+    nb-icon {
+      position: absolute;
+      width: 1.4rem;
+      height: 1.4rem;
+      right: -.7rem;
+      top: -.7rem;
+    }
+  }
+
+  .form-control-sm {
+    width: 4rem;
+  }
+}

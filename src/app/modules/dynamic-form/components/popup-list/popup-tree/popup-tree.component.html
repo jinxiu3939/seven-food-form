@@ -3,6 +3,7 @@
     <div class="col-3 left">
       <input type="text"
              class="form-control form-value"
+             readonly
              [value]="model.value"
              [formControlName]="model.name">
     </div>
@@ -27,7 +28,7 @@
 </div>
 
 <ng-template #contentTemplate>
-  <div [nbSpinner]="loading" nbSpinnerStatus="info">
+  <div style="height: 600px; overflow: auto;" [nbSpinner]="loading" nbSpinnerStatus="info">
     <input nbInput [nbFilterInput]="dataSource" id="search" placeholder="可输入关键字搜索" class="form-control">    
     <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
         <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>

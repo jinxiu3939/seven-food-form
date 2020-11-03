@@ -1,4 +1,4 @@
-<div *ngFor="let item of models" class="form-group row">
+<div *ngFor="let item of models" class="form-group row" [ngClass]="{'inline-group': display==='inline'}">
   <label [attr.for]="item.name" class="col-{{ column[0] }} col-form-label text-right">
     {{ item.label }}
     <small *ngIf="item.help" class="form-text text-muted">{{ item.help }}</small>

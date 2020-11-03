@@ -3,7 +3,7 @@
     <div class="col-3 left">
       <input type="text"
              class="form-control form-value"
-             [readonly]="model.readonly"
+             readonly
              [value]="model.value"
              [formControlName]="model.name">
     </div>
@@ -36,7 +36,7 @@
                      [page]="page"
                      (reload)="resetRecords($event)"
                      (finish)="search($event)"></ngx-simple-search>
-  <nb-list style="height: 400px; overflow: auto;" nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext()">
+  <nb-list style="height: 500px; overflow: auto;" nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext()">
     <nb-list-item *ngFor="let item of records" style="position: relative;">
       <nb-radio [checked]="item.value === model.value" [value]="item.value" (click)="selectedItem(item)">
         <b>{{ item.text }}</b>

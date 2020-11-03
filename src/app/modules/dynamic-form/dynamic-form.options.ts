@@ -18,6 +18,7 @@ export declare type ModelType = 'checkbox'
                                 | 'drop-down-box'
                                 | 'image'
                                 | 'item-list'
+                                | 'keyword'
                                 | 'linkage-box'
                                 | 'password-box'
                                 | 'popup-checkbox'
@@ -26,7 +27,8 @@ export declare type ModelType = 'checkbox'
                                 | 'radio'
                                 | 'spreadsheet'
                                 | 'text-area'
-                                | 'text-box';
+                                | 'text-box'
+                                | 'video';
 
 // 验证器集合
 export const VALIDATORS = {
@@ -228,7 +230,7 @@ export interface SearchConfig {
  */
 export interface ConditionField {
   text: string; // 显示标签
-  type: 'input' | 'drop-down'; // 类型
+  type: 'input' | 'drop-down' | 'drop-down-filter'; // 类型
   value: string; // 条件名称
   options?: Option<string | number>[]; // 可选项
 }
@@ -320,6 +322,16 @@ export interface ImageModel extends BaseModel<ImageItem[] | string> {
   multiple: boolean; // 是否多图片
   repeat: boolean; // 是否可以选择重复的图片
   searchConfig: ResourceSearchConfig; // 检索配置
+  uploadConfig: UploadConfig; // 上传配置
+}
+
+/**
+ * 视频模型
+ */
+export interface VideoModel extends BaseModel<ImageItem[] | string> {
+  disabled: boolean; // 是否禁用
+  kind: 'ng2-file-upload'; // 上传类别
+  multiple: boolean; // 是否多视频
   uploadConfig: UploadConfig; // 上传配置
 }
 
@@ -423,4 +435,8 @@ export interface PasswordBoxModel extends BaseModel<string> {
 export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
   root: string | number; // 根下拉框的复选项
   tree: LinkageBoxTree<(string | number)>; // 选项树
+}
+
+export interface KeywordModel extends BaseModel<string[]> {
+  readonly: boolean; // 是否只读
 }

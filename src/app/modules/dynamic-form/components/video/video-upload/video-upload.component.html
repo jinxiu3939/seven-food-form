@@ -1,0 +1,39 @@
+<div [nbSpinner]="loading" nbSpinnerStatus="info">
+  <input class="form-control-file image-file"
+         type="file"
+         ng2FileSelect
+         [multiple]="multiple"
+         [uploader]="uploader"
+         (change)="selectedFileOnChanged($event)" />
+  <ngx-video-slider *ngIf="thumbnails.length"
+                    [items]="thumbnails"
+                    [active]="uploaded"
+                    [currentIndex]="currentIndex"
+                    (currentChange)="slide($event)"
+                    (destroy)="delete($event)"
+                    (edit)="desc($event)">
+  </ngx-video-slider>
+  <a *ngIf="uploader.queue.length"
+     nbButton
+     fullWidth
+     size="small"
+     type="button"
+     status="success"
+     (click)="uploadFile()">
+     上传
+  </a>
+</div>
+<nb-progress-bar *ngIf="start" [value]="uploading" size="tiny" status="info">{{ uploaded.length }} / {{ max }}</nb-progress-bar>
+<div *ngIf="start && uploading === 0" class="progress-text">
+  <span>{{ uploaded.length }} / {{ max }}</span>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>温馨提示</nb-card-header>
+    <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()" status="info">ok</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

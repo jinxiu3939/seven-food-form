@@ -6,7 +6,7 @@
   <nb-layout-column>
     <nb-card>
       <ngx-test-component></ngx-test-component>
-      <ngx-dynamic-form [models]="models" layout="ul" [loading]="submitting" (formSubmit)="submit($event)" (formCustom)="operate($event)">
+      <ngx-dynamic-form [models]="models" layout="inline" [loading]="submitting" (formSubmit)="submit($event)" (formCustom)="operate($event)">
         <ng-container name="other-models">
           <ngx-image-tree *ngFor="let tree of trees" [tree]="tree"></ngx-image-tree>
         </ng-container>

@@ -27,6 +27,8 @@ import { PopupTreeModelFactory } from './popup-tree-model.factory';
 import { ItemListModelFactory } from './item-list-model.factory';
 import { PasswordBoxModelFactory } from './password-box-model.factory';
 import { LinkageBoxModelFactory } from './linkage-box-model.factory';
+import { VideoModelFactory } from './video-model.factory';
+import { KeywordModelFactory } from './keyword-model.factory';
 
 /**
  * 快速表单工厂
@@ -242,5 +244,13 @@ export class QuickFormFactory {
    */
   linkageBox() {
     return new LinkageBoxModelFactory(this.config).instance();
+  }
+
+  video() {
+    return new VideoModelFactory(this.config).instance();
+  }
+
+  keyword() {
+    return new KeywordModelFactory(this.config).instance();
   }
 }

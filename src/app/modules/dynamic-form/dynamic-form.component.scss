@@ -53,6 +53,27 @@
       }
     }
   }
+
+  .inline-block {
+    width: 75%;
+  }
+
+  .inline-operation {
+    width: 25%;
+
+    .col-8 {
+      width: 100%;
+    }
+
+    .offset-4 {
+      margin-left: 0;
+    }
+  }
+
+  .inline-group {
+    width: 33%;
+  }
+
   .form-check-inline {
     // margin-right: 0;
     margin-right: 0.75rem;

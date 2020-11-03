@@ -63,6 +63,10 @@ import { RadioComponent } from './components/radio/radio.component';
 import { SpreadsheetComponent } from './components/spreadsheet/spreadsheet.component';
 import { TextAreaComponent } from './components/text-area/text-area.component';
 import { TextBoxComponent } from './components/text-box/text-box.component';
+import { VideoComponent } from './components/video/video.component';
+import { VideoSliderComponent } from './components/video/video-slider/video-slider.component';
+import { VideoUploadComponent } from './components/video/video-upload/video-upload.component';
+import { KeywordComponent } from './components/keyword/keyword.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -84,6 +88,8 @@ const ENTRY_COMPONENTS = [
   TextBoxComponent,
   LinkageBoxComponent,
   LinkageNodeComponent,
+  VideoComponent,
+  KeywordComponent,
 ];
 
 const FORM_COMPONENTS = [
@@ -96,6 +102,8 @@ const FORM_COMPONENTS = [
   ImageWebComponent,
   SimpleSearchComponent,
   TreeNodeIconComponent,
+  VideoSliderComponent,
+  VideoUploadComponent,
   ...ENTRY_COMPONENTS,
 ];
 

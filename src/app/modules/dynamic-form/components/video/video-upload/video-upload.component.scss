@@ -1,0 +1,31 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '~bootstrap/scss/mixins/image';
+@import '../../../theme/styles';
+
+@include nb-install-component() {
+  .image-file {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    margin-top: 0.5rem;
+  }
+
+  nb-progress-bar {
+    margin-top: 0.5rem;
+  }
+
+  .progress-text {
+    position: relative;
+
+    span {
+      position: absolute;
+      right: 1rem;
+      top: -1rem;
+      height: 1rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      line-height: 1rem;
+    }
+  }
+}
