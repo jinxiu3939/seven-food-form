@@ -9,6 +9,7 @@ export * from './date-time-local-text-box-model.factory';
 export * from './drop-down-box-model.factory';
 export * from './email-text-box-model.factory';
 export * from './english-word-text-box-model.factory';
+export * from './file-model.factory';
 export * from './file-text-box-model.factory';
 export * from './image-model.factory';
 export * from './item-list-model.factory';

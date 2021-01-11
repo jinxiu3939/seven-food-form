@@ -66,6 +66,50 @@ You can get form model details from [src\app\dynamic-form\READEME.md](https://gi
 
 and the form model demo from [src\app\dynamic-form\DEMO.md](https://github.com/jinxiu3939/seven-food-form/blob/master/src/app/modules/dynamic-form/DEMO.md)
 
+## deploy
+
+add blow package
+
+```
+"peerDependencies": {
+    "@angular/animations": "~8.2.14",
+    "@angular/cdk": "^8.2.3",
+    "@nebular/theme": "4.4.0",
+    "bootstrap": "^4.3.1",
+    "moment": "^2.24.0",
+    "ng2-file-upload": "^1.4.0"
+  },
+```
+
+remove the package
+
+```
+  "dependencies": {
+    "@angular/animations": "^8.2.14",
+    "@angular/cdk": "^8.2.3",
+    "@angular/common": "~8.2.14",
+    "@angular/compiler": "~8.2.14",
+    "@angular/core": "~8.2.14",
+    "@angular/forms": "~8.2.14",
+    "@angular/platform-browser": "~8.2.14",
+    "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/router": "~8.2.14",
+    "@ckeditor/ckeditor5-angular": "^1.2.1",
+    "@ckeditor/ckeditor5-build-classic": "^17.0.0",
+    "@nebular/eva-icons": "^4.6.0",
+    "@nebular/theme": "^4.6.0",
+    "bootstrap": "^4.3.1",
+    "eva-icons": "^1.1.3",
+    "lodash": "^4.17.15",
+    "ng2-file-upload": "^1.4.0",
+    "rxjs": "~6.4.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.4.5",
+    "xlsx": "^0.15.5",
+    "zone.js": "~0.9.1"
+  },
+```
+
 ## dependencies
 
 The important thing is your project is from nebular.

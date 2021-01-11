@@ -1546,10 +1546,38 @@ tree: any = {
     name: 'tag-3',
     type: 'keyword',
     value: ['demo'],
-    help: 'this is a video',
+    help: 'this is a keyword',
     order: 1,
     validator: '',
     readonly: true,
+  },
+],
+```
+
+- 实例化`FileModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '文件',
+    name: 'file-1',
+    kind: ['json', 'xls'],
+  }).file(),
+  new FileModelFactory({
+    label: '附件',
+    name: 'file-2',
+    disabled: false,
+    accept: 'audio/*,text/plain',
+  }).instance(),
+  {
+    label: '附件',
+    name: 'file-3',
+    type: 'file',
+    help: 'this is a file',
+    order: 1,
+    validator: '',
+    readonly: true,
+    kind: ['pdf', 'word'],
   },
 ],
 ```

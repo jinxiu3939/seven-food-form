@@ -24,27 +24,55 @@ export class DatePickerComponent implements OnInit {
   hours = AllHours;
   minutes = AllMinutes;
   date: Date; // 日期默认值
-  hour: string = '00'; // 小时
-  minute: string = '00'; // 分钟
+
+  tmpHour: string = '00';
+  tmpMinute: string = '00';
 
   ngOnInit() {
     if (this.model && this.model.value) {
       this.date = new Date(this.model.value); // 字符串转换成日期格式
-      if (this.date.getHours() < 10) {
-        this.hour = '0' + this.date.getHours();
-      } else {
-        this.hour = this.date.getHours() + '';
-      }
-      if (this.date.getMinutes() < 10) {
-        this.minute = '0' + this.date.getMinutes();
-      } else {
-        this.minute = this.date.getMinutes() + '';
-      }
     }
   }
 
   get day() {
-    return this.model.value ? this.model.value.substr(0, 10) : '';
+    const control = this.form.controls[this.model.name];
+    return control.value ? control.value.substr(0, 10) : '';
+  }
+
+  get hour() {
+    const control = this.form.controls[this.model.name];
+    let hour: string = '00'; // 小时
+    if (control.value) {
+      const date = new Date(control.value); // 字符串转换成日期格式
+      if (date.getHours() < 10) {
+        hour = '0' + date.getHours();
+      } else {
+        hour = date.getHours() + '';
+      }
+    }
+    return hour;
+  }
+
+  set hour(h) {
+    this.tmpHour = h;
+  }
+
+  get minute() {
+    const control = this.form.controls[this.model.name];
+    let minute: string = '00'; // 分钟
+    if (control.value) {
+      const date = new Date(control.value); // 字符串转换成日期格式
+      if (date.getMinutes() < 10) {
+        minute = '0' + date.getMinutes();
+      } else {
+        minute = date.getMinutes() + '';
+      }
+    }
+    return minute;
+  }
+
+  set minute(m) {
+    this.tmpMinute = m;
   }
 
   handleDateChange(date: Date) {
@@ -58,7 +86,7 @@ export class DatePickerComponent implements OnInit {
 
   setFormValue() {
     if (this.date) {
-      const str_date = this.date.setHours(+this.hour, +this.minute);
+      const str_date = this.date.setHours(+this.tmpHour, +this.tmpMinute);
       this.model.value = dateFormat(new Date(str_date), this.model.format);
       this.form.controls[this.model.name].setValue(this.model.value); // 表单赋值
     }

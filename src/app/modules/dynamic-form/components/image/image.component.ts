@@ -173,4 +173,12 @@ export class ImageComponent implements OnInit {
     this.tmpFilter = list;
   }
 
+  get thumbs() {
+    if (this.form.controls[this.model.name].value) {
+      return this.thumbnails;
+    } else {
+      return [];
+    }
+  }
+
 }

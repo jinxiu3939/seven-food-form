@@ -25,4 +25,12 @@ export class DropDownBoxComponent {
     this.form.controls[this.model.name].setValue(this.model.value);
   }
 
+  get value() {
+    return this.form.controls[this.model.name].value;
+  }
+
+  set value(v) {
+    this.model.value = v;
+  }
+
 }

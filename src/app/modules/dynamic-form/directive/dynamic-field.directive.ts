@@ -22,6 +22,7 @@ import { PasswordBoxComponent } from '../components/password-box/password-box.co
 import { LinkageBoxComponent } from '../components/linkage-box/linkage-box.component';
 import { VideoComponent } from '../components/video/video.component';
 import { KeywordComponent } from '../components/keyword/keyword.component';
+import { FileComponent } from '../components/file/file.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -30,6 +31,7 @@ const COMPONENTS = {
   'ck-editor': CKEditorComponent,
   'date-picker': DatePickerComponent,
   'drop-down-box': DropDownBoxComponent,
+  file: FileComponent,
   image: ImageComponent,
   'item-list': ItemListComponent,
   keyword: KeywordComponent,

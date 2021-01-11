@@ -67,6 +67,7 @@ import { VideoComponent } from './components/video/video.component';
 import { VideoSliderComponent } from './components/video/video-slider/video-slider.component';
 import { VideoUploadComponent } from './components/video/video-upload/video-upload.component';
 import { KeywordComponent } from './components/keyword/keyword.component';
+import { FileComponent } from './components/file/file.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -75,6 +76,7 @@ const ENTRY_COMPONENTS = [
   CKEditorComponent,
   DatePickerComponent,
   DropDownBoxComponent,
+  FileComponent,
   ImageComponent,
   ItemDialogComponent,
   ItemListComponent,

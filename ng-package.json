@@ -3,8 +3,6 @@
   "lib": {
     "entryFile": "src/app/modules/dynamic-form/public_api.ts",
     "umdModuleIds": {
-      "@ckeditor/ckeditor5-angular": "^1.1.2",
-      "@ckeditor/ckeditor5-build-classic": "^16.0.0",
       "@nebular/eva-icons": "4.6.0",
       "@nebular/theme": "4.6.0",
       "lodash": "^4.17.15",

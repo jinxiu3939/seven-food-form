@@ -1,6 +1,6 @@
 {
   "name": "seven-food-form",
-  "version": "0.5.5",
+  "version": "0.6.2",
   "description": "The dynamic form of angular based on nebular",
   "scripts": {
     "ng": "ng",
@@ -14,14 +14,12 @@
   },
   "private": false,
   "peerDependencies": {
-    "@ckeditor/ckeditor5-angular": "^1.1.2",
-    "@ckeditor/ckeditor5-build-classic": "^16.0.0",
-    "@nebular/eva-icons": "4.6.0",
-    "@nebular/theme": "4.6.0",
+    "@angular/animations": "~8.2.14",
+    "@angular/cdk": "^8.2.3",
+    "@nebular/theme": "4.4.0",
     "bootstrap": "^4.3.1",
-    "lodash": "^4.17.15",
-    "ng2-file-upload": "^1.4.0",
-    "xlsx": "^0.15.5"
+    "moment": "^2.24.0",
+    "ng2-file-upload": "^1.4.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.20",

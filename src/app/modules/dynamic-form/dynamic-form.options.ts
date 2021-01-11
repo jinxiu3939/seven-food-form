@@ -16,6 +16,7 @@ export declare type ModelType = 'checkbox'
                                 | 'ck-editor'
                                 | 'date-picker'
                                 | 'drop-down-box'
+                                | 'file'
                                 | 'image'
                                 | 'item-list'
                                 | 'keyword'
@@ -230,7 +231,7 @@ export interface SearchConfig {
  */
 export interface ConditionField {
   text: string; // 显示标签
-  type: 'input' | 'drop-down' | 'drop-down-filter'; // 类型
+  type: 'input' | 'drop-down' | 'drop-down-filter' | 'number'; // 类型
   value: string; // 条件名称
   options?: Option<string | number>[]; // 可选项
 }
@@ -296,7 +297,7 @@ export interface CKEditorModel extends BaseModel<string> {
   editor: any; // 编辑器
   editorConfig: any; // `ck-editor`配置
   // 需要安装相应的`CKEditor Build`[https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#classic-editor]
-  kind: 'classic'; // `ck-editor`类别
+  kind: 'classic' | 'ckfinder'; // `ck-editor`类别
 }
 
 /**
@@ -308,6 +309,7 @@ export interface DatePickerModel extends BaseModel<string> {
   format: string; // 日期格式
   kind: 'date' | 'date-time'; // 时间类型
   now: boolean; // 是否默认当前时间
+  readonly: boolean; // 是否只读
 }
 
 /**
@@ -439,4 +441,13 @@ export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
 
 export interface KeywordModel extends BaseModel<string[]> {
   readonly: boolean; // 是否只读
+}
+
+/**
+ * 文件框模型
+ */
+export interface FileModel extends BaseModel<any> {
+  disabled: boolean; // 是否禁用
+  kind: string[]; // 文件类型
+  accept: string; // 可上传文件类型
 }

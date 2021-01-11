@@ -705,7 +705,7 @@ export class AppComponent implements OnInit {
       title: "活命1",
       column: 3,
       items: [
-        new QuickFormFactory({
+        /* new QuickFormFactory({
           label: '族谱',
           name: 'tree1',
           tree: this.checkboxTree,
@@ -743,6 +743,7 @@ export class AppComponent implements OnInit {
           value: null,
           attributes: [
             {text: '名称', type: 'input', value: 'name'},
+            {text: '数量', type: 'number', value: 'number'},
             {text: '描述', type: 'drop-down-filter', value: 'menu', options: [
               { text: '苹果', value: 'apple', title : '一种水果' },
               { text: '梨', value: 'pear', title : '一种水果' },
@@ -752,7 +753,7 @@ export class AppComponent implements OnInit {
               { text: '梨', value: 'pear', title : '一种水果' },
             ]},
           ],
-        }).itemList(),
+        }).itemList(), */
         new QuickFormFactory({
           display: '',
           label: '图片',
@@ -760,8 +761,8 @@ export class AppComponent implements OnInit {
           name: 'image-1',
           uploadConfig: {
             authTokenHeader: 'Token',
-            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
-            url: '/api/upload/image',
+            authToken: '10aczKnVu0/SVz67zVLVH2qocXVary9P6c9JanLzbK2U4x/9uTfH',
+            url: '/api/access/upload/image',
           },
           value: null,
           list: this.images,
@@ -893,8 +894,8 @@ export class AppComponent implements OnInit {
           // readonly: true,
         }).popupRadio(),
         new QuickFormFactory({
-          label: '吃的',
-          name: 'text-1',
+          label: '模型',
+          name: 'model',
           value: '系统（虚拟）',
           text: '只读',
           min: 0,
@@ -906,7 +907,7 @@ export class AppComponent implements OnInit {
     },
     {
       items: [
-        {
+        /* {
           label: '下拉框',
           name: 'drop-down-3',
           type: 'drop-down-box',
@@ -919,7 +920,7 @@ export class AppComponent implements OnInit {
           order: 1,
           placeholder: '',
           validator: '',
-        },
+        }, */
         new QuickFormFactory({
           clear: true,
           data: "datePicker",
@@ -929,9 +930,10 @@ export class AppComponent implements OnInit {
           kind: "date-time",
           label: "结束日期",
           max: 0,
-          min: 0,
+          min: 1,
           name: "end_date",
-          now: true,
+          now: false,
+          readonly: true,
           order: 0,
           require: false,
           type: "date-picker",
@@ -954,8 +956,24 @@ export class AppComponent implements OnInit {
           require: false,
           type: "date-picker",
           validator: "",
-          value: "",
+          value: "2020-11-14 09:08",
         }).datePicker(),
+        new QuickFormFactory({
+          label: '内容',
+          name: 'content-1',
+          kind: 'ckfinder',
+          editorConfig: {
+            ckfinder: {
+              // Upload the images to the server using the CKFinder QuickUpload command.
+              uploadUrl: '/ckfinder/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
+            }
+          },
+        }).ckEditor(),
+        new QuickFormFactory({
+          label: '内容',
+          name: 'file',
+          kind: ['json', 'xls'],
+        }).file(),
       ],
       title: "活命1",
       column: ['4', 14],
@@ -965,8 +983,8 @@ export class AppComponent implements OnInit {
     {
       items: [
         new QuickFormFactory({
-          label: '名称',
-          name: 'title',
+          label: '模型编号',
+          name: 'model',
           value: null,
           min: 0,
           max: 0,
@@ -1058,12 +1076,21 @@ export class AppComponent implements OnInit {
     });
   }
 
-  submit(value) {
-    console.log(value);
+  submit(form) {
+    console.log(form);
     this.submitting = true;
+    const formData = new FormData();
+    for(let i in form) {
+      formData.append(i, form[i]);
+    }
+    this.service.post(formData).subscribe();
   }
 
   operate(value) {
     console.log(value);
+  }
+
+  reset(flag) {
+    console.log(flag);
   }
 }

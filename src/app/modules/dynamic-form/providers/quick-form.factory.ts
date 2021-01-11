@@ -10,6 +10,7 @@ import { ChineseWordTextBoxModelFactory } from './chinese-word-text-box-model.fa
 import { CheckboxModelFactory } from './checkbox-model.factory';
 import { CheckboxTreeModelFactory } from './checkbox-tree-model.factory';
 import { DateTimeLocalTextBoxModelFactory } from './date-time-local-text-box-model.factory';
+import { FileModelFactory } from './file-model.factory';
 import { FileTextBoxModelFactory } from './file-text-box-model.factory';
 import { NumberTextBoxModelFactory } from './number-text-box-model.factory';
 import { PasswordTextBoxModelFactory } from './password-text-box-model.factory';
@@ -95,6 +96,8 @@ export class QuickFormFactory {
 
   /**
    * 文件文本框
+   * deprecated
+   * please use file replace
    */
   fileTextBox() {
     return new FileTextBoxModelFactory(this.config).instance();
@@ -252,5 +255,12 @@ export class QuickFormFactory {
 
   keyword() {
     return new KeywordModelFactory(this.config).instance();
+  }
+
+  /**
+   * 文件
+   */
+  file() {
+    return new FileModelFactory(this.config).instance();
   }
 }

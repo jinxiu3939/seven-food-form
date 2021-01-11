@@ -11,4 +11,12 @@ export class ApiService {
   get(): Observable<any> {
     return this.http.get('/api/index/index');
   }
+
+  post(form) : Observable<any> {
+    return this.http.post('/api/access/model/tool/import', form , {
+      headers: {
+        'Token': '1eade3UQmRCbrxniSjYSOqGOw7+KlbzQVi4bc6sDqz7XLOexiTY9',
+      }
+    });
+  }
 }

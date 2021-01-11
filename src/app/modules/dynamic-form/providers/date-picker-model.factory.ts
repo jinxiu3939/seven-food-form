@@ -16,6 +16,7 @@ export class DatePickerModelFactory extends BaseModelFactory {
     this.config.format = 'YYYY-MM-DD HH:mm:ss'; // 日期格式
     this.config.kind = 'date-time'; // 类别
     this.config.now = false; // 是否默认当前时间
+    this.config.readonly = false; // 默认不只读
   }
 
   protected format(): void {

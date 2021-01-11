@@ -1,19 +1,19 @@
 <div [formGroup]="form" class="row">
   <ng-container [ngSwitch]="model.display">
     <ng-container *ngSwitchCase="'input'">
-      <div *ngIf="thumbnails" class="full-image-table">
+      <div *ngIf="thumbs" class="full-image-table">
         <div class="full-image-inputs">
           <h5>图片</h5>
           <h5>描述</h5>
         </div>
-        <div *ngFor="let thumb of thumbnails" class="full-image-inputs">
+        <div *ngFor="let thumb of thumbs" class="full-image-inputs">
           <input type="text" class="form-control" readonly nbInput fullWidth [value]="thumb.url" [title]="thumb.url">
           <input type="text" class="form-control" nbInput fullWidth [value]="thumb.title" [title]="thumb.title">
         </div>
       </div>
     </ng-container>
     <ngx-image-slider *ngSwitchDefault
-                      [items]="thumbnails"
+                      [items]="thumbs"
                       currentIndex="0"
                       [readonly]="! model.multiple"
                       size="small"

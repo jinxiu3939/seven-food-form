@@ -24,21 +24,9 @@
 #### 更改表单布局样式
 
 ```
-::ng-deep ngx-dynamic-form {
-  .default-block {
-    width: 60%;
-    ngx-form-block {
-      width: 100%;
-    
-      .form-group {
-        float: left;
-        width: 33%;
-        overflow-x: scroll;
-      }
-    }
-  }
-  .form-operation {
-    width: 40%;
+::ng-deep ngx-dynamic-form .dynamic-form .form-inline {
+  .inline-group {
+    width: 50%;
   }
 }
 ```
@@ -168,6 +156,8 @@
 #### CKEditorModel
 
 `ckeditor`富文本编辑器模型
+
+> 需要安装依赖包`"@ckeditor/ckeditor5-angular": "1.1.2"`和`"@ckeditor/ckeditor5-build-classic": "^23.1.0"`；如果需要上传图片还需要安装依赖包`@ckeditor/ckeditor5-ckfinder`并且在服务器端配置ckfinder接口
 
 - label: string; // 标签
 - name: string; // 名称

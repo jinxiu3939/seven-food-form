@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
 
+import { deepExtend } from '../../helps';
 import { ItemListModel } from '../../dynamic-form.options';
 import { ItemDialogComponent } from './item-dialog/item-dialog.component';
 
@@ -41,10 +42,11 @@ export class ItemListComponent {
    * 编辑子项目
    */
   edit(row, index) {
+    const tmp_row = deepExtend({}, row);
     this.service.open(ItemDialogComponent,
                       {
                         context: {
-                          data: row,
+                          data: tmp_row,
                           fields: this.model.attributes,
                           title: '编辑' + this.model.label,
                         },

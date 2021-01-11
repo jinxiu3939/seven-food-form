@@ -6,5 +6,13 @@
       "^/api": ""
     },
     "changeOrigin": true
+  },
+  "/ckfinder": {
+    "target": "http://ckfinder.localhost",
+    "secure": false,
+    "pathRewrite": {
+      "^/ckfinder": ""
+    },
+    "changeOrigin": true
   }
 }

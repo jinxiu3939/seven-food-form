@@ -3,6 +3,7 @@
     <input nbInput
            class="form-control date-input"
            maxlength="10"
+           [readonly]="model.readonly"
            [nbDatepicker]="formpicker"
            placeholder="请选择日期"
            [value]="day">

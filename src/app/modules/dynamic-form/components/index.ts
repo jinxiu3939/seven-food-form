@@ -4,6 +4,7 @@ export * from './checkbox-tree/checkbox-node/checkbox-node.component';
 export * from './ck-editor/ck-editor.component';
 export * from './date-picker/date-picker.component';
 export * from './drop-down-box/drop-down-box.component';
+export * from './file/file.component';
 export * from './image/image.component';
 export * from './image/image-cache/image-cache.component';
 export * from './image/image-search/image-search.compomemt';
