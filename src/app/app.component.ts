@@ -698,6 +698,39 @@ export class AppComponent implements OnInit {
       type: 'image',
       url: 'http://shaimobao-10002753.image.myqcloud.com/shaimobao-10002753/0/8dc60954-f40d-4ddc-94a8-1624325d32e8/original',
     },
+    {
+      id: 2,
+      creation_time: '2018-12-25 13:00:00',
+      file_name: 'hello.jpg',
+      size: 1024,
+      tag: [],
+      title: '童心绘',
+      topic: 'news',
+      type: 'image',
+      url: 'http://shaimobao-10002753.image.myqcloud.com/shaimobao-10002753/0/47910750-3628-4bd2-a1c0-b1da43d26a8a/original?ss=0&w=240&h=178&srotate=1',
+    },
+    {
+      id: 3,
+      creation_time: '2019-10-25 13:00:00',
+      file_name: 'hello.jpg',
+      size: 1024,
+      tag: [],
+      title: '童心绘',
+      topic: 'news',
+      type: 'image',
+      url: 'https://exhibition-cloud-1251367576.cos.ap-shanghai.myqcloud.com/227eaeba82749bbf21e475f920708ce8.jpg',
+    },
+    {
+      id: 4,
+      creation_time: '2019-11-25 13:00:00',
+      file_name: 'hello.jpg',
+      size: 1024,
+      tag: [],
+      title: '小主人',
+      topic: 'news',
+      type: 'image',
+      url: 'http://shaimobao-10002753.image.myqcloud.com/shaimobao-10002753/0/d0752e56-2c1d-43c0-a340-20abe51b6614/original?ss=0&w=154&h=130&srotate=1',
+    },
   ];
   models: any;
   defaultModels = [
@@ -757,7 +790,7 @@ export class AppComponent implements OnInit {
         new QuickFormFactory({
           display: '',
           label: '图片',
-          multiple: false,
+          multiple: true,
           name: 'image-1',
           uploadConfig: {
             authTokenHeader: 'Token',

@@ -7,7 +7,7 @@
            [nbDatepicker]="formpicker"
            placeholder="请选择日期"
            [value]="day">
-    <ng-container *ngIf="model.kind === 'date-time'">       
+    <ng-container *ngIf="model.kind === 'date-time'">
       <nb-select placeholder="小时" [(selected)]="hour" (selectedChange)="selectTime()">
         <nb-option *ngFor="let h of hours" [value]="h">{{ h }}</nb-option>
       </nb-select>

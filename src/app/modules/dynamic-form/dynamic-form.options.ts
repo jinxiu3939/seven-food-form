@@ -175,6 +175,14 @@ export interface ImageDescription {
 }
 
 /**
+ * 图片排序
+ */
+export interface ImageListOrder {
+  index: number; // 排序前序号
+  order: number; // 排序后序号
+}
+
+/**
  * 资源保存参数
  */
 interface ResourceSaveParam {

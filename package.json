@@ -1,6 +1,6 @@
 {
   "name": "seven-food-form",
-  "version": "0.6.2",
+  "version": "0.6.7",
   "description": "The dynamic form of angular based on nebular",
   "scripts": {
     "ng": "ng",

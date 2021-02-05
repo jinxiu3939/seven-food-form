@@ -2,10 +2,11 @@
  * 多图轮播组件
  */
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { NbWindowService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { ImageItem, ImageDescription } from '../../../dynamic-form.options';
+import { ImageItem, ImageDescription, ImageListOrder } from '../../../dynamic-form.options';
 
 @Component({
   selector: 'ngx-image-slider',
@@ -25,8 +26,11 @@ export class ImageSliderComponent implements OnInit {
   @Output() public destroy = new EventEmitter<number>(); // 删除图片
   @Output() public edit = new EventEmitter<ImageDescription>(); // 更新图片描述
   @Output() public currentChange = new EventEmitter<number>(); // 改变当前图片
+  @Output() public order = new EventEmitter<ImageListOrder>(); // 图片排序
 
   private descriptionTerms = new Subject<string>();
+
+  constructor(private windowService: NbWindowService) {}
 
   ngOnInit() {
     if (! this.currentIndex) {
@@ -48,8 +52,24 @@ export class ImageSliderComponent implements OnInit {
     this.descriptionTerms.next(term);
   }
 
+  /**
+   * 查看大图
+   * @param url 查看大图
+   */
+  bigImage(imageTemplate) {
+    this.windowService.open(
+      imageTemplate,
+      {
+        title: '预览大图',
+        context: {
+          src: this.items[this.currentIndex].url,
+        },
+      },
+    );
+  }
+
   backward() {
-    if (this.currentIndex === 0) {
+    if (this.currentIndex <= 0) {
       this.currentIndex = this.items.length - 1;
     } else {
       this.currentIndex--;
@@ -58,7 +78,7 @@ export class ImageSliderComponent implements OnInit {
   }
 
   forward() {
-    if (this.currentIndex === this.items.length - 1) {
+    if (this.currentIndex >= this.items.length - 1) {
       this.currentIndex = 0;
     } else {
       this.currentIndex++;
@@ -67,16 +87,48 @@ export class ImageSliderComponent implements OnInit {
   }
 
   delete() {
-    this.destroy.emit(this.currentIndex); // 通知父组件删除元素
+    this.destroy.emit(+this.currentIndex); // 通知父组件删除元素
     /*
      * 先改变指针，然后删除本身元素，否则删除最后一个元素出错
      */
-    const deleteIndex = this.currentIndex;
-    if (this.currentIndex === this.items.length - 1) {
+    const deleteIndex = +this.currentIndex;
+    if (this.currentIndex >= this.items.length - 1) {
       this.currentIndex = 0;
     }
-    this.items = this.items.filter((item, index) => index !== deleteIndex);
+    this.items = this.items.filter((item, index) => deleteIndex !== index);
     this.currentChange.emit(this.currentIndex);
+  }
+
+  upward() {
+    const start = +this.currentIndex;
+    this.backward();
+    const end = +this.currentIndex;
+    this.swapItems(start, end);
+    this.order.emit({ index: start, order: end });
+  }
+
+  downward() {
+    const start = +this.currentIndex;
+    this.forward();
+    const end = +this.currentIndex;
+    this.swapItems(start, end);
+    this.order.emit({ index: start, order: end });
+  }
+
+  /*
+   * 改变两者的位置
+   */
+  private swapItems(start, end) {
+    const tmp = this.items;
+    this.items = tmp.map((item, index) => {
+      if (index == start) {
+        return tmp[end];
+      } else if (index == end) {
+        return tmp[start];
+      } else {
+        return item;
+      }
+    });
   }
 
 }

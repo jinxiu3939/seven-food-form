@@ -6,7 +6,7 @@ import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core'
 import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
-import { ImageDescription, ImageModel, ImageItem } from '../../dynamic-form.options';
+import { ImageDescription, ImageModel, ImageItem, ImageListOrder } from '../../dynamic-form.options';
 
 @Component({
   selector: 'ngx-image',
@@ -148,7 +148,19 @@ export class ImageComponent implements OnInit {
    * 删除图片
    */
   delete(index: number) {
+    this.tmpValues = this.tmpValues.filter((item) => item !== this.thumbnails[index].url);
     this.thumbnails = this.thumbnails.filter((item, key) => index !== key);
+    this.save();
+  }
+
+  /**
+   * 图片排序
+   */
+  order(list: ImageListOrder) {
+    /* 改变两者的位置 */
+    const tmp = this.thumbnails[list.index];
+    this.thumbnails[list.index] = this.thumbnails[list.order];
+    this.thumbnails[list.order] = tmp;
     this.save();
   }
 
