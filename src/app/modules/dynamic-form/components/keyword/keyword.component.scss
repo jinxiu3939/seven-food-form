@@ -3,11 +3,33 @@
 @include nb-install-component() {
   .keyword-list {
     display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ccc;
+
+      nb-icon {
+        position: absolute;
+        width: 1.4rem;
+        height: 1.4rem;
+        right: 0;
+        top: 0;
+      }
+    }
   }
 
   a {
     position: relative;
     margin-right: .5rem;
+    margin-bottom: .25rem;
+    margin-top: .25rem;
 
     nb-icon {
       position: absolute;
@@ -20,5 +42,9 @@
 
   .form-control-sm {
     width: 4rem;
+  }
+
+  .btn-add {
+    margin: 0;
   }
 }

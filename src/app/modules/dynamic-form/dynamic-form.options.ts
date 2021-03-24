@@ -449,6 +449,7 @@ export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
 
 export interface KeywordModel extends BaseModel<string[]> {
   readonly: boolean; // 是否只读
+  options: string[]; // 文件类型
 }
 
 /**

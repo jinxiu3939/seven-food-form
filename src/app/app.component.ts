@@ -738,7 +738,7 @@ export class AppComponent implements OnInit {
       title: "活命1",
       column: 3,
       items: [
-        /* new QuickFormFactory({
+        new QuickFormFactory({
           label: '族谱',
           name: 'tree1',
           tree: this.checkboxTree,
@@ -752,7 +752,8 @@ export class AppComponent implements OnInit {
         new QuickFormFactory({
           label: '标签',
           name: 'tag',
-          value: ['三国', '武当']
+          value: ['三国', '武当'],
+          options: ['汉', '三维', '射雕', '魅惑']
         }).keyword(),
         new KeywordModelFactory({
           label: '关键字',
@@ -786,7 +787,7 @@ export class AppComponent implements OnInit {
               { text: '梨', value: 'pear', title : '一种水果' },
             ]},
           ],
-        }).itemList(), */
+        }).itemList(),
         new QuickFormFactory({
           display: '',
           label: '图片',

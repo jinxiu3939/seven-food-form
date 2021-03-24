@@ -9,10 +9,16 @@
     <ng-container *ngIf="! model.value || model.value.length === 0">
       <a>暂无</a>
     </ng-container>
-    <ng-container *ngIf="! model.readonly">
-      <input #keyword type="text" class="form-control-sm form-value">
-      <a nbButton status="info" size="tiny" (click)="add(keyword.value)">新增</a>
-    </ng-container>
+    <span *ngIf="! model.readonly">
+      <input #keyword type="text" class="form-control-sm form-value" (focus)="show()">
+      <a nbButton class="btn-add" status="info" size="tiny" (click)="add(keyword.value)">新增</a>
+    </span>
+    <div *ngIf="model.options && model.options.length > 0 && showOption" class="options">
+      <nb-icon icon="close" (click)="hide()"></nb-icon>
+      <a *ngFor="let v of model.options" nbButton size="tiny" status="success"  (click)="add(v)">
+        {{ v }}
+      </a>
+    </div>
     <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
   </div>
 </div>

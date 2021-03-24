@@ -15,6 +15,8 @@ import { KeywordModel } from '../../dynamic-form.options';
   ],
 })
 export class KeywordComponent {
+  showOption = false;
+
   @Input() model: KeywordModel;
   @Input() form: FormGroup;
 
@@ -36,5 +38,13 @@ export class KeywordComponent {
         this.form.controls[this.model.name].setValue(this.model.value);
       }
     }
+  }
+
+  show() {
+    this.showOption = true;
+  }
+
+  hide() {
+    this.showOption = false;
   }
 }
