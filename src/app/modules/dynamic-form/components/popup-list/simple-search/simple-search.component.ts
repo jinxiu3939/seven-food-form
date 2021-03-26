@@ -78,6 +78,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
    */
   search(): void {
     this.page = 1;
+    this.current = 1;
     this.reload.emit(true);
     this.finishSearch();
   }
@@ -105,7 +106,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
    * 抓取异步结果集
    */
   private fetch(): Observable<Option<string| number>[]> {
-    const param = deepExtend({}, this.condition, this.config.additionalParameter);
+    const param = deepExtend({}, this.config.additionalParameter, this.condition);
     return this.provider.getPage(this.page, this.config.size, param);
   }
 

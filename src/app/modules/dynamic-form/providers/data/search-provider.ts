@@ -62,7 +62,12 @@ export class DemoSimpleSearchProvider extends SearchProvider {
         if (tempRes !== false) {
           if (tempRes && tempRes.status !== null && tempRes.content !== null) {
             if (tempRes.status.code === 200) {
-              result = tempRes.content.list; // 检索结果
+              // 检索结果
+              if (tempRes.content.list && Array.isArray(tempRes.content.list)) {
+                result = tempRes.content.list;
+              } else if (Array.isArray(tempRes.content)) {
+                result = tempRes.content;
+              }
             }
           }
         }

@@ -911,20 +911,30 @@ export class AppComponent implements OnInit {
           },
         }).image(),
         new QuickFormFactory({
-          label: '吃的',
-          name: 'radio-2',
-          options: this.options,
+          label: '关联字段',
+          name: 'field_id',
+          options: [],
           searchConfig: {
             conditions: [
-              {type: "input", text: "名称", value: "title", options: null},
-              {text: '描述', type: 'drop-down-filter', value: 'menu', options: [
-                { text: '苹果', value: 'apple', title : '一种水果' },
-                { text: '梨', value: 'pear', title : '一种水果' },
+              {text: '模型', type: 'drop-down-filter', value: 'system_model_id', options: [
+                { text: '分类', value: 99, title : 'taxonomy', items: null },
               ]},
             ],
+            additionalParameter: {
+              format: "option",
+              system_model_id: 1
+            },
+            endpoint: '/api/access/field/index',
+            mode: 'async',
+            result: [],
+            size: 30,
+            headers: {
+              'Token': 'ea5cS+6aUIwLwgpO08lY5ui3OMUHv/fUc/mv2VTHBWUx8dQ7hGOO',
+              'App-Key': 'r6Pu^l8c',
+            },
           },
-          value: '1',
-          text: '只读',
+          value: '',
+          text: '',
           // readonly: true,
         }).popupRadio(),
         new QuickFormFactory({
