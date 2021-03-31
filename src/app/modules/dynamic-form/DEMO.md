@@ -1485,7 +1485,7 @@ tree: any = {
 ```
 [
   new QuickFormFactory({
-    label: '视频',
+    label: '多媒体',
     multiple: false,
     name: 'video-1',
     uploadConfig: {
@@ -1514,7 +1514,7 @@ tree: any = {
     value: '',
   }).instance(),
   {
-    label: '视频',
+    label: '音频',
     name: 'video-3',
     type: 'video',
     value: [{url: 'https://ss1.bdstatic.com/test.mp4', title: 'demo'}],

@@ -448,7 +448,7 @@ export class AppComponent implements OnInit {
               "video"
             ],
             "authTokenHeader": "Token",
-            "authToken": "96fbnL4A26KhpMuOKjMOMyFwYdQxeq4lg5t3jOG7fbkzXdfnvf/J",
+            "authToken": "3031PAtouX6FtY6u9FPvGsxnZyfG2iWSEBncgHYeFtBV9KZvI28a",
             "itemAlias": "video",
             "maxFileSize": 314572800,
             "method": "POST",
@@ -672,12 +672,13 @@ export class AppComponent implements OnInit {
           // readonly: true,
         }).popupRadio(),
         new QuickFormFactory({
-          label: '视频',
-          multiple: false,
+          label: '视频-test',
+          multiple: true,
+          max: 2,
           name: 'video-1',
           uploadConfig: {
             authTokenHeader: 'Token',
-            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
+            authToken: '3031PAtouX6FtY6u9FPvGsxnZyfG2iWSEBncgHYeFtBV9KZvI28a',
             url: '/api/access/upload/video',
           },
         }).video(),
@@ -1116,7 +1117,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.defaultModels;
+      this.models = this.modesss;
     });
   }
 

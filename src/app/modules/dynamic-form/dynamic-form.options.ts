@@ -336,12 +336,12 @@ export interface ImageModel extends BaseModel<ImageItem[] | string> {
 }
 
 /**
- * 视频模型
+ * 多媒体模型
  */
 export interface VideoModel extends BaseModel<ImageItem[] | string> {
   disabled: boolean; // 是否禁用
   kind: 'ng2-file-upload'; // 上传类别
-  multiple: boolean; // 是否多视频
+  multiple: boolean; // 是否多文件
   uploadConfig: UploadConfig; // 上传配置
 }
 

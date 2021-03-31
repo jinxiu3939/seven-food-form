@@ -34,8 +34,10 @@ export class ImageComponent implements OnInit {
   ngOnInit() {
     if (this.model.value && typeof this.model.value === 'string') {
       this.thumbnails = [{url: this.model.value, title: ''}];
-    } else {
+    } else if (this.model.value) {
       this.thumbnails = this.model.value as ImageItem[];
+    } else {
+      this.thumbnails = [];
     }
     this.tmpImage = [];
     this.tmpValues = [];

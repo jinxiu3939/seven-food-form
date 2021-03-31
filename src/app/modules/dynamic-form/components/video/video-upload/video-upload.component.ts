@@ -1,5 +1,5 @@
 /**
- * 视频上传组件
+ * 多媒体上传组件
  * depends on ng2-file-upload module
  */
 import { Component, EventEmitter, Input, OnInit, ViewChild, Output } from '@angular/core';
@@ -21,14 +21,14 @@ export class VideoUploadComponent implements OnInit {
   @Input() config: UploadConfig;
   @Input() multiple: boolean;
 
-  @Output() public finish = new EventEmitter<ImageItem>(); // 图片上传完成
+  @Output() public finish = new EventEmitter<ImageItem>(); // 文件上传完成
 
   @ViewChild('dialog', {static: false}) dialog;
 
   public uploader: FileUploader;
   public loading: boolean; // 上传中标志位
-  public uploaded: string[]; // 已成功上传的图片
-  public thumbnails: ImageItem[]; // 图片
+  public uploaded: string[]; // 已成功上传的多媒体
+  public thumbnails: ImageItem[]; // 多媒体
   public max: number; // 可上传文件个数
   public uploading: number; // 上传成功的进度
   public start: boolean; // 是否准备上传
@@ -53,9 +53,9 @@ export class VideoUploadComponent implements OnInit {
   }
 
   /**
-   * 更改视频描述
+   * 更改多媒体描述
    * 标题在配置时是通用的，上传是无法更改标题
-   * [todo] 上传图片时描述无法对号入座
+   * [todo] 上传多媒体时描述无法对号入座
    */
   desc(description: ImageDescription) {
     this.config.additionalParameter.title = description.title;
@@ -63,7 +63,7 @@ export class VideoUploadComponent implements OnInit {
   }
 
   /**
-   * 删除视频
+   * 删除多媒体
    */
   delete(index: number) {
     // 删除临时队列
@@ -73,7 +73,7 @@ export class VideoUploadComponent implements OnInit {
     // 更新进度队列
     this.uploaded = this.uploaded.filter((item) => item !== this.thumbnails[index].url);
     this.progress();
-    // 删除轮播视频
+    // 删除轮播文件
     this.thumbnails = this.thumbnails.filter((item, key) => index !== key);
   }
 
@@ -87,7 +87,7 @@ export class VideoUploadComponent implements OnInit {
    */
   selectedFileOnChanged(event: any) {
     if (this.uploader.queue.length === 0) {
-      this.alert(`选择视频失败（文件类型错误/文件大小超过` + this.config.maxFileSize / 1024 / 1024 + `M）`);
+      this.alert(`选择多媒体文件失败（文件类型错误/文件大小超过` + this.config.maxFileSize / 1024 / 1024 + `M）`);
       return ;
     }
     this.uploader.queue.forEach((queue, index) => {
@@ -136,22 +136,22 @@ export class VideoUploadComponent implements OnInit {
               $this.uploadFinish(result, index);
             }
           } catch (e) {
-            $this.alert(`上传视频失败（系统维护中）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+            $this.alert(`上传多媒体文件失败（系统维护中）（ ` + queue._file.name.substring(0, 20) + ` ）`);
           }
         } else {
-          $this.alert(`上传视频失败（文件尺寸太大/类型错误）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+          $this.alert(`上传多媒体文件失败（文件尺寸太大/类型错误）（ ` + queue._file.name.substring(0, 20) + ` ）`);
         }
       };
       queue.onError = (response, status, headers) => {
         if (status === 401) {
-          $this.alert(`上传视频失败（授权异常）（可关闭浏览器重新打开）`);
+          $this.alert(`上传多媒体文件失败（授权异常）（可关闭浏览器重新打开）`);
         } else {
-          $this.alert(`上传视频失败（系统繁忙）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+          $this.alert(`上传多媒体文件失败（系统繁忙）（ ` + queue._file.name.substring(0, 20) + ` ）`);
         }
       };
       queue.onComplete = (response, status, headers) => {
         completed++; // 计数加一
-        $this.currentIndex = index; // 改变当前图片
+        $this.currentIndex = index; // 改变当前多媒体文件
         if (completed === $this.max) {
           $this.loading = false;
         }
@@ -178,11 +178,11 @@ export class VideoUploadComponent implements OnInit {
   }
 
   /**
-   * 上传视频完成
+   * 上传多媒体文件完成
    */
   private uploadFinish(content, index) {
     this.finish.emit({url: content.url, title: this.thumbnails[index].title}); // 通知父组件上传完成
-    this.thumbnails[index].url = content.url; // 更新图片地址
+    this.thumbnails[index].url = content.url; // 更新多媒体文件地址
     this.uploaded.push(content.url); // 保存已上传地址，子组件更新样式
     this.progress(); // 更新进度
   }

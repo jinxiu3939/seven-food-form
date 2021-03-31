@@ -1,7 +1,7 @@
 /**
- * 视频轮播组件
+ * 多媒体轮播组件
  */
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -16,15 +16,22 @@ import { ImageItem, ImageDescription } from '../../../dynamic-form.options';
 })
 export class VideoSliderComponent implements OnInit {
 
-  @Input() items: ImageItem[]; // 所有视频
+  @Input() items: ImageItem[]; // 所有多媒体
   @Input() size: string; // 尺寸
   @Input() readonly: boolean; // 是否只读
-  @Input() currentIndex: number; // 当前视频
-  @Input() active: string[]; // 选中视频地址
+  @Input() currentIndex: number; // 当前多媒体
+  @Input() active: string[]; // 选中多媒体地址
 
-  @Output() public destroy = new EventEmitter<number>(); // 删除图片
-  @Output() public edit = new EventEmitter<ImageDescription>(); // 更新图片描述
-  @Output() public currentChange = new EventEmitter<number>(); // 改变当前图片
+  @Output() public destroy = new EventEmitter<number>(); // 删除多媒体
+  @Output() public edit = new EventEmitter<ImageDescription>(); // 更新多媒体描述
+  @Output() public currentChange = new EventEmitter<number>(); // 改变当前多媒体
+
+  private mediaElement: ElementRef;
+  @ViewChild('mediaContainer', {static: false}) set mediaContainer(content: ElementRef) {
+    if (content) { // initially setter gets called with undefined
+      this.mediaElement = content;
+    }
+  }
 
   private descriptionTerms = new Subject<string>();
 
@@ -54,7 +61,7 @@ export class VideoSliderComponent implements OnInit {
     } else {
       this.currentIndex--;
     }
-    this.currentChange.emit(this.currentIndex);
+    this.changeMedia();
   }
 
   forward() {
@@ -63,7 +70,7 @@ export class VideoSliderComponent implements OnInit {
     } else {
       this.currentIndex++;
     }
-    this.currentChange.emit(this.currentIndex);
+    this.changeMedia();
   }
 
   delete() {
@@ -76,7 +83,17 @@ export class VideoSliderComponent implements OnInit {
       this.currentIndex = 0;
     }
     this.items = this.items.filter((item, index) => index !== deleteIndex);
-    this.currentChange.emit(this.currentIndex);
+    this.changeMedia();
   }
 
+  changeMedia() {
+    setTimeout(() => {
+      if (this.mediaElement) {
+        const videoPlay: any = this.mediaElement.nativeElement;
+        videoPlay.src = this.items[this.currentIndex].url;
+        // videoPlay.play();
+      }
+    });
+    this.currentChange.emit(this.currentIndex);
+  }
 }

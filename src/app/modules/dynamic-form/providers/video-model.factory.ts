@@ -7,7 +7,7 @@ const ng2FileUploadConfig: UploadConfig = {
     title: '',
     topic: '',
   },
-  allowedFileType: ['video'],
+  allowedFileType: ['audio', 'video'], // 视频、音频
   authTokenHeader: '',
   authToken: '',
   itemAlias: 'video', // 表单名称
@@ -17,7 +17,7 @@ const ng2FileUploadConfig: UploadConfig = {
 };
 
 /**
- * 视频模型工厂
+ * 多媒体模型工厂
  */
 export class VideoModelFactory extends BaseModelFactory {
   protected model: VideoModel;
@@ -28,7 +28,7 @@ export class VideoModelFactory extends BaseModelFactory {
 
     this.config.disabled = false; // 默认不禁用
     this.config.kind = 'ng2-file-upload'; // 默认上传模块
-    this.config.multiple = false; // 默认单图
+    this.config.multiple = false; // 默认单文件
 
     /* 上传配置 */
     switch (obj.kind) {

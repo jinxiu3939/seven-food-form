@@ -12,14 +12,14 @@
     <nb-action>{{ +currentIndex + 1 }} / {{ items.length }}</nb-action>
   </nb-actions>
   <div class="slider" [ngClass]="{'auto-slider': readonly}">
-    <video width='100%' height="auto" controls  class="img-thumbnail" [ngClass]="{'active': active && active.includes(items[currentIndex].url)}">
+    <video #mediaContainer width='100%' height="auto" controls  class="img-thumbnail" [ngClass]="{'active': active && active.includes(items[currentIndex].url)}">
       <source [src]="items[currentIndex].url | safeURL">
     </video>
   </div>
   <input *ngIf="! readonly"
          #descriptionBox
          class="form-control desciption"
-         placeholder="请输入视频描述"
+         placeholder="请输入多媒体描述"
          [(ngModel)]="items[currentIndex].title"
          (input)="desc(descriptionBox.value)">
 </div>
