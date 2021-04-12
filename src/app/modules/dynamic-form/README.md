@@ -341,6 +341,7 @@
 - tree: TreeNode<Option<string | number>>[]; // 选项树
 - endpoint?: string; // 检索接口
 - searchParameter?: any; // 检索条件
+- readonly?: boolean; // 是否只读
 
 > 应该自定义服务实现树提供者接口：`TreeProvider`
 

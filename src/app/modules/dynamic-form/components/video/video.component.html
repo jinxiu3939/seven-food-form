@@ -1,13 +1,13 @@
-<div [formGroup]="form" class="row">
+<div [formGroup]="form" class="block-row">
   <ngx-video-slider [items]="thumbnails"
                     currentIndex="0"
                     [readonly]="! model.multiple"
                     size="small"
                     (destroy)="delete($event)"
                     (edit)="desc($event)">
-    </ngx-video-slider>
+  </ngx-video-slider>
   
-  <ng-container *ngIf="! model.disabled">
+  <span *ngIf="! model.disabled">
     <a nbButton
       size="tiny"
       status="info"
@@ -20,7 +20,7 @@
       type="button"
       (click)="destroyVideo()">清空</a>
     <input [formControlName]="model.name" type="hidden" [value]="model.value">
-  </ng-container>
+  </span>
 </div>
 
 <ng-template #contentTemplate>

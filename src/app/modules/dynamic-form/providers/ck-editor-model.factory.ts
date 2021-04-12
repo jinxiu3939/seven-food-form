@@ -1,6 +1,7 @@
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'; // 导入`ckeditor`模块
 import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'; // 导入`ckeditor`语言包
 
+
 import { ModelType, CKEditorModel } from '../dynamic-form.options';
 import { BaseModelFactory } from './base-model.factory';
 import { deepExtend } from '../helps';

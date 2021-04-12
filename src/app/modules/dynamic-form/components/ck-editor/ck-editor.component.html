@@ -7,6 +7,6 @@
               (change)="onChange($event)">
     </ckeditor>
   </ng-container>
-  <div *ngIf="model.disabled" class="ck-content view" [innerHTML]="model.value | safeHTML">
+  <div *ngIf="model.disabled" class="ck-content ck-editor-view" [innerHTML]="model.value | safeHTML">
   </div>
 </div>

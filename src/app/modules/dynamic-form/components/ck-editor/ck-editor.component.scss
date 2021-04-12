@@ -3,8 +3,12 @@
 @include nb-install-component() {
   ::ng-deep .ck-editor__editable_inline {
     min-height: 320px;
+    p, li, h1, h2, h3, h4, h5, h6 {
+      color: #212529;
+    }
   }
-  .view {
+
+  .ck-editor-view {
     max-width: 100%;
     border: 1px dashed #bbb;
     padding: 1rem;

@@ -3,13 +3,18 @@
 @import '../../theme/styles';
 
 @include nb-install-component() {
+  .block-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   a {
     margin-left: 1rem;
     margin-top: calc(0.375rem + 1px);
   }
 
   ngx-image-slider {
-    width: 200px;
+    width: 260px;
   }
 
   .full-image-table {

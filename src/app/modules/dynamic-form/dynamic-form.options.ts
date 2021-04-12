@@ -421,6 +421,7 @@ export interface PopupTreeModel extends BaseModel<string | number> {
   tree: TreeNode<Option<string | number>>[]; // 选项树
   endpoint?: string; // 检索接口
   searchParameter?: any; // 检索条件
+  readonly?: boolean; // 是否只读
 }
 
 /**

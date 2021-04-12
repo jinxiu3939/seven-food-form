@@ -3,37 +3,17 @@
 @import '../../theme/styles';
 
 @include nb-install-component() {
+  .block-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
   a {
     margin-left: 1rem;
     margin-top: calc(0.375rem + 1px);
   }
 
   ngx-video-slider {
-    width: 250px;
-  }
-
-  .full-image-table {
-    max-height: 170px;
-    margin-left: 0.8rem;
-    overflow: auto;
-  }
-
-  .full-image-inputs {
-    display: flex;
-    margin: 0;
-
-    > * {
-      margin-right: 0.5rem;
-    }
-
-    .form-control {
-      margin-bottom: 0.5rem;
-    }
-
-    h5 {
-      width: 100%;
-      font-size: .5rem;
-      text-align: center;
-    }
+    width: 260px;
   }
 }

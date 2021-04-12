@@ -129,7 +129,7 @@ export class AppComponent implements OnInit {
           "label": "图片",
           "name": "cover",
           "type": "image",
-          "value": "",
+          "value": "http://www.sanguosha.cn/storage/uploads/images/pic_list/1.png",
           "help": "",
           "max": 100,
           "min": 0,
@@ -331,7 +331,8 @@ export class AppComponent implements OnInit {
           "order": 0,
           "require": true,
           "validator": "",
-          "data": "popupTree"
+          "data": "popupTree",
+          readonly: false
         },
         {
           "disabled": false,
@@ -1117,7 +1118,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.modesss;
+      this.models = this.realModels;
     });
   }
 

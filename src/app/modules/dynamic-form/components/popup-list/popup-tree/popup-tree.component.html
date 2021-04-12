@@ -29,7 +29,7 @@
 
 <ng-template #contentTemplate>
   <div style="height: 600px; overflow: auto;" [nbSpinner]="loading" nbSpinnerStatus="info">
-    <input nbInput [nbFilterInput]="dataSource" id="search" placeholder="可输入关键字搜索" class="form-control">    
+    <input *ngIf="!model.readonly" nbInput [nbFilterInput]="dataSource" id="search" placeholder="可输入关键字搜索" class="form-control">    
     <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
         <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
         <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns" (click)="select(row)"></tr>
@@ -40,7 +40,6 @@
           <td nbTreeGridCell *nbTreeGridCellDef="let row" [title]="row.data[customColumn]">
             <nb-icon *ngIf="isChecked(row.data)"
                      status="info"
-                     style="position: absolute; left: 1.5rem;"
                      icon="checkmark-square-outline"></nb-icon>
             <ngx-tree-node-icon [row]="row" [expanded]="row.expanded"></ngx-tree-node-icon>
             {{row.data[customColumn]}}

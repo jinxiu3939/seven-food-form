@@ -94,7 +94,7 @@ remove the package
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "@ckeditor/ckeditor5-angular": "^1.2.1",
+    "@ckeditor/ckeditor5-angular": "^1.2.3",
     "@ckeditor/ckeditor5-build-classic": "^17.0.0",
     "@nebular/eva-icons": "^4.6.0",
     "@nebular/theme": "^4.6.0",
