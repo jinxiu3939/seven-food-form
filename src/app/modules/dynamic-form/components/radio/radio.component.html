@@ -5,7 +5,7 @@
                   class="row boxes">
     <nb-radio *ngFor="let opt of model.options"
               [value]="opt.value"
-              [title]="opt.title ? opt.title : ''"
+              [title]="opt.title ? opt.title : opt.text"
               [disabled]="model.disabled"
               class="col-{{model.width}}"
               [ngClass]="{'form-badge': opt.items}">

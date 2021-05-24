@@ -10,7 +10,7 @@
           <nb-option *ngFor="let opt of item.options" [value]="opt.value">{{ opt.text }}</nb-option>
         </nb-select>
         <div *ngSwitchCase="'drop-down-filter'" class="input-group">
-          <input #searchBox type="text" class="form-control form-control-small" placeholder="可筛选" (input)="searchConditionOption(searchBox.value, f)">
+          <input #searchBox type="text" class="form-control form-control-small" placeholder="筛选" (input)="searchConditionOption(searchBox.value, f)">
           <div class="input-group-append">
             <nb-select placeholder="请选择"
                        [(selected)]="condition[item.value]">

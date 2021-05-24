@@ -22,7 +22,7 @@ export class PopupCheckBoxComponent implements OnInit {
 
   @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
 
-  public text: string[]; // 显示内容
+  public text: any; // 显示内容
   public records: Option<string | number>[] = []; // 结果集
   private tmpRecords: Option<string | number>[][] = []; // 临时结果集
   private windowRef: NbWindowRef;
@@ -70,7 +70,6 @@ export class PopupCheckBoxComponent implements OnInit {
    * 清空
    */
   destroy() {
-    this.text = [];
     this.model.value = [];
     this.form.controls[this.model.name].setValue(null); // 清空表单值
   }
@@ -93,7 +92,7 @@ export class PopupCheckBoxComponent implements OnInit {
       this.checked.forEach(element => {
         if (! this.model.value.includes(element.value)) {
           this.model.value.push(element.value);
-          this.text.push(element.text);
+          this.text[element.value] = element.text;
         }
       });
       this.form.controls[this.model.name].setValue(this.model.value);

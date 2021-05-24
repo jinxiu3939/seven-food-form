@@ -20,7 +20,7 @@ export class PopupCheckboxModelFactory extends BaseModelFactory {
     this.config.disabled = false; // 默认不禁用
     this.config.options = []; // 默认选项
     this.config.searchConfig = this.searchConfig; // 检索配置
-    this.config.text = ''; // 默认文本
+    this.config.text = []; // 默认文本
   }
 
   protected format(): void {

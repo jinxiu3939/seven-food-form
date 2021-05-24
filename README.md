@@ -84,7 +84,7 @@ add blow package
 remove the package
 
 ```
-  "dependencies": {
+    "dependencies": {
     "@angular/animations": "^8.2.14",
     "@angular/cdk": "^8.2.3",
     "@angular/common": "~8.2.14",
@@ -95,7 +95,7 @@ remove the package
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@ckeditor/ckeditor5-angular": "^1.2.3",
-    "@ckeditor/ckeditor5-build-classic": "^17.0.0",
+    "@ckeditor/ckeditor5-build-balloon-block": "^17.0.0",
     "@nebular/eva-icons": "^4.6.0",
     "@nebular/theme": "^4.6.0",
     "bootstrap": "^4.3.1",

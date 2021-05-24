@@ -408,7 +408,7 @@ export interface PopupCheckboxModel extends BaseModel<(string | number)[]> {
   disabled: boolean; // 是否禁用
   options: Option<string | number>[]; // 选项列表
   searchConfig: SearchConfig; // 检索配置
-  text: string[]; // 显示文本
+  text: any; // 显示文本
 }
 
 /**

@@ -579,9 +579,9 @@ that is the input param of DynamicFormComponent
     min: 2,
     name: 'color-1',
     options: [
-      { text: 'A', value: 'A', title : '选项A', items: '99+' },
-      { text: 'B', value: 'B', title : '选项B' },
-      { text: 'C', value: 'C', title : '选项C' },
+      { text: 'a', value: 'A', title : '选项A', items: '99+' },
+      { text: 'b', value: 'B', title : '选项B' },
+      { text: 'c', value: 'C', title : '选项C' },
     ],
     type: 'radio',
     value: 'A',
@@ -1276,7 +1276,7 @@ options = [
     order: 1,
     validator: '',
     options: [],
-    text: ['就是这么神奇'],
+    text: {1: '就是这么神奇'},
   },
 ],
 ```

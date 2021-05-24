@@ -1,14 +1,12 @@
 /**
- * 关联外键选择
+ * 子项目选择
  */
-
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { NbDialogService } from '@nebular/theme';
+import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { deepExtend } from '../../helps';
 import { ItemListModel } from '../../dynamic-form.options';
-import { ItemDialogComponent } from './item-dialog/item-dialog.component';
 
 @Component({
   selector: 'ngx-item-list',
@@ -20,22 +18,22 @@ export class ItemListComponent {
   @Input() form: FormGroup;
   @Input() model: ItemListModel;
 
-  constructor(private service: NbDialogService) {
+  @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
+
+  private windowRef: NbWindowRef;
+
+  constructor(private service: NbWindowService) {
   }
 
   /*
    * 新增子项目
    */
   add() {
-    this.service.open(ItemDialogComponent,
-                      {
-                        context: {
-                          title: '新增' + this.model.label,
-                          data: {},
-                          fields: this.model.attributes,
-                        },
-                        closeOnBackdropClick: false,
-                      }).onClose.subscribe(data => this.receive(data, false));
+    this.windowRef = this.service.open(this.contentTemplate, { title: '新增' + this.model.label, context: {
+      row: {},
+      fields: this.model.attributes,
+      index: false,
+    }, closeOnBackdropClick: false,});
   }
 
   /*
@@ -43,15 +41,13 @@ export class ItemListComponent {
    */
   edit(row, index) {
     const tmp_row = deepExtend({}, row);
-    this.service.open(ItemDialogComponent,
-                      {
-                        context: {
-                          data: tmp_row,
-                          fields: this.model.attributes,
-                          title: '编辑' + this.model.label,
-                        },
-                        closeOnBackdropClick: false,
-                      }).onClose.subscribe(data => this.receive(data, index));
+    this.windowRef = this.service.open(this.contentTemplate, { title: '编辑' + this.model.label, context: {
+        row: tmp_row,
+        fields: this.model.attributes,
+        index,
+      },
+      closeOnBackdropClick: false,
+    });
   }
 
   /*
@@ -77,7 +73,7 @@ export class ItemListComponent {
   /*
    * 接收窗体返回值
    */
-  private receive(result, index) {
+  receive(result, index) {
     if (result) {
       if (index !== false) {
         this.model.value[index] = result; // 更新
@@ -86,5 +82,6 @@ export class ItemListComponent {
       }
       this.form.controls[this.model.name].setValue(this.model.value);
     }
+    this.windowRef.close(); // 关闭弹窗
   }
 }

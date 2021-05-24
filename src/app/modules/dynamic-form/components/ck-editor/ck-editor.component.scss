@@ -1,10 +1,17 @@
+@import '~@nebular/theme/styles/theming';
 @import '../../theme/styles';
 
 @include nb-install-component() {
-  ::ng-deep .ck-editor__editable_inline {
-    min-height: 320px;
-    p, li, h1, h2, h3, h4, h5, h6 {
-      color: #212529;
+  ::ng-deep {
+    /* 设置编辑器的高度 */
+    .ck-editor__editable_inline {
+      min-height: 320px;
+    }
+    /* 修复经典模式下，编辑器背景和nebular皮肤冲突的问题 */
+    .ck.ck-editor__main>.ck-editor__editable {
+      p, li, h1, h2, h3, h4, h5, h6 {
+        color: #212529;
+      }
     }
   }
 
@@ -13,5 +20,13 @@
     border: 1px dashed #bbb;
     padding: 1rem;
     overflow: scroll;
+  }
+
+  .form-control-danger {
+    border: 1px solid nb-theme(text-danger-color);
+  }
+
+  .form-control-success {
+    border: 1px solid nb-theme(text-success-color);
   }
 }

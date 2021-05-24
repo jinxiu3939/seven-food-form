@@ -1,24 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { ConditionField, Option } from '../../../dynamic-form.options';
 
 @Component({
+  selector: 'ngx-item-dialog',
   templateUrl: `./item-dialog.component.html`,
   styleUrls: ['../../../dynamic-form.component.scss'],
 })
 export class ItemDialogComponent implements OnInit {
-  title: string; // 标题
-  data: object; // 子项默认值
-  fields: ConditionField[]; // 字段
+  @Input() data: object; // 子项默认值
+  @Input() fields: ConditionField[]; // 字段
+
+  @Output() public finish = new EventEmitter<object>(); // 提交
   
   private searchTerms = new Subject<{value: string, key: number}>(); // 检索对象
   files$: Observable<any[]>;
   searchOptions: Option<string | number>[][] = [];
-
-  constructor(public dialogRef: NbDialogRef<ItemDialogComponent>) {}
 
   ngOnInit() {
     for (const f in this.fields) {
@@ -39,11 +38,11 @@ export class ItemDialogComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close();
+    this.finish.emit(null);
   }
 
   submit() {
-    this.dialogRef.close(this.data);
+    this.finish.emit(this.data);
   }
 
   /**
@@ -62,7 +61,7 @@ export class ItemDialogComponent implements OnInit {
     if (keyword) {
       result = this.fields[term.key].options.filter((item) => {
         for (const i in item) {
-          if (item.text.indexOf(keyword) >= 0 || (item.value+'').indexOf(keyword) >= 0) {
+          if (item.text.indexOf(keyword) >= 0 || (item.value + '').indexOf(keyword) >= 0) {
             return true;
           }
         }

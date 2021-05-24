@@ -3,6 +3,9 @@
 @include nb-install-component() {
   .boxes {
     nb-radio {
+      white-space: nowrap;
+      overflow: hidden;
+      
       nb-badge {
         width: 1.65rem;
         top: 0.5rem;

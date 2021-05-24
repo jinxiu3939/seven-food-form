@@ -38,6 +38,11 @@
   .inline-group {
     width: 33%;
     margin-bottom: 0.5rem;
+
+    .col-form-label {
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 
   .form-check-inline {
@@ -70,6 +75,10 @@
   
     .inline-block {
       width: 75%;
+
+      h3 {
+        display: none;
+      }
     }
   
     .inline-operation {

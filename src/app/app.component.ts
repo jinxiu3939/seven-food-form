@@ -683,6 +683,14 @@ export class AppComponent implements OnInit {
             url: '/api/access/upload/video',
           },
         }).video(),
+        new QuickFormFactory({
+          label: '多选测试',
+          name: 'popup-checkbox-2',
+          require: true,
+          value: 'A',
+          text: {A: '看你的选项'},
+          options: this.options,
+        }).popupCheckbox(),
       ],
       title: "活命",
       column: 3,
@@ -942,7 +950,7 @@ export class AppComponent implements OnInit {
         new QuickFormFactory({
           label: '模型',
           name: 'model',
-          value: '系统（虚拟）',
+          value: '',
           text: '只读',
           min: 0,
           max: 0,
@@ -1005,6 +1013,17 @@ export class AppComponent implements OnInit {
           value: "2020-11-14 09:08",
         }).datePicker(),
         new QuickFormFactory({
+          label: '附件',
+          name: 'file',
+          kind: ['json', 'xls'],
+        }).file(),
+      ],
+      title: "活命1",
+      column: ['4', 14],
+    },
+    {
+      items: [
+        new QuickFormFactory({
           label: '内容',
           name: 'content-1',
           kind: 'ckfinder',
@@ -1014,15 +1033,10 @@ export class AppComponent implements OnInit {
               uploadUrl: '/ckfinder/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
             }
           },
+          require: true,
         }).ckEditor(),
-        new QuickFormFactory({
-          label: '内容',
-          name: 'file',
-          kind: ['json', 'xls'],
-        }).file(),
       ],
-      title: "活命1",
-      column: ['4', 14],
+      title: "富文本"
     },
   ];
   goodsModels: any = [
@@ -1118,7 +1132,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.realModels;
+      this.models = this.defaultModels;
     });
   }
 

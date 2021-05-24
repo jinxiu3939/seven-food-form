@@ -1,7 +1,7 @@
 <div [formGroup]="form" class="row">
   <ng-container *ngIf="model.value && model.value.length > 0">
-    <a *ngFor="let val of model.value; let i = index" size="tiny" nbButton outline status="basic" class="btn-basic">
-      {{ val }} / {{ text[i] ? text[i] : '' }}
+    <a *ngFor="let val of model.value" size="tiny" nbButton outline status="basic" class="btn-basic">
+      {{ val }} / {{ text[val] ? text[val] : '' }}
       <nb-icon *ngIf="! model.disabled" status="warning" icon="close" title="删除" (click)="delete(val)"></nb-icon>
     </a>
   </ng-container>

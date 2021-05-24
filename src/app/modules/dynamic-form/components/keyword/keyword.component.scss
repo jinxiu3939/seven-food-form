@@ -3,7 +3,7 @@
 @include nb-install-component() {
   .keyword-list {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
 
@@ -44,6 +44,7 @@
 
   .form-control-sm {
     width: 4rem;
+    border: 1px solid nb-theme(color-basic-300);
   }
 
   .btn-add {

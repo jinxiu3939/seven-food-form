@@ -4,6 +4,12 @@
 ### 使用
 
 ```
+import { SfDynamicFormModule } from 'seven-food-form';
+
+SfDynamicFormModule.forRoot()
+```
+
+```
 <ng-container *ngIf="models">
   <ngx-dynamic-form [models]="models"></ngx-dynamic-form>
 </ng-container>
