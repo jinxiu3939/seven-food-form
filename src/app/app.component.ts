@@ -1016,6 +1016,7 @@ export class AppComponent implements OnInit {
           label: '附件',
           name: 'file',
           kind: ['json', 'xls'],
+          download: 'http://api.oss.localhost'
         }).file(),
       ],
       title: "活命1",

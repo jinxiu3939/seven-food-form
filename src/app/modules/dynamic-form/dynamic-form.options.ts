@@ -460,4 +460,5 @@ export interface FileModel extends BaseModel<any> {
   disabled: boolean; // 是否禁用
   kind: string[]; // 文件类型
   accept: string; // 可上传文件类型
+  download: string; // 下载地址
 }
