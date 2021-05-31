@@ -6,6 +6,8 @@ import { NbDialogService } from '@nebular/theme';
 import { Subject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 
+import { LangProvider } from '../../../providers/data/lang.provider';
+
 import {
   ImageItem,
   FileResource,
@@ -46,12 +48,14 @@ export class ImageSearchComponent implements OnInit {
   private files$: Observable<FileResource[]>; // 检索结果
   private items: FileResource[]; // 所有结果集
   private tmpItmes: FileResource[][]; // 异步检索临时结果集
+  lang: any;
 
   private searchTerms = new Subject<string>(); // 检索对象
 
-  constructor(private provider: ResourceProvider, private dialogService: NbDialogService) {
+  constructor(private provider: ResourceProvider, private dialogService: NbDialogService, private langProvider: LangProvider) {
     this.loading = false;
-    this.message = '默认不显示图片，输入关键词之后显示检索结果';
+    this.lang = langProvider.lang;
+    this.message = this.lang.default_image;
   }
 
   ngOnInit() {
@@ -207,7 +211,7 @@ export class ImageSearchComponent implements OnInit {
         if (this.selected.length < this.config.queueLimit) {
           this.selected.push(file);
         } else {
-          this.alert('最多选择' + this.config.queueLimit + '张图片');
+          this.alert(this.lang.choose_up + '：' + this.config.queueLimit);
         }
       } else { // 不限个数
         this.selected.push(file);
@@ -242,9 +246,9 @@ export class ImageSearchComponent implements OnInit {
     this.total = total; // 结果总数
     this.pages = Math.ceil(this.total / this.size); // 总页数
     if (total === 0) {
-      this.message = '暂无图片，更换关键词试一下';
+      this.message = this.lang.search_no_data;
     } else {
-      this.message = '加载中...';
+      this.message = this.lang.loading;
     }
   }
 

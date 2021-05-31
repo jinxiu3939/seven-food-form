@@ -6,6 +6,7 @@ import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { PasswordBoxModel } from '../../dynamic-form.options';
+import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-password-box',
@@ -19,9 +20,13 @@ export class PasswordBoxComponent implements OnInit  {
   @Input() model: PasswordBoxModel;
   @Input() form: FormGroup;
 
+  lang: any;
+
   public inputType: string; // 密码类型
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef, private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   ngOnInit() {
     if (this.model.empty) {
@@ -49,9 +54,9 @@ export class PasswordBoxComponent implements OnInit  {
     const message = [];
     const control = this.form.controls[this.model.name];
     if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push('最少输入' + this.model.min + '个字符');
+      message.push(this.lang.min_input + '：' + this.model.min);
     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push('最多输入' + this.model.max + '个字符');
+      message.push(this.lang.max_input + '：' + this.model.max);
     } else if (control.value) {
       if (control.errors[this.model.validator]) {
         message.push(control.errors[this.model.validator]);
@@ -63,7 +68,7 @@ export class PasswordBoxComponent implements OnInit  {
   validatePassword(value: string) {
     if (this.password !== value) {
       this.form.controls[this.model.name].setErrors({
-        inputEqual: '两次输入不一致',
+        inputEqual: this.lang.password_not_match,
       });
     } else {
       this.cd.detectChanges();

@@ -1,5 +1,5 @@
 <div *ngIf="tree && tree.options" class="tree-inline">
-  <nb-select placeholder="请选择" [(selected)]="tree.selected" (selectedChange)="switchSelected()">
+  <nb-select [placeholder]="lang.select" [(selected)]="tree.selected" (selectedChange)="switchSelected()">
     <nb-option *ngFor="let opt of options" [value]="opt.value">{{ opt.text }}</nb-option>
   </nb-select>
   <ng-container *ngIf="tree.children">

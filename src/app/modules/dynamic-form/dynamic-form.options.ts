@@ -29,6 +29,7 @@ export declare type ModelType = 'checkbox'
                                 | 'spreadsheet'
                                 | 'text-area'
                                 | 'text-box'
+                                | 'u-editor'
                                 | 'video';
 
 // 验证器集合
@@ -306,6 +307,15 @@ export interface CKEditorModel extends BaseModel<string> {
   editorConfig: any; // `ck-editor`配置
   // 需要安装相应的`CKEditor Build`[https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#classic-editor]
   kind: 'classic' | 'ckfinder'; // `ck-editor`类别
+}
+
+/**
+ * `ueditor`富文本编辑器模型
+ */
+ export interface UEditorModel extends BaseModel<string> {
+  disabled: boolean; // 是否禁用
+  editorConfig: any; // `ueditor`配置 [http://fex.baidu.com/ueditor/#start-config]
+  kind: 'classic' | 'full'; // `u-editor`自定义按钮
 }
 
 /**

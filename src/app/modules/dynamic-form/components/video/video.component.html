@@ -12,29 +12,29 @@
       size="tiny"
       status="info"
       type="button"
-      (click)="chooseVideo()">选择</a>
+      (click)="chooseVideo()">{{ lang.choose }}</a>
     <a *ngIf="model.value"
       nbButton
       size="tiny"
       status="warning"
       type="button"
-      (click)="destroyVideo()">清空</a>
+      (click)="destroyVideo()">{{ lang.clear }}</a>
     <input [formControlName]="model.name" type="hidden" [value]="model.value">
   </span>
 </div>
 
 <ng-template #contentTemplate>
   <nb-tabset style="width: 600px; height: 500px;">
-    <nb-tab tabTitle="本地多媒体">
+    <nb-tab [tabTitle]="lang.local_media">
       <ngx-video-upload [config]="model.uploadConfig"
                         [multiple]="model.multiple"
                         (finish)="submitVideo($event)"></ngx-video-upload>
     </nb-tab>
   </nb-tabset>
   <div>
-    <button nbButton status="danger" (click)="cancelVideo()"  style="margin-right: 1rem;">取消</button>
+    <button nbButton status="danger" (click)="cancelVideo()"  style="margin-right: 1rem;">{{ lang.cacel }}</button>
     <button *ngIf="tmpImage.length" nbButton status="info" (click)="sureVideo()">
-      确定 {{ tmpFilter ? tmpFilter.length : tmpImage.length }} / {{ tmpImage.length }}
+      {{ lang.sure }} {{ tmpFilter ? tmpFilter.length : tmpImage.length }} / {{ tmpImage.length }}
     </button>
   </div>
 </ng-template>

@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { ImageItem, ImageDescription, ImageListOrder } from '../../../dynamic-form.options';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-image-slider',
@@ -28,9 +29,13 @@ export class ImageSliderComponent implements OnInit {
   @Output() public currentChange = new EventEmitter<number>(); // 改变当前图片
   @Output() public order = new EventEmitter<ImageListOrder>(); // 图片排序
 
+  lang: any;
+
   private descriptionTerms = new Subject<string>();
 
-  constructor(private windowService: NbWindowService) {}
+  constructor(private windowService: NbWindowService, private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   ngOnInit() {
     if (! this.currentIndex) {
@@ -60,7 +65,7 @@ export class ImageSliderComponent implements OnInit {
     this.windowService.open(
       imageTemplate,
       {
-        title: '预览大图',
+        title: this.lang.preview_big_image,
         context: {
           src: this.items[this.currentIndex].url,
         },

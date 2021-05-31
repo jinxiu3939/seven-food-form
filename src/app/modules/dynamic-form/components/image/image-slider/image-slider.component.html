@@ -1,18 +1,18 @@
 <div *ngIf="items && items.length > 0" [ngClass]="{'small': size === 'small'}">
   <nb-actions *ngIf="items.length > 1" size="small" fullWidth>
-    <nb-action (click)="backward()" title="预览">
+    <nb-action (click)="backward()" [title]="lang.preview">
       <nb-icon icon="arrow-ios-back-outline" status="basic"></nb-icon>
     </nb-action>
-    <nb-action (click)="forward()" title="预览">
+    <nb-action (click)="forward()" [title]="lang.preview">
       <nb-icon icon="arrow-ios-forward-outline" status="basic"></nb-icon>
     </nb-action>
-    <nb-action (click)="upward()" title="排序">
+    <nb-action (click)="upward()" [title]="lang.sort">
       <nb-icon icon="arrow-upward-outline" status="info"></nb-icon>
     </nb-action>
-    <nb-action (click)="downward()" title="排序">
+    <nb-action (click)="downward()" [title]="lang.sort">
       <nb-icon icon="arrow-downward-outline" status="info"></nb-icon>
     </nb-action>
-    <nb-action (click)="delete()" title="删除">
+    <nb-action (click)="delete()" [title]="lang.delete">
       <nb-icon icon="close" status="warning"></nb-icon>
     </nb-action>
     <nb-action>{{ +currentIndex + 1 }} / {{ items.length }}</nb-action>
@@ -23,7 +23,7 @@
   <input *ngIf="! readonly"
          #descriptionBox
          class="form-control desciption"
-         placeholder="请输入图片描述"
+         [placeholder]="lang.input_description"
          [(ngModel)]="items[currentIndex].title"
          (input)="desc(descriptionBox.value)">
 </div>

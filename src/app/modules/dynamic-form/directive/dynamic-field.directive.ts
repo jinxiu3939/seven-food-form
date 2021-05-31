@@ -23,6 +23,7 @@ import { LinkageBoxComponent } from '../components/linkage-box/linkage-box.compo
 import { VideoComponent } from '../components/video/video.component';
 import { KeywordComponent } from '../components/keyword/keyword.component';
 import { FileComponent } from '../components/file/file.component';
+import { BaiduUEditorComponent } from '../components/u-editor/u-editor.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -45,6 +46,7 @@ const COMPONENTS = {
   'text-area': TextAreaComponent,
   'text-box': TextBoxComponent,
   video: VideoComponent,
+  'u-editor': BaiduUEditorComponent,
 };
 
 @Directive({

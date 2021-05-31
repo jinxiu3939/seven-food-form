@@ -15,10 +15,10 @@
                [value]="text">
         <ng-container *ngIf="! model.readonly">
           <span class="input-group-append">
-            <a nbButton status="info" (click)="choose()">选择</a>
+            <a nbButton status="info" (click)="choose()">{{ lang.choose }}</a>
           </span>
           <span *ngIf="model.value" class="input-group-append">
-            <a nbButton status="warning" (click)="destroy()">清空</a>
+            <a nbButton status="warning" (click)="destroy()">{{ lang.clear }}</a>
           </span>
         </ng-container>       
       </div>
@@ -45,11 +45,11 @@
       <nb-badge *ngIf="item.items" [text]="item.items" style="top: 1.6rem; right: 0.5rem"></nb-badge>
     </nb-list-item>
     <nb-list-item *ngIf="!records || records.length === 0">
-      <nb-alert status="info">暂无结果，更换检索条件试一下</nb-alert>
+      <nb-alert status="info">{{ lang.no_data }}</nb-alert>
     </nb-list-item>
   </nb-list>
   <div>
-    <button style="margin-right: 0.5rem" nbButton hero status="warning" (click)="cancel()">取消</button>
-    <button nbButton hero status="info" (click)="submit()">确认</button>
+    <button style="margin-right: 0.5rem" nbButton hero status="warning" (click)="cancel()">{{ lang.cancel }}</button>
+    <button nbButton hero status="info" (click)="submit()">{{ lang.sure }}</button>
   </div>
 </ng-template>

@@ -6,7 +6,7 @@
     <nb-action (click)="forward()">
       <nb-icon icon="arrow-ios-forward-outline" status="basic"></nb-icon>
     </nb-action>
-    <nb-action (click)="delete()" title="删除">
+    <nb-action (click)="delete()" [title]="lang.delete">
       <nb-icon icon="close" status="warning"></nb-icon>
     </nb-action>
     <nb-action>{{ +currentIndex + 1 }} / {{ items.length }}</nb-action>
@@ -19,7 +19,7 @@
   <input *ngIf="! readonly"
          #descriptionBox
          class="form-control desciption"
-         placeholder="请输入多媒体描述"
+         [placeholder]="lang.input_description"
          [(ngModel)]="items[currentIndex].title"
          (input)="desc(descriptionBox.value)">
 </div>

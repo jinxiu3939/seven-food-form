@@ -3,8 +3,8 @@
     <ng-container *ngSwitchCase="'input'">
       <div *ngIf="thumbs" class="full-image-table">
         <div class="full-image-inputs">
-          <h5>图片</h5>
-          <h5>描述</h5>
+          <h5>{{ lang.picture }}</h5>
+          <h5>{{ lang.description }}</h5>
         </div>
         <div *ngFor="let thumb of thumbs" class="full-image-inputs">
           <input type="text" class="form-control" readonly nbInput fullWidth [value]="thumb.url" [title]="thumb.url">
@@ -28,43 +28,43 @@
       size="tiny"
       status="info"
       type="button"
-      (click)="chooseImage()">选择</a>
+      (click)="chooseImage()">{{ lang.choose }}</a>
     <a *ngIf="model.value"
       nbButton
       size="tiny"
       status="warning"
       type="button"
-      (click)="destroyImage()">清空</a>
+      (click)="destroyImage()">{{ lang.clear }}</a>
     <input [formControlName]="model.name" type="hidden" [value]="model.value">
   </span>
 </div>
 
 <ng-template #contentTemplate>
   <nb-tabset style="width: 600px; height: 500px;">
-    <nb-tab tabTitle="本地图片">
+    <nb-tab [tabTitle]="lang.local_picture">
       <ngx-image-upload [config]="model.uploadConfig"
                         [multiple]="model.multiple"
                         (finish)="submitImage($event)"></ngx-image-upload>
     </nb-tab>
-    <nb-tab tabTitle="网络图片">
+    <nb-tab [tabTitle]="lang.network_picture">
       <ngx-image-web [config]="model.crawlConfig"
                      [multiple]="model.multiple"
                      (finish)="submitImage($event)"></ngx-image-web>
     </nb-tab>
-    <nb-tab tabTitle="历史图片">
+    <nb-tab [tabTitle]="lang.history_picture">
       <ngx-image-search [config]="model.searchConfig"
                         [multiple]="model.multiple"
                         (finish)="submitImage($event)"></ngx-image-search>
     </nb-tab>
-    <nb-tab tabTitle="待选图片">
+    <nb-tab [tabTitle]="lang.waiting_picture">
       <ngx-image-cache [images]="tmpImage"
                        (active)="changeImage($event)"></ngx-image-cache>
     </nb-tab>
   </nb-tabset>
   <div>
-    <button nbButton status="danger" (click)="cancelImage()"  style="margin-right: 1rem;">取消</button>
+    <button nbButton status="danger" (click)="cancelImage()"  style="margin-right: 1rem;">{{ lang.cancel }}</button>
     <button *ngIf="tmpImage.length" nbButton status="info" (click)="sureImage()">
-      确定 {{ tmpFilter ? tmpFilter.length : tmpImage.length }} / {{ tmpImage.length }}
+      {{ lang.sure }} {{ tmpFilter ? tmpFilter.length : tmpImage.length }} / {{ tmpImage.length }}
     </button>
   </div>
 </ng-template>

@@ -4,7 +4,7 @@
          pattern="(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#\|]*[\w\-@?^=%&/~\+#])?"
          [(ngModel)]="url"
          #webUrl="ngModel"
-         placeholder="请输入网络图片地址"
+         [placeholder]="lang.input_network_url"
          [ngClass]="{'form-control-success': webUrl.valid, 'form-control-danger': webUrl.invalid}"
          [attr.aria-invalid]="webUrl.invalid && webUrl.touched ? true : null">
   <span class="input-group-append">
@@ -14,11 +14,11 @@
             size="small"
             status="primary"
             [disabled]="!webUrl.value || !webUrl.valid"
-            (click)="crawl()">抓取</button>
+            (click)="crawl()">{{ lang.grab }}</button>
   </span>
 </div>
 <p *ngIf="webUrl.invalid && webUrl.touched" class="caption status-danger">
-  网络图片地址格式错误（必须是http或https开头的真实网址）
+  {{ lang.network_url_error }}
 </p>
 <img *ngIf="tempUrl" [src]="tempUrl | safeURL" style="display: none;" (error)="loadError()" (load)="loadImage()">
 <ng-container *ngIf="thumbnails.length">
@@ -28,7 +28,7 @@
                     (currentChange)="slide($event)"
                     (destroy)="delete($event)"
                     (edit)="desc($event)"></ngx-image-slider>
-  <a *ngIf="! loading" nbButton fullWidth size="small" status="success" type="button" (click)="save()">保存</a>
+  <a *ngIf="! loading" nbButton fullWidth size="small" status="success" type="button" (click)="save()">{{lang.save}}</a>
   <nb-progress-bar *ngIf="start" [value]="saving" size="tiny" status="info">{{ submits.length }} / {{ max }}</nb-progress-bar>
   <div *ngIf="start && saving === 0" class="progress-text">
     <span>{{ submits.length }} / {{ max }}</span>
@@ -37,7 +37,7 @@
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header>温馨提示</nb-card-header>
+    <nb-card-header>{{lang.tip}}</nb-card-header>
     <nb-card-body>{{ data }}</nb-card-body>
     <nb-card-footer>
       <button nbButton (click)="ref.close()" status="info">ok</button>

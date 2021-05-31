@@ -4,6 +4,7 @@
 @include nb-install-component() {
   .form-group {
     margin-bottom: 0;
+    min-width: 700px;
   }
 
   label {

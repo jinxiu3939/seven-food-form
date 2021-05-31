@@ -11,6 +11,7 @@ import {
 
 import { TreeNode, Option, PopupTreeModel } from '../../../dynamic-form.options';
 import { TreeProvider } from '../../../providers/data/tree-provider';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-popup-tree',
@@ -35,11 +36,14 @@ export class PopupTreeComponent implements OnInit {
   private data: TreeNode<Option<string | number>>[]; // 数据
   private selected: Option<string | number>; // 当前选择的节点
   private windowRef: NbWindowRef;
+  lang: any;
 
   constructor(private windowService: NbWindowService,
               private dataSourceBuilder: NbTreeGridDataSourceBuilder<Option<string | number>>,
+              private langProvider: LangProvider,
               private provider: TreeProvider) {
     this.loading = false;
+    this.lang = langProvider.lang;
   }
 
   ngOnInit() {
@@ -51,7 +55,7 @@ export class PopupTreeComponent implements OnInit {
    */
   choose() {
     this.fetchData();
-    this.windowRef = this.windowService.open(this.contentTemplate, { title: `选择` + this.model.label });
+    this.windowRef = this.windowService.open(this.contentTemplate, { title: this.lang.choose + ` - ` + this.model.label });
   }
 
   /**

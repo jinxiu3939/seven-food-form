@@ -8,6 +8,7 @@ import { FileUploader } from 'ng2-file-upload';
 
 import { ImageDescription, ImageItem, UploadConfig } from '../../../dynamic-form.options';
 import { ResourceProvider } from '../../../providers/data/resource-provider';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-video-upload',
@@ -36,8 +37,9 @@ export class VideoUploadComponent implements OnInit {
   private tmpQueue: string[]; // 临时文件队列
 
   private top: number = 50; // 队列极限值
+  lang: any;
 
-  constructor(private dialogService: NbDialogService, private provider: ResourceProvider) {
+  constructor(private dialogService: NbDialogService, private provider: ResourceProvider, private langProvider: LangProvider) {
     this.loading = false;
     this.uploaded = [];
     this.uploading = 0;
@@ -45,6 +47,7 @@ export class VideoUploadComponent implements OnInit {
     this.tmpQueue = [];
     this.currentIndex = 0;
     this.uploader = new FileUploader({});
+    this.lang = langProvider.lang;
   }
 
   ngOnInit() {
@@ -87,7 +90,7 @@ export class VideoUploadComponent implements OnInit {
    */
   selectedFileOnChanged(event: any) {
     if (this.uploader.queue.length === 0) {
-      this.alert(`选择多媒体文件失败（文件类型错误/文件大小超过` + this.config.maxFileSize / 1024 / 1024 + `M）`);
+      this.alert(this.lang.choose_media_error + `（` + this.lang.type_or_size_error + this.config.maxFileSize / 1024 / 1024 + `M）`);
       return ;
     }
     this.uploader.queue.forEach((queue, index) => {
@@ -136,17 +139,17 @@ export class VideoUploadComponent implements OnInit {
               $this.uploadFinish(result, index);
             }
           } catch (e) {
-            $this.alert(`上传多媒体文件失败（系统维护中）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+            $this.alert($this.lang.upload_media_error + `（` + $this.lang.system_busy + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
           }
         } else {
-          $this.alert(`上传多媒体文件失败（文件尺寸太大/类型错误）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+          $this.alert($this.lang.upload_media_error + `（` + $this.lang.type_or_size_error + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
         }
       };
       queue.onError = (response, status, headers) => {
         if (status === 401) {
-          $this.alert(`上传多媒体文件失败（授权异常）（可关闭浏览器重新打开）`);
+          $this.alert($this.lang.upload_auth_error);
         } else {
-          $this.alert(`上传多媒体文件失败（系统繁忙）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+          $this.alert($this.lang.upload_media_error + `（` + $this.lang.system_busy + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
         }
       };
       queue.onComplete = (response, status, headers) => {

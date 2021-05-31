@@ -25,6 +25,7 @@ export * from './radio/radio.component';
 export * from './spreadsheet/spreadsheet.component';
 export * from './text-area/text-area.component';
 export * from './text-box/text-box.component';
+export * from './u-editor/u-editor.component';
 export * from './video/video.component';
 export * from './video/video-slider/video-slider.component';
 export * from './video/video-upload/video-upload.component';

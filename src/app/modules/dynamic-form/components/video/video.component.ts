@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { ImageDescription, VideoModel, ImageItem } from '../../dynamic-form.options';
+import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-video',
@@ -27,8 +28,10 @@ export class VideoComponent implements OnInit {
   public tmpFilter: number[]; // 筛选编号
   private tmpValues: string[]; // 已确认的文件地址
   private windowRef: NbWindowRef;
+  lang: any;
 
-  constructor(private windowService: NbWindowService) {
+  constructor(private windowService: NbWindowService, private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
   }
 
   ngOnInit() {
@@ -47,7 +50,7 @@ export class VideoComponent implements OnInit {
    * 选择多媒体
    */
   chooseVideo() {
-    this.windowRef = this.windowService.open(this.contentTemplate, { title: `选择多媒体` });
+    this.windowRef = this.windowService.open(this.contentTemplate, { title: this.lang.choose_media });
   }
 
   /**

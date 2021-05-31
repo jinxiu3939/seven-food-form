@@ -11,7 +11,7 @@
        type="button"
        class="btn btn-success btn-xs"
        (click)="uploadFile()">
-      上传
+      {{lang.upload}}
     </a>
     <nb-badge *ngIf="table" [status]="status" [text]="table.length"></nb-badge>
     <input [formControlName]="model.name" type="hidden" [value]="model.value">
@@ -38,10 +38,10 @@
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header>提示</nb-card-header>
+    <nb-card-header>{{lang.tip}}</nb-card-header>
     <nb-card-body>{{ data }}</nb-card-body>
     <nb-card-footer>
-      <button nbButton (click)="ref.close()" status="info">关闭</button>
+      <button nbButton (click)="ref.close()" status="info">{{lang.close}}</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

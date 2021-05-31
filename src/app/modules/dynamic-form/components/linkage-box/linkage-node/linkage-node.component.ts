@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { LinkageBoxTree, LinkageOption } from '../../../dynamic-form.options';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-linkage-node',
@@ -26,6 +27,11 @@ export class LinkageNodeComponent implements OnChanges {
 
   children: LinkageBoxTree<number | string>; // 子元素
   options: LinkageOption<(number | string)>[]; // 显示的选项
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {

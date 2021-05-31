@@ -95,7 +95,7 @@ const ckfinderEditorConfig = {
 };
 
 /**
- * 单选项模型工厂
+ * ckeditor富文本模型工厂
  */
 export class CKEditorModelFactory extends BaseModelFactory {
   protected model: CKEditorModel;

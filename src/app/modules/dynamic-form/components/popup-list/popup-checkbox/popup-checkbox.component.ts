@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { PopupCheckboxModel, Option } from '../../../dynamic-form.options';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-popup-checkbox',
@@ -28,10 +29,12 @@ export class PopupCheckBoxComponent implements OnInit {
   private windowRef: NbWindowRef;
   private checked: Option<string | number>[];
   public page: number; // 列表分页
+  lang: any;
 
-  constructor(private windowService: NbWindowService) {
+  constructor(private windowService: NbWindowService, private langProvider: LangProvider) {
     this.records = [];
     this.page = 1;
+    this.lang = langProvider.lang;
   }
 
   ngOnInit() {
@@ -50,9 +53,9 @@ export class PopupCheckBoxComponent implements OnInit {
     const message = [];
     const control = this.form.controls[this.model.name];
     if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push('最少选择' + this.model.min + '项');
+      message.push(this.lang.min_select + '：' + this.model.min);
     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push('最多选择' + this.model.max + '项');
+      message.push(this.lang.max_select + '：' + this.model.max);
     }
     return message;
   }
@@ -62,7 +65,7 @@ export class PopupCheckBoxComponent implements OnInit {
    */
   choose() {
     this.windowRef = this.windowService.open(this.contentTemplate, {
-      title: `选择` + this.model.label,
+      title: this.lang.choose + ` - ` + this.model.label,
     });
   }
 

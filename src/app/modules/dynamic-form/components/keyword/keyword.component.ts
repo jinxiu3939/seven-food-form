@@ -5,6 +5,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { KeywordModel } from '../../dynamic-form.options';
+import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-keyword',
@@ -19,6 +20,12 @@ export class KeywordComponent {
 
   @Input() model: KeywordModel;
   @Input() form: FormGroup;
+
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   /*
    * 删除关键字

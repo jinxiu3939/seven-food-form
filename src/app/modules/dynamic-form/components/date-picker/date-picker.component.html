@@ -5,13 +5,13 @@
            maxlength="10"
            [readonly]="model.readonly"
            [nbDatepicker]="formpicker"
-           placeholder="请选择日期"
+           [placeholder]="lang.select_date"
            [value]="day">
     <ng-container *ngIf="model.kind === 'date-time'">
-      <nb-select placeholder="小时" [(selected)]="hour" (selectedChange)="selectTime()">
+      <nb-select [placeholder]="lang.hour" [(selected)]="hour" (selectedChange)="selectTime()">
         <nb-option *ngFor="let h of hours" [value]="h">{{ h }}</nb-option>
       </nb-select>
-      <nb-select placeholder="分钟" [(selected)]="minute" (selectedChange)="selectTime()">
+      <nb-select [placeholder]="lang.minute" [(selected)]="minute" (selectedChange)="selectTime()">
         <nb-option *ngFor="let m of minutes" [value]="m">{{ m }}</nb-option>
       </nb-select>
     </ng-container>

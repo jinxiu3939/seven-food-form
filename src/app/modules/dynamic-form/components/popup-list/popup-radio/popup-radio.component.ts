@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { PopupRadioModel, Option } from '../../../dynamic-form.options';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-popup-radio',
@@ -27,10 +28,12 @@ export class PopupRadioComponent implements OnInit {
   private windowRef: NbWindowRef;
   private checked: Option<string | number>;
   public page: number; // 列表分页
+  lang: any;
 
-  constructor(private windowService: NbWindowService) {
+  constructor(private windowService: NbWindowService, private langProvider: LangProvider) {
     this.records = [];
     this.page = 1;
+    this.lang = langProvider.lang;
   }
 
   ngOnInit() {
@@ -48,7 +51,7 @@ export class PopupRadioComponent implements OnInit {
    */
   choose() {
     this.windowRef = this.windowService.open(this.contentTemplate, {
-      title: `选择` + this.model.label,
+      title: this.lang.choose + ` - ` + this.model.label,
     });
   }
 

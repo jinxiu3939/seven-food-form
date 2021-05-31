@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { BaseModel } from '../../dynamic-form.options';
+import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-form-block',
@@ -13,4 +14,10 @@ export class FormBlockComponent {
   @Input() form: FormGroup; // 响应式表单
   @Input() column: number[]; // 列宽度
   @Input() display: string = ''; // 样式
+
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = this.langProvider.lang; // 设置语言包
+  }
 }

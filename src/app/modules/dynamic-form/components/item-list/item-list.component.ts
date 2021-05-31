@@ -7,6 +7,7 @@ import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { deepExtend } from '../../helps';
 import { ItemListModel } from '../../dynamic-form.options';
+import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-item-list',
@@ -18,18 +19,21 @@ export class ItemListComponent {
   @Input() form: FormGroup;
   @Input() model: ItemListModel;
 
+  lang: any;
+
   @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
 
   private windowRef: NbWindowRef;
 
-  constructor(private service: NbWindowService) {
+  constructor(private service: NbWindowService, private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
   }
 
   /*
    * 新增子项目
    */
   add() {
-    this.windowRef = this.service.open(this.contentTemplate, { title: '新增' + this.model.label, context: {
+    this.windowRef = this.service.open(this.contentTemplate, { title: this.lang.add + ' - ' + this.model.label, context: {
       row: {},
       fields: this.model.attributes,
       index: false,
@@ -41,7 +45,7 @@ export class ItemListComponent {
    */
   edit(row, index) {
     const tmp_row = deepExtend({}, row);
-    this.windowRef = this.service.open(this.contentTemplate, { title: '编辑' + this.model.label, context: {
+    this.windowRef = this.service.open(this.contentTemplate, { title: this.lang.edit + ' - ' + this.model.label, context: {
         row: tmp_row,
         fields: this.model.attributes,
         index,

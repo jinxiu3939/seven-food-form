@@ -961,6 +961,27 @@ export class AppComponent implements OnInit {
     },
     {
       items: [
+        new QuickFormFactory({
+          label: '内容',
+          name: 'content-1',
+          kind: 'ckfinder',
+          editorConfig: {
+            ckfinder: {
+              // Upload the images to the server using the CKFinder QuickUpload command.
+              uploadUrl: '/ckfinder/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
+            }
+          },
+          require: true,
+        }).ckEditor(),
+        new QuickFormFactory({
+          label: '富文本内容',
+          name: 'content-body-1',
+          require: true,
+          kind: 'classic',
+          editorConfig: {
+            token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
+          },
+        }).uEditor(),
         /* {
           label: '下拉框',
           name: 'drop-down-3',
@@ -1025,17 +1046,13 @@ export class AppComponent implements OnInit {
     {
       items: [
         new QuickFormFactory({
-          label: '内容',
-          name: 'content-1',
-          kind: 'ckfinder',
+          label: '富文本内容',
+          name: 'content-body-2',
+          kind: 'classic',
           editorConfig: {
-            ckfinder: {
-              // Upload the images to the server using the CKFinder QuickUpload command.
-              uploadUrl: '/ckfinder/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
-            }
+            token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
           },
-          require: true,
-        }).ckEditor(),
+        }).uEditor(),
       ],
       title: "富文本"
     },

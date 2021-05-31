@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { RadioModel } from '../../dynamic-form.options';
+import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-drop-down-box',
@@ -16,6 +17,12 @@ export class DropDownBoxComponent {
 
   @Input() model: RadioModel;
   @Input() form: FormGroup;
+
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   /*
    * 表单赋值

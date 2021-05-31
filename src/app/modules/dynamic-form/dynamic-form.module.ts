@@ -26,12 +26,14 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FileUploadModule } from 'ng2-file-upload';
+import { UEditorModule } from 'ngx-ueditor';
 
 /* 导入组件写相对路径，不能从`index.ts`中导入，否则`npm`发布之后找不到组件 */
 import { DynamicFormComponent } from './dynamic-form.component';
 import { DemoResourceProvider, ResourceProvider } from './providers/data/resource-provider';
 import { DemoSimpleSearchProvider, SearchProvider } from './providers/data/search-provider';
 import { DemoTreeSearchProvider, TreeProvider } from './providers/data/tree-provider';
+import { LangProvider } from './providers/data/lang.provider';
 import { DynamicFieldDirective } from './directive/dynamic-field.directive';
 import { InputEqualValidatorDirective } from './directive/input-equal-validator.directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
@@ -68,6 +70,7 @@ import { VideoSliderComponent } from './components/video/video-slider/video-slid
 import { VideoUploadComponent } from './components/video/video-upload/video-upload.component';
 import { KeywordComponent } from './components/keyword/keyword.component';
 import { FileComponent } from './components/file/file.component';
+import { BaiduUEditorComponent } from './components/u-editor/u-editor.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -91,6 +94,7 @@ const ENTRY_COMPONENTS = [
   LinkageNodeComponent,
   VideoComponent,
   KeywordComponent,
+  BaiduUEditorComponent,
 ];
 
 const FORM_COMPONENTS = [
@@ -142,6 +146,16 @@ const FORM_DIRECTIVE = [
     NbWindowModule,
     CKEditorModule,
     FileUploadModule,
+    UEditorModule.forRoot({
+      js: [
+        `./assets/ueditor/ueditor.all.min.js`,
+        `./assets/ueditor/ueditor.config.js`,
+      ],
+      // 默认前端配置项
+      options: {
+        UEDITOR_HOME_URL: './assets/ueditor/',
+      }
+    }),
   ],
   declarations: [
     ...FORM_COMPONENTS,
@@ -154,6 +168,9 @@ const FORM_DIRECTIVE = [
   ],
   entryComponents: [
     ...ENTRY_COMPONENTS,
+  ],
+  providers: [
+    LangProvider,
   ],
 })
 export class SfDynamicFormModule {

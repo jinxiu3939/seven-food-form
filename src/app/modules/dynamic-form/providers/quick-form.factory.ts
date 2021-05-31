@@ -30,6 +30,7 @@ import { PasswordBoxModelFactory } from './password-box-model.factory';
 import { LinkageBoxModelFactory } from './linkage-box-model.factory';
 import { VideoModelFactory } from './video-model.factory';
 import { KeywordModelFactory } from './keyword-model.factory';
+import { UEditorModelFactory } from './u-editor-model.factory';
 
 /**
  * 快速表单工厂
@@ -262,5 +263,12 @@ export class QuickFormFactory {
    */
   file() {
     return new FileModelFactory(this.config).instance();
+  }
+
+  /**
+   * u-editor
+   */
+   uEditor() {
+    return new UEditorModelFactory(this.config).instance();
   }
 }

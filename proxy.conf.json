@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://base-frame.localhost",
+    "target": "http://api.oss.localhost",
     "secure": false,
     "pathRewrite": {
       "^/api": ""

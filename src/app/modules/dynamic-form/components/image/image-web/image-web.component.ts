@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 
 import { ImageDescription, ImageItem, CrawlConfig } from '../../../dynamic-form.options';
 import { ResourceProvider } from '../../../providers/data/resource-provider';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-image-web',
@@ -35,14 +36,16 @@ export class ImageWebComponent {
   public currentIndex: number; // 当前图片编号
   public max: number; // 最大可保存图片数量
   public submits: string[]; // 已保存的图片
+  lang: any;
 
-  constructor(private http: HttpClient, private dialogService: NbDialogService, private provider: ResourceProvider) {
+  constructor(private http: HttpClient, private dialogService: NbDialogService, private provider: ResourceProvider, private langProvider: LangProvider) {
     this.thumbnails = [];
     this.loading = false;
     this.start = false;
     this.saving = 0;
     this.currentIndex = 0;
     this.submits = [];
+    this.lang = langProvider.lang;
   }
 
   /**
@@ -114,7 +117,7 @@ export class ImageWebComponent {
    * 图片加载异常
    */
   loadError() {
-    this.alert(`抓取图片失败`);
+    this.alert(this.lang.grab_image_error);
     this.loading = false;
   }
 

@@ -1,6 +1,6 @@
 <div [formGroup]="form" class="row">
   <div *ngIf="! model.disabled" class="col-12">
-    <a nbButton status="info" size="tiny" (click)="add()">新增</a>
+    <a nbButton status="info" size="tiny" (click)="add()">{{ lang.add }}</a>
     <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
   </div>
   <div class="col-12 vertical-scroll table-responsive">
@@ -9,10 +9,10 @@
         <tr>
           <th *ngFor="let attr of model.attributes">
             {{ attr.text }}
-            <nb-icon icon="arrowhead-up" title="升序" status='control' (click)="sort(attr.value, 1)"></nb-icon>
-            <nb-icon icon="arrowhead-down" title="降序" status='control' (click)="sort(attr.value, 0)"></nb-icon>
+            <nb-icon icon="arrowhead-up" [title]="lang.asc" status='control' (click)="sort(attr.value, 1)"></nb-icon>
+            <nb-icon icon="arrowhead-down" [title]="lang.desc" status='control' (click)="sort(attr.value, 0)"></nb-icon>
           </th>
-          <th *ngIf="! model.disabled">操作</th>
+          <th *ngIf="! model.disabled">{{ lang.operate }}</th>
         </tr>
       </thead>
       <tbody>
@@ -22,13 +22,13 @@
               {{ row[attr.value] }}
             </td>
             <td *ngIf="! model.disabled">
-              <nb-icon icon="close" title="删除" status='warning' (click)="delete(row)"></nb-icon>
-              <nb-icon icon="edit-outline" title="编辑" status='primary' (click)="edit(row, i)"></nb-icon>
+              <nb-icon icon="close" [title]="lang.delete" status='warning' (click)="delete(row)"></nb-icon>
+              <nb-icon icon="edit-outline" [title]="lang.edit" status='primary' (click)="edit(row, i)"></nb-icon>
             </td>
           </tr>
         </ng-container>
         <ng-container *ngIf="! model.value || model.value.length === 0">
-          <tr><td>暂无</td></tr>
+          <tr><td>{{ lang.no_data }}</td></tr>
         </ng-container>
       </tbody>
     </table>

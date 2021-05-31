@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { ImageDescription, ImageModel, ImageItem, ImageListOrder } from '../../dynamic-form.options';
+import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-image',
@@ -27,8 +28,10 @@ export class ImageComponent implements OnInit {
   public tmpFilter: number[]; // 筛选编号
   private tmpValues: string[]; // 已确认的图片地址
   private windowRef: NbWindowRef;
+  lang: any;
 
-  constructor(private windowService: NbWindowService) {
+  constructor(private windowService: NbWindowService, private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
   }
 
   ngOnInit() {

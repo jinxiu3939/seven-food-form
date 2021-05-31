@@ -2,6 +2,8 @@ import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BaseModel, FormButton, ModelGroup, VALIDATORS } from './dynamic-form.options';
+import { LANG } from './lang/lang.const';
+import { LangProvider } from './providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-dynamic-form',
@@ -13,6 +15,7 @@ export class DynamicFormComponent implements OnChanges {
   @Input() loading: boolean; // 表单状态
   @Input() layout: string; // 布局
   @Input() buttons: FormButton[]; // 操作按钮
+  @Input() lang: string = 'en'; // 语言包代码
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
@@ -20,8 +23,11 @@ export class DynamicFormComponent implements OnChanges {
 
   form: FormGroup; // 响应式表单
   complete: boolean; // 表单是否构建完毕
+  textContainer: any; // 语言包
 
-  constructor(private builder: FormBuilder) {}
+  constructor(private builder: FormBuilder, private langProvider: LangProvider) {
+    this.textContainer = this.langProvider.lang; // 设置语言包
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
@@ -29,6 +35,14 @@ export class DynamicFormComponent implements OnChanges {
         this.complete = false; // 开始构建
         this.form = this.createGroup(); // 重新构造表单
         this.complete = true; // 构建完毕
+      } else if (propName === 'lang' && changes[propName].currentValue) {
+        const key = changes[propName].currentValue;
+        if (LANG[key]) {
+          this.textContainer = LANG[key];
+        } else {
+          this.textContainer = LANG.en;
+        }
+        this.langProvider.lang = this.textContainer; // 设置语言包
       }
     }
   }

@@ -84,7 +84,7 @@ add blow package
 remove the package
 
 ```
-    "dependencies": {
+  "dependencies": {
     "@angular/animations": "^8.2.14",
     "@angular/cdk": "^8.2.3",
     "@angular/common": "~8.2.14",
@@ -102,6 +102,7 @@ remove the package
     "eva-icons": "^1.1.3",
     "lodash": "^4.17.15",
     "ng2-file-upload": "^1.4.0",
+    "ngx-ueditor": "^2.1.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "typescript": "^3.4.5",

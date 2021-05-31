@@ -11,6 +11,7 @@ import {
 } from '../../../dynamic-form.options';
 import { deepExtend } from '../../../helps';
 import { SearchProvider } from '../../../providers/data/search-provider';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-simple-search',
@@ -36,9 +37,11 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   public condition: any = {}; // 检索条件
   public loading: boolean; // 数据加载标志位
   private current: number; // 当前页
+  lang: any;
 
-  constructor(private provider: SearchProvider) {
+  constructor(private provider: SearchProvider, private langProvider: LangProvider) {
     this.loading = false;
+    this.lang = langProvider.lang;
   }
 
   ngOnInit() {

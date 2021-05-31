@@ -7,11 +7,11 @@
       </a>
     </ng-container>
     <ng-container *ngIf="! model.value || model.value.length === 0">
-      <a>暂无</a>
+      <a>{{ lang.no_data }}</a>
     </ng-container>
     <span *ngIf="! model.readonly">
       <input #keyword type="text" class="form-control-sm form-value" (focus)="show()">
-      <a nbButton class="btn-add" status="info" size="tiny" (click)="add(keyword.value)">新增</a>
+      <a nbButton class="btn-add" status="info" size="tiny" (click)="add(keyword.value)">{{ lang.add }}</a>
     </span>
     <div *ngIf="model.options && model.options.length > 0 && showOption" class="options">
       <nb-icon icon="close" (click)="hide()"></nb-icon>

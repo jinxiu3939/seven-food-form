@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { dateFormat } from '../../helps';
+import { LangProvider } from '../../providers/data/lang.provider';
 import { AllHours, AllMinutes } from './time.const';
 import { DatePickerModel } from '../../dynamic-form.options';
 
@@ -27,6 +28,11 @@ export class DatePickerComponent implements OnInit {
 
   tmpHour: string = '00';
   tmpMinute: string = '00';
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   ngOnInit() {
     if (this.model && this.model.value) {

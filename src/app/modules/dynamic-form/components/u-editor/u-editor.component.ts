@@ -1,40 +1,52 @@
 /**
- * 通用输入框
+ * `u-editor`富文本编辑器
+ * depends on ueditor and ngx-ueditor module
  */
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
-import { TextBoxModel } from '../../dynamic-form.options';
+ 
+import { UEditorComponent } from 'ngx-ueditor';
+ 
+import { UEditorModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
-
+ 
 @Component({
-  selector: 'ngx-text-box',
-  templateUrl: './text-box.component.html',
+  selector: 'ngx-u-editor',
+  templateUrl: `./u-editor.component.html`,
   styleUrls: [
-    '../../dynamic-form.component.scss',
+    `./u-editor.component.scss`,
   ],
 })
-export class TextBoxComponent {
-
-  @Input() model: TextBoxModel;
+export class BaiduUEditorComponent implements OnInit {
+  @Input() model: UEditorModel;
   @Input() form: FormGroup;
 
+  @ViewChild('full', { static: true }) full: UEditorComponent;
+
+  loading = true;
   lang: any;
 
   constructor(private langProvider: LangProvider) {
     this.lang = langProvider.lang;
   }
 
+  ngOnInit() {
+    /* 延迟显示等待UE加载 */
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
+  }
+ 
   get invalid() {
     const control = this.form.controls[this.model.name];
     return control.invalid;
   }
-
+ 
   get valid() {
     const control = this.form.controls[this.model.name];
     return control.value && control.valid;
   }
-
+ 
   get errors() {
     const message = [];
     const control = this.form.controls[this.model.name];
@@ -42,12 +54,18 @@ export class TextBoxComponent {
       message.push(this.lang.min_input + '：' + this.model.min);
     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
       message.push(this.lang.max_input + '：' + this.model.max);
-    } else if (control.value) {
-      if (control.errors[this.model.validator]) {
-        message.push(control.errors[this.model.validator]);
-      }
     }
     return message;
   }
-
-}
+ 
+  ready(data) {
+    if (this.model.editorConfig.token) {
+      const ue = data.instance;
+      ue.execCommand('serverparam', {
+        token: this.model.editorConfig.token,
+        'app-key': this.model.editorConfig['app-key'],
+      });
+    }
+  }
+ }
+ 

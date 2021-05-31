@@ -1,0 +1,19 @@
+@import '~@nebular/theme/styles/theming';
+@import '../../theme/styles';
+
+@include nb-install-component() {
+  .u-editor-view {
+    max-width: 100%;
+    border: 1px dashed #bbb;
+    padding: 1rem;
+    overflow: scroll;
+  }
+
+  .form-control-danger {
+    border: 1px solid nb-theme(text-danger-color);
+  }
+
+  .form-control-success {
+    border: 1px solid nb-theme(text-success-color);
+  }
+}

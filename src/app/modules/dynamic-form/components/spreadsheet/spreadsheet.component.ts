@@ -10,6 +10,7 @@ import * as XLSX from 'xlsx';
 
 import { SpreadsheetModel } from '../../dynamic-form.options';
 import { ResourceProvider } from '../../providers/data/resource-provider';
+import { LangProvider } from '../../providers/data/lang.provider';
 
 type AOA = any[][];
 
@@ -29,12 +30,14 @@ export class SpreadsheetComponent implements OnInit {
   loading: boolean;
   finished: boolean; // 校验是否有效
   status: string; // 状态
+  lang: any;
 
   public uploader: FileUploader;
 
-  constructor(private dialogService: NbDialogService, private provider: ResourceProvider) {
+  constructor(private dialogService: NbDialogService, private provider: ResourceProvider, private langProvider: LangProvider) {
     this.uploader = new FileUploader({});
     this.finished = false;
+    this.lang = langProvider.lang;
   }
 
   ngOnInit() {
@@ -47,13 +50,13 @@ export class SpreadsheetComponent implements OnInit {
    */
   selectedFileOnChanged(event: any) {
     if (this.uploader.queue.length === 0) {
-      this.alert(`选择电子表格失败（类型错误/文件大小超过` + this.model.uploadConfig.maxFileSize / 1024 / 1024 + `M）`);
+      this.alert(this.lang.choose_spreedsheet_error + `（` + this.lang.type_or_size_error + this.model.uploadConfig.maxFileSize / 1024 / 1024 + `M）`);
       return ;
     }
     /* wire up file reader */
     const target: DataTransfer = (event.target) as DataTransfer;
     if (target.files.length !== 1) {
-      this.alert(`最多可以选择一个电子表格文件`);
+      this.alert(this.lang.max_spreedsheet_1);
       return ;
     }
     const reader: FileReader = new FileReader();
@@ -71,7 +74,7 @@ export class SpreadsheetComponent implements OnInit {
       if (tmp_sheets && tmp_sheets.length > 0) {
         if (this.model.header) { // 校验内容
           if (tmp_sheets[0].length !== this.model.header.length) {
-            this.alert(`校验电子表格失败（电子表格列和模板不一致）`);
+            this.alert(this.lang.vlidate_spreedsheet_error);
           } else {
             this.finished = true; // 可以上传
             this.table = tmp_sheets; // 保存电子表格
@@ -81,12 +84,12 @@ export class SpreadsheetComponent implements OnInit {
           this.table = tmp_sheets; // 保存电子表格
         }
       } else {
-        this.alert(`读取电子表格失败（文件格式错误/内容为空）`);
+        this.alert(this.lang.read_spreedsheet_error);
       }
       this.loading = false;
     };
     reader.onerror = (e: any) => {
-      this.alert(`电子表格校验失败（文件格式错误）`);
+      this.alert(this.lang.vlidate_spreedsheet_error_1);
       this.loading = false;
     };
     reader.readAsBinaryString(target.files[0]); // 解析文件
@@ -112,21 +115,21 @@ export class SpreadsheetComponent implements OnInit {
               $this.uploadFinish(result);
               $this.finished = false;
               $this.status = 'success';
-              $this.alert(`上传成功`);
+              $this.alert($this.lang.upload_success);
             }
           } catch (e) {
-            $this.alert(`上传电子表格失败（系统维护中）`);
+            $this.alert($this.lang.upload_spreedsheet_error + `（` + $this.lang.system_busy + `）`);
           }
         } else {
-          $this.alert(`上传电子表格失败（文件尺寸太大/类型错误）`);
+          $this.alert($this.lang.upload_spreedsheet_error + `（` + $this.lang.type_or_size_big_error + `）`);
         }
         $this.loading = false;
       };
       this.uploader.queue[0].onError = (response, status, headers) => {
         if (status === 401) {
-          $this.alert(`上传电子表格失败（授权异常）（可关闭浏览器重新打开）`);
+          $this.alert($this.lang.upload_auth_error);
         } else {
-          $this.alert(`上传电子表格失败（系统繁忙）`);
+          $this.alert($this.lang.upload_spreedsheet_error + `（` + $this.lang.system_busy + `）`);
         }
         $this.loading = false;
       };

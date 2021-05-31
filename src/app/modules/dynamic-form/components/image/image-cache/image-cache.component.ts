@@ -4,6 +4,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ImageItem } from '../../../dynamic-form.options';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-image-cache',
@@ -19,6 +20,11 @@ export class ImageCacheComponent {
   @Output() public active = new EventEmitter<number[]>(); // 选中
 
   public deleted: number[] = []; // 取消的资源
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   /**
    * 选择

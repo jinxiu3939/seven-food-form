@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { ImageItem, ImageDescription } from '../../../dynamic-form.options';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
   selector: 'ngx-video-slider',
@@ -34,6 +35,11 @@ export class VideoSliderComponent implements OnInit {
   }
 
   private descriptionTerms = new Subject<string>();
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   ngOnInit() {
     if (! this.currentIndex) {
