@@ -1,0 +1,10 @@
+<div [formGroup]="form">
+  <div [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}">
+    <div [id]="model.name">
+      <textarea #editorContainer>{{model.value}}</textarea>
+    </div>
+    <ng-container *ngIf="invalid">
+      <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+    </ng-container>
+  </div>
+</div>

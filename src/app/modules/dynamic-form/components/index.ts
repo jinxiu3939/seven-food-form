@@ -15,6 +15,7 @@ export * from './item-list/item-list.component';
 export * from './item-list/item-dialog/item-dialog.component';
 export * from './linkage-box/linkage-box.component';
 export * from './linkage-box/linkage-node/linkage-node.component';
+export * from './md-editor/md-editor.component';
 export * from './password-box/password-box.component';
 export * from './popup-list/popup-checkbox/popup-checkbox.component';
 export * from './popup-list/popup-radio/popup-radio.component';

@@ -100,6 +100,7 @@ remove the package
     "@nebular/theme": "^4.6.0",
     "bootstrap": "^4.3.1",
     "eva-icons": "^1.1.3",
+    "jquery": "^3.6.0",
     "lodash": "^4.17.15",
     "ng2-file-upload": "^1.4.0",
     "ngx-ueditor": "^2.1.3",

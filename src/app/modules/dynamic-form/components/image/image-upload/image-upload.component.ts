@@ -127,23 +127,7 @@ export class ImageUploadComponent implements OnInit {
       }
       const $this = this;
       queue.onSuccess = (response, status, headers) => {
-        // 上传成功
-        if (status === 200) {
-          /* 上传结果处理 */
-          try {
-            const tempRes = JSON.parse(response);
-            const result = $this.provider.parseUploadResult(tempRes);
-            if (result.error) {
-              $this.alert(result.error);
-            } else {
-              $this.uploadFinish(result, index);
-            }
-          } catch (e) {
-            $this.alert($this.lang.upload_image_error + `（` + $this.lang.system_busy + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
-          }
-        } else {
-          $this.alert($this.lang.upload_image_error + `（` + $this.lang.type_or_size_big_error + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
-        }
+        $this.uploadSuccess(response, status, index, queue._file.name.substring(0, 20))
       };
       queue.onError = (response, status, headers) => {
         if (status === 401) {
@@ -177,6 +161,33 @@ export class ImageUploadComponent implements OnInit {
           this.uploader.queue[this.currentIndex].upload(); // 只上传当前文件
         }
       }
+    }
+  }
+
+  /**
+   * 上传图片成功
+   * @param response 
+   * @param status 
+   * @param index 
+   * @param file_name 
+   */
+  private uploadSuccess(response, status, index, file_name) {
+    // 上传成功
+    if (status === 200) {
+      /* 上传结果处理 */
+      try {
+        const tempRes = JSON.parse(response);
+        const result = this.provider.parseUploadResult(tempRes);
+        if (result.error) {
+          this.alert(result.error);
+        } else {
+          this.uploadFinish(result, index);
+        }
+      } catch (e) {
+        this.alert(this.lang.upload_image_error + `（` + this.lang.system_busy + `）（ ` + file_name + ` ）`);
+      }
+    } else {
+      this.alert(this.lang.upload_image_error + `（` + this.lang.type_or_size_big_error + `）（ ` + file_name + ` ）`);
     }
   }
 

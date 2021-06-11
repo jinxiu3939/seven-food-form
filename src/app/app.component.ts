@@ -973,15 +973,15 @@ export class AppComponent implements OnInit {
           },
           require: true,
         }).ckEditor(),
-        new QuickFormFactory({
-          label: '富文本内容',
-          name: 'content-body-1',
-          require: true,
-          kind: 'classic',
-          editorConfig: {
-            token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
-          },
-        }).uEditor(),
+        // new QuickFormFactory({
+        //   label: '富文本内容',
+        //   name: 'content-body-1',
+        //   require: true,
+        //   kind: 'classic',
+        //   editorConfig: {
+        //     token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
+        //   },
+        // }).uEditor(),
         /* {
           label: '下拉框',
           name: 'drop-down-3',
@@ -1045,16 +1045,30 @@ export class AppComponent implements OnInit {
     },
     {
       items: [
-        new QuickFormFactory({
-          label: '富文本内容',
-          name: 'content-body-2',
-          kind: 'classic',
-          editorConfig: {
-            token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
-          },
-        }).uEditor(),
+        // new QuickFormFactory({
+        //   label: '富文本内容',
+        //   name: 'content-body-2',
+        //   kind: 'classic',
+        //   editorConfig: {
+        //     token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
+        //   },
+        // }).uEditor(),
       ],
       title: "富文本"
+    },
+    {
+      items: [
+        new QuickFormFactory({
+          label: '富文本内容',
+          name: 'content-body-3',
+          value: '```hello```',
+          editorConfig: {
+            readOnly: false,
+            imageUploadURL: '/api/access/tool.mdeditor/image?token=123&app-key=239487',
+          },
+        }).mdEditor(),
+      ],
+      title: "markdown富文本"
     },
   ];
   goodsModels: any = [

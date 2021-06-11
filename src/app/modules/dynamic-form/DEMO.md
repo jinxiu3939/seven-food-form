@@ -1581,3 +1581,63 @@ tree: any = {
   },
 ],
 ```
+
+- 实例化`UEditorModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '富文本内容',
+    name: 'content-body-2',
+    kind: 'classic',
+    editorConfig: {
+      token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
+      app-key: '237928374',
+    },
+  }).uEditor(),
+  new UEditorModelFactory({
+    label: '内容',
+    name: 'content-body-2',
+    value: '<h1>那俩和</h1><center>是我的怎么了</center><blockquote><p>这么神奇吗</p></blockquote>',
+  }).instance(),
+  {
+    label: '内容',
+    name: 'content-body-3',
+    type: 'u-editor',
+    value: '<h1>那俩和</h1><center>是我的怎么了</center><blockquote><p>这么神奇吗</p></blockquote>',
+    disabled: true,
+    help: 'this is a editor',
+    order: 1,
+    validator: '',
+  },
+],
+
+- 实例化`MdEditorModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '富文本内容',
+    name: 'content-code-1',
+    value: '',
+  }).mdEditor(),
+  new MdEditorModelFactory({
+    label: '内容',
+    name: 'content-code-2',
+    value: '<h1>那俩和</h1><center>是我的怎么了</center><blockquote><p>这么神奇吗</p></blockquote>',
+    editorConfig: {
+      readOnly: true,
+      imageUploadURL: '/api/access/tool.mdeditor/image?token=123&app-key=239487',
+    },
+  }).instance(),
+  {
+    label: '内容',
+    name: 'content-body-3',
+    type: 'md-editor',
+    value: '<h1>那俩和</h1><center>是我的怎么了</center><blockquote><p>这么神奇吗</p></blockquote>',
+    disabled: true,
+    help: 'this is a editor',
+    order: 1,
+    validator: '',
+  },
+],

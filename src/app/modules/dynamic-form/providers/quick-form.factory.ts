@@ -31,6 +31,7 @@ import { LinkageBoxModelFactory } from './linkage-box-model.factory';
 import { VideoModelFactory } from './video-model.factory';
 import { KeywordModelFactory } from './keyword-model.factory';
 import { UEditorModelFactory } from './u-editor-model.factory';
+import { MdEditorModelFactory } from './md-editor-model.factory';
 
 /**
  * 快速表单工厂
@@ -268,7 +269,14 @@ export class QuickFormFactory {
   /**
    * u-editor
    */
-   uEditor() {
+  uEditor() {
     return new UEditorModelFactory(this.config).instance();
+  }
+
+  /**
+   * markdown-editor
+   */
+  mdEditor() {
+    return new MdEditorModelFactory(this.config).instance();
   }
 }

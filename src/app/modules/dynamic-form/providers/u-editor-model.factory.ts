@@ -116,7 +116,7 @@ export class UEditorModelFactory extends BaseModelFactory {
         defaultConfig = defaultUEditorConfig; // 默认使用外部配置
       }
     }
-    this.config.editorConfig = deepExtend({}, this.config.editorConfig, defaultConfig);
+    this.config.editorConfig = deepExtend({}, defaultConfig, this.config.editorConfig);
     this.config.kind = 'classic'; // 默认`build`
   }
 }

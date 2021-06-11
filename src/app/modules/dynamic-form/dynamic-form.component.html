@@ -34,8 +34,10 @@
   <ng-content select="[name='other-models']"></ng-content>
   <div class="form-group form-operation row" [ngClass]="{'inline-operation': layout==='inline'}">
     <div class="offset-4 col-8">
-      <button type="submit" class="btn btn-success" [disabled]="!form.valid">{{ textContainer.submit }}</button>
-      <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
+      <ng-container *ngIf="defaultButton">
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid">{{ textContainer.submit }}</button>
+        <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
+      </ng-container>
       <ng-container *ngIf="buttons">
         <button *ngFor="let btn of buttons" type="button" class="btn btn-primary" (click)="onOperate(btn)">
           {{ btn.value }}

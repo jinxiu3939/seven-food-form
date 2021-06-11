@@ -14,8 +14,9 @@ export class DynamicFormComponent implements OnChanges {
   @Input() models: ModelGroup[]; // 表单布局配置
   @Input() loading: boolean; // 表单状态
   @Input() layout: string; // 布局
-  @Input() buttons: FormButton[]; // 操作按钮
+  @Input() buttons: FormButton[]; // 自定义操作按钮
   @Input() lang: string = 'en'; // 语言包代码
+  @Input() defaultButton = true; // 是否使用默认按钮
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件

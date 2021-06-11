@@ -12,7 +12,7 @@
   add: '新規追加',
   close: '关闭',
   operate: '操作',
-  search: '检索',
+  search: '検索',
   asc: '升序',
   desc: '降序',
   edit: '编辑',

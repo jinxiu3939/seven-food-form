@@ -71,6 +71,7 @@ import { VideoUploadComponent } from './components/video/video-upload/video-uplo
 import { KeywordComponent } from './components/keyword/keyword.component';
 import { FileComponent } from './components/file/file.component';
 import { BaiduUEditorComponent } from './components/u-editor/u-editor.component';
+import { MarkDownEditorComponent } from './components/md-editor/md-editor.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -95,6 +96,7 @@ const ENTRY_COMPONENTS = [
   VideoComponent,
   KeywordComponent,
   BaiduUEditorComponent,
+  MarkDownEditorComponent,
 ];
 
 const FORM_COMPONENTS = [

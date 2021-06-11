@@ -122,7 +122,7 @@ export class CKEditorModelFactory extends BaseModelFactory {
         defaultConfig = classicEditorConfig; // 默认使用经典布局
       }
     }
-    this.config.editorConfig = deepExtend({}, this.config.editorConfig, defaultConfig);
+    this.config.editorConfig = deepExtend({}, defaultConfig, this.config.editorConfig);
     this.config.kind = 'classic'; // 默认`build`
   }
 

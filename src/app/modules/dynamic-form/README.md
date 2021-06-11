@@ -73,6 +73,10 @@ SfDynamicFormModule.forRoot()
 2. 模型工厂
 3. 快捷表单工厂
 
+##### defaultButton
+
+是否显示默认的提交和重置按钮
+
 ###### 对象自变量
 
 - 优点 - 无需导入模型和工厂
@@ -163,7 +167,7 @@ SfDynamicFormModule.forRoot()
 
 `ckeditor`富文本编辑器模型
 
-> 需要安装依赖包`"@ckeditor/ckeditor5-angular": "1.1.2"`和`"@ckeditor/ckeditor5-build-classic": "^23.1.0"`；如果需要上传图片还需要安装依赖包`@ckeditor/ckeditor5-ckfinder`并且在服务器端配置ckfinder接口
+> 需要安装依赖包`"@ckeditor/ckeditor5-angular": "^1.2.3"`和`"@ckeditor/ckeditor5-build-balloon-block": "^17.0.0"`；如果需要上传图片还需要安装依赖包`@ckeditor/ckeditor5-ckfinder`并且在服务器端配置ckfinder接口
 
 - label: string; // 标签
 - name: string; // 名称
@@ -439,6 +443,44 @@ SfDynamicFormModule.forRoot()
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - readonly: boolean; // 是否只读
+
+#### UEditorModel
+
+`ukeditor`富文本编辑器模型
+
+> 需要安装依赖包`"ngx-ueditor": "^2.1.3"`，并且将ueditor源码打包后放到assets目录下；如果上传图片需要在服务器端配置ueditor接口
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- editorConfig: any; // `u-editor`配置
+- kind: 'classic'; // `u-editor`类别
+
+#### MdEditorModel
+
+`markdown-editor`富文本编辑器模型
+
+> 需要安装依赖包`"jquery": "^3.6.0"`，并且将editor.md源码打包后放到assets目录下，而且在`angular.json`配置`styles`中增加`src/assets/editor.md/css/editormd.css`，`scripts`中增加`node_modules/jquery/dist/jquery.min.js,src/assets/editor.md/editormd.min.js`；如果上传图片需要在服务器端配置ueditor接口；
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- editorConfig: any; // `markdown-editor`配置
 
 ### 备注
 

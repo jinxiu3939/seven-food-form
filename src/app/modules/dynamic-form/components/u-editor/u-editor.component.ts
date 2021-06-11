@@ -2,10 +2,8 @@
  * `u-editor`富文本编辑器
  * depends on ueditor and ngx-ueditor module
  */
-import { Component, Input, ViewChild, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
- 
-import { UEditorComponent } from 'ngx-ueditor';
  
 import { UEditorModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
@@ -20,8 +18,6 @@ import { LangProvider } from '../../providers/data/lang.provider';
 export class BaiduUEditorComponent implements OnInit {
   @Input() model: UEditorModel;
   @Input() form: FormGroup;
-
-  @ViewChild('full', { static: true }) full: UEditorComponent;
 
   loading = true;
   lang: any;
@@ -59,6 +55,7 @@ export class BaiduUEditorComponent implements OnInit {
   }
  
   ready(data) {
+    /* 设置请求参数 */
     if (this.model.editorConfig.token) {
       const ue = data.instance;
       ue.execCommand('serverparam', {

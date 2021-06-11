@@ -21,6 +21,7 @@ export declare type ModelType = 'checkbox'
                                 | 'item-list'
                                 | 'keyword'
                                 | 'linkage-box'
+                                | 'md-editor'
                                 | 'password-box'
                                 | 'popup-checkbox'
                                 | 'popup-radio'
@@ -316,6 +317,13 @@ export interface CKEditorModel extends BaseModel<string> {
   disabled: boolean; // 是否禁用
   editorConfig: any; // `ueditor`配置 [http://fex.baidu.com/ueditor/#start-config]
   kind: 'classic' | 'full'; // `u-editor`自定义按钮
+}
+
+/**
+ * `markdowneditor`富文本编辑器模型
+ */
+ export interface MdEditorModel extends BaseModel<string> {
+  editorConfig: any; // `markdown-editor`官网 [https://pandao.github.io/editor.md/]
 }
 
 /**
