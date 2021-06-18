@@ -46,6 +46,10 @@ export class PopupRadioComponent implements OnInit {
     }
   }
 
+  get label() {
+    return this.form.controls[this.model.name].value ? this.text : '';
+  }
+
   /**
    * 选择
    */

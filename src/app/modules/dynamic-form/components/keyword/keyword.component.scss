@@ -13,8 +13,8 @@
       left: 0;
       width: 100%;
       padding: 1rem;
-      border: 1px solid #ccc;
-      background: #fff;
+      border: 1px solid nb-theme(background-alternative-color-1);
+      background: nb-theme(background-basic-color-1);
       z-index: 99;
 
       nb-icon {

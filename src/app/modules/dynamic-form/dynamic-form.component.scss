@@ -29,6 +29,8 @@
 
   .btn {
     margin-left: 1rem;
+    margin-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
   }
 
   .text-error {
@@ -72,25 +74,17 @@
         }
       }
     }
-  
-    .inline-block {
-      width: 75%;
-
-      h3 {
-        display: none;
-      }
-    }
-  
-    .inline-operation {
-      width: 25%;
-  
-      .col-8 {
-        width: 100%;
-      }
-  
-      .offset-4 {
-        margin-left: 0;
-      }
-    }
   }
+}
+
+.inline-block {
+  width: 75%;
+
+  h3 {
+    display: none;
+  }
+}
+
+.inline-operation {
+  width: 25%;
 }

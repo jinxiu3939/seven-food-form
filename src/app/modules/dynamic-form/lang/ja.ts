@@ -17,7 +17,7 @@
   desc: '降序',
   edit: '编辑',
   select: '選択してください',
-  select_date: '请选择日志',
+  select_date: '日付を選択してください',
   hour: '小时',
   minute: '分钟',
   picture: '图片',

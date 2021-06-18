@@ -15,7 +15,7 @@
     </span>
     <div *ngIf="model.options && model.options.length > 0 && showOption" class="options">
       <nb-icon icon="close" (click)="hide()"></nb-icon>
-      <a *ngFor="let v of model.options" nbButton size="tiny" status="success"  (click)="add(v)">
+      <a *ngFor="let v of model.options" nbButton size="small" status="danger" (click)="add(v)">
         {{ v }}
       </a>
     </div>

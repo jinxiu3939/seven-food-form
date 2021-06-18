@@ -14,4 +14,19 @@
   // .form-operation {
   //   width: 40%;
   // }
-} 
+  .dynamic-form  .form-inline {
+    .custom-condition {
+      width: 85%;
+    }
+  
+    .custom-operation {
+      width: 15%;
+    }
+
+    .form-inline {
+      .inline-group {
+        width: 50%;
+      }
+    }
+  }
+}

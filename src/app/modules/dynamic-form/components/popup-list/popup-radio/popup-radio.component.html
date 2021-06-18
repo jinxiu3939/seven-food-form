@@ -12,7 +12,7 @@
         <input class="form-control"
                disabled
                type="text"
-               [value]="text">
+               [value]="label">
         <ng-container *ngIf="! model.readonly">
           <span class="input-group-append">
             <a nbButton status="info" (click)="choose()">{{ lang.choose }}</a>

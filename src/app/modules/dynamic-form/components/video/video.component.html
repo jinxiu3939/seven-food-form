@@ -32,7 +32,7 @@
     </nb-tab>
   </nb-tabset>
   <div>
-    <button nbButton status="danger" (click)="cancelVideo()"  style="margin-right: 1rem;">{{ lang.cacel }}</button>
+    <button nbButton status="danger" (click)="cancelVideo()"  style="margin-right: 1rem;">{{ lang.cancel }}</button>
     <button *ngIf="tmpImage.length" nbButton status="info" (click)="sureVideo()">
       {{ lang.sure }} {{ tmpFilter ? tmpFilter.length : tmpImage.length }} / {{ tmpImage.length }}
     </button>

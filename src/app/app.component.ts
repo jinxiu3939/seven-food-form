@@ -763,7 +763,7 @@ export class AppComponent implements OnInit {
           label: '标签',
           name: 'tag',
           value: ['三国', '武当'],
-          options: ['汉', '三维', '射雕', '魅惑']
+          options: ['汉', '三维', '射雕', '魅惑', '汉', '三维', '射雕', '魅惑', '汉', '三维', '射雕', '魅惑']
         }).keyword(),
         new KeywordModelFactory({
           label: '关键字',
@@ -1157,6 +1157,7 @@ export class AppComponent implements OnInit {
     {value: 'import', name: 'import'},
   ];
   trees = [];
+  inlineModels: any;
 
   constructor(private service: ApiService) {}
 
@@ -1165,6 +1166,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
       this.models = this.defaultModels;
+      this.inlineModels = this.modesss;
     });
   }
 

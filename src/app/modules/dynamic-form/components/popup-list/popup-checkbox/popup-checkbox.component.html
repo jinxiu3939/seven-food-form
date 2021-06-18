@@ -1,4 +1,4 @@
-<div [formGroup]="form" class="row">
+<div [formGroup]="form">
   <ng-container *ngIf="model.value && model.value.length > 0">
     <a *ngFor="let val of model.value" size="tiny" nbButton outline status="basic" class="btn-basic">
       {{ val }} / {{ text[val] ? text[val] : '' }}
