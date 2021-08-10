@@ -31,6 +31,9 @@ export class AppComponent implements OnInit {
     { text: '选项M', value: 'M', title : '选项M', items: '99+' },
     { text: '选项N', value: 'N', title : '选项N' },
     { text: '选项U', value: 'R', title : '选项R' },
+    { text: '选项1', value: 1, title : '选项1', items: '99+' },
+    { text: '选项2', value: 2, title : '选项2' },
+    { text: '选项3', value: 3, title : '选项3' },
   ];
   realModels = [
     {
@@ -687,8 +690,8 @@ export class AppComponent implements OnInit {
           label: '多选测试',
           name: 'popup-checkbox-2',
           require: true,
-          value: 'A',
-          text: {A: '看你的选项'},
+          value: ['A', 1],
+          text: {A: '看你的选项', 1: '选项1'},
           options: this.options,
         }).popupCheckbox(),
       ],

@@ -35,12 +35,13 @@ export class MarkDownEditorComponent implements OnInit {
      setTimeout(() => {
        this.editor = editormd(this.model.name, this.model.editorConfig); // 创建编辑器
 
-       const textarea = this.editorContainer.nativeElement; // 获取textarea元素
+      //  const textarea = this.editorContainer.nativeElement; // 获取textarea元素
 
        // 当编辑器内容改变时，触发textarea的change事件
        const $this = this;
        this.editor.on('change', function () {
-         $this.syncModel(textarea.innerHTML); // 设置值
+         $this.syncModel($this.editor.getMarkdown()); // 设置markdown的值
+         //  $this.syncModel(textarea.innerHTML); // 设置html值
        });
      }, 3000);
    }

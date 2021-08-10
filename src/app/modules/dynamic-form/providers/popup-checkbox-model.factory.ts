@@ -35,9 +35,6 @@ export class PopupCheckboxModelFactory extends BaseModelFactory {
     if (! this.model.text) {
       this.model.text = [];
     }
-    if (! Array.isArray(this.model.text)) {
-      this.model.text = [this.model.text];
-    }
     /* 必填项 */
     if (this.model.require) {
       if (!this.model.min || this.model.min <= 0) {

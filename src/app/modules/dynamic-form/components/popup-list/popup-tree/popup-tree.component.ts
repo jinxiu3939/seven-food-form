@@ -55,7 +55,10 @@ export class PopupTreeComponent implements OnInit {
    */
   choose() {
     this.fetchData();
-    this.windowRef = this.windowService.open(this.contentTemplate, { title: this.lang.choose + ` - ` + this.model.label });
+    this.windowRef = this.windowService.open(this.contentTemplate, {
+      title: this.lang.choose + ` - ` + this.model.label,
+      windowClass: 'popup-list-window',
+    });
   }
 
   /**

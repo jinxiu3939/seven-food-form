@@ -143,7 +143,7 @@ export class SpreadsheetComponent implements OnInit {
   }
 
   /**
-   * 上传图片完成
+   * 上传文件完成
    */
   private uploadFinish(content) {
     this.model.value = content.url != '' ? this.table : []; // 模型赋值
