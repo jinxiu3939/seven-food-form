@@ -3,7 +3,7 @@
  */
 import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges  } from '@angular/core';
 import { Subject, Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 
 import {
   Option,
@@ -110,6 +110,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
    */
   private fetch(): Observable<Option<string| number>[]> {
     const param = deepExtend({}, this.config.additionalParameter, this.condition);
+    this.provider.setApi(this.config.endpoint); // 重新设置检索接口
     return this.provider.getPage(this.page, this.config.size, param);
   }
 
@@ -150,20 +151,28 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   private filterConditionOption(term: {value: string, key: number}): Observable<any[]> {
     let result: any[];
     const keyword = term.value;
-    if (keyword) {
-      result = this.config.conditions[term.key].options.filter((item) => {
-        for (const i in item) {
-          if (item.text.indexOf(keyword) >= 0 || (item.value+'').indexOf(keyword) >= 0) {
-            return true;
+    /* 获取结果 */
+    if (this.config.conditions[term.key].mode === 'async') { // 异步检索
+      this.provider.setApi(this.config.conditions[term.key].endpoint); // 设置检索接口
+      return this.provider.getPage(1, this.config.size, {title: keyword, format: 'option'}).pipe(
+        map(res => this.searchOptions[term.key] = res),
+      );
+    } else { // 同步检索
+      if (keyword) {
+        result = this.config.conditions[term.key].options.filter((item) => {
+          for (const i in item) {
+            if (item.text.indexOf(keyword) >= 0 || (item.value+'').indexOf(keyword) >= 0) {
+              return true;
+            }
           }
-        }
-        return false;
-      });
-    } else {
-      result = this.config.conditions[term.key].options; // 默认显示全部
+          return false;
+        });
+      } else {
+        result = this.config.conditions[term.key].options; // 默认显示全部
+      }
+      this.searchOptions[term.key] = result;
+      return of(result);
     }
-    this.searchOptions[term.key] = result;
-    return of(result);
   }
 
   /**

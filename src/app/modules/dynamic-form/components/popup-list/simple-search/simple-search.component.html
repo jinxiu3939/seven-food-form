@@ -9,6 +9,11 @@
           <nb-option value="">{{ lang.all }}</nb-option>
           <nb-option *ngFor="let opt of item.options" [value]="opt.value">{{ opt.text }}</nb-option>
         </nb-select>
+        <nb-select *ngSwitchCase="'boolean-radio'" [placeholder]="lang.select" [(selected)]="condition[item.value]">
+          <nb-option value="">{{ lang.all }}</nb-option>
+          <nb-option value="true">Y</nb-option>
+          <nb-option value="false">N</nb-option>
+        </nb-select>
         <div *ngSwitchCase="'drop-down-filter'" class="input-group">
           <input #searchBox type="text" class="form-control form-control-small" [placeholder]="lang.filter" (input)="searchConditionOption(searchBox.value, f)">
           <div class="input-group-append">
@@ -19,6 +24,11 @@
             </nb-select>
           </div>
         </div>
+        <input *ngSwitchCase="'number'"
+               [placeholder]="lang.input"
+               class="form-control"
+               type="number"
+               [(ngModel)]="condition[item.value]">
         <input *ngSwitchDefault
                class="form-control"
                [placeholder]="lang.input"

@@ -1,3 +1,8 @@
+<a name="1.0.0"></a>
+## 1.0.0 (2021-12-7)
+
+- SimpleSearchComponent组件检索条件增加异步检索和boolean-radio类型
+
 <a name="0.9.2"></a>
 ## 0.9.2 (2021-6-2)
 

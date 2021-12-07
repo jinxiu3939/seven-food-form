@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://base-frame.localhost",
+    "target": "http://heritage-conservation.localhost",
     "secure": false,
     "pathRewrite": {
       "^/api": ""

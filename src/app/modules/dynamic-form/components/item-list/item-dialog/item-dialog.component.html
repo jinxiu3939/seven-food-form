@@ -10,6 +10,11 @@
       <nb-option value="">请选择</nb-option>
       <nb-option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.text }}</nb-option>
     </nb-select>
+    <nb-select *ngSwitchCase="'boolean-radio'" placeholder="请选择" [(selected)]="data[field.value]">
+      <nb-option value="">全部</nb-option>
+      <nb-option value="true">是</nb-option>
+      <nb-option value="false">否</nb-option>
+    </nb-select>
     <div *ngSwitchCase="'drop-down-filter'" class="input-group">
       <input #searchBox type="text" class="form-control" placeholder="筛选" (input)="search(searchBox.value, f)">
       <div class="input-group-append">

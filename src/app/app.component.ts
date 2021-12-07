@@ -799,6 +799,7 @@ export class AppComponent implements OnInit {
               { text: '苹果', value: 'apple', title : '一种水果' },
               { text: '梨', value: 'pear', title : '一种水果' },
             ]},
+            {text: '禁用', type: 'boolean-radio', value: 'name'},
           ],
         }).itemList(),
         new QuickFormFactory({
@@ -929,21 +930,33 @@ export class AppComponent implements OnInit {
           options: [],
           searchConfig: {
             conditions: [
-              {text: '模型', type: 'drop-down-filter', value: 'system_model_id', options: [
-                { text: '分类', value: 99, title : 'taxonomy', items: null },
-              ]},
+              {
+                text: '模型',
+                type: 'drop-down-filter',
+                value: 'system_model_id',
+                options: [
+                  { text: '分类', value: 99, title : 'taxonomy', items: null },
+                ],
+                mode: 'async',
+                endpoint: '/api/frame/form/index',
+              },
+              {
+                text: '模型',
+                type: 'boolean-radio',
+                value: 'form_id',
+              },
             ],
             additionalParameter: {
               format: "option",
               system_model_id: 1
             },
-            endpoint: '/api/access/field/index',
+            endpoint: '/api/frame/field/index',
             mode: 'async',
             result: [],
             size: 30,
             headers: {
-              'Token': 'ea5cS+6aUIwLwgpO08lY5ui3OMUHv/fUc/mv2VTHBWUx8dQ7hGOO',
-              'App-Key': 'r6Pu^l8c',
+              'Token': '8dd99tiGC2Gy3D9eOigxe5ubUxAha7kyUoOy8o2x/zs49omEoCjH',
+              'App-Key': 'o&*DFOeite.htewen-',
             },
           },
           value: '',
