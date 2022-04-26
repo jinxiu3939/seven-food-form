@@ -38,6 +38,10 @@
           <button type="submit" class="btn btn-success" [disabled]="!form.valid">{{ textContainer.submit }}</button>
           <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
         </ng-container>
+        <ng-container *ngIf="searchButton">
+          <button type="submit" class="btn btn-success">{{ textContainer.search }}</button>
+          <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
+        </ng-container>
         <ng-container *ngIf="buttons">
           <button *ngFor="let btn of buttons" type="button" class="btn btn-primary" (click)="onOperate(btn)">
             {{ btn.value }}

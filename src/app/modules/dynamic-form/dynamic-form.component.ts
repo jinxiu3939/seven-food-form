@@ -17,6 +17,7 @@ export class DynamicFormComponent implements OnChanges {
   @Input() buttons: FormButton[]; // 自定义操作按钮
   @Input() lang: string = 'en'; // 语言包代码
   @Input() defaultButton = true; // 是否使用默认按钮
+  @Input() searchButton = false; // 是否使用检索按钮
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
