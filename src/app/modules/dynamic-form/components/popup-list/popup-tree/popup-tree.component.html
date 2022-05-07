@@ -1,6 +1,6 @@
 <div [formGroup]="form" class="row">
   <ng-container *ngIf="! model.disabled">
-    <div class="col-3 left">
+    <div *ngIf="model.size==='medium'" class="col-3 left">
       <input type="text"
              class="form-control form-value"
              readonly
@@ -13,11 +13,9 @@
                disabled
                type="text"
                [value]="text">
-        <span class="input-group-append">
-          <a nbButton status="info" (click)="choose()">{{ lang.choose }}</a>
-        </span>
-        <span *ngIf="model.value" class="input-group-append">
-          <a nbButton status="warning" (click)="destroy()">{{ lang.clear }}</a>
+        <span *ngIf="! model.readonly" [ngClass]="{'tiny-operation': model.size==='tiny', 'input-group-append': model.size!=='tiny'}">
+          <a nbButton [size]="model.size" status="info" (click)="choose()">{{ lang.choose }}</a>
+          <a nbButton *ngIf="model.value" [size]="model.size" status="warning" (click)="destroy()">{{ lang.clear }}</a>
         </span>
       </div>
     </div>

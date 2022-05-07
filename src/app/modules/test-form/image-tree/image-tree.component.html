@@ -3,7 +3,7 @@
     <img [src]="tree.title">
     <span class="node-title">{{ tree.text }}</span>
     <nb-icon icon="close-outline" status="danger" (click)="delete()"></nb-icon>
-    <nb-icon icon="plus-outline" (click)="add()"></nb-icon>
+    <nb-icon icon="plus-outline"></nb-icon>
     <nb-icon *ngIf="tree.children && tree.children.length > 0" [icon]="arrowIcon" (click)="expand()"></nb-icon>
     <nb-badge *ngIf="tree.items"
               position="top right"

@@ -22,5 +22,6 @@ export class PopupRadioModelFactory extends BaseModelFactory {
     this.config.searchConfig = this.searchConfig; // 检索配置
     this.config.text = ''; // 默认文本
     this.config.value = ''; // 默认值
+    this.config.size = 'medium'; // 尺寸
   }
 }

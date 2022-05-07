@@ -176,7 +176,7 @@ const FORM_DIRECTIVE = [
   ],
 })
 export class SfDynamicFormModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<SfDynamicFormModule> {
     return {
       ngModule: SfDynamicFormModule,
       providers: [
@@ -187,6 +187,6 @@ export class SfDynamicFormModule {
         { provide: SearchProvider, useClass: DemoSimpleSearchProvider },
         { provide: TreeProvider, useClass: DemoTreeSearchProvider },
       ],
-    } as ModuleWithProviders;
+    } as ModuleWithProviders<SfDynamicFormModule>;
   }
 }

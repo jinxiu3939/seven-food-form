@@ -7,6 +7,13 @@
 
     .input-group {
       flex-wrap: nowrap;
+
+      .tiny-operation {
+        a {
+          display: flex;
+          padding: 0.15rem 0.625rem;
+        }
+      }
     }
   }
 }

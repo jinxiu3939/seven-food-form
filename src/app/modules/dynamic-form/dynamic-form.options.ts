@@ -419,6 +419,7 @@ export interface PopupRadioModel extends BaseModel<string | number> {
   readonly: boolean; // 是否只读
   searchConfig: SearchConfig; // 检索配置
   text: string; // 显示文本
+  size?: 'tiny' | 'small' | 'medium'; // 尺寸
 }
 
 /**
@@ -442,6 +443,7 @@ export interface PopupTreeModel extends BaseModel<string | number> {
   endpoint?: string; // 检索接口
   searchParameter?: any; // 检索条件
   readonly?: boolean; // 是否只读
+  size?: 'tiny' | 'small' | 'medium'; // 尺寸
 }
 
 /**

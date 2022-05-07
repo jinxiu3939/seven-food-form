@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // 导入`ckeditor`语言包
+
 import {
   QuickFormFactory,
   LinkageBoxModelFactory,
@@ -673,6 +675,7 @@ export class AppComponent implements OnInit {
           searchConfig: {},
           value: '1',
           text: '只读',
+          // size: 'small',
           // readonly: true,
         }).popupRadio(),
         new QuickFormFactory({
@@ -1181,7 +1184,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.defaultModels;
+      this.models = this.realModels;
       this.inlineModels = this.modesss;
     });
   }

@@ -15,6 +15,12 @@ SfDynamicFormModule.forRoot()
 </ng-container>
 ```
 
+如果使用ckeditor，需要导入语言包
+
+```
+import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // 导入`ckeditor`语言包
+```
+
 #### 表单中插入其他内容
 
 插入内容标签的`name`属性为`other-models`

@@ -1,6 +1,6 @@
 {
   "name": "seven-food-form",
-  "version": "1.0.1",
+  "version": "2.0.1",
   "description": "The dynamic form of angular based on nebular",
   "scripts": {
     "ng": "ng",
@@ -13,19 +13,11 @@
     "packagr": "ng-packagr -p ng-package.json"
   },
   "private": false,
-  "peerDependencies": {
-    "@angular/animations": "~8.2.14",
-    "@angular/cdk": "^8.2.3",
-    "@nebular/theme": "4.4.0",
-    "bootstrap": "^4.3.1",
-    "moment": "^2.24.0",
-    "ng2-file-upload": "^1.4.0"
-  },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.20",
-    "@angular/cli": "~8.3.20",
-    "@angular/compiler-cli": "~8.2.14",
-    "@angular/language-service": "~8.2.14",
+    "@angular-devkit/build-angular": "^12.1.0",
+    "@angular/cli": "^12.1.0",
+    "@angular/compiler-cli": "^12.1.0",
+    "@angular/language-service": "^12.1.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -40,7 +32,8 @@
     "ng-packagr": "^9.0.2",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.15.0"
+    "tslint": "^6.1.0",
+    "typescript": "^4.2.3"
   },
   "repository": {
     "type": "git",

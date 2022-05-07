@@ -76,7 +76,6 @@ add blow package
     "@angular/cdk": "^8.2.3",
     "@nebular/theme": "4.4.0",
     "bootstrap": "^4.3.1",
-    "moment": "^2.24.0",
     "ng2-file-upload": "^1.4.0"
   },
 ```
@@ -85,19 +84,19 @@ remove the package
 
 ```
   "dependencies": {
-    "@angular/animations": "^8.2.14",
-    "@angular/cdk": "^8.2.3",
-    "@angular/common": "~8.2.14",
-    "@angular/compiler": "~8.2.14",
-    "@angular/core": "~8.2.14",
-    "@angular/forms": "~8.2.14",
-    "@angular/platform-browser": "~8.2.14",
-    "@angular/platform-browser-dynamic": "~8.2.14",
-    "@angular/router": "~8.2.14",
+    "@angular/animations": "^12.1.0",
+    "@angular/cdk": "^12.1.0",
+    "@angular/common": "^12.1.0",
+    "@angular/compiler": "^12.1.0",
+    "@angular/core": "^12.1.0",
+    "@angular/forms": "^12.1.0",
+    "@angular/platform-browser": "^12.1.0",
+    "@angular/platform-browser-dynamic": "^12.1.0",
+    "@angular/router": "^12.1.0",
     "@ckeditor/ckeditor5-angular": "^1.2.3",
     "@ckeditor/ckeditor5-build-balloon-block": "^17.0.0",
-    "@nebular/eva-icons": "^4.6.0",
-    "@nebular/theme": "^4.6.0",
+    "@nebular/eva-icons": "^8.0.0",
+    "@nebular/theme": "^8.0.0",
     "bootstrap": "^4.3.1",
     "eva-icons": "^1.1.3",
     "jquery": "^3.6.0",
@@ -105,10 +104,9 @@ remove the package
     "ng2-file-upload": "^1.4.0",
     "ngx-ueditor": "^2.1.3",
     "rxjs": "~6.4.0",
-    "tslib": "^1.10.0",
-    "typescript": "^3.4.5",
+    "tslib": "^2.1.0",
     "xlsx": "^0.15.5",
-    "zone.js": "~0.9.1"
+    "zone.js": "^0.11.4"
   },
 ```
 

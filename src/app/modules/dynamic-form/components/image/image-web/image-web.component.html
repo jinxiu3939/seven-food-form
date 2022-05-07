@@ -8,7 +8,7 @@
          [ngClass]="{'form-control-success': webUrl.valid, 'form-control-danger': webUrl.invalid}"
          [attr.aria-invalid]="webUrl.invalid && webUrl.touched ? true : null">
   <span class="input-group-append">
-    <nb-icon *ngIf="webUrl.value" icon="close-outline" (click)="clear()"></nb-icon>
+    <nb-icon *ngIf="webUrl.value" icon="close-outline" status="primary" (click)="clear()"></nb-icon>
     <button nbButton
             class="input-group-text"
             size="small"
