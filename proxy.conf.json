@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://heritage-conservation.localhost",
+    "target": "http://api.qikecai.localhost",
     "secure": false,
     "pathRewrite": {
       "^/api": ""

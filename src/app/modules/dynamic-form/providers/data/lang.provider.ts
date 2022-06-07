@@ -5,6 +5,6 @@ import { LANG } from '../../lang/lang.const';
 @Injectable()
 export class LangProvider {
 
-  public lang = LANG.en;
+  public lang = LANG.zh;
 
 }

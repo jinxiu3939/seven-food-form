@@ -675,7 +675,7 @@ export class AppComponent implements OnInit {
           searchConfig: {},
           value: '1',
           text: '只读',
-          // size: 'small',
+          size: '',
           // readonly: true,
         }).popupRadio(),
         new QuickFormFactory({

@@ -66,7 +66,7 @@
   vlidate_spreedsheet_error_1: 'Spreadsheet verification failed (file format error)',
   upload_spreedsheet_error: 'upload spreedsheet error',
   choose_media: 'choose media',
-  local_media: 'local picture',
+  local_media: 'local media',
   choose_media_error: 'choose media error',
   upload_media_error: 'upload media error',
 };
