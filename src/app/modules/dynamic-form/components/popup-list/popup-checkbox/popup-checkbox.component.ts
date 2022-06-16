@@ -64,6 +64,7 @@ export class PopupCheckBoxComponent implements OnInit {
    * 选择
    */
   choose() {
+    this.resetRecords(true);
     this.windowRef = this.windowService.open(this.contentTemplate, {
       title: this.lang.choose + ` - ` + this.model.label,
       windowClass: 'popup-list-window',
@@ -76,6 +77,7 @@ export class PopupCheckBoxComponent implements OnInit {
   destroy() {
     this.model.value = [];
     this.form.controls[this.model.name].setValue(null); // 清空表单值
+    this.checked = [];
   }
 
   /**

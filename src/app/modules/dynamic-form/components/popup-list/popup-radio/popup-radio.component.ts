@@ -54,6 +54,7 @@ export class PopupRadioComponent implements OnInit {
    * 选择
    */
   choose() {
+    this.resetRecords(true);
     this.windowRef = this.windowService.open(this.contentTemplate, {
       title: this.lang.choose + ` - ` + this.model.label,
       windowClass: 'popup-list-window',

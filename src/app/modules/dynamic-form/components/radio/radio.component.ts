@@ -5,6 +5,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { LangProvider } from '../../providers/data/lang.provider';
 import { RadioModel } from '../../dynamic-form.options';
 
 @Component({
@@ -17,4 +18,10 @@ import { RadioModel } from '../../dynamic-form.options';
 export class RadioComponent {
   @Input() model: RadioModel;
   @Input() form: FormGroup;
+
+  lang: any;
+
+  constructor(langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 }

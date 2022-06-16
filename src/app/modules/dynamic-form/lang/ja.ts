@@ -36,7 +36,7 @@
   no_data: 'データなし',
   default_image: '默认不显示图片，输入关键字后显示搜索结果',
   choose_up: '最多选择',
-  keyword_search: '关键字建搜',
+  keyword_search: '关键字检索',
   search_no_data: '暂无数据, 更换一个关键字重试一下吧',
   loading: '加载中',
   preview: '预览',

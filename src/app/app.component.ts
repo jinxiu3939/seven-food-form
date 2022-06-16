@@ -697,6 +697,13 @@ export class AppComponent implements OnInit {
           text: {A: '看你的选项', 1: '选项1'},
           options: this.options,
         }).popupCheckbox(),
+        new QuickFormFactory({
+          label: '多选测试-2',
+          name: 'popup-checkbox-3',
+          require: true,
+          value: ['A', 1],
+          text: {A: '看你的选项', 1: '选项1'},
+        }).popupCheckbox(),
       ],
       title: "活命",
       column: 3,
@@ -860,8 +867,9 @@ export class AppComponent implements OnInit {
         new QuickFormFactory({
           label: '是否禁用',
           name: 'yes_no1',
-          value: false,
+          value: null,
           options: null,
+          all: true,
         }).booleanRadio(),
         {
           label: '是否禁用',
@@ -1184,7 +1192,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.realModels;
+      this.models = this.defaultModels;
       this.inlineModels = this.modesss;
     });
   }

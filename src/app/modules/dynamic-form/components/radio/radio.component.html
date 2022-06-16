@@ -3,6 +3,11 @@
                   [name]="model.name"
                   [(value)]="model.value"
                   class="row boxes">
+    <nb-radio *ngIf="model.all"
+              [value]="null"
+              class="col-{{model.width}}">
+      {{ lang.all }}
+    </nb-radio>              
     <nb-radio *ngFor="let opt of model.options"
               [value]="opt.value"
               [title]="opt.title ? opt.title : opt.text"
@@ -13,4 +18,5 @@
       <nb-badge *ngIf="opt.items" [text]="opt.items" [status]="opt.items > 999 ? 'danger' : 'info'" position="left"></nb-badge>
     </nb-radio>
   </nb-radio-group>
+  {{ model.value }}
 </div>

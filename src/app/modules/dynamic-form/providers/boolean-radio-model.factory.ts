@@ -17,8 +17,14 @@ export class BooleanRadioModelFactory extends RadioModelFactory {
     // 其他类型转换为`boolean`类型
     if (this.model.value) {
       this.model.value = true;
-    } else {
+    } else if (this.model.value !== null && this.model.value !== undefined) {
       this.model.value = false;
+    } else {
+      this.model.value = null;
+    }
+
+    if (this.model.all) {
+      this.model.width = 4;
     }
   }
 }

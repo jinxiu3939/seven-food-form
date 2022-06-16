@@ -12,5 +12,6 @@ export class RadioModelFactory extends BaseModelFactory {
     super(obj);
     this.config.disabled = false; // 默认不禁用
     this.config.width = 3; // 选项宽度
+    this.config.all = false; // 默认不显示全部
   }
 }

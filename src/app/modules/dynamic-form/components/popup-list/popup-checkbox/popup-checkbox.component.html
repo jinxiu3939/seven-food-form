@@ -32,7 +32,7 @@
       <nb-badge *ngIf="item.items" [text]="item.items" style="top: 1.6rem; right: 0.5rem"></nb-badge>
     </nb-list-item>
     <nb-list-item *ngIf="!records || records.length === 0">
-      <nb-alert status="info">{{ lang.search_no_data }}</nb-alert>
+      <nb-alert outline="info" style="width: 100%;">{{ lang.search_no_data }}</nb-alert>
     </nb-list-item>
   </nb-list>
   <div>

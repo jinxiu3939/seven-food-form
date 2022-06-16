@@ -278,6 +278,7 @@ export interface BaseModel<T> {
  * 单选项模型
  */
 export interface RadioModel extends BaseModel<string | number | boolean> {
+  all: boolean; // 是否显示全部
   disabled: boolean; // 是否禁用
   options: Option<string | number | boolean>[]; // 选项列表
   width: number; // 选项宽度

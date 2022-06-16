@@ -72,6 +72,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
         if (this.config.endpoint) {
           this.provider.setApi(this.config.endpoint);
         }
+        this.finishSearch(); // 配置改变后，重新检索
       }
     }
   }
@@ -88,7 +89,10 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
 
   private finishSearch() {
     this.loading = true;
-    this.getResult().subscribe((result) => {
+    this.getResult().pipe(
+      // wait 500ms, 防止input参数变化之后的请求风暴
+      debounceTime(500),
+    ).subscribe((result) => {
       this.finish.emit(result);
       this.loading = false;
     });
