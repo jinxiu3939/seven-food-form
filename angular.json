@@ -20,9 +20,6 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "buildOptimizer": true,
-            "allowedCommonJsDependencies": [
-              "xlsx"
-            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
