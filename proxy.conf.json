@@ -14,5 +14,13 @@
       "^/ckfinder": ""
     },
     "changeOrigin": true
+  },
+  "/hapi": {
+    "target": "http://heritage-conservation.localhost",
+    "secure": false,
+    "pathRewrite": {
+      "^/hapi": ""
+    },
+    "changeOrigin": true
   }
 }

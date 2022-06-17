@@ -119,7 +119,7 @@ export class PopupCheckBoxComponent implements OnInit {
 
   search(records) {
     const index = this.page - 1;
-    if (Array.isArray(records) && ! this.tmpRecords[index]) {
+    if (Array.isArray(records) && records.length > 0 && ! this.tmpRecords[index]) {
       this.tmpRecords[index] = records;
       this.records.push(...records);
     }
