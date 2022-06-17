@@ -76,7 +76,7 @@ export class DynamicFieldDirective implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.component?.instance && changes.reload) {
+    if (this.component && this.component.instance && changes.reload) {
       this.model.value = Array.isArray(this.model.value) ? [] : null;
       this.component.instance.model = this.model;
       this.component.instance.resetModel(); // 重置模型
