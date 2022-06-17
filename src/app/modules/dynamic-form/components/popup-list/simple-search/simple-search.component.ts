@@ -1,7 +1,7 @@
 /**
  * 简单检索组件
  */
-import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges  } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Subject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 

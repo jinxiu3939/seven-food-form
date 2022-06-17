@@ -38,6 +38,7 @@ export class LinkageNodeComponent implements OnChanges {
       if (propName === 'parent') {
         this.options = this.tree.options.filter((item) => item.parent === this.parent);
         if (this.options.length === 0) {
+          this.tree.selected = '';
           this.clearChildren();
         }
       } else if (propName === 'tree') {

@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 
 import { PasswordBoxModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
+import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-password-box',
@@ -15,7 +16,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
   ],
   templateUrl: `./password-box.component.html`,
 })
-export class PasswordBoxComponent implements OnInit  {
+export class PasswordBoxComponent implements OnInit, ComponentReset  {
 
   @Input() model: PasswordBoxModel;
   @Input() form: FormGroup;
@@ -34,6 +35,9 @@ export class PasswordBoxComponent implements OnInit  {
       this.form.controls[this.model.name].setValue(null);
     }
     this.inputType = this.model.visible ? 'text' : 'password';
+  }
+
+  resetModel() {
   }
 
   get password() {

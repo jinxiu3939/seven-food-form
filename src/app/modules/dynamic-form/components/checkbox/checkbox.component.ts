@@ -5,6 +5,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { CheckboxModel } from '../../dynamic-form.options';
 
 @Component({
@@ -15,14 +16,24 @@ import { CheckboxModel } from '../../dynamic-form.options';
     './checkbox.component.scss',
   ],
 })
-export class CheckboxComponent implements OnInit {
+export class CheckboxComponent implements OnInit, ComponentReset {
   @Input() model: CheckboxModel;
   @Input() form: FormGroup;
 
   checkedStatus: boolean[] = []; // 元素选中状态集合
 
   ngOnInit() {
-    // 设置选中状态
+    this.loadCheckedStatus();
+  }
+
+  resetModel() {
+    this.loadCheckedStatus();
+  }
+
+  /**
+   * 加载选中状态
+   */
+  loadCheckedStatus() {
     this.model.options.map((option, key) => {
       this.checkedStatus[key] = this.isChecked(option.value as string);
     });

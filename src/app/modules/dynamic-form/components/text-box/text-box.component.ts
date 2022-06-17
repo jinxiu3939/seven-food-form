@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 
 import { TextBoxModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
+import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-text-box',
@@ -14,7 +15,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
     '../../dynamic-form.component.scss',
   ],
 })
-export class TextBoxComponent {
+export class TextBoxComponent implements ComponentReset {
 
   @Input() model: TextBoxModel;
   @Input() form: FormGroup;
@@ -23,6 +24,9 @@ export class TextBoxComponent {
 
   constructor(private langProvider: LangProvider) {
     this.lang = langProvider.lang;
+  }
+
+  resetModel() {
   }
 
   get invalid() {

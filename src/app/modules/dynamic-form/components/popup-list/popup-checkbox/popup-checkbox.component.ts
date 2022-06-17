@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { PopupCheckboxModel, Option } from '../../../dynamic-form.options';
+import { ComponentReset } from '../../../providers/interface/component-reset';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
@@ -16,7 +17,7 @@ import { LangProvider } from '../../../providers/data/lang.provider';
     './popup-checkbox.component.scss',
   ],
 })
-export class PopupCheckBoxComponent implements OnInit {
+export class PopupCheckBoxComponent implements OnInit, ComponentReset {
 
   @Input() model: PopupCheckboxModel;
   @Input() form: FormGroup;
@@ -39,6 +40,14 @@ export class PopupCheckBoxComponent implements OnInit {
 
   ngOnInit() {
     this.text = this.model.text;
+    this.loadChecked();
+  }
+
+  resetModel() {
+    this.loadChecked();
+  }
+
+  loadChecked() {
     if (this.model.options) {
       this.checked = this.model.options.filter((item) => this.model.value.includes(item.value));
     }

@@ -8,13 +8,14 @@ import { NbWindowService, NbWindowRef } from '@nebular/theme';
 import { deepExtend } from '../../helps';
 import { ItemListModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
+import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-item-list',
   templateUrl: `./item-list.component.html`,
   styleUrls: ['./item-list.component.scss'],
 })
-export class ItemListComponent {
+export class ItemListComponent implements ComponentReset {
 
   @Input() form: FormGroup;
   @Input() model: ItemListModel;
@@ -27,6 +28,9 @@ export class ItemListComponent {
 
   constructor(private service: NbWindowService, private langProvider: LangProvider) {
     this.lang = langProvider.lang;
+  }
+
+  resetModel() {
   }
 
   /*

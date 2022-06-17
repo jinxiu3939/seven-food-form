@@ -6,6 +6,7 @@ import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core'
 import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { ImageDescription, ImageModel, ImageItem, ImageListOrder } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 
@@ -16,7 +17,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
     './image.component.scss',
   ],
 })
-export class ImageComponent implements OnInit {
+export class ImageComponent implements OnInit, ComponentReset {
 
   @Input() model: ImageModel;
   @Input() form: FormGroup;
@@ -35,6 +36,18 @@ export class ImageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadThumbnails();
+    this.tmpImage = [];
+    this.tmpValues = [];
+  }
+
+  resetModel() {
+    this.loadThumbnails();
+    this.tmpImage = [];
+    this.tmpValues = [];
+  }
+
+  loadThumbnails() {
     if (this.model.value && typeof this.model.value === 'string') {
       this.thumbnails = [{url: this.model.value, title: ''}];
     } else if (this.model.value) {
@@ -42,8 +55,6 @@ export class ImageComponent implements OnInit {
     } else {
       this.thumbnails = [];
     }
-    this.tmpImage = [];
-    this.tmpValues = [];
   }
 
   /**

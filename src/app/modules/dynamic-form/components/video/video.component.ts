@@ -8,6 +8,7 @@ import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { ImageDescription, VideoModel, ImageItem } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
+import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-video',
@@ -16,7 +17,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
     './video.component.scss',
   ],
 })
-export class VideoComponent implements OnInit {
+export class VideoComponent implements OnInit, ComponentReset {
 
   @Input() model: VideoModel;
   @Input() form: FormGroup;
@@ -35,6 +36,16 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadThumbnails();
+    this.tmpImage = [];
+    this.tmpValues = [];
+  }
+
+  resetModel() {
+    this.loadThumbnails();
+  }
+
+  loadThumbnails() {
     if (this.model.value && typeof this.model.value === 'string') {
       this.thumbnails = [{url: this.model.value, title: ''}];
     } else if (this.model.value) {
@@ -42,8 +53,6 @@ export class VideoComponent implements OnInit {
     } else {
       this.thumbnails = [];
     }
-    this.tmpImage = [];
-    this.tmpValues = [];
   }
 
   /**

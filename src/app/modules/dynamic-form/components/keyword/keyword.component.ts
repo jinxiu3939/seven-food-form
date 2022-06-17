@@ -4,6 +4,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { KeywordModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 
@@ -15,16 +16,18 @@ import { LangProvider } from '../../providers/data/lang.provider';
     './keyword.component.scss',
   ],
 })
-export class KeywordComponent {
-  showOption = false;
-
+export class KeywordComponent implements ComponentReset {
   @Input() model: KeywordModel;
   @Input() form: FormGroup;
 
   lang: any;
+  showOption = false;
 
   constructor(private langProvider: LangProvider) {
     this.lang = langProvider.lang;
+  }
+
+  resetModel() {
   }
 
   /*

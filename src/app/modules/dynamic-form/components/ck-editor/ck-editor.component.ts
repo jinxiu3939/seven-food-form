@@ -8,6 +8,7 @@ import { FormGroup } from '@angular/forms';
 
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { CKEditorModel } from '../../dynamic-form.options';
 
 @Component({
@@ -17,9 +18,12 @@ import { CKEditorModel } from '../../dynamic-form.options';
     `./ck-editor.component.scss`,
   ],
 })
-export class CKEditorComponent {
+export class CKEditorComponent implements ComponentReset {
   @Input() model: CKEditorModel;
   @Input() form: FormGroup;
+
+  resetModel() {
+  }
 
   get invalid() {
     const control = this.form.controls[this.model.name];

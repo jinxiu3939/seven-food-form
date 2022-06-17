@@ -6,6 +6,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { RadioModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 
@@ -13,7 +14,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
   selector: 'ngx-drop-down-box',
   templateUrl: './drop-down-box.component.html',
 })
-export class DropDownBoxComponent {
+export class DropDownBoxComponent implements ComponentReset {
 
   @Input() model: RadioModel;
   @Input() form: FormGroup;
@@ -22,6 +23,9 @@ export class DropDownBoxComponent {
 
   constructor(private langProvider: LangProvider) {
     this.lang = langProvider.lang;
+  }
+
+  resetModel() {
   }
 
   /*

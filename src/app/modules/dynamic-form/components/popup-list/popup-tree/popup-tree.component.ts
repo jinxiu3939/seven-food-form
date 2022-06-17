@@ -12,13 +12,14 @@ import {
 import { TreeNode, Option, PopupTreeModel } from '../../../dynamic-form.options';
 import { TreeProvider } from '../../../providers/data/tree-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
+import { ComponentReset } from '../../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-popup-tree',
   templateUrl: './popup-tree.component.html',
   styleUrls: ['./popup-tree.component.scss'],
 })
-export class PopupTreeComponent implements OnInit {
+export class PopupTreeComponent implements OnInit, ComponentReset {
 
   @Input() model: PopupTreeModel;
   @Input() form: FormGroup;
@@ -48,6 +49,9 @@ export class PopupTreeComponent implements OnInit {
 
   ngOnInit() {
     this.text = this.model.text;
+  }
+
+  resetModel() {
   }
 
   /**

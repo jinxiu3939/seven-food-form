@@ -9,12 +9,12 @@
       <ng-container [ngSwitch]="layout">
         <nb-tabset *ngSwitchCase="'tab'">
           <nb-tab *ngFor="let block of models" [tabTitle]="block.title" [lazyLoad]="true">
-            <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form"></ngx-form-block>
+            <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form" [reload]="reload"></ngx-form-block>
           </nb-tab>
         </nb-tabset>
         <nb-stepper *ngSwitchCase="'step'" orientation="horizontal">
           <nb-step *ngFor="let block of models" [label]="block.title">
-            <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form"></ngx-form-block>
+            <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form" [reload]="reload"></ngx-form-block>
           </nb-step>
         </nb-stepper>
         <ul *ngSwitchDefault class="default-block" [ngClass]="{'inline-block': layout==='inline', 'custom-condition': layout==='inline'}">
@@ -25,6 +25,7 @@
                             [column]="block.column"
                             [form]="form"
                             [display]="layout"
+                            [reload]="reload"
                             [ngClass]="{'form-inline': layout==='inline'}">
             </ngx-form-block>
           </li>

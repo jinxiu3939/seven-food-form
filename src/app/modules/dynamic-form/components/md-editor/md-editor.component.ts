@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
  
 import { MdEditorModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
+import { ComponentReset } from '../../providers/interface/component-reset';
  
 declare var editormd: any;
 
@@ -17,59 +18,63 @@ declare var editormd: any;
     `./md-editor.component.scss`,
   ],
 })
-export class MarkDownEditorComponent implements OnInit {
-   @Input() model: MdEditorModel;
-   @Input() form: FormGroup;
+export class MarkDownEditorComponent implements OnInit, ComponentReset {
+  @Input() model: MdEditorModel;
+  @Input() form: FormGroup;
+  @Input() reload: number; // 重新加载
  
-   @ViewChild('editorContainer', { static: true }) editorContainer: ElementRef;
+  @ViewChild('editorContainer', { static: true }) editorContainer: ElementRef;
 
-   lang: any;
-   editor: any; // editormd编辑器
+  lang: any;
+  editor: any; // editormd编辑器
  
-   constructor(private langProvider: LangProvider) {
-     this.lang = langProvider.lang;
-   }
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
  
-   ngOnInit() {
-     /* 延迟显示等待UE加载 */
-     setTimeout(() => {
-       this.editor = editormd(this.model.name, this.model.editorConfig); // 创建编辑器
+  ngOnInit() {
+    /* 延迟显示等待UE加载 */
+    setTimeout(() => {
+      this.editor = editormd(this.model.name, this.model.editorConfig); // 创建编辑器
 
       //  const textarea = this.editorContainer.nativeElement; // 获取textarea元素
 
-       // 当编辑器内容改变时，触发textarea的change事件
-       const $this = this;
-       this.editor.on('change', function () {
-         $this.syncModel($this.editor.getMarkdown()); // 设置markdown的值
-         //  $this.syncModel(textarea.innerHTML); // 设置html值
-       });
-     }, 3000);
-   }
+      // 当编辑器内容改变时，触发textarea的change事件
+      const $this = this;
+      this.editor.on('change', function () {
+        $this.syncModel($this.editor.getMarkdown()); // 设置markdown的值
+        //  $this.syncModel(textarea.innerHTML); // 设置html值
+      });
+    }, 3000);
+  }
+
+  resetModel() {
+  }
   
-   get invalid() {
-     const control = this.form.controls[this.model.name];
-     return control.invalid;
-   }
+  get invalid() {
+    const control = this.form.controls[this.model.name];
+    return control.invalid;
+  }
   
-   get valid() {
-     const control = this.form.controls[this.model.name];
-     return control.value && control.valid;
-   }
+  get valid() {
+    const control = this.form.controls[this.model.name];
+    return control.value && control.valid;
+  }
   
-   get errors() {
-     const message = [];
-     const control = this.form.controls[this.model.name];
-     if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-       message.push(this.lang.min_input + '：' + this.model.min);
-     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-       message.push(this.lang.max_input + '：' + this.model.max);
-     }
-     return message;
-   }
+  get errors() {
+    const message = [];
+    const control = this.form.controls[this.model.name];
+    if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
+      message.push(this.lang.min_input + '：' + this.model.min);
+    } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
+      message.push(this.lang.max_input + '：' + this.model.max);
+    }
+    return message;
+  }
   
   syncModel(data) {
     this.model.value = data;
     this.form.controls[this.model.name].setValue(this.model.value); // 表单赋值
-   }
   }
+}
   
