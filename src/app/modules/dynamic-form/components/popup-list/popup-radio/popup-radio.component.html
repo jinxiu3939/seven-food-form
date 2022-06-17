@@ -7,7 +7,7 @@
              [value]="model.value"
              [formControlName]="model.name">
     </div>
-    <div class="col-9 right col-value">
+    <div class="col-9 right" [ngClass]="{'col-value': model.size==='medium'}">
       <div class="input-group">
         <input class="form-control"
                disabled

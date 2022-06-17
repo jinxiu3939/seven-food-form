@@ -6,7 +6,7 @@
   <nb-layout-column>
     <nb-card>
       <ngx-test-component></ngx-test-component>
-      <ngx-dynamic-form [models]="inlineModels" layout="ul" [defaultButton]="true" [loading]="submitting" [buttons]="buttons" (formSubmit)="submit($event)" (formCustom)="operate($event)">
+      <ngx-dynamic-form [models]="inlineModels" layout="inline" [defaultButton]="true" [loading]="submitting" [buttons]="buttons" (formSubmit)="submit($event)" (formCustom)="operate($event)">
       </ngx-dynamic-form>
       <ngx-dynamic-form [models]="models" lang="ja" layout="tab" [loading]="submitting" (formReset)="reset($event)" (formSubmit)="submit($event)" (formCustom)="operate($event)">
         <ng-container name="other-models">
