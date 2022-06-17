@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { dateFormat } from '../../helps';
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { LangProvider } from '../../providers/data/lang.provider';
 import { AllHours, AllMinutes } from './time.const';
 import { DatePickerModel } from '../../dynamic-form.options';
@@ -18,7 +19,7 @@ import { DatePickerModel } from '../../dynamic-form.options';
   ],
   templateUrl: './date-picker.component.html',
 })
-export class DatePickerComponent implements OnInit {
+export class DatePickerComponent implements OnInit, ComponentReset {
   @Input() model: DatePickerModel;
   @Input() form: FormGroup;
 
@@ -35,6 +36,14 @@ export class DatePickerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadDate();
+  }
+
+  resetModel() {
+    this.loadDate();
+  }
+
+  loadDate() {
     if (this.model && this.model.value) {
       this.date = new Date(this.model.value); // 字符串转换成日期格式
     }

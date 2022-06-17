@@ -14,6 +14,7 @@ export class FormBlockComponent {
   @Input() form: FormGroup; // 响应式表单
   @Input() column: number[]; // 列宽度
   @Input() display: string = ''; // 样式
+  @Input() reload: number; // 重新加载
 
   lang: any;
 

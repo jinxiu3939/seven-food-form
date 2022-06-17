@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { BaseModel } from '../dynamic-form.options';
@@ -54,9 +54,10 @@ const COMPONENTS = {
 @Directive({
   selector: '[ngxDynamicField]',
 })
-export class DynamicFieldDirective implements OnInit {
+export class DynamicFieldDirective implements OnInit, OnChanges {
   @Input() model: BaseModel<any>; // 表单项
   @Input() form: FormGroup; // 表单
+  @Input() reload: number; // 重新加载
 
   component: any;
 
@@ -71,6 +72,14 @@ export class DynamicFieldDirective implements OnInit {
       this.component = this.container.createComponent(factory); // 创建组件
       this.component.instance.model = this.model;
       this.component.instance.form = this.form;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.component?.instance && changes.reload) {
+      this.model.value = Array.isArray(this.model.value) ? [] : null;
+      this.component.instance.model = this.model;
+      this.component.instance.resetModel(); // 重置模型
     }
   }
 }

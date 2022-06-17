@@ -5,7 +5,7 @@
     <small *ngIf="item.require" class="form-text text-status-info">必填</small>
   </label>
   <div class="col-{{ column[1] }}">
-    <ng-container ngxDynamicField [model]="item" [form]="form">
+    <ng-container ngxDynamicField [model]="item" [form]="form" [reload]="reload">
     </ng-container>
   </div>
 </div>

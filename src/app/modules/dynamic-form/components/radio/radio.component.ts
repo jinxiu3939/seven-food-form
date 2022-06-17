@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 
 import { LangProvider } from '../../providers/data/lang.provider';
 import { RadioModel } from '../../dynamic-form.options';
+import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-radio',
@@ -15,7 +16,7 @@ import { RadioModel } from '../../dynamic-form.options';
     './radio.component.scss',
   ],
 })
-export class RadioComponent {
+export class RadioComponent implements ComponentReset {
   @Input() model: RadioModel;
   @Input() form: FormGroup;
 
@@ -23,5 +24,8 @@ export class RadioComponent {
 
   constructor(langProvider: LangProvider) {
     this.lang = langProvider.lang;
+  }
+
+  resetModel() {
   }
 }

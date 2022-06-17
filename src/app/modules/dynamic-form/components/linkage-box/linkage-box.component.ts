@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { LinkageBoxTreeModel } from '../../dynamic-form.options';
+import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-linkage-box',
@@ -10,10 +11,14 @@ import { LinkageBoxTreeModel } from '../../dynamic-form.options';
     '../../dynamic-form.component.scss',
   ],
 })
-export class LinkageBoxComponent {
+export class LinkageBoxComponent implements ComponentReset {
 
   @Input() form: FormGroup;
   @Input() model: LinkageBoxTreeModel;
+
+  resetModel() {
+    this.model.tree.selected = '';
+  }
 
   getValue(selected: any) {
     if (selected) {

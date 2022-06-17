@@ -640,12 +640,12 @@ export class AppComponent implements OnInit {
           tree: this.tree,
           root: 0,
         }).instance(),
-        new QuickFormFactory({
-          label: '族谱',
-          name: 'zupu-2',
-          tree: this.tree,
-          root: 0,
-        }).linkageBox(),
+        // new QuickFormFactory({
+        //   label: '族谱',
+        //   name: 'zupu-2',
+        //   tree: this.tree,
+        //   root: 0,
+        // }).linkageBox(),
         new QuickFormFactory({
           display: '',
           label: '图片',
@@ -658,16 +658,16 @@ export class AppComponent implements OnInit {
           },
           value: null,
         }).image(),
-        {
-          label: '族谱',
-          name: 'zupu-3',
-          type: 'linkage-box',
-          value: ['111'],
-          help: 'this is a password',
-          order: 1,
-          tree: this.tree,
-          root: 0,
-        },
+        // {
+        //   label: '族谱',
+        //   name: 'zupu-3',
+        //   type: 'linkage-box',
+        //   value: ['111'],
+        //   help: 'this is a password',
+        //   order: 1,
+        //   tree: this.tree,
+        //   root: 0,
+        // },
         new QuickFormFactory({
           label: '吃的',
           name: 'radio-2',
@@ -700,7 +700,7 @@ export class AppComponent implements OnInit {
         new QuickFormFactory({
           label: '多选测试-2',
           name: 'popup-checkbox-3',
-          require: true,
+          require: false,
           value: ['A', 1],
           text: {A: '看你的选项', 1: '选项1'},
         }).popupCheckbox(),
@@ -1008,7 +1008,7 @@ export class AppComponent implements OnInit {
               uploadUrl: '/ckfinder/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
             }
           },
-          require: true,
+          require: false,
         }).ckEditor(),
         // new QuickFormFactory({
         //   label: '富文本内容',
@@ -1077,7 +1077,7 @@ export class AppComponent implements OnInit {
           download: 'http://api.oss.localhost'
         }).file(),
       ],
-      title: "活命1",
+      title: "活命2",
       column: ['4', 14],
     },
     {

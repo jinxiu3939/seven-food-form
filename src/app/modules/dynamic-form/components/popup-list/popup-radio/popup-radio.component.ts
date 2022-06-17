@@ -7,6 +7,7 @@ import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { PopupRadioModel, Option } from '../../../dynamic-form.options';
 import { LangProvider } from '../../../providers/data/lang.provider';
+import { ComponentReset } from '../../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-popup-radio',
@@ -15,7 +16,7 @@ import { LangProvider } from '../../../providers/data/lang.provider';
     './popup-radio.component.scss',
   ],
 })
-export class PopupRadioComponent implements OnInit {
+export class PopupRadioComponent implements OnInit, ComponentReset {
 
   @Input() model: PopupRadioModel;
   @Input() form: FormGroup;
@@ -38,6 +39,14 @@ export class PopupRadioComponent implements OnInit {
 
   ngOnInit() {
     this.text = this.model.text || '';
+    this.loadChecked();
+  }
+
+  resetModel() {
+    this.loadChecked();
+  }
+
+  loadChecked() {
     if (this.model.options) {
       const current = this.model.options.filter((item) => item.value === this.model.value);
       if (current.length > 0) {

@@ -4,6 +4,8 @@ import {
   Input,
   EventEmitter,
   OnInit,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 
 import { CheckBoxTree } from '../../../dynamic-form.options';
@@ -16,7 +18,7 @@ import { CheckBoxTree } from '../../../dynamic-form.options';
     './checkbox-node.component.scss',
   ],
 })
-export class CheckboxNodeComponent implements OnInit {
+export class CheckboxNodeComponent implements OnInit, OnChanges {
 
   @Input() public checked: any[]; // 选项值，节点树中选中的节点
   @Input() public disabled: boolean; // 是否禁用
@@ -25,6 +27,16 @@ export class CheckboxNodeComponent implements OnInit {
   @Output() public checkedChange = new EventEmitter<any[]>(); // 选项改变事件
 
   ngOnInit() {
+    this.loadChecked();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.checked) {
+      this.loadChecked();
+    }
+  }
+
+  loadChecked() {
     this.tree.checked = this.checkChecked(this.tree.value);
   }
 

@@ -10,6 +10,7 @@ import * as XLSX from 'xlsx';
 
 import { SpreadsheetModel } from '../../dynamic-form.options';
 import { ResourceProvider } from '../../providers/data/resource-provider';
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { LangProvider } from '../../providers/data/lang.provider';
 
 type AOA = any[][];
@@ -19,7 +20,7 @@ type AOA = any[][];
   templateUrl: './spreadsheet.component.html',
   styleUrls: ['./spreadsheet.component.scss'],
 })
-export class SpreadsheetComponent implements OnInit {
+export class SpreadsheetComponent implements OnInit, ComponentReset {
 
   @Input() model: SpreadsheetModel;
   @Input() form: FormGroup;
@@ -43,6 +44,9 @@ export class SpreadsheetComponent implements OnInit {
   ngOnInit() {
     this.uploader.setOptions(this.model.uploadConfig);
     this.loading = false;
+  }
+
+  resetModel() {
   }
 
   /*

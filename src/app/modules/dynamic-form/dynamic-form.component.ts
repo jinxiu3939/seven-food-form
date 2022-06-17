@@ -15,7 +15,7 @@ export class DynamicFormComponent implements OnChanges {
   @Input() loading: boolean; // 表单状态
   @Input() layout: string; // 布局
   @Input() buttons: FormButton[]; // 自定义操作按钮
-  @Input() lang: string = 'en'; // 语言包代码
+  @Input() lang: string = 'zh'; // 语言包代码
   @Input() defaultButton = true; // 是否使用默认按钮
   @Input() searchButton = false; // 是否使用检索按钮
 
@@ -26,6 +26,7 @@ export class DynamicFormComponent implements OnChanges {
   form: FormGroup; // 响应式表单
   complete: boolean; // 表单是否构建完毕
   textContainer: any; // 语言包
+  reload: number; // 重新加载时间戳
 
   constructor(private builder: FormBuilder, private langProvider: LangProvider) {
     this.textContainer = this.langProvider.lang; // 设置语言包
@@ -120,6 +121,7 @@ export class DynamicFormComponent implements OnChanges {
    */
   onReset() {
     this.form.reset();
+    this.reload = (new Date()).getMilliseconds();
     this.formReset.emit(true);
   }
 

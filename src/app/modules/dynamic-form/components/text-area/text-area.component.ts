@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 
 import { TextAreaModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
+import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
   selector: 'ngx-text-area',
@@ -14,7 +15,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
     '../../dynamic-form.component.scss',
   ],
 })
-export class TextAreaComponent {
+export class TextAreaComponent implements ComponentReset {
   @Input() model: TextAreaModel;
   @Input() form: FormGroup;
 
@@ -22,6 +23,9 @@ export class TextAreaComponent {
 
   constructor(private langProvider: LangProvider) {
     this.lang = langProvider.lang;
+  }
+
+  resetModel() {
   }
 
   get invalid() {

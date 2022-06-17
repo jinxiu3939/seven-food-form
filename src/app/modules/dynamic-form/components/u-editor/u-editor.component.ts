@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
  
 import { UEditorModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
+import { ComponentReset } from '../../providers/interface/component-reset';
  
 @Component({
   selector: 'ngx-u-editor',
@@ -15,7 +16,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
     `./u-editor.component.scss`,
   ],
 })
-export class BaiduUEditorComponent implements OnInit {
+export class BaiduUEditorComponent implements OnInit, ComponentReset {
   @Input() model: UEditorModel;
   @Input() form: FormGroup;
 
@@ -31,6 +32,9 @@ export class BaiduUEditorComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
     }, 3000);
+  }
+
+  resetModel() {
   }
  
   get invalid() {

@@ -81,7 +81,11 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 
 ##### defaultButton
 
-是否显示默认的提交和重置按钮
+是否显示默认按钮
+
+##### searchButton
+
+是否显示检索按钮
 
 ###### 对象自变量
 
@@ -129,6 +133,7 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
+- all?: boolean; // 是否显示全部
 - disabled: boolean; // 是否禁用
 - options: Option<string | number | boolean>[]; // 选项列表
 - width: number; // 选项宽度
@@ -312,6 +317,7 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 - options: Option<string | number>[]; // 选项列表
 - readonly: boolean; // 是否只读
 - searchConfig: SearchConfig; // 检索配置
+- size: string; // 尺寸
 - text: string; // 显示文本
 
 > 应该自定义服务实现检索提供者接口：`SearchProvider`
@@ -333,6 +339,7 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 - disabled: boolean; // 是否禁用
 - options: Option<string | number>[]; // 选项列表
 - searchConfig: SearchConfig; // 检索配置
+- size: string; // 尺寸
 - text: string[]; // 显示文本
 
 > 应该自定义服务实现检索提供者接口：`SearchProvider`

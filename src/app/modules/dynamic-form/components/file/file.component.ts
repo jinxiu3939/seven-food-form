@@ -4,6 +4,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { FileModel } from '../../dynamic-form.options';
 
 @Component({
@@ -13,10 +14,13 @@ import { FileModel } from '../../dynamic-form.options';
     '../../dynamic-form.component.scss',
   ],
 })
-export class FileComponent {
+export class FileComponent implements ComponentReset {
 
   @Input() model: FileModel;
   @Input() form: FormGroup;
+
+  resetModel() {
+  }
 
   setValue(e): void {
     if (e.target.files.length > 0) {

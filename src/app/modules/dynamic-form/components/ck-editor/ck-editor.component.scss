@@ -22,6 +22,10 @@
     overflow: scroll;
   }
 
+  .form-control-editor {
+    border: 1px solid nb-theme(text-basic-color);
+  }
+
   .form-control-danger {
     border: 1px solid nb-theme(text-danger-color);
   }

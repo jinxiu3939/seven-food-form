@@ -1,5 +1,5 @@
 <div [formGroup]="form">
-  <div *ngIf="! model.disabled" [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}">
+  <div *ngIf="! model.disabled" [ngClass]="{'form-control-editor': true, 'form-control-success': valid, 'form-control-danger': invalid}">
     <ckeditor [formControlName]="model.name"
               [config]="model.editorConfig"
               [editor]="model.editor"

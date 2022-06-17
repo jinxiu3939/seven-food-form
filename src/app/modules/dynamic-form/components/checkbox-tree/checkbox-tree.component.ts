@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { ComponentReset } from '../../providers/interface/component-reset';
 import { CheckboxTreeModel } from '../../dynamic-form.options';
 
 @Component({
@@ -10,10 +11,14 @@ import { CheckboxTreeModel } from '../../dynamic-form.options';
     '../../dynamic-form.component.scss',
   ],
 })
-export class CheckboxTreeComponent {
+export class CheckboxTreeComponent implements ComponentReset {
 
   @Input() form: FormGroup;
   @Input() model: CheckboxTreeModel;
+
+  resetModel() {
+    this.model.tree.checked = false
+  }
 
   get invalid() {
     const control = this.form.controls[this.model.name];
