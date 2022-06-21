@@ -17,13 +17,13 @@
 
   .ck-editor-view {
     max-width: 100%;
-    border: 1px dashed #bbb;
+    border: 1px dashed nb-theme(border-basic-color-4);
     padding: 1rem;
     overflow: scroll;
   }
 
   .form-control-editor {
-    border: 1px solid nb-theme(text-basic-color);
+    border: 1px solid nb-theme(border-basic-color-4);
   }
 
   .form-control-danger {

@@ -28,7 +28,8 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
   public records: Option<string | number>[] = []; // 结果集
   private tmpRecords: Option<string | number>[][] = []; // 临时结果集
   private windowRef: NbWindowRef;
-  private checked: Option<string | number>[];
+  private checked: Option<string | number>[]; // 选中的结果集
+  private canceled: any[] = []; // 取消选中的值
   public page: number; // 列表分页
   lang: any;
 
@@ -44,9 +45,13 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
   }
 
   resetModel() {
-    this.loadChecked();
+    this.loadChecked(); // 加载选中项
+    this.canceled = []; // 初始化取消项
   }
 
+  /**
+   * 加载选中项
+   */
   loadChecked() {
     if (this.model.options) {
       this.checked = this.model.options.filter((item) => this.model.value.includes(item.value));
@@ -73,7 +78,8 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
    * 选择
    */
   choose() {
-    this.resetRecords(true);
+    this.resetModel(); // 重置模型
+    this.resetRecords(true); // 重置异步检索
     this.windowRef = this.windowService.open(this.contentTemplate, {
       title: this.lang.choose + ` - ` + this.model.label,
       windowClass: 'popup-list-window',
@@ -87,6 +93,7 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
     this.model.value = [];
     this.form.controls[this.model.name].setValue(null); // 清空表单值
     this.checked = [];
+    this.canceled = [];
   }
 
   /**
@@ -98,25 +105,46 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
     this.form.controls[this.model.name].setValue(this.model.value);
   }
 
+  /**
+   * 取消选择
+   */
   cancel() {
     this.windowRef.close();
   }
 
+  /**
+   * 提交选择
+   */
   submit() {
     if (this.checked) {
-      this.checked.forEach(element => {
+      this.checked.map(element => {
         if (! this.model.value.includes(element.value)) {
           this.model.value.push(element.value);
           this.text[element.value] = element.text;
         }
       });
-      this.form.controls[this.model.name].setValue(this.model.value);
     }
+    if (this.canceled) {
+      this.model.value = this.model.value.filter((item) => !this.canceled.includes(item));
+    }
+    this.form.controls[this.model.name].setValue(this.model.value);
     this.windowRef.close();
   }
 
+  /**
+   * 勾选记录
+   * @param item 记录
+   */
   selectedItem(item) {
-    this.checked.push(item);
+    if (this.checked.includes(item)) { // 选中状态
+      /* 取消勾选 */
+      this.canceled.push(item.value);
+      this.checked = this.checked.filter((i) => item !== i);
+    } else { // 未选中状态
+      /* 勾选 */
+      this.checked.push(item);
+      this.canceled = this.canceled.filter((i) => item.value !== i);
+    }
   }
 
   /**
@@ -126,6 +154,10 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
     this.page ++;
   }
 
+  /**
+   * 检索
+   * @param records 检索记录
+   */
   search(records) {
     const index = this.page - 1;
     if (Array.isArray(records) && records.length > 0 && ! this.tmpRecords[index]) {
@@ -134,6 +166,10 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
     }
   }
 
+  /**
+   * 重置异步检索
+   * @param flag 
+   */
   resetRecords(flag) {
     if (flag) {
       this.records = [];
