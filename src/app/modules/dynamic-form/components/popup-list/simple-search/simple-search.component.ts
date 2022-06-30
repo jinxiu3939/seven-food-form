@@ -29,9 +29,9 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   @Output() public finish = new EventEmitter<Option<string| number>[]>(); // 检索完成
   @Output() public reload = new EventEmitter<boolean>(); // 重新检索
 
-  /* 检索条件过滤 */
+  /* 检索条件流 */
   private searchTerms = new Subject<{value: string, key: number}>(); // 检索对象
-  files$: Observable<any[]>;
+  files$: Observable<any[]>; // 可观察对象流
   searchOptions: Option<string | number>[][] = []; // 下拉框条件临时存储
 
   public condition: any = {}; // 检索条件

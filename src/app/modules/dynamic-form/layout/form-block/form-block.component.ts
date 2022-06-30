@@ -15,6 +15,7 @@ export class FormBlockComponent {
   @Input() column: number[]; // 列宽度
   @Input() display: string = ''; // 样式
   @Input() reload: number; // 重新加载
+  @Input() itemWidth: string = ''; // 宽度
 
   lang: any;
 

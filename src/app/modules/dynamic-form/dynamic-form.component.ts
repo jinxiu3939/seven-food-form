@@ -18,6 +18,7 @@ export class DynamicFormComponent implements OnChanges {
   @Input() lang: string = 'zh'; // 语言包代码
   @Input() defaultButton = true; // 是否使用默认按钮
   @Input() searchButton = false; // 是否使用检索按钮
+  @Input() inlineButtonWidth = ''; // 行内布局时，按钮的宽度
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
@@ -27,6 +28,7 @@ export class DynamicFormComponent implements OnChanges {
   complete: boolean; // 表单是否构建完毕
   textContainer: any; // 语言包
   reload: number; // 重新加载时间戳
+  blockInValid: number[] = []; // 字段分组验证是否错误
 
   constructor(private builder: FormBuilder, private langProvider: LangProvider) {
     this.textContainer = this.langProvider.lang; // 设置语言包
@@ -56,19 +58,23 @@ export class DynamicFormComponent implements OnChanges {
       const models = [];
       if (Array.isArray(this.models)) {
         /* 格式化表单布局 */
-        this.models = this.models.map(block => {
+        this.models = this.models.map((block, i) => {
           if (block.items && Array.isArray(block.items)) {
             models.push(...block.items);
             block.items = this.sort(block.items); // 排序
+            this.blockInValid[i] = 0; // 初始化字段分组验证容器
           } else {
             block.items = [];
           }
-          block.column = [this.labelWidth(block.column), this.contentWidth(block.column)];
+          if (block.column) {
+            block.column = [this.labelWidth(block.column), this.contentWidth(block.column)];
+          }
           return block;
         });
       } else {
         this.models = [];
       }
+
       /* 构建表单 */
       models.forEach(model => group.addControl(model.name, this.builder.control(
         {value: model.value, disabled: model.disabled}, // 默认值
@@ -76,6 +82,16 @@ export class DynamicFormComponent implements OnChanges {
       )));
     }
     return group;
+  }
+
+  isBlockInvalid(i) {
+    this.blockInValid[i] = 0;
+    this.models[i].items.map(item => {
+      if (this.form.controls[item.name].invalid) {
+        this.blockInValid[i]++;
+      }
+    });
+    return this.blockInValid[i];
   }
 
   /**

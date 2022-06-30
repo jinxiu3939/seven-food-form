@@ -66,8 +66,8 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 
 - tab
 - step
-- inline
-- block，**default**
+- inline，行内布局，内容和按钮在同一行
+- ul，**default**
 
 ##### models
 
@@ -86,6 +86,13 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 ##### searchButton
 
 是否显示检索按钮
+
+##### inlineButtonWidth
+
+行内布局时，按钮列的宽度。默认值：''
+
+- small，内容4列，按钮宽度15%
+- 其他，内容3列，按钮宽度25%
 
 ###### 对象自变量
 

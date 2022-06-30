@@ -43,6 +43,10 @@
     }
   }
 
+  .medium-inline-group {
+    width: 25%;
+  }
+
   .form-check-inline {
     margin-right: 0.75rem;
   }
@@ -63,12 +67,23 @@
         list-style-type: none;
   
         h3 {
+          position: relative;
           padding-right: 2rem;
           border-bottom: 1px solid nb-theme(outline-color);
           font-size: 1.25rem;
           text-align: right;
         }
       }
+    }
+  }
+
+  .search-small-inline {
+    .inline-block {
+      width: 85%;
+    }
+
+    .inline-operation {
+      width: 15%;
     }
   }
 }

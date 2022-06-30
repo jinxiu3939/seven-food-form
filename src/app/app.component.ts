@@ -726,7 +726,7 @@ export class AppComponent implements OnInit {
         }).popupCheckbox(),
       ],
       title: "活命",
-      column: 3,
+      // column: 3,
     }
   ];
   images = [
@@ -1039,20 +1039,6 @@ export class AppComponent implements OnInit {
         //     token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
         //   },
         // }).uEditor(),
-        /* {
-          label: '下拉框',
-          name: 'drop-down-3',
-          type: 'drop-down-box',
-          value: '气球是怎么飞起来的呢？',
-          help: 'this is a text area',
-          options: [
-            { text: '苹果', value: 'apple', title : '一种水果' },
-            { text: '梨', value: 'pear', title : '一种水果' },
-          ],
-          order: 1,
-          placeholder: '',
-          validator: '',
-        }, */
         new QuickFormFactory({
           clear: true,
           data: "datePicker",
@@ -1110,6 +1096,21 @@ export class AppComponent implements OnInit {
         //     token: '33567clZ3oAzAMzlFq5JvCwXxwvL1G9RxtjXox7ZkuC2cGSDaZv0',
         //   },
         // }).uEditor(),
+        {
+          label: '下拉框',
+          name: 'drop-down-3',
+          type: 'drop-down-box',
+          value: '',
+          help: 'this is a text area',
+          options: [
+            { text: '苹果', value: 'apple', title : '一种水果' },
+            { text: '梨', value: 'pear', title : '一种水果' },
+          ],
+          require: true,
+          order: 1,
+          placeholder: '',
+          validator: '',
+        },
       ],
       title: "富文本"
     },

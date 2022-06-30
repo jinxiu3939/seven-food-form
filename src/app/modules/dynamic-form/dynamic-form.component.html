@@ -1,6 +1,6 @@
 <div class="dynamic-form">
   <form *ngIf="form"
-        [ngClass]="{'form-inline': layout==='inline'}"
+        [ngClass]="{'form-inline': layout==='inline', 'search-small-inline': inlineButtonWidth==='small'}"
         [formGroup]="form"
         [nbSpinner]="loading"
         nbSpinnerStatus="info"
@@ -8,7 +8,7 @@
     <ng-container *ngIf="complete">
       <ng-container [ngSwitch]="layout">
         <nb-tabset *ngSwitchCase="'tab'">
-          <nb-tab *ngFor="let block of models" [tabTitle]="block.title" [lazyLoad]="true">
+          <nb-tab *ngFor="let block of models; let i = index" [tabTitle]="block.title" [lazyLoad]="true" badgeStatus="danger" [badgeText]="isBlockInvalid(i)">
             <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form" [reload]="reload"></ngx-form-block>
           </nb-tab>
         </nb-tabset>
@@ -18,14 +18,22 @@
           </nb-step>
         </nb-stepper>
         <ul *ngSwitchDefault class="default-block" [ngClass]="{'inline-block': layout==='inline', 'custom-condition': layout==='inline'}">
-          <li *ngFor="let block of models">
-            <h3 *ngIf="block.title">{{ block.title }}</h3>
+          <li *ngFor="let block of models; let i = index">
+            <h3 *ngIf="block.title">
+              {{ block.title }}
+              <nb-badge *ngIf="isBlockInvalid(i) > 0"
+                position="right"
+                status="danger"
+                [text]="blockInValid[i]">
+              </nb-badge>
+            </h3>
             <ngx-form-block *ngIf="block.items"
                             [models]="block.items"
                             [column]="block.column"
                             [form]="form"
                             [display]="layout"
                             [reload]="reload"
+                            [itemWidth]="inlineButtonWidth==='small' ? 'medium' : ''"
                             [ngClass]="{'form-inline': layout==='inline'}">
             </ngx-form-block>
           </li>
