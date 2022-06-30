@@ -981,13 +981,13 @@ export class AppComponent implements OnInit {
               format: "option",
               system_model_id: 1
             },
-            endpoint: '/hapi/heritage/archive/index',
+            endpoint: '/api/log/error/index',
             mode: 'async',
             result: [],
             size: 30,
             headers: {
-              'Token': '3607pw44121O8YzG/TOUAUJX/t6lNPJwLT0v/+r8JZtBfj9LmZRz',
-              'App-Key': 'kW6pF8q&',
+              'Token': 'b01dngfAbZaDKdX/ODLHrYd0pUxxLGlFHW/0W7PrbZtju65PeNkf',
+              'App-Key': 'wen-DFOeite.hte',
             },
           },
           value: '',

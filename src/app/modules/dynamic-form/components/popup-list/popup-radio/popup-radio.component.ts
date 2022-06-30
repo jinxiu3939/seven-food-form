@@ -4,6 +4,8 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
+import { Subject, Observable, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { PopupRadioModel, Option } from '../../../dynamic-form.options';
 import { LangProvider } from '../../../providers/data/lang.provider';
@@ -31,6 +33,10 @@ export class PopupRadioComponent implements OnInit, ComponentReset {
   public page: number; // 列表分页
   lang: any;
 
+  /* 分页流 */
+  private pageTerms = new Subject<number>(); // 页码对象
+  pages$: Observable<number>; // 可观察对象流
+
   constructor(private windowService: NbWindowService, private langProvider: LangProvider) {
     this.records = [];
     this.page = 1;
@@ -38,6 +44,17 @@ export class PopupRadioComponent implements OnInit, ComponentReset {
   }
 
   ngOnInit() {
+    /* 分页流 */
+    this.pageTerms.pipe(
+      debounceTime(700),
+
+      // ignore new term if same as previous term
+      distinctUntilChanged(),
+
+      // switch to new search observable each time the term changes
+      switchMap((term) => this.pages$ = of(term)), // 获取检索结果
+    ).subscribe(() => this.nextPage()); // 下一页
+
     this.text = this.model.text || '';
     this.loadChecked();
   }
@@ -100,7 +117,14 @@ export class PopupRadioComponent implements OnInit, ComponentReset {
    * 加载更多
    */
   loadNext() {
-    this.page ++;
+    this.pageTerms.next(Math.random());
+  }
+
+  /**
+   * 下一页
+   */
+  nextPage() {
+    this.pages$.subscribe(() => this.page++ );
   }
 
   search(records) {

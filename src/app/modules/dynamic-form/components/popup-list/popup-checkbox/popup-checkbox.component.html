@@ -22,7 +22,7 @@
                      [page]="page"
                      (reload)="resetRecords($event)"
                      (finish)="search($event)"></ngx-simple-search>
-  <nb-list style="height: 500px; overflow: auto;" nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext()">
+  <nb-list *ngIf="records && records.length > 0" style="height: 500px; overflow: auto;" nbInfiniteList [threshold]="50" (bottomThreshold)="loadNext()">
     <nb-list-item *ngFor="let item of records" style="position: relative;">
       <nb-checkbox [checked]="model.value.includes(item.value)"             
                    (checkedChange)="selectedItem(item)">
@@ -31,10 +31,8 @@
       </nb-checkbox>
       <nb-badge *ngIf="item.items" [text]="item.items" style="top: 1.6rem; right: 0.5rem"></nb-badge>
     </nb-list-item>
-    <nb-list-item *ngIf="!records || records.length === 0">
-      <nb-alert outline="info" style="width: 100%;">{{ lang.search_no_data }}</nb-alert>
-    </nb-list-item>
   </nb-list>
+  <nb-alert *ngIf="!records || records.length === 0" outline="info" style="height: 500px; width: 100%;">{{ lang.search_no_data }}</nb-alert>
   <div>
     <button style="margin-right: 0.5rem" nbButton hero status="warning" (click)="cancel()">{{ lang.cancel }}</button>
     <button nbButton hero status="info" (click)="submit()">{{ lang.sure }}</button>

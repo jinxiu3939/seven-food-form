@@ -30,13 +30,12 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   @Output() public reload = new EventEmitter<boolean>(); // 重新检索
 
   /* 检索条件流 */
-  private searchTerms = new Subject<{value: string, key: number}>(); // 检索对象
+  private searchTerms = new Subject<{value: string, key: number}>(); // 检索条件对象
   files$: Observable<any[]>; // 可观察对象流
   searchOptions: Option<string | number>[][] = []; // 下拉框条件临时存储
 
   public condition: any = {}; // 检索条件
   public loading: boolean; // 数据加载标志位
-  private current: number; // 当前页
   lang: any;
 
   constructor(private provider: SearchProvider, private langProvider: LangProvider) {
@@ -45,6 +44,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    /* 条件项检索流 */
     this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
@@ -55,24 +55,19 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
       // switch to new search observable each time the term changes
       switchMap((term) => this.files$ = this.filterConditionOption(term)), // 获取检索结果
     ).subscribe(() => this.showConditionOption()); // 显示检索结果
+
+    this.config.conditions.forEach((cond, f) => {
+      this.condition[cond.value] = null;
+      this.searchOptions[f] = cond.options;
+    }); // 检索条件初始化
   }
 
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === 'page' && changes[propName].currentValue) {
-        if (this.current !== changes[propName].currentValue) {
-          this.current = changes[propName].currentValue;
-          this.finishSearch(); // 分页变化后，发起检索
-        }
+        this.finishSearch(changes[propName].currentValue); // 分页变化后，发起检索
       } else if (propName === 'config') {
-        this.config.conditions.forEach((cond, f) => {
-          this.condition[cond.value] = null;
-          this.searchOptions[f] = cond.options;
-        }); // 检索条件初始化
-        if (this.config.endpoint) {
-          this.provider.setApi(this.config.endpoint);
-        }
-        this.finishSearch(); // 配置改变后，重新检索
+        this.provider.setApi(this.config.endpoint); // 设置检索接口
       }
     }
   }
@@ -81,18 +76,13 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
    * 检索
    */
   search(): void {
-    this.page = 1;
-    this.current = 1;
     this.reload.emit(true);
-    this.finishSearch();
+    this.finishSearch(1);
   }
 
-  private finishSearch() {
+  private finishSearch(page: number) {
     this.loading = true;
-    this.getResult().pipe(
-      // wait 500ms, 防止input参数变化之后的请求风暴
-      debounceTime(500),
-    ).subscribe((result) => {
+    this.getResult(page).subscribe((result) => {
       this.finish.emit(result);
       this.loading = false;
     });
@@ -101,27 +91,26 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   /**
    * 获取结果集
    */
-  private getResult(): Observable<Option<string| number>[]> {
+  private getResult(page): Observable<Option<string| number>[]> {
     if (this.config.mode === 'async') {
-      return this.fetch(); // 异步获取数据
+      return this.fetch(page); // 异步获取数据
     } else {
-      return this.filter(); // 同步检索
+      return this.filter(page); // 同步检索
     }
   }
 
   /**
    * 抓取异步结果集
    */
-  private fetch(): Observable<Option<string| number>[]> {
+  private fetch(page: number): Observable<Option<string| number>[]> {
     const param = deepExtend({}, this.config.additionalParameter, this.condition);
-    this.provider.setApi(this.config.endpoint); // 重新设置检索接口
-    return this.provider.getPage(this.page, this.config.size, param);
+    return this.provider.getPage(page, this.config.size, param);
   }
 
   /**
    * 过滤同步结果集
    */
-  private filter(): Observable<Option<string| number>[]> {
+  private filter(page: number): Observable<Option<string| number>[]> {
     let result: Option<string| number>[];
     result = this.items.filter((item) => {
       // 检索
@@ -138,7 +127,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
         }
       }
       return true; // 默认显示全部
-    }).slice((this.page - 1) * this.config.size, this.page * this.config.size); // 分页
+    }).slice((page - 1) * this.config.size, page * this.config.size); // 分页
     return of(result);
   }
 
