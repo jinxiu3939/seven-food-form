@@ -3,8 +3,6 @@ import { FormGroup } from '@angular/forms';
 import {
   NbWindowService,
   NbWindowRef,
-  NbSortDirection,
-  NbSortRequest,
   NbTreeGridDataSource,
   NbTreeGridDataSourceBuilder,
 } from '@nebular/theme';
@@ -31,8 +29,6 @@ export class PopupTreeComponent implements OnInit, ComponentReset {
   public defaultColumns = [ 'text', 'title', 'items'];
   public allColumns = [ this.customColumn, ...this.defaultColumns ];
   public dataSource: NbTreeGridDataSource<Option<string | number>>;
-  public sortColumn: string;
-  public sortDirection: NbSortDirection = NbSortDirection.NONE;
   public text: string; // 显示内容
   private data: TreeNode<Option<string | number>>[]; // 数据
   private selected: Option<string | number>; // 当前选择的节点
@@ -109,18 +105,6 @@ export class PopupTreeComponent implements OnInit, ComponentReset {
 
   private loadData() {
     this.dataSource = this.dataSourceBuilder.create(this.data); // 加载数据
-  }
-
-  updateSort(sortRequest: NbSortRequest): void {
-    this.sortColumn = sortRequest.column;
-    this.sortDirection = sortRequest.direction;
-  }
-
-  getSortDirection(column: string): NbSortDirection {
-    if (this.sortColumn === column) {
-      return this.sortDirection;
-    }
-    return NbSortDirection.NONE;
   }
 
   getShowOn(index: number) {

@@ -17,6 +17,185 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent implements OnInit {
   title = 'seven-food-form';
+  treeData = [
+    {
+      "data": {
+        "text": "电子",
+        "value": 1,
+        "title": "电子",
+        "items": null
+      },
+      "children": [
+        {
+          "data": {
+            "text": "手机壳",
+            "value": 4,
+            "title": "手机壳",
+            "items": null
+          },
+          "children": [
+            {
+              "data": {
+                "text": "铁质",
+                "value": 5,
+                "title": "铁质",
+                "items": null
+              },
+              "children": [],
+              "expanded": true
+            },
+            {
+              "data": {
+                "text": "塑料",
+                "value": 6,
+                "title": "塑料",
+                "items": null
+              },
+              "children": [],
+              "expanded": true
+            }
+          ],
+          "expanded": true
+        }
+      ],
+      "expanded": true
+    },
+    {
+      "data": {
+        "text": "化工",
+        "value": 2,
+        "title": "化工",
+        "items": null
+      },
+      "children": [],
+      "expanded": false
+    },
+    {
+      "data": {
+        "text": "设备",
+        "value": 7,
+        "title": "设备",
+        "items": null
+      },
+      "children": [
+        {
+          "data": {
+            "text": "电气设备",
+            "value": 8,
+            "title": "电气设备",
+            "items": null
+          },
+          "children": [],
+          "expanded": false
+        },
+        {
+          "data": {
+            "text": "机械设备",
+            "value": 9,
+            "title": "机械设备",
+            "items": null
+          },
+          "children": [
+            {
+              "data": {
+                "text": "1马力",
+                "value": 10,
+                "title": "1马力",
+                "items": null
+              },
+              "children": [],
+              "expanded": false
+            },
+            {
+              "data": {
+                "text": "2马力",
+                "value": 11,
+                "title": "2马力",
+                "items": null
+              },
+              "children": [],
+              "expanded": false
+            }
+          ],
+          "expanded": false
+        }
+      ],
+      "expanded": false
+    },
+    {
+      "data": {
+        "text": "零件",
+        "value": 12,
+        "title": "零件",
+        "items": null
+      },
+      "children": [
+        {
+          "data": {
+            "text": "进口",
+            "value": 13,
+            "title": "进口",
+            "items": null
+          },
+          "children": [
+            {
+              "data": {
+                "text": "免税",
+                "value": 15,
+                "title": "免税",
+                "items": null
+              },
+              "children": [],
+              "expanded": false
+            },
+            {
+              "data": {
+                "text": "奢侈品",
+                "value": 16,
+                "title": "奢侈品",
+                "items": null
+              },
+              "children": [],
+              "expanded": false
+            }
+          ],
+          "expanded": false
+        },
+        {
+          "data": {
+            "text": "国产",
+            "value": 14,
+            "title": "国产",
+            "items": null
+          },
+          "children": [
+            {
+              "data": {
+                "text": "本地",
+                "value": 17,
+                "title": "本地",
+                "items": null
+              },
+              "children": [],
+              "expanded": false
+            },
+            {
+              "data": {
+                "text": "外地",
+                "value": 18,
+                "title": "外地",
+                "items": null
+              },
+              "children": [],
+              "expanded": false
+            }
+          ],
+          "expanded": false
+        }
+      ],
+      "expanded": false
+    }
+  ];
   options = [
     { text: '选项A', value: 'A', title : '选项A', items: '99+' },
     { text: '选项B', value: 'B', title : '选项B' },
@@ -147,185 +326,7 @@ export class AppComponent implements OnInit {
           "disabled": false,
           "mode": "sync",
           "text": "",
-          "tree": [
-            {
-              "data": {
-                "text": "电子",
-                "value": 1,
-                "title": "电子",
-                "items": null
-              },
-              "children": [
-                {
-                  "data": {
-                    "text": "手机壳",
-                    "value": 4,
-                    "title": "手机壳",
-                    "items": null
-                  },
-                  "children": [
-                    {
-                      "data": {
-                        "text": "铁质",
-                        "value": 5,
-                        "title": "铁质",
-                        "items": null
-                      },
-                      "children": [],
-                      "expanded": true
-                    },
-                    {
-                      "data": {
-                        "text": "塑料",
-                        "value": 6,
-                        "title": "塑料",
-                        "items": null
-                      },
-                      "children": [],
-                      "expanded": true
-                    }
-                  ],
-                  "expanded": true
-                }
-              ],
-              "expanded": true
-            },
-            {
-              "data": {
-                "text": "化工",
-                "value": 2,
-                "title": "化工",
-                "items": null
-              },
-              "children": [],
-              "expanded": false
-            },
-            {
-              "data": {
-                "text": "设备",
-                "value": 7,
-                "title": "设备",
-                "items": null
-              },
-              "children": [
-                {
-                  "data": {
-                    "text": "电气设备",
-                    "value": 8,
-                    "title": "电气设备",
-                    "items": null
-                  },
-                  "children": [],
-                  "expanded": false
-                },
-                {
-                  "data": {
-                    "text": "机械设备",
-                    "value": 9,
-                    "title": "机械设备",
-                    "items": null
-                  },
-                  "children": [
-                    {
-                      "data": {
-                        "text": "1马力",
-                        "value": 10,
-                        "title": "1马力",
-                        "items": null
-                      },
-                      "children": [],
-                      "expanded": false
-                    },
-                    {
-                      "data": {
-                        "text": "2马力",
-                        "value": 11,
-                        "title": "2马力",
-                        "items": null
-                      },
-                      "children": [],
-                      "expanded": false
-                    }
-                  ],
-                  "expanded": false
-                }
-              ],
-              "expanded": false
-            },
-            {
-              "data": {
-                "text": "零件",
-                "value": 12,
-                "title": "零件",
-                "items": null
-              },
-              "children": [
-                {
-                  "data": {
-                    "text": "进口",
-                    "value": 13,
-                    "title": "进口",
-                    "items": null
-                  },
-                  "children": [
-                    {
-                      "data": {
-                        "text": "免税",
-                        "value": 15,
-                        "title": "免税",
-                        "items": null
-                      },
-                      "children": [],
-                      "expanded": false
-                    },
-                    {
-                      "data": {
-                        "text": "奢侈品",
-                        "value": 16,
-                        "title": "奢侈品",
-                        "items": null
-                      },
-                      "children": [],
-                      "expanded": false
-                    }
-                  ],
-                  "expanded": false
-                },
-                {
-                  "data": {
-                    "text": "国产",
-                    "value": 14,
-                    "title": "国产",
-                    "items": null
-                  },
-                  "children": [
-                    {
-                      "data": {
-                        "text": "本地",
-                        "value": 17,
-                        "title": "本地",
-                        "items": null
-                      },
-                      "children": [],
-                      "expanded": false
-                    },
-                    {
-                      "data": {
-                        "text": "外地",
-                        "value": 18,
-                        "title": "外地",
-                        "items": null
-                      },
-                      "children": [],
-                      "expanded": false
-                    }
-                  ],
-                  "expanded": false
-                }
-              ],
-              "expanded": false
-            }
-          ],
+          "tree": this.treeData,
           "value": "",
           "label": "类别",
           "name": "cat_id",
@@ -337,7 +338,9 @@ export class AppComponent implements OnInit {
           "require": true,
           "validator": "",
           "data": "popupTree",
-          readonly: false
+          readonly: false,
+          size: 'tiny',
+          filter: true,
         },
         {
           "disabled": false,
@@ -374,7 +377,8 @@ export class AppComponent implements OnInit {
           "order": 0,
           "require": false,
           "validator": "",
-          "data": "popupRadio"
+          "data": "popupRadio",
+          size: 'tiny'
         },
       ],
       "is_default": false,
@@ -726,7 +730,8 @@ export class AppComponent implements OnInit {
         }).popupCheckbox(),
       ],
       title: "活命",
-      // column: 3,
+      column: [3,9],
+      hide: true
     }
   ];
   images = [
@@ -1223,7 +1228,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.defaultModels;
+      this.models = this.realModels;
       this.inlineModels = this.modesss;
     });
   }

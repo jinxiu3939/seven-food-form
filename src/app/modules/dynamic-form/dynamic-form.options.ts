@@ -50,6 +50,8 @@ export interface ModelGroup {
   items: BaseModel<any>[]; // 表单项列表
   column?: number[]; // 列宽度
   title?: string; // 分组标题
+  size?: string; // 尺寸 'large' | 'medium' | 'small' | 'tiny'
+  hide?: boolean; // 内容是否隐藏
 }
 
 /**
@@ -445,6 +447,7 @@ export interface PopupTreeModel extends BaseModel<string | number> {
   searchParameter?: any; // 检索条件
   readonly?: boolean; // 是否只读
   size?: 'tiny' | 'small' | 'medium'; // 尺寸
+  filter?: boolean; // 是否可以检索
 }
 
 /**

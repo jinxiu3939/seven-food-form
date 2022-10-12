@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '../../../theme/styles';
+
+@include nb-install-component() {
+  .col-value {
+    padding-left: 0;
+  }
+
+  .input-group {
+    flex-wrap: nowrap;
+
+    .tiny-operation {
+      a {
+        display: flex;
+        padding: 0.15rem 0.625rem;
+      }
+    }
+  }
+}

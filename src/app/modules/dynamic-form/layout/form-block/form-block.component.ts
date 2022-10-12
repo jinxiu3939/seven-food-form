@@ -13,9 +13,9 @@ export class FormBlockComponent {
   @Input() models: BaseModel<any>[]; // 表单项
   @Input() form: FormGroup; // 响应式表单
   @Input() column: number[]; // 列宽度
-  @Input() display: string = ''; // 样式
   @Input() reload: number; // 重新加载
-  @Input() itemWidth: string = ''; // 宽度
+  @Input() size: string = 'large'; // 尺寸 'large' | 'medium' | 'small' | 'tiny'
+  @Input() hide: number; // 内容是否隐藏
 
   lang: any;
 

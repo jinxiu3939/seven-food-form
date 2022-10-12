@@ -1,6 +1,7 @@
 @import './theme/styles';
 
 @include nb-install-component() {
+  /* 通用组件样式 */
   @each $status in nb-get-statuses() {
     .text-status-#{$status} {
       color: nb-theme(text-#{$status}-color);
@@ -31,22 +32,6 @@
     width: 100%;
   }
 
-  .inline-group {
-    width: 33%;
-    margin-bottom: 0.5rem;
-
-    .col-form-label {
-      padding-right: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      text-align: right;
-    }
-  }
-
-  .medium-inline-group {
-    width: 25%;
-  }
-
   .form-check-inline {
     margin-right: 0.75rem;
   }
@@ -55,6 +40,7 @@
     padding-right: 1.5rem;
   }
 
+  /* 默认表单样式 */
   .dynamic-form {
     .default-block {
       padding: 0;
@@ -75,27 +61,51 @@
         }
       }
     }
+
+    .form-operation {
+      text-align: center;
+
+      nb-icon {
+        margin-right: 1rem;
+        float: right;
+      }
+    }
   }
 
-  .search-small-inline {
-    .inline-block {
-      width: 85%;
-    }
+  /* 行内表单样式 */
+  .inline-group {
+    width: 33%; // 每行显示3个
+    max-height: 4.5rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
 
-    .inline-operation {
-      width: 15%;
+    .col-form-label {
+      padding-right: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-align: right;
     }
   }
-}
 
-.inline-block {
-  width: 75%;
+  .medium-group {
+    width: 50%; // 每行显示2个
+  }
 
-  h3 {
+  .small-group {
+    width: 25%; // 每行显示4个
+  }
+
+  .tiny-group {
+    width: 20%; // 每行显示5个
+  }
+
+  /* 折叠样式 */
+  .fold-block {
+    height: 4.5rem;
+    overflow: hidden;
+  }
+
+  .hidden {
     display: none;
   }
-}
-
-.inline-operation {
-  width: 25%;
 }

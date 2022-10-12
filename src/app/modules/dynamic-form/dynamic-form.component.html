@@ -1,6 +1,5 @@
 <div class="dynamic-form">
   <form *ngIf="form"
-        [ngClass]="{'form-inline': layout==='inline', 'search-small-inline': inlineButtonWidth==='small'}"
         [formGroup]="form"
         [nbSpinner]="loading"
         nbSpinnerStatus="info"
@@ -17,7 +16,7 @@
             <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form" [reload]="reload"></ngx-form-block>
           </nb-step>
         </nb-stepper>
-        <ul *ngSwitchDefault class="default-block" [ngClass]="{'inline-block': layout==='inline', 'custom-condition': layout==='inline'}">
+        <ul *ngSwitchDefault class="default-block" [ngClass]="{'fold-block': !formExpand, 'custom-condition': layout==='inline'}">
           <li *ngFor="let block of models; let i = index">
             <h3 *ngIf="block.title">
               {{ block.title }}
@@ -26,14 +25,15 @@
                 status="danger"
                 [text]="blockInValid[i]">
               </nb-badge>
+              <nb-icon [icon]="block.hide ? 'arrowhead-down' : 'arrowhead-up'" status="info" (click)="foldBlock(i)"></nb-icon>
             </h3>
             <ngx-form-block *ngIf="block.items"
                             [models]="block.items"
                             [column]="block.column"
+                            [hide]="block.hide"
                             [form]="form"
-                            [display]="layout"
                             [reload]="reload"
-                            [itemWidth]="inlineButtonWidth==='small' ? 'medium' : ''"
+                            [size]="block.size"
                             [ngClass]="{'form-inline': layout==='inline'}">
             </ngx-form-block>
           </li>
@@ -41,22 +41,21 @@
       </ng-container>
     </ng-container>
     <ng-content select="[name='other-models']"></ng-content>
-    <div class="form-group form-operation row" [ngClass]="{'inline-operation': layout==='inline', 'custom-operation': layout==='inline'}">
-      <div [ngClass]="{'offset-4': layout!=='inline', 'col-8': layout!=='inline'}">
-        <ng-container *ngIf="defaultButton">
-          <button type="submit" class="btn btn-success" [disabled]="!form.valid">{{ textContainer.submit }}</button>
-          <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
-        </ng-container>
-        <ng-container *ngIf="searchButton">
-          <button type="submit" class="btn btn-success">{{ textContainer.search }}</button>
-          <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
-        </ng-container>
-        <ng-container *ngIf="buttons">
-          <button *ngFor="let btn of buttons" type="button" class="btn btn-primary" (click)="onOperate(btn)">
-            {{ btn.value }}
-          </button>
-        </ng-container>
-      </div>
+    <div class="form-group form-operation" [ngClass]="{'custom-operation': layout==='inline'}">
+      <ng-container *ngIf="defaultButton">
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid">{{ textContainer.submit }}</button>
+        <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
+      </ng-container>
+      <ng-container *ngIf="searchButton">
+        <button type="submit" class="btn btn-success">{{ textContainer.search }}</button>
+        <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
+      </ng-container>
+      <ng-container *ngIf="buttons">
+        <button *ngFor="let btn of buttons" type="button" class="btn btn-primary" (click)="onOperate(btn)">
+          {{ btn.value }}
+        </button>
+      </ng-container>
+      <nb-icon *ngIf="layout==='inline'" [icon]="formFoldIcon" status="info" (click)="foldForm()"></nb-icon>
     </div>
   </form>
 </div>

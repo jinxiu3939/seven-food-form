@@ -18,7 +18,7 @@ export class DynamicFormComponent implements OnChanges {
   @Input() lang: string = 'zh'; // 语言包代码
   @Input() defaultButton = true; // 是否使用默认按钮
   @Input() searchButton = false; // 是否使用检索按钮
-  @Input() inlineButtonWidth = ''; // 行内布局时，按钮的宽度
+  @Input() fold = false; // 是否显示折叠按钮
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
@@ -29,6 +29,8 @@ export class DynamicFormComponent implements OnChanges {
   textContainer: any; // 语言包
   reload: number; // 重新加载时间戳
   blockInValid: number[] = []; // 字段分组验证是否错误
+  formExpand: boolean = true; // 是否展开
+  formFoldIcon: string = 'arrowhead-up'; // 表单内容折叠icon
 
   constructor(private builder: FormBuilder, private langProvider: LangProvider) {
     this.textContainer = this.langProvider.lang; // 设置语言包
@@ -95,34 +97,22 @@ export class DynamicFormComponent implements OnChanges {
   }
 
   /**
-   * 标签宽度
-   * 可在初始化时确定
+   * 折叠表单内容
    */
-  private labelWidth(column) {
-    return column && this.validateColumn(column[0]) ? column[0] : 3;
-  }
-
-  /**
-   * 内容宽度
-   * 可在初始化时确定
-   */
-  private contentWidth(column) {
-    return column && this.validateColumn(column[1]) ? column[1] : 9;
-  }
-
-  private validateColumn(column) {
-    return column && !isNaN(column) && column > 0 && column <=12
-  }
-
-  /**
-   * 模型排序
-   */
-  private sort(inputs: BaseModel<any>[]) {
-    if (inputs) {
-      return inputs.sort((a, b) => a.order - b.order);
+  foldForm() {
+    if (this.formFoldIcon === 'arrowhead-up') {
+      /* 收起 */
+      this.formFoldIcon = 'arrowhead-down';
+      this.formExpand = false;
     } else {
-      return [];
+      /* 展开 */
+      this.formFoldIcon = 'arrowhead-up';
+      this.formExpand = true;
     }
+  }
+
+  foldBlock(i) {
+    this.models[i].hide = !this.models[i].hide;
   }
 
   /**
@@ -164,4 +154,35 @@ export class DynamicFormComponent implements OnChanges {
     }
     return validator;
   }
+
+  /**
+   * 标签宽度
+   * 可在初始化时确定
+   */
+  private labelWidth(column) {
+    return column && this.validateColumn(column[0]) ? column[0] : 3;
+  }
+
+  /**
+   * 内容宽度
+   * 可在初始化时确定
+   */
+  private contentWidth(column) {
+    return column && this.validateColumn(column[1]) ? column[1] : 9;
+  }
+
+  private validateColumn(column) {
+    return column && !isNaN(column) && column > 0 && column <=12
+  }
+
+  /**
+   * 模型排序
+   */
+  private sort(inputs: BaseModel<any>[]) {
+    if (inputs) {
+      return inputs.sort((a, b) => a.order - b.order);
+    } else {
+      return [];
+    }
+  }  
 }

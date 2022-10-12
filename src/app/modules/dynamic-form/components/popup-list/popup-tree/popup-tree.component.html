@@ -7,7 +7,7 @@
              [value]="model.value"
              [formControlName]="model.name">
     </div>
-    <div class="col-9 right col-value">
+    <div class="col-9 right col-value" [ngClass]="{'col-value': model.size==='medium'}">
       <div class="input-group">
         <input class="form-control"
                disabled
@@ -27,12 +27,12 @@
 
 <ng-template #contentTemplate>
   <div style="height: 600px; overflow: auto;" [nbSpinner]="loading" nbSpinnerStatus="info">
-    <input *ngIf="!model.readonly" nbInput [nbFilterInput]="dataSource" id="search" [placeholder]="lang.keyword_search" class="form-control">    
-    <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+    <input *ngIf="!model.readonly && model.filter" nbInput [nbFilterInput]="dataSource" id="search" [placeholder]="lang.keyword_search" class="form-control">    
+    <table [nbTreeGrid]="dataSource">
         <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
         <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns" (click)="select(row)"></tr>
         <ng-container [nbTreeGridColumnDef]="customColumn">
-          <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
             {{customColumn}}
           </th>
           <td nbTreeGridCell *nbTreeGridCellDef="let row" [title]="row.data[customColumn]">
@@ -46,7 +46,7 @@
         <ng-container *ngFor="let column of defaultColumns; let i = index"
                       [nbTreeGridColumnDef]="column"
                       [showOn]="getShowOn(i)">           
-          <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
             {{column}}
           </th>
           <td nbTreeGridCell *nbTreeGridCellDef="let row" [title]="row.data[column]">{{row.data[column] || '-'}}</td>

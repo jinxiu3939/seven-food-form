@@ -16,4 +16,11 @@ export class PopupTreeModelFactory extends BaseModelFactory {
     this.config.tree = []; // 默认树
     this.config.value = ''; // 默认值
   }
+
+  protected format(): void {
+    /* 尺寸 */
+    if (!this.model.size) {
+      this.model.size = 'medium'; // 尺寸
+    }
+  }
 }
