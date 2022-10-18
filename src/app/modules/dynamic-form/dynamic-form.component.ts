@@ -16,9 +16,12 @@ export class DynamicFormComponent implements OnChanges {
   @Input() layout: string; // 布局
   @Input() buttons: FormButton[]; // 自定义操作按钮
   @Input() lang: string = 'zh'; // 语言包代码
-  @Input() defaultButton = true; // 是否使用默认按钮
-  @Input() searchButton = false; // 是否使用检索按钮
+  @Input() submitText = 'submit'; // 提交按钮名称
+  @Input() resetText = 'reset'; // 重置按钮名称
   @Input() fold = false; // 是否显示折叠按钮
+  @Input() submit = true; // 是否显示提交按钮
+  @Input() reset = true; // 是否显示重置按钮
+  @Input() validate = true; // 是否验证表单
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
@@ -34,6 +37,8 @@ export class DynamicFormComponent implements OnChanges {
 
   constructor(private builder: FormBuilder, private langProvider: LangProvider) {
     this.textContainer = this.langProvider.lang; // 设置语言包
+    this.submitText = this.textContainer.submit;
+    this.resetText = this.textContainer.reset;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -47,7 +52,7 @@ export class DynamicFormComponent implements OnChanges {
         if (LANG[key]) {
           this.textContainer = LANG[key];
         } else {
-          this.textContainer = LANG.en;
+          this.textContainer = LANG.zh;
         }
         this.langProvider.lang = this.textContainer; // 设置语言包
       }

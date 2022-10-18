@@ -381,7 +381,7 @@ export class AppComponent implements OnInit {
           size: 'tiny'
         },
       ],
-      "is_default": false,
+      size: "medium",
       "id": 8
     },
     {
@@ -637,6 +637,25 @@ export class AppComponent implements OnInit {
   modesss: any = [
     {
       items: [
+        // new QuickFormFactory({
+        //   clear: true,
+        //   data: "datePicker",
+        //   disabled: false,
+        //   format: "YYYY-MM-DD HH:mm:ss",
+        //   help: "",
+        //   kind: "date-time",
+        //   label: "结束日期",
+        //   max: 0,
+        //   min: 1,
+        //   name: "creation_date",
+        //   now: false,
+        //   readonly: true,
+        //   order: 0,
+        //   require: false,
+        //   type: "date-picker",
+        //   validator: "",
+        //   value: "",
+        // }).datePicker(),
         new LinkageBoxModelFactory({
           label: '族谱',
           name: 'zupu-1',
@@ -729,9 +748,10 @@ export class AppComponent implements OnInit {
           text: {A: '看你的选项', 1: '选项1'},
         }).popupCheckbox(),
       ],
-      title: "活命",
+      // title: "活命",
       column: [3,9],
-      hide: true
+      // hide: true
+      size: 'medium'
     }
   ];
   images = [

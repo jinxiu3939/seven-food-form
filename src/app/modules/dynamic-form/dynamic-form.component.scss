@@ -63,6 +63,7 @@
     }
 
     .form-operation {
+      margin-top: 1rem;
       text-align: center;
 
       nb-icon {
@@ -70,13 +71,16 @@
         float: right;
       }
     }
+
+    ngx-form-block {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 
   /* 行内表单样式 */
   .inline-group {
     width: 33%; // 每行显示3个
-    max-height: 4.5rem;
-    margin-bottom: 0.5rem;
     overflow: hidden;
 
     .col-form-label {
@@ -85,6 +89,10 @@
       white-space: nowrap;
       text-align: right;
     }
+  }
+
+  .large-group, .-group {
+    width: 100%; // 每行显示1个
   }
 
   .medium-group {
@@ -97,6 +105,10 @@
 
   .tiny-group {
     width: 20%; // 每行显示5个
+
+    .form-control {
+      width: 90%;
+    }
   }
 
   /* 折叠样式 */

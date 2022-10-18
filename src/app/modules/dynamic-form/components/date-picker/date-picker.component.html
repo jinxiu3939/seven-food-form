@@ -1,5 +1,5 @@
 <div [formGroup]="form" class="row">
-  <ng-container *ngIf="! model.disabled">
+  <div *ngIf="! model.disabled" class="input-group">
     <input nbInput
            class="form-control date-input"
            maxlength="10"
@@ -7,18 +7,18 @@
            [nbDatepicker]="formpicker"
            [placeholder]="lang.select_date"
            [value]="day">
-    <ng-container *ngIf="model.kind === 'date-time'">
+    <span *ngIf="model.kind === 'date-time'" class="input-group-append">
       <nb-select [placeholder]="lang.hour" [(selected)]="hour" (selectedChange)="selectTime()">
         <nb-option *ngFor="let h of hours" [value]="h">{{ h }}</nb-option>
       </nb-select>
       <nb-select [placeholder]="lang.minute" [(selected)]="minute" (selectedChange)="selectTime()">
         <nb-option *ngFor="let m of minutes" [value]="m">{{ m }}</nb-option>
       </nb-select>
-    </ng-container>
+    </span>
     <nb-datepicker #formpicker [date]="date" (dateChange)="handleDateChange($event)"></nb-datepicker>
     <input [formControlName]="model.name" type="hidden" [value]="model.value" />
-  </ng-container>
+  </div>
   <ng-container *ngIf="model.disabled">
-    <input class="form-control date-time-input" disabled size=20 style="width: auto;" [value]="model.value">
+    <input class="form-control date-time-input" disabled size=20 [value]="model.value">
   </ng-container>
 </div>

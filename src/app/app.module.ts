@@ -23,7 +23,7 @@ const routes: Routes = [];
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    NbThemeModule.forRoot({name: 'cosmic'}),
+    NbThemeModule.forRoot({name: 'default'}),
     NbCardModule,
     NbLayoutModule,
     NbSidebarModule.forRoot(),

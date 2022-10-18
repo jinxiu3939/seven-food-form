@@ -1,0 +1,21 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '../../theme/styles';
+
+@include nb-install-component() {
+  .date-input {
+    width: 7.5rem;
+    height: 2.5rem;
+  }
+
+  .date-time-input {
+    width: auto;
+  }
+
+  .row {
+    margin-left: 0;
+  }
+
+  .input-group {
+    flex-wrap: nowrap;
+  }
+}

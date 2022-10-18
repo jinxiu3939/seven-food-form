@@ -3,3 +3,11 @@
 @import '~@nebular/theme/styles/themes/dark';
 @import '~@nebular/theme/styles/themes/cosmic';
 @import '~@nebular/theme/styles/themes/corporate';
+
+$nb-themes: nb-register-theme(
+  (
+    select-min-width: 3rem
+  ),
+  default,
+  default
+);

@@ -12,10 +12,8 @@ import { DatePickerModel } from '../../dynamic-form.options';
 
 @Component({
   selector: 'ngx-date-picker',
-  styles: [
-    '.date-input {width: 7.5rem; height: 2.5rem;}',
-    '.date-time-input {width: auto;}',
-    '.row {margin-left: 0;}',
+  styleUrls: [
+    './date-picker.component.scss',
   ],
   templateUrl: './date-picker.component.html',
 })
@@ -56,7 +54,7 @@ export class DatePickerComponent implements OnInit, ComponentReset {
 
   get hour() {
     const control = this.form.controls[this.model.name];
-    let hour: string = '00'; // 小时
+    let hour: string = ''; // 小时
     if (control.value) {
       const date = new Date(control.value); // 字符串转换成日期格式
       if (date.getHours() < 10) {
@@ -74,7 +72,7 @@ export class DatePickerComponent implements OnInit, ComponentReset {
 
   get minute() {
     const control = this.form.controls[this.model.name];
-    let minute: string = '00'; // 分钟
+    let minute: string = ''; // 分钟
     if (control.value) {
       const date = new Date(control.value); // 字符串转换成日期格式
       if (date.getMinutes() < 10) {

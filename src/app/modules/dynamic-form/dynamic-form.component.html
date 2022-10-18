@@ -8,15 +8,25 @@
       <ng-container [ngSwitch]="layout">
         <nb-tabset *ngSwitchCase="'tab'">
           <nb-tab *ngFor="let block of models; let i = index" [tabTitle]="block.title" [lazyLoad]="true" badgeStatus="danger" [badgeText]="isBlockInvalid(i)">
-            <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form" [reload]="reload"></ngx-form-block>
+            <ngx-form-block *ngIf="block.items"
+                            [models]="block.items"
+                            [column]="block.column"
+                            [form]="form"
+                            [size]="block.size"
+                            [reload]="reload"></ngx-form-block>
           </nb-tab>
         </nb-tabset>
         <nb-stepper *ngSwitchCase="'step'" orientation="horizontal">
           <nb-step *ngFor="let block of models" [label]="block.title">
-            <ngx-form-block *ngIf="block.items" [models]="block.items" [column]="block.column" [form]="form" [reload]="reload"></ngx-form-block>
+            <ngx-form-block *ngIf="block.items"
+                            [models]="block.items"
+                            [column]="block.column"
+                            [form]="form"
+                            [size]="block.size"
+                            [reload]="reload"></ngx-form-block>
           </nb-step>
         </nb-stepper>
-        <ul *ngSwitchDefault class="default-block" [ngClass]="{'fold-block': !formExpand, 'custom-condition': layout==='inline'}">
+        <ul *ngSwitchDefault class="default-block" [ngClass]="{'fold-block': !formExpand, 'custom-condition': layout==='custom'}">
           <li *ngFor="let block of models; let i = index">
             <h3 *ngIf="block.title">
               {{ block.title }}
@@ -25,7 +35,7 @@
                 status="danger"
                 [text]="blockInValid[i]">
               </nb-badge>
-              <nb-icon [icon]="block.hide ? 'arrowhead-down' : 'arrowhead-up'" status="info" (click)="foldBlock(i)"></nb-icon>
+              <nb-icon [icon]="block.hide ? 'arrow-ios-downward' : 'arrow-ios-upward'" status="info" (click)="foldBlock(i)"></nb-icon>
             </h3>
             <ngx-form-block *ngIf="block.items"
                             [models]="block.items"
@@ -33,29 +43,22 @@
                             [hide]="block.hide"
                             [form]="form"
                             [reload]="reload"
-                            [size]="block.size"
-                            [ngClass]="{'form-inline': layout==='inline'}">
+                            [size]="block.size">
             </ngx-form-block>
           </li>
         </ul>
       </ng-container>
     </ng-container>
     <ng-content select="[name='other-models']"></ng-content>
-    <div class="form-group form-operation" [ngClass]="{'custom-operation': layout==='inline'}">
-      <ng-container *ngIf="defaultButton">
-        <button type="submit" class="btn btn-success" [disabled]="!form.valid">{{ textContainer.submit }}</button>
-        <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
-      </ng-container>
-      <ng-container *ngIf="searchButton">
-        <button type="submit" class="btn btn-success">{{ textContainer.search }}</button>
-        <button type="button" class="btn btn-warning" (click)="onReset()">{{ textContainer.reset }}</button>
-      </ng-container>
+    <div class="form-group form-operation" [ngClass]="{'custom-operation': layout==='custom'}">
+      <button *ngIf="submit" type="submit" class="btn btn-success" [disabled]="validate && !form.valid">{{ submitText }}</button>
+      <button *ngIf="reset" type="button" class="btn btn-warning" (click)="onReset()">{{ resetText }}</button>
       <ng-container *ngIf="buttons">
         <button *ngFor="let btn of buttons" type="button" class="btn btn-primary" (click)="onOperate(btn)">
           {{ btn.value }}
         </button>
       </ng-container>
-      <nb-icon *ngIf="layout==='inline'" [icon]="formFoldIcon" status="info" (click)="foldForm()"></nb-icon>
+      <nb-icon *ngIf="fold" [icon]="formFoldIcon" status="info" (click)="foldForm()"></nb-icon>
     </div>
   </form>
 </div>
