@@ -1,6 +1,6 @@
-<div [formGroup]="form" class="row">
+<div [formGroup]="form" class="row boxes">
   <div *ngFor="let opt of model.options; let key = index" class="col-{{model.width}} box">
-    <div class="form-check form-check-inline" [ngClass]="{'form-badge': opt.items}">
+    <div class="form-check form-check-inline" [ngClass]="{'col-deep': model.width, 'form-badge': opt.items}">
       <nb-checkbox [checked]="checkedStatus[key]"             
                    [disabled]="model.disabled"
                    [title]="opt.title ? opt.title : ''"
@@ -8,9 +8,10 @@
         {{ opt.text }}
       </nb-checkbox>
       <nb-badge *ngIf="opt.items"
-                position="right"
-                [status]="opt.items > 999 ? 'danger' : 'info'"
-                [text]="opt.items">
+                [position]="model.width ? 'left' : 'right'"
+                [status]="opt.items > 99 ? 'danger' : 'info'"
+                [title]="opt.items"
+                [text]="opt.items > 99 ? '99+' : opt.items">
       </nb-badge>
     </div>
   </div>

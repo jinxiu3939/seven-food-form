@@ -1,3 +1,12 @@
+<a name="3.0.3"></a>
+## 3.0.3 (2022-10-18)
+
+- 调整`tiny-group`的表单项宽度
+- 优化`ngx-linkage-box`组件，增加默认空选项
+- 优化`radio`和`checkbox`样式
+- 优化`ngx-form-block`，为`label`增加`title`
+- 去掉单选和多选项模型工厂默认宽度属性
+
 <a name="3.0.2"></a>
 ## 3.0.2 (2022-10-17)
 

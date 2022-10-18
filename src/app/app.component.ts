@@ -535,7 +535,7 @@ export class AppComponent implements OnInit {
           {
             value: 3, // 值
             title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
-            text: '大伯', // 文本
+            text: '大伯074450097/O1CN01zMdiS61CaT1NADGbn_!!2074450097-0-lubanu-', // 文本
           },
           {
             value: 4, // 值
@@ -551,13 +551,13 @@ export class AppComponent implements OnInit {
                   {
                     value: 13, // 值
                     title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
-                    text: '大儿子', // 文本
+                    text: '大儿子om/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=8764', // 文本
                     items: '1099',
                   },
                   {
                     value: 14, // 值
                     title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
-                    text: '二儿子', // 文本
+                    text: '二儿子tic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753', // 文本
                     items: '12', // 元素数量
                   },
                   {
@@ -573,7 +573,7 @@ export class AppComponent implements OnInit {
                   {
                     value: 17, // 值
                     title: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753,3306274246&fm=26&gp=0.jpg', // 标题
-                    text: '五儿子', // 文本
+                    text: '五儿子tic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=876468753', // 文本
                     items: '99+',
                   },
                   {
@@ -637,6 +637,13 @@ export class AppComponent implements OnInit {
   modesss: any = [
     {
       items: [
+        new QuickFormFactory({
+          label: '是否禁用',
+          name: 'yes_no1',
+          value: null,
+          options: null,
+          all: true,
+        }).booleanRadio(),
         // new QuickFormFactory({
         //   clear: true,
         //   data: "datePicker",
@@ -722,7 +729,17 @@ export class AppComponent implements OnInit {
           // readonly: true,
         }).popupRadio(),
         new QuickFormFactory({
-          label: '视频-test',
+          label: '模型',
+          name: 'model',
+          value: '',
+          text: '只读',
+          min: 0,
+          max: 0,
+          require: true,
+          // readonly: true,
+        }).textBox(),
+        new QuickFormFactory({
+          label: '视频-test-lang-and-lang',
           multiple: true,
           max: 2,
           name: 'video-1',
@@ -751,7 +768,7 @@ export class AppComponent implements OnInit {
       // title: "活命",
       column: [3,9],
       // hide: true
-      size: 'medium'
+      size: 'tiny'
     }
   ];
   images = [
@@ -875,20 +892,29 @@ export class AppComponent implements OnInit {
           name: 'color',
           type: 'radio',
           options: [
-            { text: '红色', value: 'red', title : '一种颜色', items: 1 },
-            { text: '绿色', value: 'green', title : '大自然的颜色', items: 1000 },
+            { text: '红色一种颜色一种颜色一种颜色一种颜色一种颜色', value: 'red', title : '一种颜色' },
+            { text: '绿色一种颜色一种颜色一种颜色一种颜色一种颜色', value: 'green', title : '大自然的颜色', items: 100 },
+            { text: '绿色', value: 'green', title : '大自然的颜色', items: 6 },
+            { text: '绿色', value: 'green', title : '大自然的颜色', items: 0 },
+            { text: '绿色', value: 'green', title : '大自然的颜色' },
           ],
           value: 'red',
+          width: 3
         }).radio(),
         new QuickFormFactory({
           label: '颜色',
           name: 'color',
           type: 'radio',
           options: [
-            { text: '红色', value: 'red', title : '一种颜色', items: 1 },
+            { text: '红色红色一种颜色一种颜色一种颜色一种颜色一种颜色', value: 'red', title : '一种颜色'},
+            { text: '绿色颜色一种颜色一种颜色一种颜色颜色一种颜一颜色一种颜', value: 'green', title : '大自然的颜色', items: 1000 },
+            { text: '红色', value: 'red', title : '一种颜色' },
+            { text: '绿色', value: 'green', title : '大自然的颜色', items: 1000 },
+            { text: '红色一种颜色一种颜色一种颜色一种颜色一种颜色', value: 'red', title : '一种颜色' },
             { text: '绿色', value: 'green', title : '大自然的颜色', items: 1000 },
           ],
           value: 'red',
+          width: 3
         }).checkbox(),
         {
           label: '颜色',
@@ -898,7 +924,7 @@ export class AppComponent implements OnInit {
             { text: '绿色', value: 'green', title : '大自然的颜色', items: 10 },
             { text: '青色', value: 'cyan', title : '大自然的颜色' },
           ],
-          type: 'radio',
+          type: 'checkbox',
           value: 'red',
           disabled: false,
           help: 'this is a radio demo',
@@ -907,21 +933,21 @@ export class AppComponent implements OnInit {
           order: 1,
           require: true,
           validator: '',
-          width: 4,
         },
-        new QuickFormFactory({
-          label: '是否禁用',
-          name: 'yes_no1',
-          value: null,
-          options: null,
-          all: true,
-        }).booleanRadio(),
+        // new QuickFormFactory({
+        //   label: '是否禁用',
+        //   name: 'yes_no1',
+        //   value: null,
+        //   options: null,
+        //   all: true,
+        // }).booleanRadio(),
         {
           label: '是否禁用',
           name: 'yes_no3',
           options: [
             { text: '是', value: true },
             { text: '否', value: false, items: '99+' },
+            { text: '全部', value: true },
           ],
           type: 'radio',
           value: false,
@@ -936,6 +962,14 @@ export class AppComponent implements OnInit {
           name: 'drop-down-1',
           options: [
             { text: '全部', value: '', title : '全部' },
+            { text: '苹果', value: 'apple', title : '一种水果' },
+            { text: '梨', value: 'pear', title : '一种水果' },
+          ],
+        }).dropDownBox(),
+        new QuickFormFactory({
+          label: '自动全部下拉框',
+          name: 'drop-down-no-all',
+          options: [
             { text: '苹果', value: 'apple', title : '一种水果' },
             { text: '梨', value: 'pear', title : '一种水果' },
           ],
@@ -1141,15 +1175,15 @@ export class AppComponent implements OnInit {
     },
     {
       items: [
-        new QuickFormFactory({
-          label: '富文本内容',
-          name: 'content-body-3',
-          value: '```hello```',
-          editorConfig: {
-            readOnly: false,
-            imageUploadURL: '/api/access/tool.mdeditor/image?token=123&app-key=239487',
-          },
-        }).mdEditor(),
+        // new QuickFormFactory({
+        //   label: '富文本内容',
+        //   name: 'content-body-3',
+        //   value: '```hello```',
+        //   editorConfig: {
+        //     readOnly: false,
+        //     imageUploadURL: '/api/access/tool.mdeditor/image?token=123&app-key=239487',
+        //   },
+        // }).mdEditor(),
       ],
       title: "markdown富文本"
     },
@@ -1248,7 +1282,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.realModels;
+      this.models = this.defaultModels;
       this.inlineModels = this.modesss;
     });
   }

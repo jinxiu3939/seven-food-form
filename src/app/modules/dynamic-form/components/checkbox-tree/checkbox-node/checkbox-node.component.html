@@ -8,8 +8,9 @@
     </nb-checkbox>
     <nb-badge *ngIf="tree.items"
               position="right"
-              [status]="tree.items > 999 ? 'danger' : 'info'"
-              [text]="tree.items">
+              [status]="tree.items > 99 ? 'danger' : 'info'"
+              [title]="tree.items"
+              [text]="tree.items > 99 ? '99+' : tree.items">
     </nb-badge>
   </div>
   <ul *ngIf="tree.children && tree.children.length > 0">

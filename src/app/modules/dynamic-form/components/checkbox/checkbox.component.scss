@@ -1,20 +1,52 @@
 @import '../../theme/styles';
 
 @include nb-install-component() {
+  .boxes {
+    width: 100%;
+  }
+
   .text-error {
     width: 100%;
   }
 
-  nb-badge {
-    padding: 0;
-    border-radius: 1.25rem;
-    height: 1.25rem;
-    line-height: 1.25rem;
-    width: 1.25rem;
+  .form-check-inline {
+    margin-right: 0;
   }
 
   .box {
-    max-height: 3.4rem;
-    overflow: visible;
+    padding-left: 1rem;
+    padding-top: 0.4rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .form-badge {
+    padding-right: 2rem;
+  }
+
+  nb-badge {
+    top: 0.15rem;
+    width: 1.65rem;
+    padding: 0;
+    line-height: 1.25rem;
+  }
+
+  /* nb-badge默认居右自动宽度；在固定宽度的情况下，为了nb-badge不会因为text过长而隐藏，将其放到text左边 */
+  .col-deep {
+    &.form-badge {
+      padding-right: 0;
+
+      ::ng-deep nb-checkbox {
+        label {
+          .text {
+            padding-left: 2.3rem;
+          }
+        }
+      }
+    }
+    
+    nb-badge {
+      left: 1.7rem;
+    }
   }
 }

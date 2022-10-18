@@ -13,7 +13,7 @@ export class CheckboxModelFactory extends BaseModelFactory {
     this.config.clear = false; // 默认不清空数据
     this.config.disabled = false; // 默认不禁用
     this.config.value = []; // 默认值
-    this.config.width = 3; // 选项宽度
+    // this.config.width = 3; // 选项宽度
   }
 
   protected format(): void {

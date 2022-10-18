@@ -12,7 +12,6 @@ import { CheckboxModel } from '../../dynamic-form.options';
   selector: 'ngx-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: [
-    '../../dynamic-form.component.scss',
     './checkbox.component.scss',
   ],
 })

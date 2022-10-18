@@ -1,22 +1,51 @@
 @import '../../theme/styles';
 
 @include nb-install-component() {
-  .boxes {
-    nb-radio {
-      white-space: nowrap;
-      overflow: hidden;
-      
-      nb-badge {
-        width: 1.65rem;
-        top: 0.5rem;
-        left: 1.5rem;
-        padding: 0.2rem;
-      }
-    }
-    .form-badge {
-      padding-left: 1.85rem;
+  .boxes {width: 100%;}
+
+  .row {margin-left: 0;}
+
+  nb-radio {
+    padding-left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+
+    nb-badge {
+      width: 1.65rem;
+      top: 0.55rem;
+      padding: 0.2rem;
     }
   }
 
-  .row {margin-left: 0;}
+  .form-badge {
+    padding-right: 0.5rem;
+    margin-right: 1rem;
+  }
+
+  /* nb-radio-group 直接子元素只能是 radio。nb-badge默认居右自动宽度；在固定宽度的情况下，为了nb-badge不会因为text过长而隐藏，将其放到text左边 */
+  .col-deep {
+    &.form-badge {
+      padding-left: 1.85rem;
+      padding-right: 1rem;
+      margin-right: 0;
+    }
+
+    nb-badge {
+      left: 1.7rem;
+      top: 0.6rem;
+    }
+  }
+
+  ::ng-deep nb-radio.col-deep {
+    label {
+      width: 100%;
+      padding-right: 0;
+
+      .text {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
 }
