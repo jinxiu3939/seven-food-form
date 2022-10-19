@@ -24,6 +24,8 @@
 
   /* nb-radio-group 直接子元素只能是 radio。nb-badge默认居右自动宽度；在固定宽度的情况下，为了nb-badge不会因为text过长而隐藏，将其放到text左边 */
   .col-deep {
+    padding-right: 0.5rem;
+    
     &.form-badge {
       padding-left: 1.85rem;
       padding-right: 1rem;

@@ -83,6 +83,10 @@
     width: 33%; // 每行显示3个
     overflow: hidden;
 
+    &.date-picker-group {
+      overflow: visible;
+    }
+
     .col-form-label {
       padding-right: 0;
       overflow: hidden;

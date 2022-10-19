@@ -676,18 +676,18 @@ export class AppComponent implements OnInit {
         //   tree: this.tree,
         //   root: 0,
         // }).linkageBox(),
-        new QuickFormFactory({
-          display: '',
-          label: '图片',
-          multiple: false,
-          name: 'image-1',
-          uploadConfig: {
-            authTokenHeader: 'Token',
-            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
-            url: '/api/access/upload/image',
-          },
-          value: null,
-        }).image(),
+        // new QuickFormFactory({
+        //   display: '',
+        //   label: '图片',
+        //   multiple: false,
+        //   name: 'image-1',
+        //   uploadConfig: {
+        //     authTokenHeader: 'Token',
+        //     authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
+        //     url: '/api/access/upload/image',
+        //   },
+        //   value: null,
+        // }).image(),
         // {
         //   label: '族谱',
         //   name: 'zupu-3',

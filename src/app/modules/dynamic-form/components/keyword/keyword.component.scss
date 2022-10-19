@@ -16,6 +16,7 @@
       border: 1px solid nb-theme(border-basic-color-4);
       background: nb-theme(background-basic-color-1);
       z-index: 99;
+      display: none;
 
       nb-icon {
         position: absolute;
@@ -26,6 +27,10 @@
         color: nb-theme(color-basic-500);
       }
     }
+  }
+
+  .keyword-list:hover .options {
+    display: block;
   }
 
   a {

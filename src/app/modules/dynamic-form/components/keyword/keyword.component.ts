@@ -21,7 +21,6 @@ export class KeywordComponent implements ComponentReset {
   @Input() form: FormGroup;
 
   lang: any;
-  showOption = false;
 
   constructor(private langProvider: LangProvider) {
     this.lang = langProvider.lang;
@@ -42,19 +41,18 @@ export class KeywordComponent implements ComponentReset {
    * 新增关键字
    */
   add(keyword) {
-    if (keyword) {
-      if (!this.model.value.includes(keyword)) {
-        this.model.value.push(keyword); // 新增
-        this.form.controls[this.model.name].setValue(this.model.value);
-      }
+    if (keyword.value) {
+      this.insert(keyword.value);
+      keyword.value = '';
     }
   }
 
-  show() {
-    this.showOption = true;
-  }
-
-  hide() {
-    this.showOption = false;
+  insert(value) {
+    if (value) {
+      if (!this.model.value.includes(value)) {
+        this.model.value.push(value); // 新增
+        this.form.controls[this.model.name].setValue(this.model.value);
+      }
+    }
   }
 }

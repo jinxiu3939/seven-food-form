@@ -3,11 +3,8 @@
   "lib": {
     "entryFile": "src/app/modules/dynamic-form/public_api.ts",
     "umdModuleIds": {
-      "@nebular/eva-icons": "4.6.0",
-      "@nebular/theme": "4.6.0",
       "lodash": "^4.17.15",
-      "ng2-file-upload": "^1.4.0",
-      "xlsx": "^0.15.5"
+      "ng2-file-upload": "^1.4.0"
     }
   }
 }
