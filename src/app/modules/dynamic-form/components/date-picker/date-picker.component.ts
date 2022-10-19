@@ -24,7 +24,7 @@ export class DatePickerComponent implements OnInit, ComponentReset {
   hours = AllHours;
   minutes = AllMinutes;
   date: Date; // 日期默认值
-
+  isTime = false;
   tmpHour: string = '00';
   tmpMinute: string = '00';
   lang: any;
@@ -88,6 +88,14 @@ export class DatePickerComponent implements OnInit, ComponentReset {
     this.tmpMinute = m;
   }
 
+  get time() {
+    if (+this.tmpHour || +this.tmpMinute) {
+      return this.tmpHour + ':' + this.tmpMinute;
+    } else {
+      return this.lang.select_time;
+    }
+  }
+
   handleDateChange(date: Date) {
     this.date = date;
     this.setFormValue();
@@ -103,6 +111,14 @@ export class DatePickerComponent implements OnInit, ComponentReset {
       this.model.value = dateFormat(new Date(str_date), this.model.format);
       this.form.controls[this.model.name].setValue(this.model.value); // 表单赋值
     }
+  }
+
+  hideTime() {
+    this.isTime = false;
+  }
+
+  chooseTime() {
+    this.isTime = true;
   }
 }
 

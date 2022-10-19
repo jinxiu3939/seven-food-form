@@ -1,37 +1,39 @@
-<div class="form-group row" *ngFor="let field of fields; let f = index">
-  <div class="col-4">
-    <label>{{ field.text }}</label>
-  </div>
-  <div [ngSwitch]="field.type" class="col-8">
-    <nb-select *ngSwitchCase="'drop-down'"
-               placeholder="请选择"
-               [fullWidth]="true"
-               [(selected)]="data[field.value]">
-      <nb-option value="">请选择</nb-option>
-      <nb-option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.text }}</nb-option>
-    </nb-select>
-    <nb-select *ngSwitchCase="'boolean-radio'" placeholder="请选择" [(selected)]="data[field.value]">
-      <nb-option value="">全部</nb-option>
-      <nb-option value="true">是</nb-option>
-      <nb-option value="false">否</nb-option>
-    </nb-select>
-    <div *ngSwitchCase="'drop-down-filter'" class="input-group">
-      <input #searchBox type="text" class="form-control" placeholder="筛选" (input)="search(searchBox.value, f)">
-      <div class="input-group-append">
-        <nb-select placeholder="请选择"
-                   [(selected)]="data[field.value]">
-          <nb-option value="">请选择</nb-option>
-          <nb-option *ngFor="let opt of searchOptions[f]" [value]="opt.value">{{ opt.text }}</nb-option>
-        </nb-select>
-      </div>
+<div class="item-dialog {{ size }}-dialog">
+  <div class="form-group row" *ngFor="let field of fields; let f = index">
+    <div class="col-{{ column[0] }} text-right">
+      <label>{{ field.text }}</label>
     </div>
-    <input *ngSwitchCase="'number'" placeholder="请输入数字" class="form-control" type="number" [(ngModel)]="data[field.value]" />
-    <input *ngSwitchDefault placeholder="请输入" class="form-control" [(ngModel)]="data[field.value]" />
+    <div [ngSwitch]="field.type" class="col-{{ column[1] }}">
+      <nb-select *ngSwitchCase="'drop-down'"
+                 placeholder="请选择"
+                 [fullWidth]="true"
+                 [(selected)]="data[field.value]">
+        <nb-option value="">请选择</nb-option>
+        <nb-option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.text }}</nb-option>
+      </nb-select>
+      <nb-select *ngSwitchCase="'boolean-radio'" placeholder="请选择" [(selected)]="data[field.value]">
+        <nb-option value="">全部</nb-option>
+        <nb-option value="true">是</nb-option>
+        <nb-option value="false">否</nb-option>
+      </nb-select>
+      <div *ngSwitchCase="'drop-down-filter'" class="input-group">
+        <input #searchBox type="text" class="form-control" placeholder="筛选" (input)="search(searchBox.value, f)">
+        <div class="input-group-append">
+          <nb-select placeholder="请选择"
+                     [(selected)]="data[field.value]">
+            <nb-option value="">请选择</nb-option>
+            <nb-option *ngFor="let opt of searchOptions[f]" [value]="opt.value">{{ opt.text }}</nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <input *ngSwitchCase="'number'" placeholder="请输入数字" class="form-control" type="number" [(ngModel)]="data[field.value]" />
+      <input *ngSwitchDefault placeholder="请输入" class="form-control" [(ngModel)]="data[field.value]" />
+    </div>
   </div>
-</div>
-<div class="form-group row">
-  <div class="col-12">
-    <button nbButton hero status="warning" (click)="close()">取消</button>
-    <button class="btn" nbButton hero status="info" (click)="submit()">确认</button>
+  <div class="form-group row">
+    <div class="col-12">
+      <button nbButton hero status="warning" (click)="close()">取消</button>
+      <button class="btn" nbButton hero status="info" (click)="submit()">确认</button>
+    </div>
   </div>
 </div>

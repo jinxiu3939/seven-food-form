@@ -3,8 +3,17 @@
 
 @include nb-install-component() {
   .date-input {
-    width: 7.5rem;
+    width: 7rem;
     height: 2.5rem;
+    flex: none;
+  }
+
+  .date-text {
+    background-color: nb-theme(background-basic-color-3);
+    border: none;
+    color: nb-theme(color-basic-600);
+    font-weight: normal;
+    font-size: 1rem;
   }
 
   .date-time-input {
@@ -17,5 +26,34 @@
 
   .input-group {
     flex-wrap: nowrap;
+  }
+
+  .time-container {
+    position: relative;
+    
+    .time-popup {
+      position:absolute;
+      top: 3rem;
+      right: 0;
+      padding: 1.4rem;
+      display: none;
+      border: 1px solid nb-theme(border-basic-color-4);
+      background: nb-theme(background-basic-color-1);
+      z-index: 99;
+
+      nb-icon {
+        position: absolute;
+        width: 1.4rem;
+        height: 1.4rem;
+        right: 0;
+        top: 0;
+        color: nb-theme(color-basic-500);
+      }
+    }
+
+    .time-shop {
+      display: flex;
+      justify-content: center;
+    }
   }
 }

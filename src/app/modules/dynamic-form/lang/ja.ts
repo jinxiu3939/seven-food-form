@@ -18,6 +18,7 @@
   edit: '编辑',
   select: '選択してください',
   select_date: '日付を選択してください',
+  select_time: '時間',
   hour: '小时',
   minute: '分钟',
   picture: '图片',

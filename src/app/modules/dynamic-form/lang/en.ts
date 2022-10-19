@@ -19,6 +19,7 @@
   edit: 'edit',
   select: 'please select...',
   select_date: 'please select date',
+  select_time: 'time',
   hour: 'hour',
   minute: 'minute',
   picture: 'picture',

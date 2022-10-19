@@ -456,6 +456,7 @@ export interface PopupTreeModel extends BaseModel<string | number> {
 export interface ItemListModel extends BaseModel<any[]> {
   attributes: ConditionField[]; // 字段列表
   disabled: boolean; // 是否禁用
+  size: string; // 弹出框尺寸
 }
 
 /**

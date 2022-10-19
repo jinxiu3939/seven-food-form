@@ -7,19 +7,30 @@ import { ConditionField, Option } from '../../../dynamic-form.options';
 @Component({
   selector: 'ngx-item-dialog',
   templateUrl: `./item-dialog.component.html`,
-  styleUrls: ['../../../dynamic-form.component.scss'],
+  styleUrls: [
+    '../../../dynamic-form.component.scss',
+    './item-dialog.component.scss'
+  ],
 })
 export class ItemDialogComponent implements OnInit {
   @Input() data: object; // 子项默认值
   @Input() fields: ConditionField[]; // 字段
+  @Input() size: string = ''; // 尺寸
 
   @Output() public finish = new EventEmitter<object>(); // 提交
   
   private searchTerms = new Subject<{value: string, key: number}>(); // 检索对象
   files$: Observable<any[]>;
   searchOptions: Option<string | number>[][] = [];
+  column = [4, 8];
 
   ngOnInit() {
+    if (this.size === 'medium') {
+      this.column = [3, 9];
+    } else if (this.size === 'large') {
+      this.column = [2, 10];
+    }
+
     for (const f in this.fields) {
       if (this.fields[f].options) {
         this.searchOptions[f] = this.fields[f].options;

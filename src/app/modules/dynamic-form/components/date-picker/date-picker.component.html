@@ -1,19 +1,23 @@
 <div [formGroup]="form" class="row">
   <div *ngIf="! model.disabled" class="input-group">
     <input nbInput
-           class="form-control date-input"
+           class="form-control date-input date-text"
            maxlength="10"
            [readonly]="model.readonly"
            [nbDatepicker]="formpicker"
            [placeholder]="lang.select_date"
            [value]="day">
-    <span *ngIf="model.kind === 'date-time'" class="input-group-append">
-      <nb-select [placeholder]="lang.hour" [(selected)]="hour" (selectedChange)="selectTime()">
-        <nb-option *ngFor="let h of hours" [value]="h">{{ h }}</nb-option>
-      </nb-select>
-      <nb-select [placeholder]="lang.minute" [(selected)]="minute" (selectedChange)="selectTime()">
-        <nb-option *ngFor="let m of minutes" [value]="m">{{ m }}</nb-option>
-      </nb-select>
+    <span *ngIf="model.kind === 'date-time'" class="input-group-append time-container">
+      <a nbButton class="date-text" [title]="lang.select_time" (click)="chooseTime()">{{ time }}</a>
+      <div class="time-popup" [ngClass]="{'time-shop': isTime}">
+        <nb-icon icon="close" (click)="hideTime()"></nb-icon>
+        <nb-select [placeholder]="lang.hour" [(selected)]="hour" (selectedChange)="selectTime()">
+          <nb-option *ngFor="let h of hours" [value]="h">{{ h }}</nb-option>
+        </nb-select>
+        <nb-select [placeholder]="lang.minute" [(selected)]="minute" (selectedChange)="selectTime()">
+          <nb-option *ngFor="let m of minutes" [value]="m">{{ m }}</nb-option>
+        </nb-select>
+      </div>
     </span>
     <nb-datepicker #formpicker [date]="date" (dateChange)="handleDateChange($event)"></nb-datepicker>
     <input [formControlName]="model.name" type="hidden" [value]="model.value" />

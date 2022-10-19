@@ -37,5 +37,6 @@
 <ng-template #contentTemplate let-data>
   <ngx-item-dialog [data]="data.row"
                    [fields]="data.fields"
+                   [size]="data.size"
                    (finish)="receive($event, data.index)"></ngx-item-dialog>
 </ng-template>

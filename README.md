@@ -1,7 +1,16 @@
-动态表单模块
---------------------
+# SevenFoodForm
+
+This project has a angular module of dynamic form based on [nebular](https://github.com/akveo/nebular).
 
 ### 使用
+
+- get package from npm.
+
+```
+npm install seven-food-form
+```
+
+- import the module
 
 ```
 import { SfDynamicFormModule } from 'seven-food-form';
@@ -33,16 +42,6 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 </ng-container>
 ```
 
-#### 更改表单布局样式
-
-```
-::ng-deep ngx-dynamic-form .dynamic-form .form-inline {
-  .inline-group {
-    width: 50%;
-  }
-}
-```
-
 #### 输入属性
 
 ##### loading
@@ -68,6 +67,21 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 - step
 - ul，**default**
 - custom，自定义布局，通过`custom-condition`和`custom-operation`调整布局
+
+
+###### 自定义表单布局样式
+
+```
+::ng-deep ngx-dynamic-form .dynamic-form {
+  .custom-condition {
+    width: 50%;
+  }
+
+  .custom-operation {
+    width: 50%;
+  }
+}
+```
 
 ##### models
 
@@ -416,6 +430,7 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 - validator?: any; // 验证器
 - attributes: ConditionField[]; // 字段列表
 - disabled: boolean; //  是否禁用
+- size: string; //  弹出框尺寸 '' | 'medium' | 'large'
 
 #### PasswordBoxModel
 

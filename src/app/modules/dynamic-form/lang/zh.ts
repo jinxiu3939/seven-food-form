@@ -18,6 +18,7 @@
   edit: '编辑',
   select: '请选择',
   select_date: '请选择日期',
+  select_time: '时间',
   hour: '小时',
   minute: '分钟',
   picture: '图片',

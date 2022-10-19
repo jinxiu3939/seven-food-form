@@ -13,7 +13,7 @@
       left: 0;
       width: 100%;
       padding: 1rem;
-      border: 1px solid nb-theme(background-alternative-color-1);
+      border: 1px solid nb-theme(border-basic-color-4);
       background: nb-theme(background-basic-color-1);
       z-index: 99;
 
@@ -23,6 +23,7 @@
         height: 1.4rem;
         right: 0;
         top: 0;
+        color: nb-theme(color-basic-500);
       }
     }
   }
