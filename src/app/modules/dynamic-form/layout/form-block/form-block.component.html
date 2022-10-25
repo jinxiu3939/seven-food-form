@@ -4,7 +4,7 @@
   <ng-container *ngIf="column && column.length >= 2">
     <label [attr.for]="item.name" class="col-{{ column[0] }} col-form-label text-right" [title]="item.label">
       {{ item.label }}
-      <small *ngIf="item.help && size==='large'" class="form-text text-muted">{{ item.help }}</small>
+      <small *ngIf="item.help" class="form-text text-muted">{{ item.help }}</small>
       <small *ngIf="item.require" class="form-text text-status-info">必填</small>
     </label>
     <div class="col-{{ column[1] }}">

@@ -53,6 +53,7 @@ export class ItemListComponent implements ComponentReset {
     this.windowRef = this.service.open(this.contentTemplate, { title: this.lang.edit + ' - ' + this.model.label, context: {
         row: tmp_row,
         fields: this.model.attributes,
+        size: this.model.size,
         index,
       },
       closeOnBackdropClick: false,

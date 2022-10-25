@@ -1283,7 +1283,7 @@ export class AppComponent implements OnInit {
     // this.trees.push(this.checkboxTree);
     // this.trees.push(this.checkboxTree);
     this.service.get().subscribe(() => {
-      this.models = this.defaultModels;
+      this.models = this.realModels;
       this.inlineModels = this.modesss;
     });
   }

@@ -27,7 +27,12 @@
 
 <ng-template #contentTemplate>
   <div style="height: 600px; overflow: auto;" [nbSpinner]="loading" nbSpinnerStatus="info">
-    <input *ngIf="!model.readonly && model.filter" nbInput [nbFilterInput]="dataSource" id="search" [placeholder]="lang.keyword_search" class="form-control">    
+    <div *ngIf="model.filter" class="form-group row" style="margin: 0;">
+      <input #search nbInput id="search" class="form-control col-6 offset-1">
+      <span class="input-group-append">
+        <button nbButton (click)="filter(search.value)">{{ lang.filter }}</button>
+      </span>
+    </div>
     <table [nbTreeGrid]="dataSource">
         <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
         <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns" (click)="select(row)"></tr>

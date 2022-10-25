@@ -107,6 +107,13 @@ export class PopupTreeComponent implements OnInit, ComponentReset {
     this.dataSource = this.dataSourceBuilder.create(this.data); // 加载数据
   }
 
+  /**
+   * 排序
+   */
+  filter(keyword) {
+    this.dataSource.filter(keyword);
+  }  
+
   getShowOn(index: number) {
     const minWithForMultipleColumns = 400;
     const nextColumnStep = 100;
