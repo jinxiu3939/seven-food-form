@@ -14,7 +14,7 @@
       <a nbButton class="btn-add" status="info" size="tiny" (click)="add(keyword)">{{ lang.add }}</a>
     </span>
     <div *ngIf="model.options && model.options.length > 0" class="options">
-      <a *ngFor="let v of model.options" nbButton size="small" status="danger" (click)="insert(v)">
+      <a *ngFor="let v of model.options" nbButton size="small" (click)="insert(v)">
         {{ v }}
       </a>
     </div>

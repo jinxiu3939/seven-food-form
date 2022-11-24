@@ -528,7 +528,7 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 
 `markdown-editor`富文本编辑器模型
 
-> 需要安装依赖包`"jquery": "^3.6.0"`，并且将editor.md源码打包后放到assets目录下，而且在`angular.json`配置`styles`中增加`src/assets/editor.md/css/editormd.css`，`scripts`中增加`node_modules/jquery/dist/jquery.min.js,src/assets/editor.md/editormd.min.js`；如果上传图片需要在服务器端配置ueditor接口；
+> 需要安装依赖包`"jquery": "^3.6.0"`，并且将editor.md源码打包后放到assets目录下，而且在`angular.json`配置`styles`中增加`src/assets/editor.md/css/editormd.css`，`scripts`中增加`node_modules/jquery/dist/jquery.min.js,src/assets/editor.md/editormd.min.js`；如果上传图片需要在服务器端配置markdown-editor接口；
 
 - label: string; // 标签
 - name: string; // 名称

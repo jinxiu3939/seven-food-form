@@ -9,7 +9,7 @@ export class ApiService {
   }
 
   get(): Observable<any> {
-    return this.http.get('/api/index/index');
+    return this.http.get('/api/index/index/hello');
   }
 
   post(form) : Observable<any> {
