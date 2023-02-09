@@ -125,7 +125,7 @@ export class ImageSearchComponent implements OnInit {
     if (this.condition) {
       this.config.additionalParameter[this.condition] = keyword; // 检索指定条件
     } else {
-      this.conditions.forEach((condition) => {
+      this.conditions.map((condition) => {
         this.config.additionalParameter[condition.value] = keyword; // 检索所有，接口检索关键字关系为或
       });
     }
@@ -138,8 +138,11 @@ export class ImageSearchComponent implements OnInit {
             this.message = tempRes.error;
           } else {
             this.last = tempRes.total; // 设置分页
-            this.tmpItmes[this.page] = tempRes.list; // 临时结果集
+            if (!this.tmpItmes[this.page]) {
+              this.tmpItmes[this.page] = tempRes.list; // 临时结果集
+            }
             result = tempRes.list; // 本次检索结果
+            
           }
           this.loading = false;
           return result;
@@ -183,7 +186,7 @@ export class ImageSearchComponent implements OnInit {
    */
   save() {
     const selected = this.items.filter((k) => this.selected.includes(k.id));
-    selected.forEach((item) => {
+    selected.map((item) => {
       const result = {url: item.url, title: item.title};
       this.finish.emit(result);
     });
@@ -256,7 +259,7 @@ export class ImageSearchComponent implements OnInit {
    * 异步全部检索结果
    */
   private asyncItems() {
-    this.tmpItmes.forEach((result) => this.items.push(...result));
+    this.tmpItmes.map((result) => this.items.push(...result));
   }
 
   /**
@@ -288,7 +291,8 @@ export class ImageSearchComponent implements OnInit {
       this.fetch(this.keyword).subscribe(records => {
         if (records.length > 0) {
           this.records.push(...records); // 当前结果集
-          this.asyncItems(); // 重新加载全部结果集
+          // this.asyncItems(); // 重新加载全部结果集
+          this.items.push(...records)
           this.page ++;
         } else {
           this.finished = true;

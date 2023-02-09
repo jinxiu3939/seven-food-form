@@ -17,6 +17,8 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent implements OnInit {
   title = 'seven-food-form';
+  appKey = 'wen-DFOeite.hte';
+  token = '775cY9zXOwLm9xxXQOhn8hI2/R7Tib52oN+8qqCKS0FZAcFxt27F';
   treeData = [
     {
       "data": {
@@ -976,41 +978,56 @@ export class AppComponent implements OnInit {
           ],
         }).dropDownBox(),
         new QuickFormFactory({
-          display: 'input',
-          label: '图片',
-          multiple: false,
+          // display: 'input',
+          label: '服务器图片',
+          multiple: true,
           name: 'image-2',
+          cropperConfig: {
+            url: '/api/home/image/index',
+            additionalParameter: {
+              tag: ['参数吧'],
+              title: '设置了比例',
+              topic: '在这儿呢'
+            },
+            aspectRatio: { height: 3, width: 10 },
+            cropperType: 'jpeg',
+            headers: {
+              'Token': this.token,
+              'App-Key': this.appKey,
+            },
+          },
           uploadConfig: {
             authTokenHeader: 'Token',
-            authToken: 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
-            url: '/api/upload/image',
+            authToken: this.token,
+            url: '/api/home/image/index',
             additionalParameter: {
               tag: ['参数吧'],
               title: '是我的',
               topic: '在这儿呢',
-              'app-key': 'sssssdddddddgg'
+              'app-key': this.appKey
             },
           },
           crawlConfig: {
-            api: '/api/my/resource',
+            api: '/api/home/attachment/index',
             additionalParameter: {
               type: 'image',
-              'app-key': 'sssssdddddddgg'
+              'app-key': this.appKey
             },
             headers: {
-              'Token': 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
-              'App-Key': 'sssssdddddddgg',
+              'Token': this.token,
+              'App-Key': this.appKey
             },
+            queueLimit: 5,
           },
           searchConfig: {
             additionalParameter: {
               page_size: 9.0,
             },
-            api: '/api/my/resource',
+            api: '/api/home/image/index',
             display: 'list',
             headers: {
-              'Token': 'f74f3khvQQr1rk2KvXTc3Gi4D6W74qJ1YFr5EllmLyXujJAaylfq',
-              'App-Key': 'sssssdddddddgg',
+              'Token': this.token,
+              'App-Key': this.appKey,
             },
             mode: 'async',
           },

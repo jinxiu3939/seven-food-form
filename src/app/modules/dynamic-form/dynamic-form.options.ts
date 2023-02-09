@@ -117,7 +117,19 @@ export interface LinkageBoxTree<T> {
   children?: LinkageBoxTree<T>; // 子元素
 }
 
-
+/**
+ * 文件裁剪配置
+ */
+export interface CropperConfig {
+  additionalParameter: ResourceSaveParam; // 额外参数
+  aspectRatio: { height: number, width: number}; // 裁剪图片纵横比
+  cropperType: string; // 裁剪图片格式
+  headers: {
+    [header: string]: string | string[];
+  }; // 上传接口请求头
+  url: string; // 上传地址
+  queueLimit?: number;
+}
 
 /**
  * 文件上传配置
@@ -132,6 +144,7 @@ export interface UploadConfig {
   method: string;
   url: string; // 上传地址
   queueLimit?: number;
+
 }
 
 /**
@@ -348,6 +361,7 @@ export interface DatePickerModel extends BaseModel<string> {
  */
 export interface ImageModel extends BaseModel<ImageItem[] | string> {
   crawlConfig: CrawlConfig; // 抓取配置
+  cropperConfig: CropperConfig; // 裁剪配置
   disabled: boolean; // 是否禁用
   display: 'image' | 'input'; // 展现方式
   kind: 'ng2-file-upload'; // 上传类别

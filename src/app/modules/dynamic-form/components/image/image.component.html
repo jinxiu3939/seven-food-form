@@ -14,9 +14,10 @@
     </ng-container>
     <ngx-image-slider *ngSwitchDefault
                       [items]="thumbs"
-                      currentIndex="0"
+                      [currentIndex]="currentIndex"
                       [readonly]="! model.multiple"
                       size="small"
+                      (currentChange)="slide($event)"
                       (order)="order($event)"
                       (destroy)="delete($event)"
                       (edit)="desc($event)">
@@ -40,7 +41,12 @@
 </div>
 
 <ng-template #contentTemplate>
-  <nb-tabset style="width: 600px; height: 500px;">
+  <nb-tabset style="width: 700px; height: 600px; overflow-y: auto;">
+    <nb-tab [tabTitle]="lang.cropper_picture">
+      <ngx-image-upload-cropper [config]="model.cropperConfig"
+                                [multiple]="model.multiple"
+                                (finish)="submitImage($event)"></ngx-image-upload-cropper>
+    </nb-tab>
     <nb-tab [tabTitle]="lang.local_picture">
       <ngx-image-upload [config]="model.uploadConfig"
                         [multiple]="model.multiple"

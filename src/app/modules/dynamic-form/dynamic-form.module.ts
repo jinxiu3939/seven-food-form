@@ -27,6 +27,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FileUploadModule } from 'ng2-file-upload';
 import { UEditorModule } from 'ngx-ueditor';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 /* 导入组件写相对路径，不能从`index.ts`中导入，否则`npm`发布之后找不到组件 */
 import { DynamicFormComponent } from './dynamic-form.component';
@@ -50,6 +51,7 @@ import { ImageCacheComponent } from './components/image/image-cache/image-cache.
 import { ImageSearchComponent } from './components/image/image-search/image-search.compomemt';
 import { ImageSliderComponent } from './components/image/image-slider/image-slider.component';
 import { ImageUploadComponent } from './components/image/image-upload/image-upload.component';
+import { ImageUploadCropperComponent } from './components/image/image-upload-cropper/image-upload-cropper.component';
 import { ImageWebComponent } from './components/image/image-web/image-web.component';
 import { ItemDialogComponent } from './components/item-list/item-dialog/item-dialog.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
@@ -106,6 +108,7 @@ const FORM_COMPONENTS = [
   ImageSearchComponent,
   ImageSliderComponent,
   ImageUploadComponent,
+  ImageUploadCropperComponent,
   ImageWebComponent,
   ItemDialogComponent,
   SimpleSearchComponent,
@@ -158,6 +161,7 @@ const FORM_DIRECTIVE = [
         UEDITOR_HOME_URL: './assets/ueditor/',
       }
     }),
+    ImageCropperModule,
   ],
   declarations: [
     ...FORM_COMPONENTS,

@@ -55,7 +55,7 @@ export class DemoResourceProvider extends ResourceProvider {
           + (response.status.sub_message ? '（' + response.status.sub_message + '）' : '');
       }
     } else {
-      result.error = `上传图片失败（系统错误）`;
+      result.error = `上传失败（系统错误）`;
     }
     return result;
   }
@@ -76,10 +76,10 @@ export class DemoResourceProvider extends ResourceProvider {
           result.url = response.content.url;
         }
       } else {
-        result.error = `保存图片失败（系统错误）`;
+        result.error = `保存失败（系统错误）`;
       }
     } else {
-      result.error = `保存图片失败（系统繁忙）`;
+      result.error = `保存失败（系统繁忙）`;
     }
     return result;
   }
@@ -113,10 +113,10 @@ export class DemoResourceProvider extends ResourceProvider {
               result.list = tempRes.content.list; // 本次检索结果
             }
           } else {
-            result.error = `获取图片失败（系统错误）`;
+            result.error = `获取结果失败（系统错误）`;
           }
         } else {
-          result.error = `获取图片失败（系统繁忙）`;
+          result.error = `获取结果失败（系统繁忙）`;
         }
         return result;
       }),

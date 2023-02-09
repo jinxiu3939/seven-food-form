@@ -10,6 +10,7 @@ export * from './image/image-cache/image-cache.component';
 export * from './image/image-search/image-search.compomemt';
 export * from './image/image-slider/image-slider.component';
 export * from './image/image-upload/image-upload.component';
+export * from './image/image-upload-cropper/image-upload-cropper.component';
 export * from './image/image-web/image-web.component';
 export * from './item-list/item-list.component';
 export * from './item-list/item-dialog/item-dialog.component';

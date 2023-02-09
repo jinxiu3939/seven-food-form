@@ -1,5 +1,5 @@
-import { ModelType, ImageModel, UploadConfig, CrawlConfig, ResourceSearchConfig } from '../dynamic-form.options';
 import { BaseModelFactory } from './base-model.factory';
+import { CropperConfig, ModelType, ImageModel, UploadConfig, CrawlConfig, ResourceSearchConfig } from '../dynamic-form.options';
 
 const ng2FileUploadConfig: UploadConfig = {
   additionalParameter: {
@@ -22,6 +22,18 @@ const ng2FileUploadConfig: UploadConfig = {
 export class ImageModelFactory extends BaseModelFactory {
   protected model: ImageModel;
   protected type: ModelType = 'image';
+  private cropperConfig: CropperConfig = {
+    additionalParameter: {
+      tag: [],
+      title: '',
+      topic: '',
+    },
+    aspectRatio: { height: 3, width: 4 },
+    cropperType: 'png',
+    url: '', // 保存地址
+    headers: {}, // 保存接口请求头
+    queueLimit: null,
+  }; // 网络图片抓取配置
   private crawlConfig: CrawlConfig = {
     additionalParameter: {
       tag: [],
@@ -55,6 +67,7 @@ export class ImageModelFactory extends BaseModelFactory {
     super(obj);
     /* 抓取配置 */
     this.config.crawlConfig = this.crawlConfig;
+    this.config.cropperConfig = this.cropperConfig;
     this.config.disabled = false; // 默认不禁用
     this.config.display = 'image'; // 图片展示方式
     this.config.kind = 'ng2-file-upload'; // 默认上传模块

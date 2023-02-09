@@ -24,10 +24,11 @@ export class ImageComponent implements OnInit, ComponentReset {
 
   @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
 
+  public currentIndex = 0;
   public thumbnails: ImageItem[]; // 显示图片，表单值和模型值
-  public tmpImage: ImageItem[]; // 已选择的图片
-  public tmpFilter: number[]; // 筛选编号
-  private tmpValues: string[]; // 已确认的图片地址
+  public tmpImage: ImageItem[]; // 已选择的图片/待选图片
+  public tmpFilter: number[]; // 筛选过的图片编号/确定图片
+  private tmpValues: string[]; // 已插入的图片地址/表单值
   private windowRef: NbWindowRef;
   lang: any;
 
@@ -75,13 +76,14 @@ export class ImageComponent implements OnInit, ComponentReset {
 
   /**
    * 确认图片
+   * 设置表单值
    */
   sureImage() {
     if (!this.thumbnails) {
       this.thumbnails = [];
     }
     const tmpImage = this.tmpImage.filter((tmp, index) => {
-      if (this.tmpFilter) {
+      if (this.tmpFilter) { // 过滤取消的图片
         return this.tmpFilter.includes(index);
       } else { // 不过滤
         return true;
@@ -116,6 +118,7 @@ export class ImageComponent implements OnInit, ComponentReset {
         }
       });
     }
+    this.currentIndex = this.thumbnails.length - 1;
   }
 
   /**
@@ -141,13 +144,26 @@ export class ImageComponent implements OnInit, ComponentReset {
       if (this.model.multiple) {
         if (this.model.max) { // 限制个数
           if (this.tmpImage.length <= this.model.max - this.thumbnails.length) {
-            this.tmpImage.push(image);
+            this.cache(image);
           }
         } else { // 无限制
-          this.tmpImage.push(image);
+          this.cache(image);
         }
       } else {
         this.tmpImage = [image];
+      }
+    }
+  }
+
+  /**
+   * 图片缓存起来
+   */
+  private cache(image) {
+    const exists = this.tmpImage.filter((value) => value.url === image.url)
+    if (exists.length === 0) {
+      this.tmpImage.push(image);
+      if (this.tmpFilter) {
+        this.tmpFilter.push(this.tmpImage.length - 1);
       }
     }
   }
@@ -169,14 +185,16 @@ export class ImageComponent implements OnInit, ComponentReset {
     this.save();
   }
 
+  slide(index: number) {
+    this.currentIndex = index;
+  }
+
   /**
    * 图片排序
    */
   order(list: ImageListOrder) {
     /* 改变两者的位置 */
-    const tmp = this.thumbnails[list.index];
-    this.thumbnails[list.index] = this.thumbnails[list.order];
-    this.thumbnails[list.order] = tmp;
+    [this.thumbnails[list.index], this.thumbnails[list.order]] = [this.thumbnails[list.order], this.thumbnails[list.index]];
     this.save();
   }
 

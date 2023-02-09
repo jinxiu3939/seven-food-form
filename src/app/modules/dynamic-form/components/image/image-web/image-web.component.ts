@@ -29,12 +29,11 @@ export class ImageWebComponent {
 
   public url: string; // 图片地址
   public tempUrl; // 临时图片地址，全路径
-  public thumbnails: ImageItem[]; // 图片缩略图
+  public thumbnails: ImageItem[]; // 图片容器
   public loading: boolean; // 加载标志位
   public start: boolean; // 准备保存标志位
   public saving: number; // 保存进度
   public currentIndex: number; // 当前图片编号
-  public max: number; // 最大可保存图片数量
   public submits: string[]; // 已保存的图片
   lang: any;
 
@@ -60,12 +59,9 @@ export class ImageWebComponent {
    * 删除图片
    */
   delete(index: number) {
-    // 删除临时队列
-    this.submits = this.submits.filter((item) => item !== this.thumbnails[index].url);
-    // 更新进度
-    this.progress();
-    // 删除轮播图片
-    this.thumbnails = this.thumbnails.filter((item, key) => index !== key);
+    this.submits = this.submits.filter((item) => item !== this.thumbnails[index].url); // 删除临时队列
+    this.thumbnails = this.thumbnails.filter((item, key) => index !== key); // 删除图片
+    this.progress(); // 更新进度
   }
 
   slide(index: number) {
@@ -97,17 +93,23 @@ export class ImageWebComponent {
       url: this.url,
       title: this.url.substring(this.url.lastIndexOf('/') + 1), // 获取文件名称做默认标题
     };
-    this.thumbnails.push(value); // 显示图片
-    this.currentIndex = this.thumbnails.length - 1;
+
     if (this.multiple) { // 多选
       if (this.config.queueLimit) { // 限制个数
-        this.max = this.thumbnails.length < this.config.queueLimit ? this.thumbnails.length : this.config.queueLimit;
+        if (this.thumbnails.length < this.config.queueLimit) {
+          this.thumbnails.push(value); // 显示图片
+        } else {
+          this.alert(this.lang.max_error + this.config.queueLimit);
+        }
       } else { // 不限制个数
-        this.max = this.thumbnails.length;
+        this.thumbnails.push(value); // 显示图片
       }
     } else { // 单选
-      this.max = 1;
+      this.thumbnails = [value];
+      this.submits = [];
     }
+
+    this.currentIndex = this.thumbnails.length - 1; // 当前索引为最新加载的图片
     this.start = true; // 准备保存
     this.progress(); // 更新进度
     this.loading = false; // 图片加载完成
@@ -122,67 +124,42 @@ export class ImageWebComponent {
   }
 
   private progress() {
-    this.saving = this.submits.length / this.max * 100;
+    this.saving = this.submits.length / this.thumbnails.length * 100;
   }
 
   /**
    * 保存图片资源
    */
   save() {
-    if (this.canSave()) { // 第二次进入时需判断
-      this.loading = true; // 开始保存
-      /* 筛选待保存数组 */
-      const waitingSave: {key: number, thumb: ImageItem}[] = [];
-      this.thumbnails.map((thumb, key) => {
-        /* 从当前图片位置开始依次保存 */
-        let flag = false; // 是否可保存标志位
-        if (this.currentIndex + this.max < this.thumbnails.length) {
-          if (key >= this.currentIndex && key < this.currentIndex + this.max) {
-            flag = true;
-          }
-        } else {
-          if (key >= this.currentIndex || key < this.currentIndex + this.max - this.thumbnails.length) {
-            flag = true;
-          }
-        }
-        if (flag) {
-          waitingSave.push({key, thumb}); // 键必须保存
-        }
-      });
-      let tmpNumber = 0; // 本次保存完成的图片临时计数
-      waitingSave.forEach((image) => {
-        tmpNumber++;
-        const form: any = this.config.additionalParameter; // 默认保存参数
-        /* 输入值 */
-        form.url = image.thumb.url;
-        form.title = image.thumb.title;
-        if (this.canSave() && ! this.submits.includes(form.url)) { // 避免重复保存
-          this.http.post<any>(this.config.api, form, {headers: this.config.headers}).pipe(
+    this.loading = true; // 开始保存
+    this.thumbnails.map((image, key) => {
+      const form: any = this.config.additionalParameter; // 默认保存参数
+      /* 输入值 */
+      form.url = image.url;
+      form.title = image.title;
+      if (! this.submits.includes(form.url)) { // 避免重复保存
+        this.http.post<any>(this.config.api, form, {headers: this.config.headers})
+          .pipe(
             catchError(this.handleError),
-          ).subscribe((tempRes) => {
-            if (Math.min(this.thumbnails.length, this.max) === tmpNumber) {
+          )
+          .subscribe((tempRes) => {
+            const result = this.provider.parseSaveResult(tempRes);
+            if (result.error) {
+              this.alert(result.error + `（` + form.title.substring(0, 20) + `）`);
+            } else {
+              this.saveFinish(tempRes.content, key);
+            }
+
+            if (this.thumbnails.length === this.submits.length) {
               this.loading = false; // 加载完毕
             }
-            if (this.canSave()) { // 异步请求有延迟，尽管可以提交到接口，但是本次提交对界面无影响
-              const result = this.provider.parseSaveResult(tempRes);
-              if (result.error) {
-                this.alert(result.error + `（` + form.title.substring(0, 20) + `）`);
-              } else {
-                this.saveFinish(tempRes.content, image.key);
-              }
-            } else {
-              this.loading = false;
-            }
           });
-        } else {
-          this.loading = false;
-        }
-      });
-    }
-  }
+      }
 
-  private canSave() {
-    return this.submits.length < this.max;
+      if (this.thumbnails.length === this.submits.length) {
+        this.loading = false; // 加载完毕
+      }
+    });
   }
 
   private saveFinish(content, index) {

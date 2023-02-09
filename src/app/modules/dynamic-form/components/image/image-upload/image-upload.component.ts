@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, ViewChild, Output } from '@angu
 import { NbDialogService } from '@nebular/theme';
 import { FileUploader } from 'ng2-file-upload';
 
-import { ImageDescription, ImageItem, UploadConfig } from '../../../dynamic-form.options';
+import { ImageDescription, ImageItem, ImageListOrder, UploadConfig } from '../../../dynamic-form.options';
 import { ResourceProvider } from '../../../providers/data/resource-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
@@ -57,7 +57,7 @@ export class ImageUploadComponent implements OnInit {
 
   /**
    * 更改图片描述
-   * 标题在配置时是通用的，上传是无法更改标题
+   * 标题在配置时是通用的，上传时无法更改标题
    * [todo] 上传图片时描述无法对号入座
    */
   desc(description: ImageDescription) {
@@ -82,6 +82,16 @@ export class ImageUploadComponent implements OnInit {
 
   slide(index: number) {
     this.currentIndex = index;
+  }
+
+  /**
+   * 图片排序
+   */
+  updateOrder(list: ImageListOrder) {
+    /* 改变两者的位置 */
+    const tmp = this.thumbnails[list.index];
+    this.thumbnails[list.index] = this.thumbnails[list.order];
+    this.thumbnails[list.order] = tmp;
   }
 
   /**

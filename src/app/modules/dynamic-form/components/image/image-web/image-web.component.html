@@ -29,9 +29,9 @@
                     (destroy)="delete($event)"
                     (edit)="desc($event)"></ngx-image-slider>
   <a *ngIf="! loading" nbButton fullWidth size="small" status="success" type="button" (click)="save()">{{lang.save}}</a>
-  <nb-progress-bar *ngIf="start" [value]="saving" size="tiny" status="info">{{ submits.length }} / {{ max }}</nb-progress-bar>
+  <nb-progress-bar *ngIf="start" [value]="saving" size="tiny" status="info">{{ submits.length }} / {{ thumbnails.length }}</nb-progress-bar>
   <div *ngIf="start && saving === 0" class="progress-text">
-    <span>{{ submits.length }} / {{ max }}</span>
+    <span>{{ submits.length }} / {{ thumbnails.length }}</span>
   </div>
 </ng-container>
 

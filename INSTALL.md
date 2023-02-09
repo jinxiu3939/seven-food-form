@@ -102,6 +102,7 @@ remove the package
     "jquery": "^3.6.0",
     "lodash": "^4.17.15",
     "ng2-file-upload": "^1.4.0",
+    "ngx-image-cropper": "^5.0.0",
     "ngx-ueditor": "^2.1.3",
     "rxjs": "~6.4.0",
     "tslib": "^2.1.0",

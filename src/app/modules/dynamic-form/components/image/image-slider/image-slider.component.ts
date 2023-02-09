@@ -124,16 +124,7 @@ export class ImageSliderComponent implements OnInit {
    * 改变两者的位置
    */
   private swapItems(start, end) {
-    const tmp = this.items;
-    this.items = tmp.map((item, index) => {
-      if (index == start) {
-        return tmp[end];
-      } else if (index == end) {
-        return tmp[start];
-      } else {
-        return item;
-      }
-    });
+    [this.items[start], this.items[end]] = [this.items[end], this.items[start]];
   }
 
 }
