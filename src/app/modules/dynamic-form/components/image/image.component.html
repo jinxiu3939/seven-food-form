@@ -45,21 +45,27 @@
     <nb-tab [tabTitle]="lang.cropper_picture">
       <ngx-image-upload-cropper [config]="model.cropperConfig"
                                 [multiple]="model.multiple"
+                                [queueLimit]="model.queueLimit"
+                                [aspectRatio]="{height: model.aspectRatioHeight, width: model.aspectRatioWidth}"
+                                [format]="model.cropperType"
                                 (finish)="submitImage($event)"></ngx-image-upload-cropper>
     </nb-tab>
     <nb-tab [tabTitle]="lang.local_picture">
       <ngx-image-upload [config]="model.uploadConfig"
                         [multiple]="model.multiple"
+                        [top]="model.queueLimit"
                         (finish)="submitImage($event)"></ngx-image-upload>
     </nb-tab>
     <nb-tab [tabTitle]="lang.network_picture">
       <ngx-image-web [config]="model.crawlConfig"
                      [multiple]="model.multiple"
+                     [queueLimit]="model.queueLimit"
                      (finish)="submitImage($event)"></ngx-image-web>
     </nb-tab>
     <nb-tab [tabTitle]="lang.history_picture">
       <ngx-image-search [config]="model.searchConfig"
                         [multiple]="model.multiple"
+                        [queueLimit]="model.queueLimit"
                         (finish)="submitImage($event)"></ngx-image-search>
     </nb-tab>
     <nb-tab [tabTitle]="lang.waiting_picture">

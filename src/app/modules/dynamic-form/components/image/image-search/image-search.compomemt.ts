@@ -27,6 +27,7 @@ export class ImageSearchComponent implements OnInit {
 
   @Input() config: ResourceSearchConfig;
   @Input() multiple: boolean;
+  @Input() queueLimit: number; // 多选图片限制
 
   @Output() public finish = new EventEmitter<ImageItem>(); // 提交选择的图片
 
@@ -210,11 +211,11 @@ export class ImageSearchComponent implements OnInit {
    */
   private select(file: number) {
     if (this.multiple) { // 多选
-      if (this.config.queueLimit) { // 限制个数
-        if (this.selected.length < this.config.queueLimit) {
+      if (this.queueLimit) { // 限制个数
+        if (this.selected.length < this.queueLimit) {
           this.selected.push(file);
         } else {
-          this.alert(this.lang.choose_up + '：' + this.config.queueLimit);
+          this.alert(this.lang.choose_up + '：' + this.queueLimit);
         }
       } else { // 不限个数
         this.selected.push(file);

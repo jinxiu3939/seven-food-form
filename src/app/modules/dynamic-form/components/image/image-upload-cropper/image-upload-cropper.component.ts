@@ -24,6 +24,9 @@ export class ImageUploadCropperComponent implements OnInit {
 
   @Input() config: CropperConfig;
   @Input() multiple: boolean; // 是否多选
+  @Input() queueLimit: number; // 多选图片限制
+  @Input() aspectRatio = { width: 4, height: 3 };
+  @Input() format = 'png';
 
   @Output() public finish = new EventEmitter<ImageItem>(); // 图片上传完成
 
@@ -31,8 +34,6 @@ export class ImageUploadCropperComponent implements OnInit {
 
   public imageChangedEvent: any = ''; // 文件改变事件
   public cropperVisible = false; // 裁剪容器是否可见
-  public aspectRatio = { width: 4, height: 3 };
-  public format = 'png';
   private tmpThumbnail: string; // 临时保存最近一次剪切图片
   public loading: boolean; // 加载标志位
   public uploaded: string[]; // 已成功上传的图片
@@ -57,15 +58,6 @@ export class ImageUploadCropperComponent implements OnInit {
 
   ngOnInit() {
     this.thumbnails = [];
-    if (this.config.aspectRatio.height > 0) {
-      this.aspectRatio.height = this.config.aspectRatio.height;
-    }
-    if (this.config.aspectRatio.width > 0) {
-      this.aspectRatio.width = this.config.aspectRatio.width;
-    }
-    if (this.config.cropperType) {
-      this.format = this.config.cropperType;
-    }
   }
 
   /**
@@ -127,11 +119,11 @@ export class ImageUploadCropperComponent implements OnInit {
   finishCropped() {
     const value = {url: this.tmpThumbnail, title: ''};
     if (this.multiple) { // 多选
-      if (this.config.queueLimit) { // 限制个数
-        if (this.thumbnails.length < this.config.queueLimit) {
+      if (this.queueLimit) { // 限制个数
+        if (this.thumbnails.length < this.queueLimit) {
           this.thumbnails.push(value); // 显示图片
         } else {
-          this.alert(this.lang.max_error + this.config.queueLimit);
+          this.alert(this.lang.max_error + this.queueLimit);
         }
       } else { // 不限制个数
         this.thumbnails.push(value); // 显示图片

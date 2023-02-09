@@ -21,6 +21,7 @@ export class ImageUploadComponent implements OnInit {
 
   @Input() config: UploadConfig;
   @Input() multiple: boolean;
+  @Input() top: number = 50; // 队列极限值
 
   @Output() public finish = new EventEmitter<ImageItem>(); // 图片上传完成
 
@@ -36,7 +37,6 @@ export class ImageUploadComponent implements OnInit {
   public currentIndex: number; // 当前编号
   private tmpQueue: string[]; // 临时文件队列
 
-  private top: number = 50; // 队列极限值
   lang: any;
 
   constructor(private dialogService: NbDialogService, private provider: ResourceProvider, private langProvider: LangProvider) {
@@ -117,8 +117,11 @@ export class ImageUploadComponent implements OnInit {
     });
     /* 最大可上传个数 */
     if (this.multiple) {
-      /* 如果限制队列 this.config.queueLimit === this.uploader.queue.length */
-      this.max = this.uploader.queue.length; // 全部文件
+      if (this.top < this.uploader.queue.length) {
+        this.max = this.top; // 限制文件个数
+      } else {
+        this.max = this.uploader.queue.length; // 全部文件
+      }
     } else {
       this.max = 1; // 单个文件
     }

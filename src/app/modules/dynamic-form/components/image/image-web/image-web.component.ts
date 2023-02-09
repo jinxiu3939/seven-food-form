@@ -22,6 +22,7 @@ export class ImageWebComponent {
 
   @Input() config: CrawlConfig; // 配置
   @Input() multiple: boolean; // 是否多选
+  @Input() queueLimit: number; // 多选图片限制
 
   @Output() public finish = new EventEmitter<ImageItem>(); // 图片抓取完成
 
@@ -95,11 +96,11 @@ export class ImageWebComponent {
     };
 
     if (this.multiple) { // 多选
-      if (this.config.queueLimit) { // 限制个数
-        if (this.thumbnails.length < this.config.queueLimit) {
+      if (this.queueLimit) { // 限制个数
+        if (this.thumbnails.length < this.queueLimit) {
           this.thumbnails.push(value); // 显示图片
         } else {
-          this.alert(this.lang.max_error + this.config.queueLimit);
+          this.alert(this.lang.max_error + this.queueLimit);
         }
       } else { // 不限制个数
         this.thumbnails.push(value); // 显示图片

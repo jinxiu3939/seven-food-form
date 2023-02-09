@@ -982,6 +982,11 @@ export class AppComponent implements OnInit {
           label: '服务器图片',
           multiple: true,
           name: 'image-2',
+          queueLimit: 5,
+          searchDisplay: 'page',
+          aspectRatioHeight: 10,
+          aspectRatioWidth: 4,
+          cropperType: 'jpeg',
           cropperConfig: {
             url: '/api/home/image/index',
             additionalParameter: {
@@ -989,8 +994,6 @@ export class AppComponent implements OnInit {
               title: '设置了比例',
               topic: '在这儿呢'
             },
-            aspectRatio: { height: 3, width: 10 },
-            cropperType: 'jpeg',
             headers: {
               'Token': this.token,
               'App-Key': this.appKey,
@@ -1017,14 +1020,12 @@ export class AppComponent implements OnInit {
               'Token': this.token,
               'App-Key': this.appKey
             },
-            queueLimit: 5,
           },
           searchConfig: {
             additionalParameter: {
               page_size: 9.0,
             },
             api: '/api/home/image/index',
-            display: 'list',
             headers: {
               'Token': this.token,
               'App-Key': this.appKey,

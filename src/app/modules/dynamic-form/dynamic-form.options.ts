@@ -122,13 +122,10 @@ export interface LinkageBoxTree<T> {
  */
 export interface CropperConfig {
   additionalParameter: ResourceSaveParam; // 额外参数
-  aspectRatio: { height: number, width: number}; // 裁剪图片纵横比
-  cropperType: string; // 裁剪图片格式
   headers: {
     [header: string]: string | string[];
   }; // 上传接口请求头
   url: string; // 上传地址
-  queueLimit?: number;
 }
 
 /**
@@ -143,8 +140,6 @@ export interface UploadConfig {
   maxFileSize: number;
   method: string;
   url: string; // 上传地址
-  queueLimit?: number;
-
 }
 
 /**
@@ -156,7 +151,6 @@ export interface CrawlConfig {
   headers: {
     [header: string]: string | string[];
   }; // 保存接口请求头
-  queueLimit: number; // 可抓取最大数目
 }
 
 /**
@@ -170,7 +164,6 @@ export interface ResourceSearchConfig {
     [header: string]: string | string[];
   }; // 检索接口请求头
   mode: 'async' | 'sync'; // 检索方式
-  queueLimit: number; // 可选择最大数目
   result: FileResource[]; // 默认结果集
 }
 
@@ -365,11 +358,17 @@ export interface ImageModel extends BaseModel<ImageItem[] | string> {
   disabled: boolean; // 是否禁用
   display: 'image' | 'input'; // 展现方式
   kind: 'ng2-file-upload'; // 上传类别
-  list: FileResource[]; // 资源列表
   multiple: boolean; // 是否多图片
-  repeat: boolean; // 是否可以选择重复的图片
+  repeat: boolean; // 图片是否可重复
   searchConfig: ResourceSearchConfig; // 检索配置
   uploadConfig: UploadConfig; // 上传配置
+  aspectRatioHeight?: number; // 裁剪图片纵横比高度
+  aspectRatioWidth?: number; // 裁剪图片纵横比宽度
+  cropperType?: string; // 裁剪图片格式
+  list?: FileResource[]; // 同步操作时的图片资源列表
+  queueLimit?: number; // 单次操作最大图片数目
+  searchDisplay?: 'page' | 'list'; // 检索结果显示方式
+  searchMode?: 'async' | 'sync'; // 检索方式
 }
 
 /**

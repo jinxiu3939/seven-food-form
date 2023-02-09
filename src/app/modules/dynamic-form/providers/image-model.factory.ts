@@ -28,11 +28,8 @@ export class ImageModelFactory extends BaseModelFactory {
       title: '',
       topic: '',
     },
-    aspectRatio: { height: 3, width: 4 },
-    cropperType: 'png',
     url: '', // 保存地址
     headers: {}, // 保存接口请求头
-    queueLimit: null,
   }; // 网络图片抓取配置
   private crawlConfig: CrawlConfig = {
     additionalParameter: {
@@ -42,7 +39,6 @@ export class ImageModelFactory extends BaseModelFactory {
     },
     api: '', // 保存地址
     headers: {}, // 保存接口请求头
-    queueLimit: null,
   }; // 网络图片抓取配置
   private searchConfig: ResourceSearchConfig = {
     additionalParameter: {
@@ -59,24 +55,33 @@ export class ImageModelFactory extends BaseModelFactory {
     display: 'page',
     headers: {}, // 检索接口请求头
     mode: 'sync',
-    queueLimit: null,
     result: [],
   }; // 图片检索配置
 
   constructor(obj: any) {
     super(obj);
-    /* 抓取配置 */
-    this.config.crawlConfig = this.crawlConfig;
-    this.config.cropperConfig = this.cropperConfig;
+    this.config.crawlConfig = this.crawlConfig; // 抓取配置
+    this.config.cropperConfig = this.cropperConfig; // 裁剪配置
     this.config.disabled = false; // 默认不禁用
     this.config.display = 'image'; // 图片展示方式
     this.config.kind = 'ng2-file-upload'; // 默认上传模块
     this.config.multiple = false; // 默认单图
+    this.config.aspectRatioHeight = 3; // 裁剪纵横比高度
+    this.config.aspectRatioWidth = 4; // 裁剪纵横比宽度
+    this.config.cropperType = 'png'; // 裁剪类型
+
     /* 检索配置 */
     if (obj.list) {
       this.searchConfig.result = obj.list;
     }
+    if (obj.searchDisplay) {
+      this.searchConfig.display = obj.searchDisplay;
+    }
+    if (obj.searchMode) {
+      this.searchConfig.mode = obj.searchMode;
+    }
     this.config.searchConfig = this.searchConfig;
+
     /* 上传配置 */
     switch (obj.kind) {
       case 'ng2-file-upload' : {

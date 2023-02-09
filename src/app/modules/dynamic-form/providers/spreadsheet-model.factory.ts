@@ -13,7 +13,6 @@ const ng2FileUploadConfig: UploadConfig = {
   itemAlias: 'sheet', // 表单名称
   maxFileSize: 1024 * 1024 * 2, // 2M
   method: 'POST',
-  queueLimit: 1, // 只能上传一个电子表格
   url: '', // 上传地址
 };
 
@@ -40,9 +39,5 @@ export class SpreadsheetModelFactory extends BaseModelFactory {
       }
     }
     this.config.view = true; // 默认预览
-  }
-
-  format() {
-    this.model.uploadConfig.queueLimit = 1; // 只能上传一个电子表格
   }
 }
