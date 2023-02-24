@@ -100,5 +100,8 @@ export class ImageModelFactory extends BaseModelFactory {
     if (this.model.searchConfig.display === 'page') {
       this.model.searchConfig.additionalParameter.page_size = 9;
     }
+    if (this.model.multiple && !this.model.queueLimit) {
+      this.model.queueLimit = 50;
+    }
   }
 }

@@ -20,6 +20,7 @@ import { LangProvider } from '../../../providers/data/lang.provider';
 export class ImageUploadComponent implements OnInit {
 
   @Input() config: UploadConfig;
+  @Input() debug: boolean;
   @Input() multiple: boolean;
   @Input() top: number = 50; // 队列极限值
 
@@ -53,6 +54,9 @@ export class ImageUploadComponent implements OnInit {
   ngOnInit() {
     this.thumbnails = [];
     this.uploader.setOptions(this.config);
+    if (this.debug) {
+      console.log('ImageUploadComponent initialization completed.');
+    }
   }
 
   /**

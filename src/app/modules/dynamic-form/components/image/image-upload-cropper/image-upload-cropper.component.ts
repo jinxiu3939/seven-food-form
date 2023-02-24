@@ -23,6 +23,7 @@ import { LangProvider } from '../../../providers/data/lang.provider';
 export class ImageUploadCropperComponent implements OnInit {
 
   @Input() config: CropperConfig;
+  @Input() debug: boolean;
   @Input() multiple: boolean; // 是否多选
   @Input() queueLimit: number; // 多选图片限制
   @Input() aspectRatio = { width: 4, height: 3 };
@@ -58,6 +59,17 @@ export class ImageUploadCropperComponent implements OnInit {
 
   ngOnInit() {
     this.thumbnails = [];
+    if (this.debug) {
+      console.log('ImageUploadCropperComponent initialization completed.');
+    }
+  }
+
+  get aspectRatioValue() {
+    if (this.aspectRatio.width > 0 && this.aspectRatio.height > 0) {
+      return this.aspectRatio.width / this.aspectRatio.height;
+    } else {
+      return 4 / 3;
+    }
   }
 
   /**

@@ -5,7 +5,7 @@
   <image-cropper
          [imageChangedEvent]="imageChangedEvent"
          [maintainAspectRatio]="true"
-         [aspectRatio]="aspectRatio.width / aspectRatio.height"
+         [aspectRatio]="aspectRatioValue"
          [format]="format"
          [hidden]="!cropperVisible"
          (dblclick)="finishCropped()"

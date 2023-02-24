@@ -26,6 +26,7 @@ import { ResourceProvider } from '../../../providers/data/resource-provider';
 export class ImageSearchComponent implements OnInit {
 
   @Input() config: ResourceSearchConfig;
+  @Input() debug: boolean;
   @Input() multiple: boolean;
   @Input() queueLimit: number; // 多选图片限制
 
@@ -78,6 +79,9 @@ export class ImageSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.files$ = this.getResult(term)), // 获取检索结果
     ).subscribe(() => this.show()); // 显示检索结果
+    if (this.debug) {
+      console.log('ImageSearchComponent initialization completed.');
+    }
   }
 
   /**

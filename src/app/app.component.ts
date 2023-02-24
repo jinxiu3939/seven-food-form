@@ -18,7 +18,7 @@ import { ApiService } from './services/api.service';
 export class AppComponent implements OnInit {
   title = 'seven-food-form';
   appKey = 'wen-DFOeite.hte';
-  token = '775cY9zXOwLm9xxXQOhn8hI2/R7Tib52oN+8qqCKS0FZAcFxt27F';
+  token = '6755AnY6vbqYGN7EWK5jjiTvj5bN+tudnAVGhm6ppFIWv2UkFiJE';
   treeData = [
     {
       "data": {
@@ -732,7 +732,7 @@ export class AppComponent implements OnInit {
         }).popupRadio(),
         new QuickFormFactory({
           label: '模型',
-          name: 'model',
+          name: 'model-1',
           value: '',
           text: '只读',
           min: 0,
@@ -987,6 +987,8 @@ export class AppComponent implements OnInit {
           aspectRatioHeight: 10,
           aspectRatioWidth: 4,
           cropperType: 'jpeg',
+          hideCropper: false,
+          debug: true,
           cropperConfig: {
             url: '/api/home/image/index',
             additionalParameter: {
@@ -1033,6 +1035,63 @@ export class AppComponent implements OnInit {
             mode: 'async',
           },
         }).image(),
+        {
+          "data": {
+              "method": "image"
+          },
+          "help": "",
+          "label": "头像",
+          "max": 0,
+          "min": 0,
+          "name": "avatar",
+          "order": 0,
+          "debug": "true",
+          "require": false,
+          "type": "image",
+          "validator": "",
+          "value": "http://file.qikecai.localhost/picture/20230224/0c7922915ef276325d3b645e09dad0d0661.png",
+          "crawlConfig": {
+              "additionalParameter": null,
+              "api": "/api/home/attachment/index",
+              "headers": {
+                  "Token": "5df7REnMPVE6DoQ2aGOw5or2Y+61XKt6+6DoUJ9/q5GUMQDXM3w4",
+                  "App-Key": "12eewer3"
+              }
+          },
+          "cropperConfig": {
+              "additionalParameter": null,
+              "headers": {
+                  "Token": "5df7REnMPVE6DoQ2aGOw5or2Y+61XKt6+6DoUJ9/q5GUMQDXM3w4",
+                  "App-Key": "12eewer3"
+              },
+              "url": "/api/home/image/index"
+          },
+          "searchConfig": {
+              "additionalParameter": {
+                  "page_size": 9
+              },
+              "api": "/api/home/image/index",
+              "display": "list",
+              "headers": {
+                  "Token": "5df7REnMPVE6DoQ2aGOw5or2Y+61XKt6+6DoUJ9/q5GUMQDXM3w4",
+                  "App-Key": "12eewer3"
+              },
+              "mode": "async",
+              "result": null
+          },
+          "uploadConfig": {
+              "additionalParameter": {
+                  "App-Key": "12eewer3"
+              },
+              "allowedFileType": null,
+              "authToken": "5df7REnMPVE6DoQ2aGOw5or2Y+61XKt6+6DoUJ9/q5GUMQDXM3w4",
+              "authTokenHeader": "Token",
+              "itemAlias": null,
+              "maxFileSize": 104857600,
+              "method": null,
+              "url": "/api/home/image/index"
+          }
+        },
         new QuickFormFactory({
           label: '关联字段',
           name: 'field_id',
@@ -1084,7 +1143,7 @@ export class AppComponent implements OnInit {
         }).popupRadio(),
         new QuickFormFactory({
           label: '模型',
-          name: 'model',
+          name: 'model-2',
           value: '',
           text: '只读',
           min: 0,

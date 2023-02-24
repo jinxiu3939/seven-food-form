@@ -365,6 +365,11 @@ export interface ImageModel extends BaseModel<ImageItem[] | string> {
   aspectRatioHeight?: number; // 裁剪图片纵横比高度
   aspectRatioWidth?: number; // 裁剪图片纵横比宽度
   cropperType?: string; // 裁剪图片格式
+  debug?: boolean; // 是否开启调试模式
+  hideCrawl?: boolean; // 是否隐藏图片抓取组件
+  hideCropper?: boolean; // 是否隐藏图片裁剪组件
+  hideSearch?: boolean; // 是否隐藏图片检索组件
+  hideUpload?: boolean; // 是否隐藏图片上传组件
   list?: FileResource[]; // 同步操作时的图片资源列表
   queueLimit?: number; // 单次操作最大图片数目
   searchDisplay?: 'page' | 'list'; // 检索结果显示方式
