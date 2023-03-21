@@ -42,6 +42,32 @@
 
   /* 默认表单样式 */
   .dynamic-form {
+    .form-operation {
+      margin-top: 1rem;
+      text-align: center;
+
+      nb-icon {
+        margin-right: 1rem;
+        float: right;
+      }
+    }
+
+    ::ng-deep nb-tabset.top-layout > .tabset {
+      background-color: nb-theme(color-basic-400);
+      .tab a {
+        color: nb-theme(color-basic-700);
+      }
+      .tab.active .tab-link {
+        color: nb-theme(text-primary-color);
+      }
+    }
+  }
+
+  ngx-form-layout {
+    display: block;
+  }
+
+  .form-layout {
     .default-block {
       padding: 0;
       margin: 0;
@@ -59,16 +85,6 @@
           font-size: 1.25rem;
           text-align: right;
         }
-      }
-    }
-
-    .form-operation {
-      margin-top: 1rem;
-      text-align: center;
-
-      nb-icon {
-        margin-right: 1rem;
-        float: right;
       }
     }
 

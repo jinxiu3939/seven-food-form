@@ -33,7 +33,7 @@ export class MarkDownEditorComponent implements OnInit, ComponentReset {
   }
  
   ngOnInit() {
-    /* 延迟显示等待UE加载 */
+    /* 延迟显示等待editormd加载 */
     setTimeout(() => {
       this.editor = editormd(this.model.name, this.model.editorConfig); // 创建编辑器
 

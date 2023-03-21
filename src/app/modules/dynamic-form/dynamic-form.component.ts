@@ -1,7 +1,7 @@
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { BaseModel, FormButton, ModelGroup, VALIDATORS } from './dynamic-form.options';
+import { BaseModel, FormButton, FormCategory, ModelGroup, VALIDATORS } from './dynamic-form.options';
 import { LANG } from './lang/lang.const';
 import { LangProvider } from './providers/data/lang.provider';
 
@@ -11,9 +11,9 @@ import { LangProvider } from './providers/data/lang.provider';
   templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent implements OnChanges {
-  @Input() models: ModelGroup[]; // 表单布局配置
-  @Input() loading: boolean; // 表单状态
-  @Input() layout: string; // 布局
+  @Input() tree: FormCategory[]; // 树（三级表单）
+  @Input() models: ModelGroup[]; // 默认表单项分组配置，二级分类，兼容二级表单
+  @Input() layout: string; // 默认布局
   @Input() buttons: FormButton[]; // 自定义操作按钮
   @Input() lang: string = 'zh'; // 语言包代码
   @Input() submitText = 'submit'; // 提交按钮名称
@@ -22,6 +22,7 @@ export class DynamicFormComponent implements OnChanges {
   @Input() submit = true; // 是否显示提交按钮
   @Input() reset = true; // 是否显示重置按钮
   @Input() validate = true; // 是否验证表单
+  @Input() loading: boolean; // 表单状态
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
@@ -34,6 +35,7 @@ export class DynamicFormComponent implements OnChanges {
   blockInValid: number[] = []; // 字段分组验证是否错误
   formExpand: boolean = true; // 是否展开
   formFoldIcon: string = 'arrowhead-up'; // 表单内容折叠icon
+  tabLayout; // 三级tab布局
 
   constructor(private builder: FormBuilder, private langProvider: LangProvider) {
     this.textContainer = this.langProvider.lang; // 设置语言包
@@ -44,11 +46,14 @@ export class DynamicFormComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === 'models' && changes[propName].currentValue) {
-        this.complete = false; // 开始构建
-        this.form = this.createGroup(); // 重新构造表单
-        this.complete = true; // 构建完毕
+        this.form = this.generateForm(); // 构造表单
+      } else if (propName === 'tree' && changes[propName].currentValue) {
+        this.form = this.generateForm(); // 构造表单
       } else if (propName === 'lang' && changes[propName].currentValue) {
-        const key = changes[propName].currentValue;
+        let key = changes[propName].currentValue;
+        if (key.indexOf('-') > 0) {
+          key = key.substr(0, key.indexOf('-'));
+        }
         if (LANG[key]) {
           this.textContainer = LANG[key];
         } else {
@@ -59,44 +64,70 @@ export class DynamicFormComponent implements OnChanges {
     }
   }
 
-  createGroup() {
-    const group = this.builder.group({});
-    if (this.models) {
-      const models = [];
-      if (Array.isArray(this.models)) {
-        /* 格式化表单布局 */
-        this.models = this.models.map((block, i) => {
-          if (block.items && Array.isArray(block.items)) {
-            models.push(...block.items);
-            block.items = this.sort(block.items); // 排序
-            this.blockInValid[i] = 0; // 初始化字段分组验证容器
-          } else {
-            block.items = [];
-          }
-          if (block.column) {
-            block.column = [this.labelWidth(block.column), this.contentWidth(block.column)];
-          }
-          return block;
-        });
-      } else {
-        this.models = [];
-      }
+  /**
+   * 生成表单
+   */
+  generateForm() {
+    let form = this.builder.group({});
+    this.tabLayout = [];
+    this.complete = false; // 开始构建
+    if (this.tree) {
+      this.tree.map((children) => {
 
-      /* 构建表单 */
-      models.forEach(model => group.addControl(model.name, this.builder.control(
-        {value: model.value, disabled: model.disabled}, // 默认值
-        this.fetchValidator(model),
-      )));
+        if (children.components && Array.isArray(children.components)) {
+          form = this.createGroup(form, children.components);
+          this.tabLayout.push(children);
+        }
+      });
     }
-    return group;
+    if (this.models && Array.isArray(this.models) && this.models.length > 0) {
+      form = this.createGroup(form, this.models);
+      if (this.tabLayout.length > 0) {
+        this.tabLayout.push({components: this.models, title: this.textContainer.other}); // 其他类别
+        this.blockInValid.push(0); // 初始化字段分组验证容器
+      }
+    } else {
+      this.models = [];
+    }
+    this.complete = true; // 构建完毕
+
+    return form;
+  }
+
+  createGroup(form, groups) {
+    const models = [];
+
+    /* 格式化表单布局配置 */
+    groups = groups.map((block, i) => {
+      if (block.items && Array.isArray(block.items)) {
+        models.push(...block.items);
+        block.items = this.sort(block.items); // 排序
+      } else {
+        block.items = [];
+      }
+      if (block.column) {
+        block.column = [this.labelWidth(block.column), this.contentWidth(block.column)];
+      }
+      return block;
+    });
+
+    /* 构建表单 */
+    models.forEach(model => form.addControl(model.name, this.builder.control(
+      {value: model.value, disabled: model.disabled}, // 默认值
+      this.fetchValidator(model),
+    )));
+
+    return form;
   }
 
   isBlockInvalid(i) {
     this.blockInValid[i] = 0;
-    this.models[i].items.map(item => {
-      if (this.form.controls[item.name].invalid) {
-        this.blockInValid[i]++;
-      }
+    this.tabLayout[i].components.map((models) => {
+      models.items.map(item => {
+        if (this.form.controls[item.name].invalid) {
+          this.blockInValid[i]++;
+        }
+      });
     });
     return this.blockInValid[i];
   }
@@ -145,13 +176,13 @@ export class DynamicFormComponent implements OnChanges {
 
   private fetchValidator(model: BaseModel<any>) {
     const validator = [];
-    if (model.require) {
+    if (model.require === true) {
       validator.push(Validators.required);
     }
-    if (model.min) {
+    if (model.min && model.min > 0) {
       validator.push(Validators.minLength(model.min));
     }
-    if (model.max) {
+    if (model.max && model.max > 0) {
       validator.push(Validators.maxLength(model.max));
     }
     if (model.validator && VALIDATORS[model.validator]) {

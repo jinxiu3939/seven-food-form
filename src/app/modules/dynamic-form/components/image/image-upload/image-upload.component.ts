@@ -150,7 +150,7 @@ export class ImageUploadComponent implements OnInit {
         if (status === 401) {
           $this.alert($this.lang.upload_auth_error);
         } else {
-          $this.alert($this.lang.upload_image_error + `（` + $this.lang.system_busy + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+          $this.alert($this.lang.upload_image_error + `（` + $this.lang.system_busy + `）（` + status + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
         }
       };
       queue.onComplete = (response, status, headers) => {

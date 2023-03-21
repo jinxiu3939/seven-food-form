@@ -1,6 +1,6 @@
 # SevenFoodForm
 
-This project has a angular module of dynamic form based on [nebular](https://github.com/akveo/nebular).
+This project is a angular module of dynamic form based on [nebular](https://github.com/akveo/nebular).
 
 ### 使用
 
@@ -24,10 +24,12 @@ SfDynamicFormModule.forRoot()
 </ng-container>
 ```
 
-如果使用ckeditor，需要导入语言包
+> 如果使用ckeditor，需要导入响应的包
 
 ```
 import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // 导入`ckeditor`语言包
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'; // 导入`ckeditor`模块
+this.model.editor = ClassicEditor;
 ```
 
 #### 表单中插入其他内容
@@ -83,21 +85,35 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 }
 ```
 
+##### tree
+
+三层结构，类型：FormCategory，属性如下：
+
+- components: ModelGroup<any>[]; // 组件分类
+- title: string; // 分类标题
+
 ##### models
 
-表单布局配置，类型：ModelGroup，属性如下：
+二层结构，类型：ModelGroup，属性如下：
 
 - items: BaseModel<any>[]; // 表单项列表
 - column?: number[]; // 列宽度
 - title?: string; // 分组标题
-- size?: string; // 尺寸 'large' | 'medium' | 'small' | 'tiny'
+- size?: string; // 尺寸，影响组件宽度 'large' | 'medium' | 'small' | 'tiny'
 - hide?: boolean; // 内容是否隐藏
 
-实例化`models`的表单项有三种方法
+实例化表单项`BaseModel`的有三种方法
 
 1. 对象自变量
+   - 优点 - 无需导入模型和工厂
+   - 缺点 - 代码不能复用，容易产生冗余代码；无法使用数据过滤，验证等功能
 2. 模型工厂
+   - 优点 - 代码规范，易于维护，方便扩展
+   - 缺点 - 需要导入大量模型工厂
 3. 快捷表单工厂
+   - 缺点 - 导入工厂类`QuickFormFactory`
+   - 优点 - 使用简单，是模型工厂的快捷方式；校验并自动格式化参数类型，有效避免参数错误时无法构建表单
+   > 推荐使用快捷表单工厂
 
 ##### submit
 
@@ -109,7 +125,7 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 
 ##### fold
 
-显示折叠按钮，仅当`layout`为`inline`时有效
+显示表单折叠按钮
 
 ##### lang
 
@@ -133,24 +149,6 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 
 是否开启表单验证
 
-###### 对象自变量
-
-- 优点 - 无需导入模型和工厂
-- 缺点 - 代码不能复用，容易产生冗余代码；无法使用数据过滤，验证等功能
-
-###### 模型工厂
-
-- 优点 - 代码规范，易于维护，方便扩展
-- 缺点 - 需要导入大量模型工厂
-
-###### 快捷表单工厂
-
-工厂类`QuickFormFactory`
-
-- 使用简单，是模型工厂的快捷方式
-
-> 推荐使用快捷表单工厂
-
 #### 输出事件
 
 - formSubmit，提交事件，返回表单值
@@ -159,11 +157,11 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 
 ### 示例
 
-三种实例化输入参数`models`的字段`items`的示例参见`demo.md`
+三种实例化`BaseModel`的示例参见`demo.md`
 
 ### 表单模型
 
-具体表单模型字段参见`dynamic-form.options.ts`
+具体表单模型属性参见`dynamic-form.options.ts`
 
 #### RadioModel
 
@@ -239,7 +237,8 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 - disabled: boolean; // 是否禁用
 - editor: any; // 编辑器
 - editorConfig: any; // `ck-editor`配置
-- kind: 'classic'; // `ck-editor`类别
+- kind: 'classic' | 'ckfinder'; // 默认配置类型
+- build: string; // 编辑器种类
 
 #### DatePickerModel
 
@@ -428,7 +427,7 @@ import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // �
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
-- attributes: ConditionField[]; // 字段列表
+- attributes: ConditionField[]; // 属性列表
 - disabled: boolean; //  是否禁用
 - size: string; //  弹出框尺寸 '' | 'medium' | 'large'
 

@@ -39,6 +39,7 @@ import { DynamicFieldDirective } from './directive/dynamic-field.directive';
 import { InputEqualValidatorDirective } from './directive/input-equal-validator.directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { FormLayoutComponent } from './layout/form-layout/form-layout.component';
 import { FormBlockComponent } from './layout/form-block/form-block.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { CheckboxNodeComponent } from './components/checkbox-tree/checkbox-node/checkbox-node.component';
@@ -103,6 +104,7 @@ const ENTRY_COMPONENTS = [
 
 const FORM_COMPONENTS = [
   DynamicFormComponent,
+  FormLayoutComponent,
   FormBlockComponent,
   ImageCacheComponent,
   ImageSearchComponent,

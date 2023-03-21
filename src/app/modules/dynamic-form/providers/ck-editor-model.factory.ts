@@ -1,6 +1,6 @@
 // import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'; // 导入`ckeditor`模块
 // import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn'; // 导入`ckeditor`语言包
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'; // 导入`ckeditor`模块
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'; // 导入`ckeditor`模块
 // import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // 导入`ckeditor`语言包
 
 
@@ -107,11 +107,6 @@ export class CKEditorModelFactory extends BaseModelFactory {
     /* `editor`配置 */
     let defaultConfig: any;
     switch (obj.kind) {
-      // 经典布局
-      case 'classic' : {
-        defaultConfig = classicEditorConfig;
-        break;
-      }
       // 经典布局可上传图片
       case 'ckfinder' : {
         defaultConfig = ckfinderEditorConfig;
@@ -123,25 +118,5 @@ export class CKEditorModelFactory extends BaseModelFactory {
       }
     }
     this.config.editorConfig = deepExtend({}, defaultConfig, this.config.editorConfig);
-    this.config.kind = 'classic'; // 默认`build`
-  }
-
-  format() {
-    switch (this.config.kind) {
-      // 经典布局
-      case 'classic' : {
-        this.model.editor = ClassicEditor;
-        break;
-      }
-      case 'ckfinder' : {
-        this.model.editor = ClassicEditor;
-        break;
-      }
-      // [todo] other
-      // default
-      default : {
-        this.model.editor = ClassicEditor; // 默认使用经典布局
-      }
-    }
   }
 }

@@ -9,6 +9,7 @@
   submit: '提交',
   reset: '重置',
   filter: '筛选',
+  other: '其他',
   add: '新增',
   close: '关闭',
   operate: '操作',

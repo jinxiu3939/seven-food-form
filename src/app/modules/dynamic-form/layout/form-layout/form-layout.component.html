@@ -1,0 +1,43 @@
+<div class="form-layout" [ngSwitch]="layout">
+  <nb-tabset *ngSwitchCase="'tab'">
+    <nb-tab *ngFor="let block of groups; let i = index" [tabTitle]="block.title" [lazyLoad]="true" badgeStatus="danger" [badgeText]="isBlockInvalid(i)">
+      <ngx-form-block *ngIf="block.items"
+                      [models]="block.items"
+                      [column]="block.column"
+                      [form]="form"
+                      [size]="block.size"
+                      [reload]="reload"></ngx-form-block>
+    </nb-tab>
+  </nb-tabset>
+  <nb-stepper *ngSwitchCase="'step'" orientation="horizontal">
+    <nb-step *ngFor="let block of groups" [label]="block.title">
+      <ngx-form-block *ngIf="block.items"
+                      [models]="block.items"
+                      [column]="block.column"
+                      [form]="form"
+                      [size]="block.size"
+                      [reload]="reload"></ngx-form-block>
+    </nb-step>
+  </nb-stepper>
+  <ul *ngSwitchDefault class="default-block" [ngClass]="{'custom-condition': layout==='custom'}">
+    <li *ngFor="let block of groups; let i = index">
+      <h3 *ngIf="block.title">
+        {{ block.title }}
+        <nb-badge *ngIf="isBlockInvalid(i) > 0"
+          position="right"
+          status="danger"
+          [text]="blockInValid[i]">
+        </nb-badge>
+        <nb-icon [icon]="block.hide ? 'arrow-ios-downward' : 'arrow-ios-upward'" status="info" (click)="foldBlock(i)"></nb-icon>
+      </h3>
+      <ngx-form-block *ngIf="block.items"
+                      [models]="block.items"
+                      [column]="block.column"
+                      [hide]="block.hide"
+                      [form]="form"
+                      [reload]="reload"
+                      [size]="block.size">
+      </ngx-form-block>
+    </li>
+  </ul>
+</div>

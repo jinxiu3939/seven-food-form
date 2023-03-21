@@ -11,6 +11,7 @@
   required: 'required',
   filter: 'filter',
   add: 'add',
+  other: 'other',
   close: 'close',
   operate: 'operate',
   search: 'search',

@@ -44,6 +44,14 @@ export const VALIDATORS = {
 };
 
 /**
+ * 表单类别
+ */
+export interface FormCategory {
+  components: ModelGroup; // 组件
+  title: string; // 标题
+}
+
+/**
  * 表单布局配置
  */
 export interface ModelGroup {
@@ -318,7 +326,8 @@ export interface CKEditorModel extends BaseModel<string> {
   editor: any; // 编辑器
   editorConfig: any; // `ck-editor`配置
   // 需要安装相应的`CKEditor Build`[https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#classic-editor]
-  kind: 'classic' | 'ckfinder'; // `ck-editor`类别
+  kind: 'classic' | 'ckfinder'; // 配置类别
+  build: string; // 构造编辑器的种类
 }
 
 /**

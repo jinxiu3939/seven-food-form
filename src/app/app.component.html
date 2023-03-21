@@ -6,11 +6,26 @@
   <nb-layout-column>
     <nb-card>
       <ngx-test-component></ngx-test-component>
-      <ngx-dynamic-form [validate]="false" [models]="inlineModels" submitText="检索" layout="inline" [loading]="submitting" [buttons]="buttons" (formSubmit)="submit($event)" (formCustom)="operate($event)">
-      </ngx-dynamic-form>
-      <ngx-dynamic-form [models]="models" layout="step" [loading]="submitting" (formReset)="reset($event)" (formSubmit)="submit($event)" (formCustom)="operate($event)">
+      <ngx-dynamic-form *ngIf="inlineModels"
+                        layout=""
+                        submitText="检索"
+                        [buttons]="buttons"
+                        [loading]="submitting"
+                        [models]="inlineModels"
+                        [validate]="false"
+                        (formCustom)="operate($event)"
+                        (formSubmit)="submit($event)"></ngx-dynamic-form>
+      <ngx-dynamic-form *ngIf="trees.length > 0"
+                        layout="tab"
+                        [fold]="true"
+                        lang="en-www"
+                        [loading]="submitting"
+                        [tree]="trees"
+                        (formCustom)="operate($event)"
+                        (formReset)="reset($event)"
+                        (formSubmit)="submit($event)">
         <ng-container name="other-models">
-          <ngx-image-tree *ngFor="let tree of trees" [tree]="tree"></ngx-image-tree>
+          <ngx-image-tree *ngFor="let tree of imageTrees" [tree]="tree"></ngx-image-tree>
         </ng-container>
       </ngx-dynamic-form>
     </nb-card>

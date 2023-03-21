@@ -8,6 +8,7 @@
   cancel: '取消',
   submit: 'コミット',
   reset: 'リセット',
+  other: '其他',
   filter: '筛选',
   add: '新規追加',
   close: '关闭',
