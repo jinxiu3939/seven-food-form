@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+  <div *ngIf="! model.readonly" class="input-group">
+    <input nbInput
+           class="form-control date-input"
+           maxlength="50"
+           readonly
+           [nbDatepicker]="formpicker"
+           [placeholder]="lang.select_date"
+           [value]="value">
+    <nb-rangepicker #formpicker [range]="date" (rangeChange)="handleDateChange($event)"></nb-rangepicker>
+    <input [formControlName]="model.name" type="hidden" [value]="model.value" />
+  </div>
+  <ng-container *ngIf="model.readonly">
+    <input class="form-control date-time-input" readonly size=50 [value]="model.value">
+  </ng-container>
+</div>

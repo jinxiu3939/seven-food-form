@@ -1,5 +1,4 @@
-<div [formGroup]="form">
-  <div *ngIf="! model.disabled" [ngClass]="{'form-control-editor': true, 'form-control-success': valid, 'form-control-danger': invalid}">
+<div [formGroup]="form" [ngClass]="{'form-control-editor': true, 'form-control-success': valid, 'form-control-danger': invalid}">
     <ckeditor [formControlName]="model.name"
               [config]="model.editorConfig"
               [editor]="model.editor"
@@ -9,7 +8,4 @@
     <ng-container *ngIf="invalid">
       <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
     </ng-container>
-  </div>
-  <div *ngIf="model.disabled" class="ck-content ck-editor-view" [innerHTML]="model.value | safeHTML">
-  </div>
 </div>

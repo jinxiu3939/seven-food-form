@@ -11,7 +11,7 @@ import { AllHours, AllMinutes } from './time.const';
 import { DatePickerModel } from '../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-date-picker',
+  selector: 'sff-date-picker',
   styleUrls: [
     './date-picker.component.scss',
   ],
@@ -49,19 +49,14 @@ export class DatePickerComponent implements OnInit, ComponentReset {
 
   get day() {
     const control = this.form.controls[this.model.name];
-    return control.value ? control.value.substr(0, 10) : '';
+    return control.value ? dateFormat(new Date(control.value), 'YYYY-MM-DD') : '';
   }
 
   get hour() {
     const control = this.form.controls[this.model.name];
     let hour: string = ''; // 小时
     if (control.value) {
-      const date = new Date(control.value); // 字符串转换成日期格式
-      if (date.getHours() < 10) {
-        hour = '0' + date.getHours();
-      } else {
-        hour = date.getHours() + '';
-      }
+      hour = dateFormat(new Date(control.value), 'HH');
     }
     return hour;
   }
@@ -74,12 +69,7 @@ export class DatePickerComponent implements OnInit, ComponentReset {
     const control = this.form.controls[this.model.name];
     let minute: string = ''; // 分钟
     if (control.value) {
-      const date = new Date(control.value); // 字符串转换成日期格式
-      if (date.getMinutes() < 10) {
-        minute = '0' + date.getMinutes();
-      } else {
-        minute = date.getMinutes() + '';
-      }
+      minute = dateFormat(new Date(control.value), 'mm');
     }
     return minute;
   }
@@ -89,6 +79,9 @@ export class DatePickerComponent implements OnInit, ComponentReset {
   }
 
   get time() {
+    this.hour;
+    this.minute;
+    
     if (+this.tmpHour || +this.tmpMinute) {
       return this.tmpHour + ':' + this.tmpMinute;
     } else {

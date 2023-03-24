@@ -1,0 +1,12 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '../../theme/styles';
+
+@include nb-install-component() {
+  .date-input {
+    width: 15rem;
+    height: 2.5rem;
+    flex: none;
+    background-color: nb-theme(background-basic-color-3);
+    color: nb-theme(color-basic-600);
+  }
+}

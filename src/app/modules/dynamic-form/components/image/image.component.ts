@@ -11,7 +11,7 @@ import { ImageDescription, ImageModel, ImageItem, ImageListOrder } from '../../d
 import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-image',
+  selector: 'sff-image',
   templateUrl: './image.component.html',
   styleUrls: [
     './image.component.scss',

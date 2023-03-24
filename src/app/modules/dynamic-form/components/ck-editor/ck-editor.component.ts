@@ -12,7 +12,7 @@ import { ComponentReset } from '../../providers/interface/component-reset';
 import { CKEditorModel } from '../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-ck-editor',
+  selector: 'sff-ck-editor',
   templateUrl: `./ck-editor.component.html`,
   styleUrls: [
     `./ck-editor.component.scss`,

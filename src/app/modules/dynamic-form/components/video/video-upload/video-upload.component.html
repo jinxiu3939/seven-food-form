@@ -5,14 +5,14 @@
          [multiple]="multiple"
          [uploader]="uploader"
          (change)="selectedFileOnChanged($event)" />
-  <ngx-video-slider *ngIf="thumbnails.length"
+  <sff-video-slider *ngIf="thumbnails.length"
                     [items]="thumbnails"
                     [active]="uploaded"
                     [currentIndex]="currentIndex"
                     (currentChange)="slide($event)"
                     (destroy)="delete($event)"
                     (edit)="desc($event)">
-  </ngx-video-slider>
+  </sff-video-slider>
   <a *ngIf="uploader.queue.length"
      nbButton
      fullWidth

@@ -4,7 +4,7 @@
     <nb-option *ngFor="let opt of options" [value]="opt.value">{{ opt.text }}</nb-option>
   </nb-select>
   <ng-container *ngIf="tree.children">
-    <ngx-linkage-node [tree]="tree.children" [parent]="tree.selected" (selectedChange)="notifyParent($event)">
-    </ngx-linkage-node>
+    <sff-linkage-node [tree]="tree.children" [parent]="tree.selected" (selectedChange)="notifyParent($event)">
+    </sff-linkage-node>
   </ng-container>
 </div>

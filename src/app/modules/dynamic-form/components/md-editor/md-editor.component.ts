@@ -12,7 +12,7 @@ import { ComponentReset } from '../../providers/interface/component-reset';
 declare var editormd: any;
 
 @Component({
-  selector: 'ngx-md-editor',
+  selector: 'sff-md-editor',
   templateUrl: `./md-editor.component.html`,
   styleUrls: [
     `./md-editor.component.scss`,

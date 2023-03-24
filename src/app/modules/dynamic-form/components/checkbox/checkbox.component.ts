@@ -1,6 +1,5 @@
 /**
- * 单选按钮组
- * 适用于列表项较少的按钮组
+ * 多选按钮
  */
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -9,7 +8,7 @@ import { ComponentReset } from '../../providers/interface/component-reset';
 import { CheckboxModel } from '../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-checkbox',
+  selector: 'sff-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: [
     './checkbox.component.scss',
@@ -66,7 +65,7 @@ export class CheckboxComponent implements OnInit, ComponentReset {
       }
     } else { // 取消
       if (this.isChecked(value)) {
-        this.model.value = this.model.value.filter(item => item !== value);
+        this.model.value = this.model.value.filter(item => item !== value && item !== value + '');
       }
     }
     this.form.controls[this.model.name].setValue(this.model.value);

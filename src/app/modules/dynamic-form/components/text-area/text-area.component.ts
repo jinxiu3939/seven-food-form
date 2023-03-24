@@ -9,7 +9,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-text-area',
+  selector: 'sff-text-area',
   templateUrl: './text-area.component.html',
   styleUrls: [
     '../../dynamic-form.component.scss',

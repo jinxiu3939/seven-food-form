@@ -5,7 +5,7 @@ import { ComponentReset } from '../../providers/interface/component-reset';
 import { CheckboxTreeModel } from '../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-checkbox-tree',
+  selector: 'sff-checkbox-tree',
   templateUrl: './checkbox-tree.component.html',
   styleUrls: [
     '../../dynamic-form.component.scss',

@@ -1,40 +1,52 @@
-<div class="dynamic-form">
-  <form *ngIf="form"
-        [formGroup]="form"
-        [nbSpinner]="loading"
-        nbSpinnerStatus="info"
-        (ngSubmit)="onSubmit()">
-    <ng-container *ngIf="complete">
-      <nb-tabset *ngIf="tabLayout.length > 0" class="top-layout">
-        <nb-tab *ngFor="let children of tabLayout; let i = index"
-                [lazyLoad]="true"
-                [tabTitle]="children.title"
-                badgeStatus="danger"
-                [badgeText]="isBlockInvalid(i)">
-          <ngx-form-layout [groups]="children.components"
-                           [form]="form"
-                           [layout]="layout"
-                           [reload]="reload"
-                           [ngClass]="{'fold-block': !formExpand}"></ngx-form-layout>
-        </nb-tab>
-      </nb-tabset>
-      <ngx-form-layout *ngIf="tabLayout.length === 0"
-                       [groups]="models"
-                       [form]="form"
-                       [layout]="layout"
-                       [reload]="reload"
-                       [ngClass]="{'fold-block': !formExpand}"></ngx-form-layout>
+<form *ngIf="form"
+      [formGroup]="form"
+      [nbSpinner]="loading"
+      nbSpinnerStatus="info">
+  <div *ngIf="complete" class="row">
+    <ng-container [ngSwitch]="level">
+      <sff-two-layout *ngSwitchCase="2"
+                      class="col-{{ setting.bodyWidth }}"
+                      [ngClass]="{'block-fold': !formExpand}"
+                      [models]="modelsTree"
+                      [form]="form"
+                      [setting]="setting"
+                      [reload]="reload">
+      </sff-two-layout>
+      <sff-one-layout *ngSwitchCase="1"
+                      class="col-{{ setting.bodyWidth }}"
+                      [ngClass]="{'block-fold': !formExpand}"
+                      [models]="modelsTree"
+                      [form]="form"
+                      [setting]="setting"
+                      [reload]="reload">
+      </sff-one-layout>
+      <sff-form-block *ngSwitchDefault class="row col-{{ setting.bodyWidth }}"
+                      [ngClass]="{'block-fold': !formExpand}"
+                      [models]="modelsTree"
+                      [form]="form"
+                      [reload]="reload"
+                      [validate]="setting.validate"
+                      [width]="setting.width"
+                      [size]="setting.size">
+      </sff-form-block>
     </ng-container>
     <ng-content select="[name='other-models']"></ng-content>
-    <div class="form-group form-operation" [ngClass]="{'custom-operation': layout==='custom'}">
-      <button *ngIf="submit" type="submit" class="btn btn-success" [disabled]="validate && !form.valid">{{ submitText }}</button>
-      <button *ngIf="reset" type="button" class="btn btn-warning" (click)="onReset()">{{ resetText }}</button>
-      <ng-container *ngIf="buttons">
-        <button *ngFor="let btn of buttons" type="button" class="btn btn-primary" (click)="onOperate(btn)">
-          {{ btn.value }}
-        </button>
-      </ng-container>
-      <nb-icon *ngIf="fold" [icon]="formFoldIcon" status="info" (click)="foldForm()"></nb-icon>
-    </div>
-  </form>
-</div>
+    <sff-form-button class="col-{{ setting.buttonWidth }} operation-{{ setting.buttonPosition }}"
+                     [ngClass]="{'operation-fixed': setting.buttonFixed}"
+                     [nbSpinner]="loading"
+                     [form]="form"
+                     [hideSubmit]="setting.hideSubmit"
+                     [hideReset]="setting.hideReset"
+                     [submitText]="setting.submitText"
+                     [resetText]="setting.resetText"
+                     [validate]="setting.validate"
+                     [showFold]="setting.foldBody"
+                     [buttons]="setting.buttons"
+                     [align]="setting.buttonAlign"
+                     (submit)="onSubmit($event)"
+                     (reset)="onReset($event)"
+                     (operate)="onOperate($event)"
+                     (fold)="foldBody($event)">
+    </sff-form-button>
+  </div>
+</form>

@@ -39,13 +39,16 @@ import { DynamicFieldDirective } from './directive/dynamic-field.directive';
 import { InputEqualValidatorDirective } from './directive/input-equal-validator.directive';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
-import { FormLayoutComponent } from './layout/form-layout/form-layout.component';
+import { FormButtonComponent } from './layout/form-button/form-button.component';
+import { OneLayoutComponent } from './layout/one-layout/one-layout.component';
+import { TwoLayoutComponent } from './layout/two-layout/two-layout.component';
 import { FormBlockComponent } from './layout/form-block/form-block.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { CheckboxNodeComponent } from './components/checkbox-tree/checkbox-node/checkbox-node.component';
 import { CheckboxTreeComponent } from './components/checkbox-tree/checkbox-tree.component';
 import { CKEditorComponent } from './components/ck-editor/ck-editor.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { DateRangePickerComponent } from './components/date-range-picker/date-range-picker.component';
 import { DropDownBoxComponent } from './components/drop-down-box/drop-down-box.component';
 import { ImageComponent } from './components/image/image.component';
 import { ImageCacheComponent } from './components/image/image-cache/image-cache.component';
@@ -82,6 +85,7 @@ const ENTRY_COMPONENTS = [
   CheckboxTreeComponent,
   CKEditorComponent,
   DatePickerComponent,
+  DateRangePickerComponent,
   DropDownBoxComponent,
   FileComponent,
   ImageComponent,
@@ -104,7 +108,9 @@ const ENTRY_COMPONENTS = [
 
 const FORM_COMPONENTS = [
   DynamicFormComponent,
-  FormLayoutComponent,
+  FormButtonComponent,
+  OneLayoutComponent,
+  TwoLayoutComponent,
   FormBlockComponent,
   ImageCacheComponent,
   ImageSearchComponent,
@@ -161,7 +167,7 @@ const FORM_DIRECTIVE = [
       // 默认前端配置项
       options: {
         UEDITOR_HOME_URL: './assets/ueditor/',
-      }
+      },
     }),
     ImageCropperModule,
   ],

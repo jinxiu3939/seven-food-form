@@ -5,7 +5,7 @@ import { LinkageBoxTreeModel } from '../../dynamic-form.options';
 import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-linkage-box',
+  selector: 'sff-linkage-box',
   templateUrl: './linkage-box.component.html',
   styleUrls: [
     '../../dynamic-form.component.scss',

@@ -3,9 +3,10 @@ import { Subject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { ConditionField, Option } from '../../../dynamic-form.options';
+import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-item-dialog',
+  selector: 'sff-item-dialog',
   templateUrl: `./item-dialog.component.html`,
   styleUrls: [
     '../../../dynamic-form.component.scss',
@@ -15,18 +16,23 @@ import { ConditionField, Option } from '../../../dynamic-form.options';
 export class ItemDialogComponent implements OnInit {
   @Input() data: object; // 子项默认值
   @Input() fields: ConditionField[]; // 字段
-  @Input() size: string = ''; // 尺寸
+  @Input() size: string = ''; // 表单组件的尺寸
 
   @Output() public finish = new EventEmitter<object>(); // 提交
   
   private searchTerms = new Subject<{value: string, key: number}>(); // 检索对象
   files$: Observable<any[]>;
   searchOptions: Option<string | number>[][] = [];
-  column = [4, 8];
+  column = [3, 9];
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   ngOnInit() {
     if (this.size === 'medium') {
-      this.column = [3, 9];
+      this.column = [4, 8];
     } else if (this.size === 'large') {
       this.column = [2, 10];
     }

@@ -11,7 +11,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-video',
+  selector: 'sff-video',
   templateUrl: './video.component.html',
   styleUrls: [
     './video.component.scss',

@@ -11,7 +11,7 @@ import {
 import { CheckBoxTree } from '../../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-checkbox-node',
+  selector: 'sff-checkbox-node',
   templateUrl: './checkbox-node.component.html',
   styleUrls: [
     '../../../dynamic-form.component.scss',
@@ -106,7 +106,7 @@ export class CheckboxNodeComponent implements OnInit, OnChanges {
       }
     } else { // 取消
       if (this.checkChecked(value)) {
-        this.checked = this.checked.filter(item => item !== value);
+        this.checked = this.checked.filter(item => item !== value && item !== value + '');
       }
     }
   }

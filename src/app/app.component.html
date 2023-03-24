@@ -5,29 +5,18 @@
 
   <nb-layout-column>
     <nb-card>
-      <ngx-test-component></ngx-test-component>
-      <ngx-dynamic-form *ngIf="inlineModels"
-                        layout=""
-                        submitText="检索"
-                        [buttons]="buttons"
-                        [loading]="submitting"
-                        [models]="inlineModels"
-                        [validate]="false"
-                        (formCustom)="operate($event)"
-                        (formSubmit)="submit($event)"></ngx-dynamic-form>
-      <ngx-dynamic-form *ngIf="trees.length > 0"
-                        layout="tab"
-                        [fold]="true"
-                        lang="en-www"
-                        [loading]="submitting"
-                        [tree]="trees"
-                        (formCustom)="operate($event)"
-                        (formReset)="reset($event)"
-                        (formSubmit)="submit($event)">
-        <ng-container name="other-models">
-          <ngx-image-tree *ngFor="let tree of imageTrees" [tree]="tree"></ngx-image-tree>
-        </ng-container>
-      </ngx-dynamic-form>
+      <nb-card-body>
+        <ngx-test-component></ngx-test-component>
+        <sff-dynamic-form [loading]="submitting"
+                          [setting]="setting"
+                          [models]="models"
+                          (formCustom)="operate($event)"
+                          (formReset)="reset($event)"
+                          (formSubmit)="submit($event)">
+          <ng-container name="other-models">
+          </ng-container>
+        </sff-dynamic-form>
+      </nb-card-body>
     </nb-card>
   </nb-layout-column>
 </nb-layout>

@@ -14,7 +14,7 @@ import { ResourceProvider } from '../../../providers/data/resource-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-image-upload-cropper',
+  selector: 'sff-image-upload-cropper',
   templateUrl: './image-upload-cropper.component.html',
   styleUrls: [
     './image-upload-cropper.component.scss',

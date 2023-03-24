@@ -4,7 +4,7 @@ import { NbTreeGridPresentationNode } from '@nebular/theme';
 import { TreeNode, Option } from '../../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-tree-node-icon',
+  selector: 'sff-tree-node-icon',
   template: `
     <nb-tree-grid-row-toggle *ngIf="isDir();" [expanded]="expanded">
     </nb-tree-grid-row-toggle>

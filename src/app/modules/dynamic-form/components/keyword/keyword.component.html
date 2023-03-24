@@ -1,23 +1,21 @@
-<div [formGroup]="form" class="row">
-  <div class="keyword-list col-12">
-    <ng-container *ngIf="model.value && model.value.length > 0">
-      <a *ngFor="let v of model.value" nbButton size="tiny">
-        {{ v }}
-        <nb-icon *ngIf="! model.readonly" status="danger" icon="close" (click)="delete(v)"></nb-icon>
-      </a>
-    </ng-container>
-    <ng-container *ngIf="! model.value || model.value.length === 0">
-      <a>{{ lang.no_data }}</a>
-    </ng-container>
-    <span *ngIf="! model.readonly">
-      <input #keyword type="text" class="form-control-sm form-value">
-      <a nbButton class="btn-add" status="info" size="tiny" (click)="add(keyword)">{{ lang.add }}</a>
-    </span>
-    <div *ngIf="model.options && model.options.length > 0" class="options">
-      <a *ngFor="let v of model.options" nbButton size="small" (click)="insert(v)">
-        {{ v }}
-      </a>
-    </div>
-    <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
+<div [formGroup]="form" class="keyword" [ngClass]="{'keyword-list': isOption}">
+  <ng-container *ngIf="model.value && model.value.length > 0">
+    <a *ngFor="let v of model.value" nbButton size="tiny">
+      {{ v }}
+      <nb-icon *ngIf="! model.readonly" status="danger" icon="close-square" (click)="delete(v)"></nb-icon>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="! model.value || model.value.length === 0">
+    <a>{{ lang.no_data }}</a>
+  </ng-container>
+  <span *ngIf="! model.readonly">
+    <input #keyword type="text" class="form-control-sm form-value" (focus)="showOption()">
+    <a nbButton class="btn-add" status="info" size="tiny" (click)="add(keyword)">{{ lang.add }}</a>
+  </span>
+  <div *ngIf="model.options && model.options.length > 0" class="options">
+    <a *ngFor="let v of model.options" nbButton size="small" (click)="insert(v)">
+      {{ v }}
+    </a>
   </div>
+  <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
 </div>

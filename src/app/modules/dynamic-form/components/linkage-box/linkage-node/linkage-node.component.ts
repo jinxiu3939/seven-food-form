@@ -11,7 +11,7 @@ import { LinkageBoxTree, LinkageOption } from '../../../dynamic-form.options';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-linkage-node',
+  selector: 'sff-linkage-node',
   templateUrl: './linkage-node.component.html',
   styleUrls: [
     '../../../dynamic-form.component.scss',

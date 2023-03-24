@@ -17,7 +17,7 @@ import {
 import { ResourceProvider } from '../../../providers/data/resource-provider';
 
 @Component({
-  selector: 'ngx-image-search',
+  selector: 'sff-image-search',
   templateUrl: './image-search.component.html',
   styleUrls: [
     './image-search.component.scss',
@@ -127,13 +127,13 @@ export class ImageSearchComponent implements OnInit {
     this.loading = true;
     /* 检索条件赋值 */
     this.config.additionalParameter.page_number = this.page; // 当前页码
-    if (this.condition) {
-      this.config.additionalParameter[this.condition] = keyword; // 检索指定条件
-    } else {
-      this.conditions.map((condition) => {
-        this.config.additionalParameter[condition.value] = keyword; // 检索所有，接口检索关键字关系为或
-      });
-    }
+    this.conditions.map((condition) => {
+      if (this.condition && this.condition === condition.value) {
+        this.config.additionalParameter[this.condition] = keyword; // 指定检索条件
+      } else {
+        this.config.additionalParameter[condition.value] = ''; // 清空检索条件
+      }
+    });
     /* 构造检索参数 */
     return this.provider.getSearchResult(this.config.api, this.config.additionalParameter, this.config.headers)
       .pipe(

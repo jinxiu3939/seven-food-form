@@ -18,6 +18,7 @@ import { RangeTextBoxModelFactory } from './range-text-box-model.factory';
 import { TextAreaModelFactory } from './text-area-model.factory';
 import { DropDownBoxModelFactory } from './drop-down-box-model.factory';
 import { DatePickerModelFactory } from './date-picker-model.factory';
+import { DateRangePickerModelFactory } from './date-range-picker-model.factory';
 import { CKEditorModelFactory } from './ck-editor-model.factory';
 import { ImageModelFactory } from './image-model.factory';
 import { UrlTextBoxModelFactory } from './url-text-box-model.factory';
@@ -201,6 +202,13 @@ export class QuickFormFactory {
    */
   datePicker() {
     return new DatePickerModelFactory(this.config).instance();
+  }
+
+  /**
+   * 日期范围选择器
+   */
+  dateRangePicker() {
+    return new DateRangePickerModelFactory(this.config).instance();
   }
 
   /**

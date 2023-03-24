@@ -11,7 +11,7 @@
        type="button"
        class="btn btn-success btn-xs"
        (click)="uploadFile()">
-      {{lang.upload}}
+      {{ lang.upload }}
     </a>
     <nb-badge *ngIf="table" [status]="status" [text]="table.length"></nb-badge>
     <input [formControlName]="model.name" type="hidden" [value]="model.value">

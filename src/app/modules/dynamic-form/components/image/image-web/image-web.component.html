@@ -22,12 +22,12 @@
 </p>
 <img *ngIf="tempUrl" [src]="tempUrl | safeURL" style="display: none;" (error)="loadError()" (load)="loadImage()">
 <ng-container *ngIf="thumbnails.length">
-  <ngx-image-slider [items]="thumbnails"
+  <sff-image-slider [items]="thumbnails"
                     [currentIndex]="currentIndex"
                     [active]="submits"
                     (currentChange)="slide($event)"
                     (destroy)="delete($event)"
-                    (edit)="desc($event)"></ngx-image-slider>
+                    (edit)="desc($event)"></sff-image-slider>
   <a *ngIf="! loading" nbButton fullWidth size="small" status="success" type="button" (click)="save()">{{lang.save}}</a>
   <nb-progress-bar *ngIf="start" [value]="saving" size="tiny" status="info">{{ submits.length }} / {{ thumbnails.length }}</nb-progress-bar>
   <div *ngIf="start && saving === 0" class="progress-text">
@@ -37,10 +37,7 @@
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header>{{lang.tip}}</nb-card-header>
+    <nb-card-header>{{lang.tip}}<nb-icon icon="close-outline" style="float: right;" (click)="ref.close()"></nb-icon></nb-card-header>
     <nb-card-body>{{ data }}</nb-card-body>
-    <nb-card-footer>
-      <button nbButton (click)="ref.close()" status="info">ok</button>
-    </nb-card-footer>
   </nb-card>
 </ng-template>

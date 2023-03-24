@@ -13,9 +13,12 @@ import { LangProvider } from '../../../providers/data/lang.provider';
 import { ComponentReset } from '../../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-popup-tree',
+  selector: 'sff-popup-tree',
   templateUrl: './popup-tree.component.html',
-  styleUrls: ['./popup-tree.component.scss'],
+  styleUrls: [
+    '../../../dynamic-form.component.scss',
+    './popup-tree.component.scss'
+  ],
 })
 export class PopupTreeComponent implements OnInit, ComponentReset {
 
@@ -26,8 +29,8 @@ export class PopupTreeComponent implements OnInit, ComponentReset {
 
   public loading: boolean; // 数据加载标志位
   public customColumn = 'value';
-  public defaultColumns = [ 'text', 'title', 'items'];
-  public allColumns = [ this.customColumn, ...this.defaultColumns ];
+  public defaultColumns = ['text', 'title', 'items'];
+  public allColumns = [this.customColumn, ...this.defaultColumns];
   public dataSource: NbTreeGridDataSource<Option<string | number>>;
   public text: string; // 显示内容
   private data: TreeNode<Option<string | number>>[]; // 数据
@@ -48,6 +51,14 @@ export class PopupTreeComponent implements OnInit, ComponentReset {
   }
 
   resetModel() {
+  }
+
+  get label() {
+    let text = this.model.value;
+    if (this.text) {
+      text +=  '/' + this.text
+    }
+    return text;
   }
 
   /**

@@ -12,7 +12,7 @@ import { ComponentReset } from '../../../providers/interface/component-reset';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-popup-checkbox',
+  selector: 'sff-popup-checkbox',
   templateUrl: './popup-checkbox.component.html',
   styleUrls: [
     '../../../dynamic-form.component.scss',

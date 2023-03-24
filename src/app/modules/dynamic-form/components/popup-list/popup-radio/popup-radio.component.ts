@@ -12,9 +12,10 @@ import { LangProvider } from '../../../providers/data/lang.provider';
 import { ComponentReset } from '../../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-popup-radio',
+  selector: 'sff-popup-radio',
   templateUrl: './popup-radio.component.html',
   styleUrls: [
+    '../../../dynamic-form.component.scss',
     './popup-radio.component.scss',
   ],
 })
@@ -73,7 +74,7 @@ export class PopupRadioComponent implements OnInit, ComponentReset {
   }
 
   get label() {
-    return this.form.controls[this.model.name].value ? this.text : '';
+    return this.model.value + '/' + this.form.controls[this.model.name].value ? this.text : '';
   }
 
   /**

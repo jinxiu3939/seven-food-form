@@ -35,8 +35,8 @@
   </div>
 </div>
 <ng-template #contentTemplate let-data>
-  <ngx-item-dialog [data]="data.row"
+  <sff-item-dialog [data]="data.row"
                    [fields]="data.fields"
                    [size]="data.size"
-                   (finish)="receive($event, data.index)"></ngx-item-dialog>
+                   (finish)="receive($event, data.index)"></sff-item-dialog>
 </ng-template>

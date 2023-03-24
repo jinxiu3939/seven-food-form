@@ -89,3 +89,7 @@ export const dateFormat = (date: Date, format: string) => {
   }
   return format;
 };
+
+export const formatWidth = (column) => {
+  return column && !isNaN(column) && column > 0 && column <=12 ? column : 12;
+}

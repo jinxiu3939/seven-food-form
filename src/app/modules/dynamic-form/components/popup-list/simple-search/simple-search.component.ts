@@ -14,7 +14,7 @@ import { SearchProvider } from '../../../providers/data/search-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-simple-search',
+  selector: 'sff-simple-search',
   templateUrl: './simple-search.component.html',
   styleUrls: [
     './simple-search.component.scss',

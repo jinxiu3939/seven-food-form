@@ -1,11 +1,11 @@
 <div [formGroup]="form" class="block-row">
-  <ngx-video-slider [items]="thumbnails"
+  <sff-video-slider [items]="thumbnails"
                     currentIndex="0"
                     [readonly]="! model.multiple"
                     size="small"
                     (destroy)="delete($event)"
                     (edit)="desc($event)">
-  </ngx-video-slider>
+  </sff-video-slider>
   
   <span *ngIf="! model.disabled">
     <a nbButton
@@ -26,9 +26,9 @@
 <ng-template #contentTemplate>
   <nb-tabset style="width: 600px; height: 500px;">
     <nb-tab [tabTitle]="lang.local_media">
-      <ngx-video-upload [config]="model.uploadConfig"
+      <sff-video-upload [config]="model.uploadConfig"
                         [multiple]="model.multiple"
-                        (finish)="submitVideo($event)"></ngx-video-upload>
+                        (finish)="submitVideo($event)"></sff-video-upload>
     </nb-tab>
   </nb-tabset>
   <div>

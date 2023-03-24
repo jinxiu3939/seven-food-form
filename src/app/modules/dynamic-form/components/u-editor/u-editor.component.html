@@ -1,14 +1,10 @@
-<div [formGroup]="form">
-  <div *ngIf="! model.disabled" [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}">
-    <ueditor *ngIf="! loading" #full
-             [formControlName]="model.name"
-             [config]="model.editorConfig"
-             [id]="model.name"
-             (onReady)="ready($event)"></ueditor>
-    <ng-container *ngIf="invalid">
-      <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
-    </ng-container>
-  </div>
-  <div *ngIf="model.disabled" class="u-editor-view" [innerHTML]="model.value | safeHTML">
-  </div>
+<div [formGroup]="form" [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}">
+  <ueditor *ngIf="! loading" #full
+           [formControlName]="model.name"
+           [config]="model.editorConfig"
+           [id]="model.name"
+           (onReady)="ready($event)"></ueditor>
+  <ng-container *ngIf="invalid">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+  </ng-container>
 </div>

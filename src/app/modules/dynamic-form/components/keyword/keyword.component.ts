@@ -9,7 +9,7 @@ import { KeywordModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-keyword',
+  selector: 'sff-keyword',
   templateUrl: './keyword.component.html',
   styleUrls: [
     '../../dynamic-form.component.scss',
@@ -21,12 +21,20 @@ export class KeywordComponent implements ComponentReset {
   @Input() form: FormGroup;
 
   lang: any;
+  isOption = false;
 
   constructor(private langProvider: LangProvider) {
     this.lang = langProvider.lang;
   }
 
   resetModel() {
+  }
+
+  /**
+   * 显示可选项
+   */
+  showOption() {
+    this.isOption = true;
   }
 
   /*

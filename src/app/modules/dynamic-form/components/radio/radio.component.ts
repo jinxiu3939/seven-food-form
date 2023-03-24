@@ -10,7 +10,7 @@ import { RadioModel } from '../../dynamic-form.options';
 import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-radio',
+  selector: 'sff-radio',
   templateUrl: './radio.component.html',
   styleUrls: [
     './radio.component.scss',

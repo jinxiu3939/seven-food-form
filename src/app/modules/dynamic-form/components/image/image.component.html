@@ -12,7 +12,7 @@
         </div>
       </div>
     </ng-container>
-    <ngx-image-slider *ngSwitchDefault
+    <sff-image-slider *ngSwitchDefault
                       [items]="thumbs"
                       [currentIndex]="currentIndex"
                       [readonly]="! model.multiple"
@@ -21,7 +21,7 @@
                       (order)="order($event)"
                       (destroy)="delete($event)"
                       (edit)="desc($event)">
-    </ngx-image-slider>
+    </sff-image-slider>
   </ng-container>
   
   <span *ngIf="! model.disabled">
@@ -43,37 +43,37 @@
 <ng-template #contentTemplate>
   <nb-tabset style="width: 700px; height: 600px; overflow-y: auto;">
     <nb-tab *ngIf="!model.hideUpload" [tabTitle]="lang.local_picture">
-      <ngx-image-upload [config]="model.uploadConfig"
+      <sff-image-upload [config]="model.uploadConfig"
                         [debug]="model.debug"
                         [multiple]="model.multiple"
                         [top]="model.queueLimit"
-                        (finish)="submitImage($event)"></ngx-image-upload>
+                        (finish)="submitImage($event)"></sff-image-upload>
     </nb-tab>
     <nb-tab *ngIf="!model.hideCropper" [tabTitle]="lang.cropper_picture">
-      <ngx-image-upload-cropper [config]="model.cropperConfig"
+      <sff-image-upload-cropper [config]="model.cropperConfig"
                                 [debug]="model.debug"
                                 [multiple]="model.multiple"
                                 [queueLimit]="model.queueLimit"
                                 [aspectRatio]="{height: model.aspectRatioHeight, width: model.aspectRatioWidth}"
                                 [format]="model.cropperType"
-                                (finish)="submitImage($event)"></ngx-image-upload-cropper>
+                                (finish)="submitImage($event)"></sff-image-upload-cropper>
     </nb-tab>
     <nb-tab *ngIf="!model.hideCrawl" [tabTitle]="lang.network_picture">
-      <ngx-image-web [config]="model.crawlConfig"
+      <sff-image-web [config]="model.crawlConfig"
                      [multiple]="model.multiple"
                      [queueLimit]="model.queueLimit"
-                     (finish)="submitImage($event)"></ngx-image-web>
+                     (finish)="submitImage($event)"></sff-image-web>
     </nb-tab>
     <nb-tab *ngIf="!model.hideSearch" [tabTitle]="lang.history_picture">
-      <ngx-image-search [config]="model.searchConfig"
+      <sff-image-search [config]="model.searchConfig"
                         [debug]="model.debug"
                         [multiple]="model.multiple"
                         [queueLimit]="model.queueLimit"
-                        (finish)="submitImage($event)"></ngx-image-search>
+                        (finish)="submitImage($event)"></sff-image-search>
     </nb-tab>
     <nb-tab [tabTitle]="lang.waiting_picture">
-      <ngx-image-cache [images]="tmpImage"
-                       (active)="changeImage($event)"></ngx-image-cache>
+      <sff-image-cache [images]="tmpImage"
+                       (active)="changeImage($event)"></sff-image-cache>
     </nb-tab>
   </nb-tabset>
   <div>

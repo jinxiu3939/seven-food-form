@@ -1,5 +1,5 @@
 <div [formGroup]="form">
-  <nb-select [placeholder]="lang.select" [(selected)]="value" (selectedChange)="setValue()">
+  <nb-select [placeholder]="lang.select" [(selected)]="value" [disabled]="model.disabled" (selectedChange)="setValue()">
     <nb-option *ngFor="let opt of model.options" [value]="opt.value">{{ opt.text }}</nb-option>
   </nb-select>
   <input [formControlName]="model.name" type="hidden" [value]="model.value">

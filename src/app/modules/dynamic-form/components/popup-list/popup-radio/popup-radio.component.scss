@@ -2,10 +2,6 @@
 @import '../../../theme/styles';
 
 @include nb-install-component() {
-  .col-value {
-    padding-left: 0;
-  }
-
   .input-group {
     flex-wrap: nowrap;
 

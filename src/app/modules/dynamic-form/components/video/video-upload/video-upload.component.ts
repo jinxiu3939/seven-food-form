@@ -11,7 +11,7 @@ import { ResourceProvider } from '../../../providers/data/resource-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-video-upload',
+  selector: 'sff-video-upload',
   templateUrl: './video-upload.component.html',
   styleUrls: [
     './video-upload.component.scss',

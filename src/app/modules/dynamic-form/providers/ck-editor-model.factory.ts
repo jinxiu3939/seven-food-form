@@ -48,52 +48,6 @@ const classicEditorConfig = {
   ],
 };
 
-const ckfinderEditorConfig = {
-  // This value must be kept in sync with the language defined in webpack.config.js.
-  language: 'zh-cn',
-  table: {
-    contentToolbar: [
-      'tableColumn',
-      'tableRow',
-      'mergeTableCells',
-    ],
-  },
-  toolbar: {
-    items: [
-      'heading',
-      '|',
-      'bold',
-      'italic',
-      'link',
-      'bulletedList',
-      'numberedList',
-      'blockQuote',
-      'insertTable',
-      'imageUpload',
-      'undo',
-      'redo',
-    ],
-  },
-  ckfinder: {
-    // Upload the images to the server using the CKFinder QuickUpload command.
-    uploadUrl: 'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
-  },
-  blockToolbar: [
-    'heading',
-    '|',
-    'bold',
-    'italic',
-    'link',
-    'bulletedList',
-    'numberedList',
-    'blockQuote',
-    'insertTable',
-    'imageUpload',
-    'undo',
-    'redo',
-  ],
-};
-
 /**
  * ckeditor富文本模型工厂
  */
@@ -105,18 +59,6 @@ export class CKEditorModelFactory extends BaseModelFactory {
     super(obj);
     this.config.disabled = false; // 默认不禁用
     /* `editor`配置 */
-    let defaultConfig: any;
-    switch (obj.kind) {
-      // 经典布局可上传图片
-      case 'ckfinder' : {
-        defaultConfig = ckfinderEditorConfig;
-        break;
-      }
-      // default
-      default : {
-        defaultConfig = classicEditorConfig; // 默认使用经典布局
-      }
-    }
-    this.config.editorConfig = deepExtend({}, defaultConfig, this.config.editorConfig);
+    this.config.editorConfig = deepExtend({}, classicEditorConfig, this.config.editorConfig);
   }
 }

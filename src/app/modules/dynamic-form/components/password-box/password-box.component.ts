@@ -10,7 +10,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-password-box',
+  selector: 'sff-password-box',
   styleUrls: [
     '../../dynamic-form.component.scss',
   ],

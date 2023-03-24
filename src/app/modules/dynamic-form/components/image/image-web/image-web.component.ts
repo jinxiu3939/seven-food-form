@@ -12,7 +12,7 @@ import { ResourceProvider } from '../../../providers/data/resource-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-image-web',
+  selector: 'sff-image-web',
   templateUrl: './image-web.component.html',
   styleUrls: [
     './image-web.component.scss',

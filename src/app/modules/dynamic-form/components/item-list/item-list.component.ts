@@ -11,7 +11,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-item-list',
+  selector: 'sff-item-list',
   templateUrl: `./item-list.component.html`,
   styleUrls: ['./item-list.component.scss'],
 })

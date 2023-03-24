@@ -38,6 +38,17 @@ export class MdEditorModelFactory extends BaseModelFactory {
   constructor(obj: any) {
     super(obj);
     /* `editor`配置 */
-    this.config.editorConfig = deepExtend({}, this.config.editorConfig, classicMarkDownEditorConfig);
+    this.config.editorConfig = deepExtend({}, classicMarkDownEditorConfig, this.config.editorConfig);
+  }
+
+  /**
+   * 数据处理、默认赋值
+   * 子类应该重写此方法
+   */
+  protected format(): void {
+    /* 是否只读 */
+    if (this.config.readonly === true) {
+      this.config.editorConfig.readOnly = this.config.readonly;
+    }
   }
 }

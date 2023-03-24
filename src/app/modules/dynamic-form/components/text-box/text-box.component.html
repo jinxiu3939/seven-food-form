@@ -1,17 +1,12 @@
 <div [formGroup]="form">
-  <ng-container *ngIf="! model.disabled">
-    <input [formControlName]="model.name"
-           class="form-control"
-           [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}"
-           [id]="model.name"
-           [type]="model.kind"
-           [readonly]="model.readonly"
-           [value]="model.value">
-    <ng-container *ngIf="invalid">
-      <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
-    </ng-container>
-  </ng-container>
-  <ng-container *ngIf="model.disabled">
-    <input class="form-control" disabled [value]="model.value">
+  <input [formControlName]="model.name"
+         class="form-control"
+         [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}"
+         [id]="model.name"
+         [type]="model.kind"
+         [readonly]="model.readonly"
+         [value]="model.value">
+  <ng-container *ngIf="invalid">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
   </ng-container>
 </div>

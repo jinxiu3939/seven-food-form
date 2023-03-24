@@ -16,7 +16,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
 type AOA = any[][];
 
 @Component({
-  selector: 'ngx-spreadsheet',
+  selector: 'sff-spreadsheet',
   templateUrl: './spreadsheet.component.html',
   styleUrls: ['./spreadsheet.component.scss'],
 })

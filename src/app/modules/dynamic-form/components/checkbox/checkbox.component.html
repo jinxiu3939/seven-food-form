@@ -15,7 +15,7 @@
       </nb-badge>
     </div>
   </div>
-  <div *ngIf="invalid" class="text-error">
+  <div *ngIf="invalid" class="text-error col-12">
     <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
   </div>
   <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">

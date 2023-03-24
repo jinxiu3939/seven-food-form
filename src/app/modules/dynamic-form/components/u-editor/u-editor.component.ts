@@ -8,9 +8,9 @@ import { FormGroup } from '@angular/forms';
 import { UEditorModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
- 
+
 @Component({
-  selector: 'ngx-u-editor',
+  selector: 'sff-u-editor',
   templateUrl: `./u-editor.component.html`,
   styleUrls: [
     `./u-editor.component.scss`,
@@ -31,7 +31,7 @@ export class BaiduUEditorComponent implements OnInit, ComponentReset {
     /* 延迟显示等待UE加载 */
     setTimeout(() => {
       this.loading = false;
-    }, 3000);
+    }, 5000);
   }
 
   resetModel() {

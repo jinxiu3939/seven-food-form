@@ -1,28 +1,15 @@
-<div [formGroup]="form" class="row">
-  <ng-container *ngIf="! model.disabled">
-    <div *ngIf="model.size==='medium'" class="col-3 left">
-      <input type="text"
-             class="form-control form-value"
-             readonly
-             [value]="model.value"
-             [formControlName]="model.name">
-    </div>
-    <div class="col-9 right col-value" [ngClass]="{'col-value': model.size==='medium'}">
-      <div class="input-group">
-        <input class="form-control"
-               disabled
-               type="text"
-               [value]="text">
-        <span *ngIf="! model.readonly" [ngClass]="{'tiny-operation': model.size==='tiny', 'input-group-append': model.size!=='tiny'}">
-          <a nbButton [size]="model.size" status="info" (click)="choose()">{{ lang.choose }}</a>
-          <a nbButton *ngIf="model.value" [size]="model.size" status="warning" (click)="destroy()">{{ lang.clear }}</a>
-        </span>
-      </div>
-    </div>
-  </ng-container>
-  <div *ngIf="model.disabled" class="col-12">
-    <input class="form-control" disabled value="{{ model.value }} / {{ text }}">
+<div [formGroup]="form">
+  <div class="input-group">
+    <input class="form-control"
+           disabled
+           type="text"
+           [value]="label">
+    <span *ngIf="! model.readonly" [ngClass]="{'tiny-operation': model.size==='tiny', 'input-group-append': model.size!=='tiny'}">
+      <a nbButton [size]="model.size" status="info" (click)="choose()">{{ lang.choose }}</a>
+      <a nbButton *ngIf="model.value" [size]="model.size" status="warning" (click)="destroy()">{{ lang.clear }}</a>
+    </span>
   </div>
+  <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
 </div>
 
 <ng-template #contentTemplate>
@@ -38,23 +25,23 @@
         <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns" (click)="select(row)"></tr>
         <ng-container [nbTreeGridColumnDef]="customColumn">
           <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
-            {{customColumn}}
+            {{ customColumn }}
           </th>
           <td nbTreeGridCell *nbTreeGridCellDef="let row" [title]="row.data[customColumn]">
             <nb-icon *ngIf="isChecked(row.data)"
                      status="info"
                      icon="checkmark-square-outline"></nb-icon>
-            <ngx-tree-node-icon [row]="row" [expanded]="row.expanded"></ngx-tree-node-icon>
-            {{row.data[customColumn]}}
+            <sff-tree-node-icon [row]="row" [expanded]="row.expanded"></sff-tree-node-icon>
+            {{ row.data[customColumn] }}
           </td>
         </ng-container>
         <ng-container *ngFor="let column of defaultColumns; let i = index"
                       [nbTreeGridColumnDef]="column"
                       [showOn]="getShowOn(i)">           
           <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
-            {{column}}
+            {{ column }}
           </th>
-          <td nbTreeGridCell *nbTreeGridCellDef="let row" [title]="row.data[column]">{{row.data[column] || '-'}}</td>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row" [title]="row.data[column]">{{ row.data[column] }}</td>
         </ng-container>
       </table>
   </div>

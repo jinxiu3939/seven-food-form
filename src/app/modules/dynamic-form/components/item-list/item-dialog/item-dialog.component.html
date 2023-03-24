@@ -5,35 +5,36 @@
     </div>
     <div [ngSwitch]="field.type" class="col-{{ column[1] }}">
       <nb-select *ngSwitchCase="'drop-down'"
-                 placeholder="请选择"
+                 [placeholder]="lang.select"
                  [fullWidth]="true"
                  [(selected)]="data[field.value]">
-        <nb-option value="">请选择</nb-option>
+        <nb-option value="">{{ lang.select }}</nb-option>
         <nb-option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.text }}</nb-option>
       </nb-select>
-      <nb-select *ngSwitchCase="'boolean-radio'" placeholder="请选择" [(selected)]="data[field.value]">
-        <nb-option value="">全部</nb-option>
-        <nb-option value="true">是</nb-option>
-        <nb-option value="false">否</nb-option>
+      <nb-select *ngSwitchCase="'boolean-radio'" [placeholder]="lang.select" [(selected)]="data[field.value]">
+        <nb-option value="">{{ lang.all }}</nb-option>
+        <nb-option value="true">{{ lang.yes }}</nb-option>
+        <nb-option value="false">{{ lang.no }}</nb-option>
       </nb-select>
       <div *ngSwitchCase="'drop-down-filter'" class="input-group">
-        <input #searchBox type="text" class="form-control" placeholder="筛选" (input)="search(searchBox.value, f)">
+        <input #searchBox type="text" class="form-control" [placeholder]="lang.filter" (input)="search(searchBox.value, f)">
         <div class="input-group-append">
-          <nb-select placeholder="请选择"
+          <nb-select [placeholder]="lang.select"
                      [(selected)]="data[field.value]">
-            <nb-option value="">请选择</nb-option>
+            <nb-option value="">{{ lang.select }}</nb-option>
             <nb-option *ngFor="let opt of searchOptions[f]" [value]="opt.value">{{ opt.text }}</nb-option>
           </nb-select>
         </div>
       </div>
-      <input *ngSwitchCase="'number'" placeholder="请输入数字" class="form-control" type="number" [(ngModel)]="data[field.value]" />
-      <input *ngSwitchDefault placeholder="请输入" class="form-control" [(ngModel)]="data[field.value]" />
+      <input *ngSwitchCase="'number'" [placeholder]="lang.input" class="form-control" type="number" [(ngModel)]="data[field.value]" />
+      <textarea *ngSwitchCase="'textarea'" class="form-control" [placeholder]="lang.input" [(ngModel)]="data[field.value]"></textarea>
+      <input *ngSwitchDefault [placeholder]="lang.input" class="form-control" [(ngModel)]="data[field.value]" />
     </div>
   </div>
   <div class="form-group row">
     <div class="col-12">
-      <button nbButton hero status="warning" (click)="close()">取消</button>
-      <button class="btn" nbButton hero status="info" (click)="submit()">确认</button>
+      <button nbButton hero status="warning" (click)="close()">{{ lang.cancel }}</button>
+      <button class="btn" nbButton hero status="info" (click)="submit()">{{ lang.sure }}</button>
     </div>
   </div>
 </div>
