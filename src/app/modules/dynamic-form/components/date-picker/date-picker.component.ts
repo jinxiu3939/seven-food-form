@@ -23,7 +23,7 @@ export class DatePickerComponent implements OnInit, ComponentReset {
 
   hours = AllHours;
   minutes = AllMinutes;
-  date: Date; // 日期默认值
+  date: Date; // datepicker日期值
   isTime = false;
   tmpHour: string = '00';
   tmpMinute: string = '00';
@@ -47,11 +47,17 @@ export class DatePickerComponent implements OnInit, ComponentReset {
     }
   }
 
+  /**
+   * 日期显示值
+   */
   get day() {
     const control = this.form.controls[this.model.name];
-    return control.value ? dateFormat(new Date(control.value), 'YYYY-MM-DD') : '';
+    return control.value ? dateFormat(this.date, this.model.format) : ''; // 显示值格式不变
   }
 
+  /**
+   * 小时显示值
+   */
   get hour() {
     const control = this.form.controls[this.model.name];
     let hour: string = ''; // 小时
@@ -65,6 +71,9 @@ export class DatePickerComponent implements OnInit, ComponentReset {
     this.tmpHour = h;
   }
 
+  /**
+   * 分钟显示值
+   */
   get minute() {
     const control = this.form.controls[this.model.name];
     let minute: string = ''; // 分钟
@@ -78,12 +87,12 @@ export class DatePickerComponent implements OnInit, ComponentReset {
     this.tmpMinute = m;
   }
 
+  /**
+   * 时间显示值
+   */
   get time() {
-    this.hour;
-    this.minute;
-    
-    if (+this.tmpHour || +this.tmpMinute) {
-      return this.tmpHour + ':' + this.tmpMinute;
+    if (this.hour || this.minute) {
+      return this.hour + ':' + this.minute;
     } else {
       return this.lang.select_time;
     }
@@ -100,8 +109,8 @@ export class DatePickerComponent implements OnInit, ComponentReset {
 
   setFormValue() {
     if (this.date) {
-      const str_date = this.date.setHours(+this.tmpHour, +this.tmpMinute);
-      this.model.value = dateFormat(new Date(str_date), this.model.format);
+      const str_date = this.date.setHours(+this.tmpHour, +this.tmpMinute); // 设置事件
+      this.model.value = dateFormat(new Date(str_date), this.model.format); // 返回值根据参数format格式化
       this.form.controls[this.model.name].setValue(this.model.value); // 表单赋值
     }
   }

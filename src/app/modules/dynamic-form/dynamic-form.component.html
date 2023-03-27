@@ -1,8 +1,6 @@
 <form *ngIf="form"
-      [formGroup]="form"
-      [nbSpinner]="loading"
-      nbSpinnerStatus="info">
-  <div *ngIf="complete" class="row">
+      [formGroup]="form">
+  <div *ngIf="complete" class="row" [nbSpinner]="loading" nbSpinnerStatus="info">
     <ng-container [ngSwitch]="level">
       <sff-two-layout *ngSwitchCase="2"
                       class="col-{{ setting.bodyWidth }}"
@@ -33,7 +31,6 @@
     <ng-content select="[name='other-models']"></ng-content>
     <sff-form-button class="col-{{ setting.buttonWidth }} operation-{{ setting.buttonPosition }}"
                      [ngClass]="{'operation-fixed': setting.buttonFixed}"
-                     [nbSpinner]="loading"
                      [form]="form"
                      [hideSubmit]="setting.hideSubmit"
                      [hideReset]="setting.hideReset"

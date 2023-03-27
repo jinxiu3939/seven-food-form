@@ -58,7 +58,7 @@
   max_error: '文件数量不能超过',
   upload_image_error: '上传图片失败',
   system_busy: '系统繁忙',
-  upload_auth_error: '上传失败（授权失败）（请关闭浏览器重试）',
+  upload_auth_error: '上传失败（授权失败）（请退出重新登录）',
   grab_image_error: '抓取图片失败',
   input_network_url: '请输入图片网址',
   network_url_error: '网络地址错误 (地址必须以 HTTP 或 HTTPS 开头)',

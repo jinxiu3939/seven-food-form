@@ -17,7 +17,9 @@ export class LinkageBoxComponent implements ComponentReset {
   @Input() model: LinkageBoxTreeModel;
 
   resetModel() {
-    this.model.tree.selected = '';
+    if (this.model?.tree) {
+      this.model.tree.selected = '';
+    }
   }
 
   getValue(selected: any) {

@@ -42,14 +42,14 @@
 
 <ng-template #contentTemplate>
   <nb-tabset style="width: 700px; height: 600px; overflow-y: auto;">
-    <nb-tab *ngIf="!model.hideUpload" [tabTitle]="lang.local_picture">
+    <nb-tab *ngIf="!model.hideUpload && model.uploadConfig" [tabTitle]="lang.local_picture">
       <sff-image-upload [config]="model.uploadConfig"
                         [debug]="model.debug"
                         [multiple]="model.multiple"
                         [top]="model.queueLimit"
                         (finish)="submitImage($event)"></sff-image-upload>
     </nb-tab>
-    <nb-tab *ngIf="!model.hideCropper" [tabTitle]="lang.cropper_picture">
+    <nb-tab *ngIf="!model.hideCropper && model.cropperConfig" [tabTitle]="lang.cropper_picture">
       <sff-image-upload-cropper [config]="model.cropperConfig"
                                 [debug]="model.debug"
                                 [multiple]="model.multiple"
@@ -58,13 +58,13 @@
                                 [format]="model.cropperType"
                                 (finish)="submitImage($event)"></sff-image-upload-cropper>
     </nb-tab>
-    <nb-tab *ngIf="!model.hideCrawl" [tabTitle]="lang.network_picture">
+    <nb-tab *ngIf="!model.hideCrawl && model.crawlConfig" [tabTitle]="lang.network_picture">
       <sff-image-web [config]="model.crawlConfig"
                      [multiple]="model.multiple"
                      [queueLimit]="model.queueLimit"
                      (finish)="submitImage($event)"></sff-image-web>
     </nb-tab>
-    <nb-tab *ngIf="!model.hideSearch" [tabTitle]="lang.history_picture">
+    <nb-tab *ngIf="!model.hideSearch && model.searchConfig" [tabTitle]="lang.history_picture">
       <sff-image-search [config]="model.searchConfig"
                         [debug]="model.debug"
                         [multiple]="model.multiple"
@@ -77,7 +77,7 @@
     </nb-tab>
   </nb-tabset>
   <div>
-    <button nbButton status="danger" (click)="cancelImage()"  style="margin-right: 1rem;">{{ lang.cancel }}</button>
+    <button nbButton status="warning" (click)="cancelImage()"  style="margin-right: 1rem;">{{ lang.cancel }}</button>
     <button *ngIf="tmpImage.length" nbButton status="info" (click)="sureImage()">
       {{ lang.sure }} {{ tmpFilter ? tmpFilter.length : tmpImage.length }} / {{ tmpImage.length }}
     </button>

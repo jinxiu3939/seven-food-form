@@ -25,14 +25,14 @@ export class DatePickerModelFactory extends BaseModelFactory {
         if (date.toString() === 'Invalid Date') {
           this.model.value = '';
         } else {
-          this.model.value = dateFormat(new Date(this.model.value), this.config.format);
+          this.model.value = dateFormat(new Date(this.model.value), this.model.format);
         }
       }
     }
     if (this.model.now) {
       if (! this.model.value) {
-        this.model.value = dateFormat(new Date(), this.config.format);
+        this.model.value = dateFormat(new Date(), this.model.format);
       }
-    }
+    };
   }
 }

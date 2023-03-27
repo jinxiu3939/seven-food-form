@@ -51,7 +51,7 @@ export interface FormSetting {
   validate: boolean; // 点击提交按钮是否校验表单
   foldBody: boolean; // 表单体是否折叠
   bodyWidth: number; // 表单体宽度
-  size: string; // 一行放几个表单项 'large'(1个) | 'medium'(2个) | 'default'(3个) | 'small'(4个) | 'tiny'(5个)
+  size: string; // 一行放几个表单项 'extra-large'(default)(1个) | 'large'(2个) | 'medium'(3个) | 'small'(4个) | 'tiny'(5个)
   width: number; // 每个表单项中表单组件的宽度
   buttonWidth: number; // 按钮宽度
   buttons: FormButton[]; // 按钮
@@ -213,7 +213,6 @@ export interface ImageListOrder {
 interface ResourceSaveParam {
   tag: string[]; // 标签
   title: string; // 描述
-  topic: string; // 主题
 }
 
 /**
@@ -224,7 +223,6 @@ export interface ResourceSearchParam {
   file_name: string; // 文件名称
   tag: string; // 标签
   title: string; // 标题/描述
-  topic: string; // 主题
   type: string; // 类型
   page_number?: number; // 分页页码
   page_size?: number; // 分页大小
@@ -264,7 +262,7 @@ export interface SearchConfig {
 export interface ConditionField {
   text: string; // 显示标签
   type: 'input' | 'drop-down' | 'drop-down-filter' | 'number' | 'boolean-radio' | 'textarea'; // 类型
-  value: string; // 条件名称
+  value: string; // 条件字段名称
   options?: Option<string | number>[]; // 选项
   mode?: 'async' | 'sync'; // 选项检索方式
   endpoint?: string; // 选项异步检索接口
@@ -293,7 +291,7 @@ export interface BaseModel<T> {
   order?: number; // 排序
   require?: boolean; // 是否必填
   validator?: any; // 验证器
-  disabled: boolean; // 是否禁用，禁用后不会做变更检查
+  disabled: boolean; // 是否禁用。禁用后不会做变更检查，尽管显示表单组件，但是无法作为表单值提交；一般要配合readonly使用
   block: any; // 对应block标识
   data?: any; // 自定义配置数据
 }
@@ -353,6 +351,7 @@ export interface CKEditorModel extends BaseModel<string> {
  export interface MdEditorModel extends BaseModel<string> {
   editorConfig: any; // `markdown-editor`官网 [https://pandao.github.io/editor.md/]
   readonly: boolean; // 是否只读
+  height: number; // 高度
 }
 
 /**
@@ -379,26 +378,25 @@ export interface DateRangePickerModel extends BaseModel<{start: string, end: str
  * 图片模型
  */
 export interface ImageModel extends BaseModel<ImageItem[] | string> {
-  crawlConfig: CrawlConfig; // 抓取配置
-  cropperConfig: CropperConfig; // 裁剪配置
   display: 'image' | 'input'; // 展现方式
-  kind: 'ng2-file-upload'; // 上传类别
   multiple: boolean; // 是否多图片
   repeat: boolean; // 图片是否可重复
+  crawlConfig: CrawlConfig; // 抓取配置
+  cropperConfig: CropperConfig; // 裁剪配置
   searchConfig: ResourceSearchConfig; // 检索配置
   uploadConfig: UploadConfig; // 上传配置
   aspectRatioHeight?: number; // 裁剪图片纵横比高度
   aspectRatioWidth?: number; // 裁剪图片纵横比宽度
   cropperType?: string; // 裁剪图片格式
-  debug?: boolean; // 是否开启调试模式
   hideCrawl?: boolean; // 是否隐藏图片抓取组件
   hideCropper?: boolean; // 是否隐藏图片裁剪组件
   hideSearch?: boolean; // 是否隐藏图片检索组件
   hideUpload?: boolean; // 是否隐藏图片上传组件
-  list?: FileResource[]; // 同步操作时的图片资源列表
+  list?: FileResource[]; // 同步操作时的图片列表
   queueLimit?: number; // 单次操作最大图片数目
   searchDisplay?: 'page' | 'list'; // 检索结果显示方式
   searchMode?: 'async' | 'sync'; // 检索方式
+  debug?: boolean; // 是否开启调试模式
 }
 
 /**
@@ -494,7 +492,7 @@ export interface PopupTreeModel extends BaseModel<string | number> {
  */
 export interface ItemListModel extends BaseModel<any[]> {
   attributes: ConditionField[]; // 字段列表
-  size: string; // 弹出框中表单组件的尺寸
+  size: string; // 弹出框大小 medium | large
 }
 
 /**
@@ -503,13 +501,14 @@ export interface ItemListModel extends BaseModel<any[]> {
 export interface PasswordBoxModel extends BaseModel<string> {
   empty: boolean; // 是否空置密码
   visible: boolean; // 密码是否可见
+  sureValue: string; // 确认密码初始值
 }
 
 /**
  * 联动下拉框模型
  */
 export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
-  root: string | number; // 根下拉框的复选项
+  root: string | number; // 根下拉框的值
   tree: LinkageBoxTree<(string | number)>; // 选项树
 }
 

@@ -66,7 +66,6 @@ export class DateRangePickerComponent implements OnInit, ComponentReset {
 
   handleDateChange(date) {
     this.date = date;
-    console.log(date);
     this.setFormValue();
   }
 

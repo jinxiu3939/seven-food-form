@@ -30,10 +30,6 @@ export class PasswordBoxComponent implements OnInit, ComponentReset  {
   }
 
   ngOnInit() {
-    if (this.model.empty) {
-      this.model.value = null;
-      this.form.controls[this.model.name].setValue(null);
-    }
     this.inputType = this.model.visible ? 'text' : 'password';
   }
 
@@ -70,6 +66,7 @@ export class PasswordBoxComponent implements OnInit, ComponentReset  {
   }
 
   validatePassword(value: string) {
+    this.model.sureValue = value;
     if (this.password !== value) {
       this.form.controls[this.model.name].setErrors({
         inputEqual: this.lang.password_not_match,

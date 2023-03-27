@@ -5,7 +5,6 @@ const ng2FileUploadConfig: UploadConfig = {
   additionalParameter: {
     tag: [],
     title: '',
-    topic: '',
   },
   allowedFileType: ['audio', 'video'], // 视频、音频
   authTokenHeader: '',

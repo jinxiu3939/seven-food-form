@@ -13,10 +13,10 @@ import { deepExtend } from '../helps';
 export abstract class BaseModelFactory {
   protected model: BaseModel<any>; // 表单项模型
 
-  protected type: ModelType; // 表单项类型，集成体系基于此类型
+  protected type: ModelType; // 表单项类型，继承体系基于此类型
 
   protected config: any = {}; // 默认配置值
-  protected setting: object = {}; // 用户设置
+  protected setting: object = {}; // 设置参数
 
   constructor(obj: any) {
     this.setting = obj;

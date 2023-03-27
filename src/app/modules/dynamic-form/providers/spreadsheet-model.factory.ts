@@ -5,7 +5,6 @@ const ng2FileUploadConfig: UploadConfig = {
   additionalParameter: {
     tag: [],
     title: '',
-    topic: '',
   },
   allowedFileType: ['csv', 'xls', 'xlsx'],
   authTokenHeader: '',

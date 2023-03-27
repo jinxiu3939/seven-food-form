@@ -11,7 +11,6 @@ export class CheckboxModelFactory extends BaseModelFactory {
   constructor(obj: any) {
     super(obj);
     this.config.clear = false; // 默认不清空数据
-    this.config.disabled = false; // 默认不禁用
     this.config.value = []; // 默认值
   }
 

@@ -52,21 +52,25 @@ this.model.editor = ClassicEditor;
 
 表单配置，支持三层结构，类型：FormSetting，属性如下：
 
-- id: string; // 配置标识
-- title: string; // 标题
-- validate: boolean; // 是否校验表单
-- hideBody: boolean; // 内容是否隐藏
-- bodyWidth: number; // 表单内容宽度
-- buttonWidth: number; // 按钮宽度
-- size: string; // 一行放几个表单项
+- validate: boolean; // 点击提交按钮是否校验表单
+- foldBody: boolean; // 表单体是否折叠
+- bodyWidth: number; // 表单体宽度
+- size: string; // 一行放几个表单项 'extra-large'(default)(1个) | 'large'(2个) | 'medium'(3个) | 'small'(4个) | 'tiny'(5个)
 - width: number; // 每个表单项中表单组件的宽度
+- buttonWidth: number; // 按钮宽度
 - buttons: FormButton[]; // 按钮
+- buttonAlign: string; // 按钮对齐方式
+- buttonFixed: boolean; // 按钮是否悬浮
+- buttonPosition: string; // 按钮悬浮位置
 - hideSubmit: boolean; // 隐藏提交按钮
 - submitText: string; // 提交按钮文本
 - hideReset: boolean; // 隐藏重置按钮
 - resetText: string; // 提交按钮文本
-- blockLayout: string; // 表单块布局方式
-- children: FormSetting[]; // 子元素
+- blockId: string; // 块标识
+- blockTitle: string; // 块标题
+- blockLayout: string; // 块布局方式 'tab' | 'step' | 'ul'(default)
+- hideblockBody: boolean; // 块内容是否隐藏
+- children: FormSetting[]; // 子块
 
 ##### models
 
@@ -110,16 +114,13 @@ this.model.editor = ClassicEditor;
 响应式表单，无双向数据绑定，数据只能从视图流向控制器
 
 - 控制器内表单绑定数据的方式
-
 ```
 this.form.controls[name].setValue(value);
 ```
 
 - 模板绑定表单
-
 ```
 <div [formGroup]="form">
   <input [formControlName]="name" [value]="value">
 </div>  
 ```
-

@@ -22,6 +22,9 @@ export class CheckboxComponent implements OnInit, ComponentReset {
 
   ngOnInit() {
     this.loadCheckedStatus();
+    if (! this.model.value) {
+      this.model.value = [];
+    }
   }
 
   resetModel() {
@@ -32,9 +35,11 @@ export class CheckboxComponent implements OnInit, ComponentReset {
    * 加载选中状态
    */
   loadCheckedStatus() {
-    this.model.options.map((option, key) => {
-      this.checkedStatus[key] = this.isChecked(option.value as string);
-    });
+    if (this.model.options && Array.isArray(this.model.options)) {
+      this.model.options.map((option, key) => {
+        this.checkedStatus[key] = this.isChecked(option.value as string);
+      });
+    }
   }
 
   get invalid() {
@@ -60,7 +65,7 @@ export class CheckboxComponent implements OnInit, ComponentReset {
   switchChecked(checked: boolean, value: string) {
     this.model.value = this.model.value as string[];
     if (checked) { // 选中
-      if (this.isChecked(value) === false) {
+      if (!this.isChecked(value)) {
         this.model.value.push(value);
       }
     } else { // 取消

@@ -2,7 +2,7 @@ import {
   QuickFormFactory,
   LinkageBoxModelFactory,
 } from '../modules/dynamic-form';
-import { tree } from './mock-linkage';
+import { tree } from './mock-linkage-tree-data';
 import { options } from './mock-options';
 
 export const searchModels: any = [
@@ -40,12 +40,7 @@ export const searchModels: any = [
     root: 0,
     value: ['A', 1, 'gege']
   }).instance(),
-  // new QuickFormFactory({
-  //   label: '族谱',
-  //   name: 'zupu-2',
-  //   tree: this.tree,
-  //   root: 0,
-  // }).linkageBox(),
+
   // new QuickFormFactory({
   //   display: '',
   //   label: '图片',
@@ -58,16 +53,6 @@ export const searchModels: any = [
   //   },
   //   value: null,
   // }).image(),
-  // {
-  //   label: '族谱',
-  //   name: 'zupu-3',
-  //   type: 'linkage-box',
-  //   value: ['111'],
-  //   help: 'this is a password',
-  //   order: 1,
-  //   tree: this.tree,
-  //   root: 0,
-  // },
   new QuickFormFactory({
     label: '吃的',
     name: 'radio-2',
@@ -139,10 +124,10 @@ export const searchModels: any = [
 export const searchSetting = {
   foldBody: false,
   buttonAlign: 'left',
-  bodyWidth: 10,
+  bodyWidth: 12,
   buttonWidth: 2,
-  size: 'tiny',
-  width: 12,
+  size: 'extra-large',
+  width: 10,
   buttons: [{name: 'export', value: '导出', validate: true}, {name: 'import', value: '导入'}],
   hideSubmit: false,
   submitText: '保存',

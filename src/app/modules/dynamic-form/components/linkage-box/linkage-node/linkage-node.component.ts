@@ -36,13 +36,15 @@ export class LinkageNodeComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === 'parent') {
-        this.options = this.tree.options.filter((item) => item.parent === this.parent);
-        if (this.options.length === 0) {
-          this.tree.selected = '';
-          this.clearChildren();
+        if (this.tree?.options && Array.isArray(this.tree.options)) {
+          this.options = this.tree.options.filter((item) => item.parent === this.parent);
+          if (this.options.length === 0) {
+            this.tree.selected = '';
+            this.clearChildren();
+          }
         }
       } else if (propName === 'tree') {
-        if (this.tree.selected === '') {
+        if (this.tree?.selected === '') {
           this.clearChildren();
         }
       }

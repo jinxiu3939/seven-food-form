@@ -24,27 +24,27 @@ export class UEditorModelFactory extends BaseModelFactory {
    */
   protected format(): void {
     /* 允许进入编辑器的div标签自动变成p标签 */
-    if (this.config.allowDivTransToP === false) {
-      this.config.editorConfig.allowDivTransToP = this.config.allowDivTransToP;
+    if (this.model.allowDivTransToP === false) {
+      this.model.editorConfig.allowDivTransToP = this.model.allowDivTransToP;
     }
-    if (this.config.initialFrameHeight > 0) {
-      this.config.editorConfig.initialFrameHeight = this.config.initialFrameHeight;
+    if (this.model.initialFrameHeight > 0) {
+      this.model.editorConfig.initialFrameHeight = this.model.initialFrameHeight;
     }
-    if (this.config.initialFrameWidth > 0) {
-      this.config.editorConfig.initialFrameHeight = this.config.initialFrameWidth;
+    if (this.model.initialFrameWidth > 0) {
+      this.model.editorConfig.initialFrameHeight = this.model.initialFrameWidth;
     }
-    if (this.config.lang) {
-      this.config.editorConfig.lang = this.config.lang;
+    if (this.model.lang) {
+      this.model.editorConfig.lang = this.model.lang;
     }
-    if (this.config.readonly === true) {
-      this.config.editorConfig.readonly = this.config.readonly;
+    if (this.model.readonly === true) {
+      this.model.editorConfig.readonly = this.model.readonly;
     }
-    if (this.config.wordCount === false) {
-      this.config.editorConfig.wordCount = this.config.wordCount;
+    if (this.model.wordCount === false) {
+      this.model.editorConfig.wordCount = this.model.wordCount;
     }
     /* 编辑器层级的基数  */
-    if (this.config.zIndex > 0) {
-      this.config.editorConfig.zIndex = this.config.zIndex;
+    if (this.model.zIndex > 0) {
+      this.model.editorConfig.zIndex = this.model.zIndex;
     }
   }
 }

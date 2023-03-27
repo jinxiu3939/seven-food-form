@@ -45,7 +45,7 @@ export class MarkDownEditorComponent implements OnInit, ComponentReset {
         $this.syncModel($this.editor.getMarkdown()); // 设置markdown的值
         //  $this.syncModel(textarea.innerHTML); // 设置html值
       });
-    }, 3000);
+    }, 5000);
   }
 
   resetModel() {

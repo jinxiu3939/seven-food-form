@@ -2,8 +2,8 @@ import {
   QuickFormFactory,
   KeywordModelFactory,
 } from '../modules/dynamic-form';
-import { checkboxTree } from './mock-checkboxtree';
-import { images } from './mock-images';
+import { checkboxTree } from './mock-checkbox-tree-data';
+import { images } from './mock-images-data';
 import { options } from './mock-options';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'; // 导入`ckeditor`模块
 
@@ -35,13 +35,6 @@ export const oneLayoutModels = [
     max: 10,
     block: 1,
   }).passwordBox(),
-  new QuickFormFactory({
-    label: '标签',
-    name: 'tag',
-    value: ['三国', '武当'],
-    options: ['汉', '三维', '射雕', '魅惑', '汉', '三维', '射雕', '魅惑', '汉', '三维', '射雕', '魅惑'],
-    block: 1,
-  }).keyword(),
   new KeywordModelFactory({
     label: '关键字',
     name: 'keyword',
@@ -60,27 +53,6 @@ export const oneLayoutModels = [
     readonly: true,
     block: 1,
   },
-  new QuickFormFactory({
-    label: '场馆',
-    name: 'item-1',
-    value: null,
-    attributes: [
-      {text: '名称种颜色一种颜色一种颜色一种颜色', type: 'input', value: 'name'},
-      {text: '数量', type: 'number', value: 'number'},
-      {text: '类型', type: 'drop-down', value: 'type', options: [
-        { text: '苹果', value: 'apple', title : '一种水果' },
-        { text: '梨', value: 'pear', title : '一种水果' },
-      ]},
-      {text: '分类', type: 'drop-down-filter', value: 'taxonomy', options: [
-        { text: '苹果', value: 'apple', title : '一种水果' },
-        { text: '梨', value: 'pear', title : '一种水果' },
-      ]},
-      {text: '禁用', type: 'boolean-radio', value: 'disabled'},
-      {text: '描述', type: 'textarea', value: 'description'},
-    ],
-    size: 'large',
-    block: 1,
-  }).itemList(),
   new QuickFormFactory({
     display: '',
     label: '图片',
@@ -192,65 +164,6 @@ export const oneLayoutModels = [
     value: 'apple',
     disabled: true,
   }).dropDownBox(),
-  new QuickFormFactory({
-    // display: 'input',
-    label: '服务器图片',
-    multiple: true,
-    name: 'image-2',
-    queueLimit: 5,
-    searchDisplay: 'page',
-    aspectRatioHeight: 10,
-    aspectRatioWidth: 4,
-    cropperType: 'jpeg',
-    hideCropper: false,
-    debug: true,
-    cropperConfig: {
-      url: '/api/home/image/index',
-      additionalParameter: {
-        tag: ['参数吧'],
-        title: '设置了比例',
-        topic: '在这儿呢'
-      },
-      headers: {
-        'Token': token,
-        'App-Key': appKey,
-      },
-    },
-    uploadConfig: {
-      authTokenHeader: 'Token',
-      authToken: token,
-      url: '/api/home/image/index',
-      additionalParameter: {
-        tag: ['参数吧'],
-        title: '是我的',
-        topic: '在这儿呢',
-        'app-key': appKey
-      },
-    },
-    crawlConfig: {
-      api: '/api/home/attachment/index',
-      additionalParameter: {
-        type: 'image',
-        'app-key': appKey
-      },
-      headers: {
-        'Token': token,
-        'App-Key': appKey
-      },
-    },
-    searchConfig: {
-      additionalParameter: {
-        page_size: 9.0,
-      },
-      api: '/api/home/image/index',
-      headers: {
-        'Token': token,
-        'App-Key': appKey,
-      },
-      mode: 'async',
-    },
-    block: 1,
-  }).image(),
   new QuickFormFactory({
     label: '关联字段',
     name: 'field_id',
@@ -410,20 +323,10 @@ export const oneLayoutModels = [
     validator: '',
     block: 3,
   },
-  // new QuickFormFactory({
-  //   label: '富文本内容',
-  //   name: 'content-body-3',
-  //   value: '```hello```',
-  //   editorConfig: {
-  //     readOnly: false,
-  //     imageUploadURL: '/api/access/tool.mdeditor/image?token=123&app-key=239487',
-  //   },
-  //   block: 4,
-  // }).mdEditor(),
 ];
 export const oneLayoutSetting = {
   foldBody: false,
-  // bodyWidth: 9,
+  bodyWidth: 9,
   validate: true,
   buttonFixed: false,
   buttonPosition: 'right',

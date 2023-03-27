@@ -109,7 +109,7 @@ export class ImageComponent implements OnInit, ComponentReset {
 
   private insertImage(images: ImageItem[]) {
     if (this.model.repeat) { // 可以重复
-      this.thumbnails.concat(images);
+      this.thumbnails = this.thumbnails.concat(images);
     } else { // 不可以重复
       images.forEach((image) => {
         if (! this.tmpValues.includes(image.url)) {

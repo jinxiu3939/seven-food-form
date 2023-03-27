@@ -69,7 +69,6 @@ export class DynamicFormComponent implements OnChanges {
 
       this.complete = true; // 构建完毕
     }
-
     return form;
   }
 
@@ -77,10 +76,14 @@ export class DynamicFormComponent implements OnChanges {
    * 创建表单元素
    */
   createGroup(form) {
-    this.models.map(model => form.addControl(model.name, this.builder.control(
-      {value: model.value, disabled: model.disabled}, // 默认值
-      this.fetchValidator(model),
-    )));
+    this.models.map(model => {
+      if (model.name) {
+        form.addControl(model.name, this.builder.control(
+          {value: model.value, disabled: model.disabled}, // 默认值
+          this.fetchValidator(model),
+        ));
+      }
+    });
 
     return form;
   }
@@ -101,6 +104,9 @@ export class DynamicFormComponent implements OnChanges {
       this.setting.buttonWidth = formatWidth(this.setting.buttonWidth);
       if (this.setting.foldBody === true) {
         this.formExpand = !this.setting.foldBody;
+      }
+      if (this.setting.validate !== false) {
+        this.setting.validate = true; // 默认验证
       }
 
       /* 二级表单 */
@@ -135,6 +141,8 @@ export class DynamicFormComponent implements OnChanges {
           }
         });
       }
+    } else {
+      this.setting = {} as FormSetting;
     }
   }
 

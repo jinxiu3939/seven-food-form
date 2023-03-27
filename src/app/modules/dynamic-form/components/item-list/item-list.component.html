@@ -22,7 +22,7 @@
               {{ row[attr.value] }}
             </td>
             <td *ngIf="! model.disabled">
-              <nb-icon icon="close" [title]="lang.delete" status='warning' (click)="delete(row)"></nb-icon>
+              <nb-icon icon="close" [title]="lang.delete" status='danger' (click)="delete(row)"></nb-icon>
               <nb-icon icon="edit-outline" [title]="lang.edit" status='primary' (click)="edit(row, i)"></nb-icon>
             </td>
           </tr>

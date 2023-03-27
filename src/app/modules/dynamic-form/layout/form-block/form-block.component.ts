@@ -13,7 +13,7 @@ export class FormBlockComponent implements OnInit {
   @Input() models: BaseModel<any>[]; // 表单项
   @Input() form: FormGroup; // 响应式表单
   @Input() reload: number; // 重新加载
-  @Input() size: string; // 一行放几个表单项 'large'(1个) | 'medium'(2个) | 'default'(3个) | 'small'(4个) | 'tiny'(5个)
+  @Input() size: string; // 一行放几个表单项 'extra-large'(1个) | 'large'(2个) | 'medium'(3个) | 'small'(4个) | 'tiny'(5个)
   @Input() width: number; // 每个表单项中表单内容的宽度
   @Input() validate: boolean; // 是否校验表单
 
@@ -28,7 +28,7 @@ export class FormBlockComponent implements OnInit {
     }
 
     if (!this.size) {
-      this.size = 'large';
+      this.size = 'extra-large';
     }
   }
 

@@ -68,12 +68,14 @@ export class DynamicFieldDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    const component = COMPONENTS[this.model.type];
-    if (component) {
-      const factory = this.resolver.resolveComponentFactory<any>(component);
-      this.component = this.container.createComponent(factory); // 创建组件
-      this.component.instance.model = this.model;
-      this.component.instance.form = this.form;
+    if (this.model.name) {
+      const component = COMPONENTS[this.model.type];
+      if (component) {
+        const factory = this.resolver.resolveComponentFactory<any>(component);
+        this.component = this.container.createComponent(factory); // 创建组件
+        this.component.instance.model = this.model;
+        this.component.instance.form = this.form;
+      }
     }
   }
 

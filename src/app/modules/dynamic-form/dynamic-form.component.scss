@@ -133,15 +133,15 @@
       overflow: visible;
     }
 
-    &.block-large {
+    &.block-extra-large {
       width: 100%; // 每行显示1个
     }
   
-    &.block-medium {
+    &.block-large {
       width: 50%; // 每行显示2个
     }
   
-    &.block-default {
+    &.block-medium {
       width: 33%; // 每行显示3个
     }
   

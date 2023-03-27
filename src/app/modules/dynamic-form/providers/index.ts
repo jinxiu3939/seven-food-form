@@ -17,6 +17,7 @@ export * from './item-list-model.factory';
 export * from './keyword-model.factory';
 export * from './letter-name-text-box-model.factory';
 export * from './linkage-box-model.factory';
+export * from './md-editor-model.factory';
 export * from './mobile-text-box-model.factory';
 export * from './number-text-box-model.factory';
 export * from './password-box-model.factory';

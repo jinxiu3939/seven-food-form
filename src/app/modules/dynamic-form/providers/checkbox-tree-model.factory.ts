@@ -10,7 +10,6 @@ export class CheckboxTreeModelFactory extends BaseModelFactory {
 
   constructor(obj: any) {
     super(obj);
-    this.config.disabled = false; // 默认不禁用
   }
 
   protected format(): void {

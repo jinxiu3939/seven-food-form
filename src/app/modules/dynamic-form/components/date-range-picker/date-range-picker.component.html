@@ -11,6 +11,6 @@
     <input [formControlName]="model.name" type="hidden" [value]="model.value" />
   </div>
   <ng-container *ngIf="model.readonly">
-    <input class="form-control date-time-input" readonly size=50 [value]="model.value">
+    <input class="form-control date-time-input" readonly size=50 [value]="model.value.start + '~' + model.value.end">
   </ng-container>
 </div>
