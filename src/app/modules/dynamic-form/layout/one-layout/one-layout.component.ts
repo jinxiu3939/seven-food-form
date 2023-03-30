@@ -56,6 +56,6 @@ export class OneLayoutComponent implements OnChanges {
    * @param i 序号
    */
   foldBlock(i) {
-    this.setting.children[i].hideblockBody = !this.setting.children[i].hideblockBody;
+    this.setting.children[i].hideBlockBody = !this.setting.children[i].hideBlockBody;
   }
 }

@@ -13,4 +13,10 @@ export class RadioModelFactory extends BaseModelFactory {
     this.config.disabled = false; // 默认不禁用
     this.config.all = false; // 默认不显示全部
   }
+
+  protected format(): void {
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
+    }
+  }
 }

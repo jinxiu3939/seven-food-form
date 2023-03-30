@@ -1,32 +1,34 @@
 import {
   QuickFormFactory,
-  DropDownBoxModelFactory,
+  RadioModelFactory,
 } from '../modules/dynamic-form';
 
 import { options } from './mock-options';
 
-export const dropDownModels: any = [
+export const radioModels: any = [
   new QuickFormFactory({
     label: '蔬菜',
     name: 'yes_no1',
-    value: null,
+    all: true,
     options: options,
     require: true,
-  }).dropDownBox(),
-  new DropDownBoxModelFactory({
+    value: 'K',
+    readonly: true,
+  }).radio(),
+  new RadioModelFactory({
     label: '族谱',
     name: 'zupu-1',
     clear: true,
     options: options,
-    disabled: true,
-    require: true,
+    value: 'gege',
   }).instance(),
   {
-    type: 'drop-down-box',
+    type: 'radio',
     label: '动物',
+    disabled: true,
     options: options,
     name: 'animal-1',
-    readonly: true,
-    require: true,
+    width: 5,
+    max: 4,
   },
 ];

@@ -13,7 +13,7 @@
   }
 
   .form-control:disabled, .form-control[readonly] {
-    background-color: nb-theme(color-basic-disabled);
+    background-color: nb-theme(color-basic-transparent-default);
     color: nb-theme(text-disabled-color);
   }
 

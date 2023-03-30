@@ -5,6 +5,7 @@
 import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { formatAlertMessage } from '../../helps';
 import { PasswordBoxModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
@@ -52,14 +53,14 @@ export class PasswordBoxComponent implements OnInit, ComponentReset  {
 
   get errors() {
     const message = [];
-    const control = this.form.controls[this.model.name];
-    if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push(this.lang.min_input + '：' + this.model.min);
-    } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push(this.lang.max_input + '：' + this.model.max);
-    } else if (control.value) {
+    const control = this.form.controls[this.model.name]; 
+    if (control.value) {
       if (control.errors[this.model.validator]) {
         message.push(control.errors[this.model.validator]);
+      } else if (this.model.min > 0 && this.model.min > control.value.length) {
+        message.push(formatAlertMessage(this.lang.min_input, [this.model.min]));
+      } else if (this.model.max > 0 && control.value.length > this.model.max) {
+        message.push(formatAlertMessage(this.lang.max_input, [this.model.max]));
       }
     }
     return message;

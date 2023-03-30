@@ -1,5 +1,6 @@
 /**
  * 弹出式多选列表
+ * min需配合required一起使用，未设置required时min不会生效，只有在值不为空的情况下min才会生效
  */
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -7,6 +8,7 @@ import { NbWindowService, NbWindowRef } from '@nebular/theme';
 import { Subject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
+import { formatAlertMessage } from '../../../helps';
 import { PopupCheckboxModel, Option } from '../../../dynamic-form.options';
 import { ComponentReset } from '../../../providers/interface/component-reset';
 import { LangProvider } from '../../../providers/data/lang.provider';
@@ -58,6 +60,9 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
     ).subscribe(() => this.nextPage()); // 下一页
 
     this.text = this.model.text;
+    if (! this.model.value) {
+      this.model.value = [];
+    }
     this.loadChecked();
   }
 
@@ -84,9 +89,9 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
     const message = [];
     const control = this.form.controls[this.model.name];
     if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push(this.lang.min_select + '：' + this.model.min);
+      message.push(formatAlertMessage(this.lang.min_select, [this.model.min]));
     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push(this.lang.max_select + '：' + this.model.max);
+      message.push(formatAlertMessage(this.lang.max_select, [this.model.max]));
     }
     return message;
   }

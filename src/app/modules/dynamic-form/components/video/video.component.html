@@ -1,26 +1,32 @@
-<div [formGroup]="form" class="block-row">
-  <sff-video-slider [items]="thumbnails"
-                    currentIndex="0"
-                    [readonly]="! model.multiple"
-                    size="small"
-                    (destroy)="delete($event)"
-                    (edit)="desc($event)">
-  </sff-video-slider>
-  
-  <span *ngIf="! model.disabled">
-    <a nbButton
-      size="tiny"
-      status="info"
-      type="button"
-      (click)="chooseVideo()">{{ lang.choose }}</a>
-    <a *ngIf="model.value"
-      nbButton
-      size="tiny"
-      status="warning"
-      type="button"
-      (click)="destroyVideo()">{{ lang.clear }}</a>
-    <input [formControlName]="model.name" type="hidden" [value]="model.value">
-  </span>
+<div [formGroup]="form" [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}">
+  <div class="block-row">
+    <sff-video-slider [items]="thumbnails"
+                      currentIndex="0"
+                      [readonly]="model.disabled"
+                      size="small"
+                      (destroy)="delete($event)"
+                      (edit)="desc($event)">
+    </sff-video-slider>
+
+    <span *ngIf="! model.disabled">
+      <a nbButton
+         size="tiny"
+         status="info"
+         type="button"
+         (click)="chooseVideo()">{{ lang.choose }}</a>
+      <a *ngIf="model.value"
+         nbButton
+         size="tiny"
+         status="warning"
+         type="button"
+         (click)="destroyVideo()">{{ lang.clear }}</a>
+      <input [formControlName]="model.name" type="hidden" [value]="model.value">
+    </span>
+  </div>
+
+  <ng-container *ngIf="invalid">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+  </ng-container>
 </div>
 
 <ng-template #contentTemplate>
@@ -28,6 +34,7 @@
     <nb-tab [tabTitle]="lang.local_media">
       <sff-video-upload [config]="model.uploadConfig"
                         [multiple]="model.multiple"
+                        [top]="model.queueLimit"
                         (finish)="submitVideo($event)"></sff-video-upload>
     </nb-tab>
   </nb-tabset>

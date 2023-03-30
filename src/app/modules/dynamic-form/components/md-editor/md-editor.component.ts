@@ -1,10 +1,13 @@
 /**
  * `markdown-editor`富文本编辑器
  * depends on editor.md
+ * 配置通用，一个表单中多个editor，配置会被覆盖
+ * 工具栏设置固定会被头部遮挡，因此默认配置为工具栏不悬浮，编辑器高度固定，出现滚动条
  */
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
- 
+
+import { formatAlertMessage } from '../../helps';
 import { MdEditorModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
@@ -46,6 +49,7 @@ export class MarkDownEditorComponent implements OnInit, ComponentReset {
         //  $this.syncModel(textarea.innerHTML); // 设置html值
       });
     }, 5000);
+    console.log(this.model);
   }
 
   resetModel() {
@@ -65,9 +69,9 @@ export class MarkDownEditorComponent implements OnInit, ComponentReset {
     const message = [];
     const control = this.form.controls[this.model.name];
     if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push(this.lang.min_input + '：' + this.model.min);
+      message.push(formatAlertMessage(this.lang.min_input, [this.model.min]));
     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push(this.lang.max_input + '：' + this.model.max);
+      message.push(formatAlertMessage(this.lang.max_input, [this.model.max]));
     }
     return message;
   }

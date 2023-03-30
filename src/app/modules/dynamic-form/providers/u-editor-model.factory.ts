@@ -3,10 +3,11 @@ import { BaseModelFactory } from './base-model.factory';
 import { deepExtend } from '../helps';
 
 // 配置文件：assets/ueditor/ueditor.config.js
-const defaultUEditorConfig = (window as any).UEDITOR_CONFIG;
+const defaultUEditorConfig = (window as any).UEDITOR_CONFIG; // ueditor未加载之前，可能未定义
 
 /**
  * ueditor富文本模型工厂
+ * 兼容disabled属性
  */
 export class UEditorModelFactory extends BaseModelFactory {
   protected model: UEditorModel;
@@ -14,8 +15,7 @@ export class UEditorModelFactory extends BaseModelFactory {
 
   constructor(obj: any) {
     super(obj);
-    /* `editor`配置 */
-    this.config.editorConfig = deepExtend({}, defaultUEditorConfig, this.config.editorConfig);
+    this.config.editorConfig = deepExtend({}, defaultUEditorConfig);
   }
 
   /**
@@ -23,26 +23,52 @@ export class UEditorModelFactory extends BaseModelFactory {
    * 子类应该重写此方法
    */
   protected format(): void {
+    /* 内容处理 */
     /* 允许进入编辑器的div标签自动变成p标签 */
     if (this.model.allowDivTransToP === false) {
       this.model.editorConfig.allowDivTransToP = this.model.allowDivTransToP;
     }
+    if (this.model.retainOnlyLabelPasted === true) {
+      this.model.editorConfig.retainOnlyLabelPasted = this.model.retainOnlyLabelPasted;
+    }
+
+    /* 自动行高 */
+    if (this.model.autoHeightEnabled === false) {
+      this.model.editorConfig.autoHeightEnabled = this.model.autoHeightEnabled;
+    }
     if (this.model.initialFrameHeight > 0) {
       this.model.editorConfig.initialFrameHeight = this.model.initialFrameHeight;
     }
-    if (this.model.initialFrameWidth > 0) {
-      this.model.editorConfig.initialFrameHeight = this.model.initialFrameWidth;
-    }
+
+    /* 多语言 */
     if (this.model.lang) {
       this.model.editorConfig.lang = this.model.lang;
+    }
+
+    /* 是否只读 */
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
     }
     if (this.model.readonly === true) {
       this.model.editorConfig.readonly = this.model.readonly;
     }
+
+    /* 字数统计 */
     if (this.model.wordCount === false) {
       this.model.editorConfig.wordCount = this.model.wordCount;
     }
-    /* 编辑器层级的基数  */
+    if (this.model.maximumWords > 0) {
+      this.model.editorConfig.maximumWords = this.model.maximumWords;
+    }
+
+    /* 层级悬浮 */
+    /* 工具栏悬浮有两种解决办法：1.topOffset设置为0,zIndex设置很大;2.topOffset设置为固定的头部的高度,zIndex不设置 */
+    if (this.model.autoFloatEnabled === false) {
+      this.model.editorConfig.autoFloatEnabled = this.model.autoFloatEnabled;
+    }
+    if (this.model.topOffset >= 0) {
+      this.model.editorConfig.topOffset = this.model.topOffset;
+    }
     if (this.model.zIndex > 0) {
       this.model.editorConfig.zIndex = this.model.zIndex;
     }

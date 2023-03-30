@@ -5,6 +5,9 @@
       <small [ngClass]="{'text-status-danger': invalid(model.name)}">{{ model.label }}</small>
       <div sffDynamicField [model]="model" [form]="form" [reload]="reload"></div>
       <small *ngIf="model.help" class="form-text text-muted" [title]="model.help">{{ model.help }}</small>
+      <ng-container *ngIf="invalid(model.name)">
+        <small *ngFor="let error of errors(model.name)" class="form-text text-danger">{{ error }}</small>
+      </ng-container>
     </div>
     <ng-container *ngSwitchDefault>
       <label [attr.for]="model.name"
@@ -16,6 +19,9 @@
       </label>
       <div class="col-{{ width }}">
         <ng-container sffDynamicField [model]="model" [form]="form" [reload]="reload">
+        </ng-container>
+        <ng-container *ngIf="invalid(model.name)">
+          <small *ngFor="let error of errors(model.name)" class="form-text text-danger">{{ error }}</small>
         </ng-container>
       </div>
     </ng-container>

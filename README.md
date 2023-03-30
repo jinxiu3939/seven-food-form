@@ -69,7 +69,7 @@ this.model.editor = ClassicEditor;
 - blockId: string; // 块标识
 - blockTitle: string; // 块标题
 - blockLayout: string; // 块布局方式 'tab' | 'step' | 'ul'(default)
-- hideblockBody: boolean; // 块内容是否隐藏
+- hideBlockBody: boolean; // 块内容是否隐藏
 - children: FormSetting[]; // 子块
 
 ##### models

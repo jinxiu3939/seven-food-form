@@ -1,6 +1,8 @@
 import { BaseModelFactory } from './base-model.factory';
 import { CropperConfig, ModelType, ImageModel, UploadConfig, CrawlConfig, ResourceSearchConfig } from '../dynamic-form.options';
 
+const maxFileSize = 1024 * 1024 * 2; // 2M
+
 const ng2FileUploadConfig: UploadConfig = {
   additionalParameter: {
     tag: [],
@@ -10,7 +12,7 @@ const ng2FileUploadConfig: UploadConfig = {
   authTokenHeader: '',
   authToken: '',
   itemAlias: 'image', // 表单名称
-  maxFileSize: 1024 * 1024 * 2, // 2M
+  maxFileSize: maxFileSize, // 2M
   method: 'POST',
   url: '', // 上传地址
 };
@@ -28,6 +30,7 @@ export class ImageModelFactory extends BaseModelFactory {
     },
     url: '', // 保存地址
     headers: {}, // 保存接口请求头
+    maxFileSize: maxFileSize, // 2M
   }; // 网络图片抓取配置
   private crawlConfig: CrawlConfig = {
     additionalParameter: {

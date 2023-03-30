@@ -24,19 +24,7 @@ export class SpreadsheetModelFactory extends BaseModelFactory {
 
   constructor(obj: any) {
     super(obj);
-    this.config.kind = 'ng2-file-upload'; // 默认上传模块
-    /* 上传配置 */
-    switch (obj.kind) {
-      case 'ng2-file-upload' : {
-        this.config.uploadConfig = ng2FileUploadConfig;
-        break;
-      }
-      // [todo] other
-      // 默认使用`ng2-file-upload`上传
-      default : {
-        this.config.uploadConfig = ng2FileUploadConfig;
-      }
-    }
+    this.config.uploadConfig = ng2FileUploadConfig;
     this.config.view = true; // 默认预览
   }
 }

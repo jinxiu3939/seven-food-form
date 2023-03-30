@@ -38,12 +38,12 @@
                   status="danger"
                   [text]="blockInValid[i]">
         </nb-badge>
-        <nb-icon [icon]="block.hideblockBody ? 'arrow-ios-downward' : 'arrow-ios-upward'"
+        <nb-icon [icon]="block.hideBlockBody ? 'arrow-ios-downward' : 'arrow-ios-upward'"
                  status="info"
                  (click)="foldBlock(i)">
         </nb-icon>
       </h3>
-      <sff-form-block [ngClass]="{'hidden': block.hideblockBody}"
+      <sff-form-block [ngClass]="{'hidden': block.hideBlockBody}"
                       class="row"
                       [models]="models[i]"
                       [form]="form"

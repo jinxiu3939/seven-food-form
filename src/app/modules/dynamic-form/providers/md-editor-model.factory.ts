@@ -27,7 +27,7 @@ const classicMarkDownEditorConfig = {
   styleActiveLine: false,
   toolbarIcons : function() {
     return ["undo", "redo", "|", "bold", "quote", "ucwords", "list-ul", "list-ol", "hr", "|", "image", "code", "preformatted-text", "code-block", "table", "html-entities", "pagebreak", "|", "preview", "watch"]
-  }
+  },
 };
 
 /**
@@ -49,6 +49,9 @@ export class MdEditorModelFactory extends BaseModelFactory {
    */
   protected format(): void {
     /* 是否只读 */
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
+    }
     if (this.model.readonly === true) {
       this.model.editorConfig.readOnly = this.model.readonly;
     }

@@ -4,6 +4,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { formatAlertMessage } from '../../helps';
+import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
 import { CheckboxModel } from '../../dynamic-form.options';
 
@@ -19,12 +21,17 @@ export class CheckboxComponent implements OnInit, ComponentReset {
   @Input() form: FormGroup;
 
   checkedStatus: boolean[] = []; // 元素选中状态集合
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   ngOnInit() {
-    this.loadCheckedStatus();
     if (! this.model.value) {
       this.model.value = [];
     }
+    this.loadCheckedStatus();
   }
 
   resetModel() {
@@ -51,9 +58,9 @@ export class CheckboxComponent implements OnInit, ComponentReset {
     const message = [];
     const control = this.form.controls[this.model.name];
     if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push('最少选择' + this.model.min + '项');
+      message.push(formatAlertMessage(this.lang.min_select, [this.model.min]));
     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push('最多选择' + this.model.max + '项');
+      message.push(formatAlertMessage(this.lang.max_select, [this.model.max]));
     }
     return message;
   }

@@ -4,6 +4,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { formatAlertMessage } from '../../helps';
 import { ComponentReset } from '../../providers/interface/component-reset';
 import { KeywordModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
@@ -62,5 +63,21 @@ export class KeywordComponent implements ComponentReset {
         this.form.controls[this.model.name].setValue(this.model.value);
       }
     }
+  }
+
+  get invalid() {
+    const control = this.form.controls[this.model.name];
+    return control.invalid;
+  }
+
+  get errors() {
+    const message = [];
+    const control = this.form.controls[this.model.name];
+    if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
+      message.push(formatAlertMessage(this.lang.input_down, [this.model.min]));
+    } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
+      message.push(formatAlertMessage(this.lang.input_up, [this.model.max]));
+    }
+    return message;
   }
 }

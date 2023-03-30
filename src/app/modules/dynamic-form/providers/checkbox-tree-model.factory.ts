@@ -20,11 +20,10 @@ export class CheckboxTreeModelFactory extends BaseModelFactory {
     if (! Array.isArray(this.model.value)) {
       this.model.value = [this.model.value];
     }
-    /* 必填项 */
-    if (this.model.require) {
-      if (!this.model.min || this.model.min <= 0) {
-        this.model.min = 1; // 必填
-      }
+    
+    /* 是否只读 */
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
     }
   }
 }

@@ -1,33 +1,36 @@
 import {
   QuickFormFactory,
-  CheckboxModelFactory,
+  PopupCheckboxModelFactory,
 } from '../modules/dynamic-form';
 
 import { options } from './mock-options';
+import { searchConfig } from './mock-popup-radio';
 
-export const checkboxModels: any = [
+export const PopupCheckboxModels: any = [
   new QuickFormFactory({
     label: '蔬菜',
     name: 'yes_no1',
-    value: null,
+    value: [],
     options: options,
     require: true,
-  }).checkbox(),
-  new CheckboxModelFactory({
+  }).popupCheckbox(),
+  new PopupCheckboxModelFactory({
     label: '族谱',
     name: 'zupu-1',
     clear: true,
     options: options,
     value: ['A', 1, 'gege'],
-    disabled: true,
+    disabled: false,
+    searchConfig,
+    min: 2,
   }).instance(),
   {
-    type: 'checkbox',
+    type: 'popup-checkbox',
     options: options,
     name: 'animal-1',
-    width: 5,
+    label: '动物',
     max: 4,
-    readonly: true,
-    value: 'A'
+    value: ['A-1', 1, 'gege'],
+    text: {'A-1': 'A', 1: 1, gege: 'gege'},
   },
 ];

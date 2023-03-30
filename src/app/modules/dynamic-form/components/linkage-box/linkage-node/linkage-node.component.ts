@@ -22,6 +22,7 @@ export class LinkageNodeComponent implements OnChanges {
 
   @Input() public parent: number | string; // 父下拉框值
   @Input() public tree: LinkageBoxTree<number | string>; // 选项树，显示树形目录结构
+  @Input() public disabled: boolean;
 
   @Output() public selectedChange = new EventEmitter<any[]>(); // 下拉框改变事件
 

@@ -14,15 +14,16 @@ export const keywordModels: any = [
   new KeywordModelFactory({
     label: '族谱',
     name: 'zupu-1',
-    clear: true,
+    // disabled: true,
     value: 'gege',
+    min: 2,
   }).instance(),
   {
     type: 'keyword',
     label: '动物',
     name: 'animal-1',
     value: ['母老虎'],
-    readonly: true,
+    // readonly: true,
     width: 5,
     max: 4,
   },

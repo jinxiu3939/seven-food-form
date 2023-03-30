@@ -1,11 +1,15 @@
 /**
- * 多媒体
+ * 多媒体文件上传
  * 支持多文件
+ * 请谨慎配置max
+ * 当multiple为true时，语义为：视频的个数；为false时，语义为文件路径的长度
+ * 正确的做法是：multiple为true时设置max，false时不设置max，只能上传一个文件，只需要设置必填即可
  */
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
+import { formatAlertMessage } from '../../helps';
 import { ImageDescription, VideoModel, ImageItem } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
@@ -184,4 +188,24 @@ export class VideoComponent implements OnInit, ComponentReset {
     this.tmpFilter = list;
   }
 
+  get invalid() {
+    const control = this.form.controls[this.model.name];
+    return control.invalid;
+  }
+ 
+  get valid() {
+    const control = this.form.controls[this.model.name];
+    return control.value && control.valid;
+  }
+ 
+  get errors() {
+    const message = [];
+    const control = this.form.controls[this.model.name];
+    if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
+      message.push(formatAlertMessage(this.lang.choose_down, [this.model.min]));
+    } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
+      message.push(formatAlertMessage(this.lang.choose_up, [this.model.max]));
+    }
+    return message;
+  }
 }

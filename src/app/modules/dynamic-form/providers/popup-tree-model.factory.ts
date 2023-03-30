@@ -22,5 +22,9 @@ export class PopupTreeModelFactory extends BaseModelFactory {
     if (!this.model.size) {
       this.model.size = 'medium'; // 尺寸
     }
+
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
+    }
   }
 }

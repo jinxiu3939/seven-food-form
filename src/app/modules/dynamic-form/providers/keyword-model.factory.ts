@@ -22,5 +22,8 @@ export class KeywordModelFactory extends BaseModelFactory {
     if (! Array.isArray(this.model.value)) {
       this.model.value = [this.model.value];
     }
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
+    }
   }
 }

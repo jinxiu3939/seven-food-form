@@ -17,5 +17,8 @@
       {{ v }}
     </a>
   </div>
+  <div *ngIf="invalid" class="text-error">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+  </div>
   <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
 </div>

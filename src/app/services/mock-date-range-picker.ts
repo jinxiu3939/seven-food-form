@@ -16,7 +16,7 @@ export const dateRangePickerModels: any = [
     name: 'start-1',
     clear: true,
     value: {start: '33ER2023-03-01', end: '3009-09-10'},
-    readonly: true,
+    disabled: true,
   }).instance(),
   {
     type: 'date-range-picker',

@@ -10,6 +10,7 @@ export const PasswordModels: any = [
     require: true,
     kind: 'pdf',
     visible: true,
+    value: '9we7987',
   }).passwordBox(),
   new PasswordBoxModelFactory({
     label: '密码',
@@ -17,6 +18,7 @@ export const PasswordModels: any = [
     clear: true,
     value: '443',
     empty: true,
+    max: 10,
   }).instance(),
   {
     type: 'password-box',
@@ -25,5 +27,7 @@ export const PasswordModels: any = [
     visible: true,
     sureValue: '',
     value: '',
+    min: 2,
+    validator: 'inputEqual',
   },
 ];

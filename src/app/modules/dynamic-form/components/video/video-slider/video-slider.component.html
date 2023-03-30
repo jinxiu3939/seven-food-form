@@ -6,18 +6,18 @@
     <nb-action (click)="forward()">
       <nb-icon icon="arrow-ios-forward-outline" status="basic"></nb-icon>
     </nb-action>
-    <nb-action (click)="delete()" [title]="lang.delete">
+    <nb-action *ngIf="! readonly" (click)="delete()" [title]="lang.delete">
       <nb-icon icon="close" status="warning"></nb-icon>
     </nb-action>
     <nb-action>{{ +currentIndex + 1 }} / {{ items.length }}</nb-action>
   </nb-actions>
-  <div class="slider" [ngClass]="{'auto-slider': readonly}">
+  <div class="slider">
     <video #mediaContainer width='100%' height="auto" controls  class="img-thumbnail" [ngClass]="{'active': active && active.includes(items[currentIndex].url)}">
       <source [src]="items[currentIndex].url | safeURL">
     </video>
   </div>
-  <input *ngIf="! readonly"
-         #descriptionBox
+  <input #descriptionBox
+         [disabled]="readonly"
          class="form-control desciption"
          [placeholder]="lang.input_description"
          [(ngModel)]="items[currentIndex].title"

@@ -17,6 +17,7 @@ const ng2FileUploadConfig: UploadConfig = {
 
 /**
  * 多媒体模型工厂
+ * 兼容disabled属性
  */
 export class VideoModelFactory extends BaseModelFactory {
   protected model: VideoModel;
@@ -24,22 +25,9 @@ export class VideoModelFactory extends BaseModelFactory {
 
   constructor(obj: any) {
     super(obj);
-
     this.config.disabled = false; // 默认不禁用
-    this.config.kind = 'ng2-file-upload'; // 默认上传模块
     this.config.multiple = false; // 默认单文件
-
-    /* 上传配置 */
-    switch (obj.kind) {
-      case 'ng2-file-upload' : {
-        this.config.uploadConfig = ng2FileUploadConfig;
-        break;
-      }
-      // [todo] other
-      // 默认使用`ng2-file-upload`上传
-      default : {
-        this.config.uploadConfig = ng2FileUploadConfig;
-      }
-    }
+    this.config.queueLimit = 5; // 单次上传文件数量
+    this.config.uploadConfig = ng2FileUploadConfig; // 上传配置
   }
 }

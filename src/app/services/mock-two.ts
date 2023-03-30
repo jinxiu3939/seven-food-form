@@ -1,4 +1,6 @@
-import { treeData } from "./mock-tree-data";
+import {
+  QuickFormFactory,
+} from '../modules/dynamic-form';
 
 export const  twoLayoutModels = [
   {
@@ -37,22 +39,6 @@ export const  twoLayoutModels = [
     "require": false,
     "validator": "",
     "data": "popupCheckbox",
-    block: 1,
-  },
-  {
-    "disabled": false,
-    "rows": 3,
-    "label": "备注",
-    "name": "description",
-    "type": "text-area",
-    "value": "",
-    "help": "",
-    "max": 0,
-    "min": 0,
-    "order": 0,
-    "require": false,
-    "validator": "",
-    "data": "textArea",
     block: 1,
   },
   {
@@ -107,25 +93,6 @@ export const  twoLayoutModels = [
     "validator": "",
     "data": "textBox",
     block: 6,
-  },
-  {
-    "clear": false,
-    "disabled": false,
-    "kind": "text",
-    "placeholder": "",
-    "readonly": false,
-    "value": "",
-    "label": "名称",
-    "name": "title",
-    "type": "text-box",
-    "help": "产品名称",
-    "max": 100,
-    "min": 0,
-    "order": 0,
-    "require": true,
-    "validator": "",
-    "data": "textBox",
-    block: 5,
   },
   {
     "crawlConfig": {
@@ -192,27 +159,6 @@ export const  twoLayoutModels = [
   },
   {
     "disabled": false,
-    "mode": "sync",
-    "text": "",
-    "tree": treeData,
-    "value": "",
-    "label": "类别",
-    "name": "cat_id",
-    "type": "popup-tree",
-    "help": "关联类别",
-    "max": 0,
-    "min": 0,
-    "order": 0,
-    "require": true,
-    "validator": "",
-    "data": "popupTree",
-    readonly: false,
-    size: 'tiny',
-    filter: true,
-    block: 3,
-  },
-  {
-    "disabled": false,
     "options": [],
     "searchConfig": {
       "additionalParameter": {
@@ -251,6 +197,21 @@ export const  twoLayoutModels = [
     size: 'tiny',
     block: 1,
   },
+  new QuickFormFactory({
+    label: '富文本内容',
+    name: 'content-body-3',
+    value: '<h1>```hello```</h1><div>33</div>',
+    editorConfig: {
+      readOnly: false,
+      imageUploadURL: '/api/access/tool.mdeditor/image?token=123&app-key=239487',
+      autoFloatEnabled: false,
+    },
+    initialFrameHeight: 2400,
+    allowDivTransToP: false,
+    // topOffset: 0,
+    // zIndex: 10000,
+    block: 3,
+  }).uEditor(),
 ];
 
 export const twoLayoutSetting = {

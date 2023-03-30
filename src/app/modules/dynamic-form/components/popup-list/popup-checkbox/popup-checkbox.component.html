@@ -7,7 +7,7 @@
   </ng-container>
   <ng-container *ngIf="! model.readonly">
     <a nbButton size="tiny" status="info" (click)="choose()">{{ lang.choose }}</a>
-    <a nbButton size="tiny" status="warning" (click)="destroy()">{{ lang.clear }}</a>
+    <a nbButton *ngIf="model.value && model.value.length>0" size="tiny" status="warning" (click)="destroy()">{{ lang.clear }}</a>
   </ng-container>
   <div *ngIf="invalid" class="text-error">
     <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>

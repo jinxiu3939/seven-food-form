@@ -165,46 +165,6 @@ export const oneLayoutModels = [
     disabled: true,
   }).dropDownBox(),
   new QuickFormFactory({
-    label: '关联字段',
-    name: 'field_id',
-    options: [],
-    searchConfig: {
-      conditions: [
-        {
-          text: '模型',
-          type: 'drop-down-filter',
-          value: 'system_model_id',
-          options: [
-            { text: '分类', value: 99, title : 'taxonomy', items: null },
-          ],
-          mode: 'async',
-          endpoint: '/api/frame/form/index',
-        },
-        {
-          text: '模型',
-          type: 'boolean-radio',
-          value: 'form_id',
-        },
-      ],
-      additionalParameter: {
-        format: "option",
-        system_model_id: 1
-      },
-      endpoint: '/api/log/error/index',
-      mode: 'async',
-      result: [],
-      size: 30,
-      headers: {
-        'Token': token,
-        'App-Key': appKey,
-      },
-    },
-    value: '',
-    text: '',
-    // readonly: true,
-    block: 1,
-  }).popupRadio(),
-  new QuickFormFactory({
     label: '同步关联',
     name: 'field_id-2',
     options: options,
@@ -340,7 +300,7 @@ export const oneLayoutSetting = {
       blockId: 1,
       blockTitle: "活命1",
       validate: true,
-      hideblockBody: true,
+      hideBlockBody: true,
     },
     {
       blockId: 2,

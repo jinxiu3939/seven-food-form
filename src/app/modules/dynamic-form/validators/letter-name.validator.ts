@@ -9,7 +9,7 @@ export function LetterNameValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: string } => {
     const reg = new RegExp('^[a-zA-Z0-9_\-]*$');
     const success = reg.test(control.value);
-    return success ? null : {letterName: '英文名称格式错误（只能包含字母、数字、中横线或下划线）'};
+    return success ? null : {letterName: '字母格式错误（只能包含字母、数字、中横线或下划线）'};
   };
 
 }

@@ -12,6 +12,7 @@ export const checkboxTreeModels: any = [
     value: null,
     tree: checkboxTree,
     require: true,
+    readonly: true,
   }).checkboxTree(),
   new CheckboxTreeModelFactory({
     label: '族谱',
@@ -27,6 +28,7 @@ export const checkboxTreeModels: any = [
     name: 'area-1',
     width: 5,
     max: 4,
+    min: 2,
     value: '32'
   },
 ];

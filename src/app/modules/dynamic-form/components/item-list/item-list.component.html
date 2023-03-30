@@ -33,6 +33,9 @@
       </tbody>
     </table>
   </div>
+  <div *ngIf="invalid" class="text-error">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+  </div>
 </div>
 <ng-template #contentTemplate let-data>
   <sff-item-dialog [data]="data.row"

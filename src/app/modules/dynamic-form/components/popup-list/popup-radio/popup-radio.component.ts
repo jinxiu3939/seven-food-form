@@ -74,7 +74,7 @@ export class PopupRadioComponent implements OnInit, ComponentReset {
   }
 
   get label() {
-    return this.model.value + '/' + this.form.controls[this.model.name].value ? this.text : '';
+    return this.model.value + ' / ' + (this.form.controls[this.model.name].value ? this.text : '');
   }
 
   /**

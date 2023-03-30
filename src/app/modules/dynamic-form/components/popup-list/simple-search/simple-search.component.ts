@@ -113,15 +113,18 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   private filter(page: number): Observable<Option<string| number>[]> {
     let result: Option<string| number>[];
     result = this.items.filter((item) => {
-      // 检索
+      // 检索，同步结果集检索条件只有一个关键字
       for (const i in this.condition) {
         if (this.condition[i]) {
-          if (!item.title) {
-            item.title = item.text;
-          }
-          if ((item.value + '').indexOf(this.condition[i]) < 0
-            && item.text.indexOf(this.condition[i]) < 0
-            && item.title.indexOf(this.condition[i]) < 0) {
+          if (item.value && (item.value + '').indexOf(this.condition[i]) >= 0) {
+            return true;
+          } else if (item.text && item.text.indexOf(this.condition[i]) >= 0) {
+            return true;
+          } else if (item.title && item.title.indexOf(this.condition[i]) >= 0) {
+            return true;
+          } else if (item.items && (item.items + '').indexOf(this.condition[i]) >= 0) {
+            return true;
+          } else {
             return false;
           }
         }
@@ -147,7 +150,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
     /* 获取结果 */
     if (this.config.conditions[term.key].mode === 'async') { // 异步检索
       this.provider.setApi(this.config.conditions[term.key].endpoint); // 设置检索接口
-      return this.provider.getPage(1, this.config.size, {title: keyword, format: 'option'}).pipe(
+      return this.provider.getPage(1, this.config.conditions[term.key].size, {'foreign_label': keyword, format: 'option'}).pipe(
         map(res => this.searchOptions[term.key] = res),
       );
     } else { // 同步检索

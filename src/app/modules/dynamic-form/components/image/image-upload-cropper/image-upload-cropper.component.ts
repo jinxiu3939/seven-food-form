@@ -9,6 +9,7 @@ import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
+import { formatAlertMessage } from '../../../helps';
 import { ImageDescription, ImageItem, ImageListOrder, CropperConfig } from '../../../dynamic-form.options';
 import { ResourceProvider } from '../../../providers/data/resource-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
@@ -129,13 +130,17 @@ export class ImageUploadCropperComponent implements OnInit {
    * 确认剪切结果
    */
   finishCropped() {
+    if (this.tmpThumbnail.length > this.config.maxFileSize) {
+      this.alert(formatAlertMessage(this.lang.cropper_size_error, [this.config.maxFileSize / 1024 / 1024 + 'M']));
+      return;
+    }
     const value = {url: this.tmpThumbnail, title: ''};
     if (this.multiple) { // 多选
       if (this.queueLimit) { // 限制个数
         if (this.thumbnails.length < this.queueLimit) {
           this.thumbnails.push(value); // 显示图片
         } else {
-          this.alert(this.lang.max_error + this.queueLimit);
+          this.alert(formatAlertMessage(this.lang.upload_queue_limit, [this.queueLimit]));
         }
       } else { // 不限制个数
         this.thumbnails.push(value); // 显示图片
@@ -168,7 +173,7 @@ export class ImageUploadCropperComponent implements OnInit {
           .subscribe((tempRes) => {
             const result = this.provider.parseSaveResult(tempRes);
             if (result.error) {
-              this.alert(result.error + `（` + key + `）`);
+              this.alert(formatAlertMessage(this.lang.image_queue, [key + 1]) + result.error);
             } else {
               this.uploadFinish(tempRes.content, key);
             }

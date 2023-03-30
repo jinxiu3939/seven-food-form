@@ -16,7 +16,7 @@ export const datePickerModels: any = [
     name: 'start-1',
     clear: true,
     value: '#RR532',
-    readonly: true,
+    disabled: true,
   }).instance(),
   {
     type: 'date-picker',

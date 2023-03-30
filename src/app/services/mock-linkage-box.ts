@@ -15,7 +15,10 @@ export const linkageModels: any = [
   new LinkageBoxModelFactory({
     label: '族谱',
     name: 'zupu-1',
-    value: 'gege',
+    value: ['gege', 'A'],
+    disabled: true,
+    tree: tree,
+    root: 0,
   }).instance(),
   {
     label: '族谱',

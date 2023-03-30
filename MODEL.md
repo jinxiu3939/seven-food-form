@@ -15,8 +15,9 @@
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
-- all?: boolean; // 是否显示全部
 - disabled: boolean; // 是否禁用
+- all?: boolean; // 是否显示`全部`项
+- readonly: boolean; // 是否只读
 - options: Option<string | number | boolean>[]; // 选项列表
 - width: number; // 选项宽度
 
@@ -27,16 +28,17 @@
 - label: string; // 标签
 - name: string; // 名称
 - type: ModelType; // 类型
-- value: CheckboxModel; // 值
+- value: string | number; // 值
 - help?: string; // 说明
 - max?: number; // 最大长度
 - min?: number; // 最小长度
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
-- clear: boolean; // 是否清除无效的值
 - disabled: boolean; // 是否禁用
-- options: Option<string | number | boolean>[]; // 选项列表
+- clear: boolean; // 是否清除无效的值
+- readonly: boolean; // 是否只读
+- options: Option<string | number>[]; // 选项列表
 - width: number; // 选项宽度
 
 #### CheckboxTreeModel
@@ -54,6 +56,7 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
+- readonly: boolean; // 是否只读
 - tree: CheckBoxTree<string | number>; // 选项树
 
 #### CKEditorModel
@@ -73,10 +76,8 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
-- editor: any; // 编辑器
+- editor: any; // 编辑器，安装依赖`@ckeditor/ckeditor5-build-balloon-block`
 - editorConfig: any; // `ck-editor`配置
-- kind: 'classic' | 'ckfinder'; // 默认配置类型
-- build: string; // 编辑器种类
 
 #### DatePickerModel
 
@@ -92,11 +93,31 @@
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
-- clear: boolean; // 是否清空不合法日期
 - disabled: boolean; // 是否禁用
+- clear: boolean; // 是否清空不合法日期
 - format: string; // 日期格式
 - kind: 'date' | 'date-time'; // 时间类型
 - now: boolean; // 是否默认当前时间
+- readonly: boolean; // 是否只读
+
+#### DateRangePickerModel
+
+日期范围选择器
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- clear: boolean; // 是否清空不合法日期
+- format: string; // 返回值日期格式
+- readonly: boolean; // 是否只读
 
 #### TextAreaModel
 
@@ -113,6 +134,7 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
+- readonly: boolean; // 是否只读
 - rows: number;
 
 #### TextBoxModel
@@ -129,8 +151,8 @@
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
-- clear: boolean; // 是否清除不合法数据
 - disabled: boolean; // 是否禁用
+- clear: boolean; // 是否清除不合法数据
 - kind: TextBoxType; // 文本框类型
 - placeholder: string; // 提示
 - readonly: boolean; // 是否只读
@@ -149,17 +171,26 @@
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
-- crawlConfig: CrawlConfig; // 抓取配置
 - disabled: boolean; // 是否禁用
+- crawlConfig: CrawlConfig; // 抓取配置
 - display: 'image' | 'input'; // 展现方式
-- kind: 'ng2-file-upload'; // 上传类别
 - list: FileResource[]; // 资源列表
 - multiple: boolean; // 是否多图片
 - repeat: boolean; // 是否可以选择重复的图片
 - searchConfig: ResourceSearchConfig; // 检索配置
 - uploadConfig: UploadConfig; // 上传配置
-
-> 应该自定义服务实现资源提供者接口：`ResourceProvider`
+- cropperConfig: CropperConfig; // 裁剪配置
+- aspectRatioHeight?: number; // 裁剪图片纵横比高度
+- aspectRatioWidth?: number; // 裁剪图片纵横比宽度
+- cropperType?: string; // 裁剪图片格式
+- hideCrawl?: boolean; // 是否隐藏图片抓取组件
+- hideCropper?: boolean; // 是否隐藏图片裁剪组件
+- hideSearch?: boolean; // 是否隐藏图片检索组件
+- hideUpload?: boolean; // 是否隐藏图片上传组件
+- queueLimit?: number; // 单次操作最大图片数目
+- searchDisplay?: 'page' | 'list'; // 检索结果显示方式
+- searchMode?: 'async' | 'sync'; // 检索方式
+- debug?: boolean; // 是否开启调试模式
 
 #### SpreadsheetModel
 
@@ -175,12 +206,10 @@
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
 - header: string[]; // 表格头
-- kind: 'ng2-file-upload'; // 上传类别
 - uploadConfig: UploadConfig; // 上传配置
 - view: boolean; // 是否预览
-
-> 应该自定义服务实现资源提供者接口：`ResourceProvider`
 
 #### PopupRadioModel
 
@@ -200,10 +229,9 @@
 - options: Option<string | number>[]; // 选项列表
 - readonly: boolean; // 是否只读
 - searchConfig: SearchConfig; // 检索配置
-- size: string; // 尺寸
+- size: string; // 按钮尺寸
 - text: string; // 显示文本
 
-> 应该自定义服务实现检索提供者接口：`SearchProvider`
 
 #### PopupCheckboxModel
 
@@ -220,9 +248,9 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
+- readonly: boolean; // 是否只读
 - options: Option<string | number>[]; // 选项列表
 - searchConfig: SearchConfig; // 检索配置
-- size: string; // 尺寸
 - text: string[]; // 显示文本
 
 > 应该自定义服务实现检索提供者接口：`SearchProvider`
@@ -242,14 +270,14 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
+- readonly: boolean; // 是否只读
 - mode: 'async' | 'sync'; //  加载方式
 - text: string[]; // 显示文本
 - tree: TreeNode<Option<string | number>>[]; // 选项树
-- endpoint?: string; // 检索接口
-- searchParameter?: any; // 检索条件
-- readonly?: boolean; // 是否只读
-
-> 应该自定义服务实现树提供者接口：`TreeProvider`
+- endpoint: string; // 检索接口
+- searchParameter: any; // 检索条件
+- size: 'tiny' | 'small' | 'medium'; // 操作按钮尺寸
+- filter: boolean; // 是否显示检索框
 
 #### ItemListModel
 
@@ -265,8 +293,8 @@
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
-- attributes: ConditionField[]; // 属性列表
 - disabled: boolean; //  是否禁用
+- attributes: ConditionField[]; // 属性列表
 - size: string; //  弹出框尺寸 '' | 'medium' | 'large'
 
 #### PasswordBoxModel
@@ -284,7 +312,7 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - empty: boolean; // 是否空置密码
-- visible: boolean; //  是否可见
+- visible: boolean; // 密码是否可见
 
 #### LinkageBoxTreeModel
 
@@ -300,7 +328,7 @@
 - order?: number; // 排序
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
-- data?: any; // 自定义配置数据
+- readonly: boolean; // 是否只读
 - root: string | number; // 根下拉框`parent`值
 - tree: LinkageBoxTree<string | number>; // 选项树
 
@@ -319,11 +347,9 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
-- kind: 'ng2-file-upload'; // 上传类别
 - multiple: boolean; // 是否多选
 - uploadConfig: UploadConfig; // 上传配置
-
-> 应该自定义服务实现资源提供者接口：`ResourceProvider`
+- queueLimit: number; // 单次上传最大文件数目
 
 #### KeywordModel
 
@@ -340,6 +366,7 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - readonly: boolean; // 是否只读
+- options: string[]; // 选项
 
 #### UEditorModel
 
@@ -358,8 +385,18 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
-- editorConfig: any; // `u-editor`配置
-- kind: 'classic'; // `u-editor`类别
+- editorConfig: any; // `ueditor`配置 [http://fex.baidu.com/ueditor/#start-config]
+- allowDivTransToP: boolean; // 允许进入编辑器的div标签自动变成p标签
+- autoFloatEnabled: boolean; // 是否保持toolbar的位置不动
+- autoHeightEnabled: boolean; // 是否自动行高
+- initialFrameHeight: number; // 初始化编辑器高度
+- lang: string; // 语言包
+- maximumWords: number; // 最大字数
+- readonly: boolean; // 是否只读
+- retainOnlyLabelPasted: boolean; // 粘贴只保留标签，去除标签所有属性
+- topOffset: number; // 浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
+- wordCount: boolean; // 是否开启字数统计
+- zIndex: number; // 弹出框层级
 
 #### MdEditorModel
 
@@ -378,3 +415,24 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - editorConfig: any; // `markdown-editor`配置
+- readonly: boolean; // 是否只读
+- height: number; // 高度
+
+#### FileModel
+
+文件
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- kind: string[]; // 文件类型 xls | word | txt | image | video | audio | pdf | json
+- accept: string; // 可上传文件具体类型
+- download: string; // 已上传文件下载地址

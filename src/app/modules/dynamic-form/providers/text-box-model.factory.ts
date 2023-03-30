@@ -12,7 +12,7 @@ export class TextBoxModelFactory extends BaseModelFactory {
   constructor(obj: any) {
     super(obj);
     this.config.clear = false; // 默认不清空数据
-    this.config.disabled = false; // 默认不禁用
+    this.config.disabled = false; // 默认不禁用，若禁用表单组件自动设置为disabled
     this.config.kind = 'text'; // 文本框类型
     this.config.placeholder = ''; // 默认无提示
     this.config.readonly = false; // 默认非只读

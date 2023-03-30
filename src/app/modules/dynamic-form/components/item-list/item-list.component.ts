@@ -5,7 +5,7 @@ import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
-import { deepExtend } from '../../helps';
+import { deepExtend, formatAlertMessage } from '../../helps';
 import { ItemListModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
@@ -93,5 +93,21 @@ export class ItemListComponent implements ComponentReset {
       this.form.controls[this.model.name].setValue(this.model.value);
     }
     this.windowRef.close(); // 关闭弹窗
+  }
+
+  get invalid() {
+    const control = this.form.controls[this.model.name];
+    return control.invalid;
+  }
+
+  get errors() {
+    const message = [];
+    const control = this.form.controls[this.model.name];
+    if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
+      message.push(formatAlertMessage(this.lang.input_down, [this.model.min]));
+    } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
+      message.push(formatAlertMessage(this.lang.input_up, [this.model.max]));
+    }
+    return message;
   }
 }

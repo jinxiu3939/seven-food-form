@@ -24,6 +24,7 @@ export const itemListModels: any = [
     ],
     size: '',
     block: 1,
+    max: 4,
   }).itemList(),
   new ItemListModelFactory({
     label: '条款',
@@ -43,6 +44,7 @@ export const itemListModels: any = [
       {text: '值', type: 'textarea', value: 'value'},
     ],
     value: [],
-    size: 'large'
+    size: 'large',
+    min: 2,
   },
 ];

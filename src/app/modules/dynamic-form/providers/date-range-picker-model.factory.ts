@@ -30,6 +30,9 @@ export class DateRangePickerModelFactory extends BaseModelFactory {
         }
       }
     }
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
+    }
   }
 
   private transform(value): string {

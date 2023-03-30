@@ -1,10 +1,10 @@
 <div *ngIf="tree && options" class="tree-inline">
-  <nb-select [placeholder]="lang.select" [(selected)]="tree.selected" (selectedChange)="switchSelected()">
+  <nb-select [placeholder]="lang.select" [disabled]="disabled" [(selected)]="tree.selected" (selectedChange)="switchSelected()">
     <nb-option value="">{{ lang.select }}</nb-option>
     <nb-option *ngFor="let opt of options" [value]="opt.value">{{ opt.text }}</nb-option>
   </nb-select>
   <ng-container *ngIf="tree.children">
-    <sff-linkage-node [tree]="tree.children" [parent]="tree.selected" (selectedChange)="notifyParent($event)">
+    <sff-linkage-node [tree]="tree.children" [disabled]="disabled" [parent]="tree.selected" (selectedChange)="notifyParent($event)">
     </sff-linkage-node>
   </ng-container>
 </div>

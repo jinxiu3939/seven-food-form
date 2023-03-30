@@ -56,7 +56,7 @@ export class PopupTreeComponent implements OnInit, ComponentReset {
   get label() {
     let text = this.model.value;
     if (this.text) {
-      text +=  '/' + this.text
+      text +=  ' / ' + this.text
     }
     return text;
   }

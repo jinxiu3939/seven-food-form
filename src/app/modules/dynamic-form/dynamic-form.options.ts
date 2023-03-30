@@ -65,7 +65,7 @@ export interface FormSetting {
   blockId: string; // 块标识
   blockTitle: string; // 块标题
   blockLayout: string; // 块布局方式
-  hideblockBody: boolean; // 块内容是否隐藏
+  hideBlockBody: boolean; // 块内容是否隐藏
   children: FormSetting[]; // 子块
 }
 
@@ -137,6 +137,7 @@ export interface LinkageBoxTree<T> {
  */
 export interface CropperConfig {
   additionalParameter: ResourceSaveParam; // 额外参数
+  maxFileSize: number;
   headers: {
     [header: string]: string | string[];
   }; // 上传接口请求头
@@ -266,6 +267,7 @@ export interface ConditionField {
   options?: Option<string | number>[]; // 选项
   mode?: 'async' | 'sync'; // 选项检索方式
   endpoint?: string; // 选项异步检索接口
+  size?: number; // 选项数量
 }
 
 /**
@@ -291,7 +293,7 @@ export interface BaseModel<T> {
   order?: number; // 排序
   require?: boolean; // 是否必填
   validator?: any; // 验证器
-  disabled: boolean; // 是否禁用。禁用后不会做变更检查，尽管显示表单组件，但是无法作为表单值提交；一般要配合readonly使用
+  disabled: boolean; // 是否禁用。禁用后不会做变更检查，尽管显示表单组件，但是无法作为表单值提交
   block: any; // 对应block标识
   data?: any; // 自定义配置数据
 }
@@ -301,6 +303,7 @@ export interface BaseModel<T> {
  */
 export interface RadioModel extends BaseModel<string | number | boolean> {
   all: boolean; // 是否显示全部
+  readonly: boolean; // 是否只读
   options: Option<string | number | boolean>[]; // 选项列表
   width: number; // 选项宽度
 }
@@ -311,6 +314,7 @@ export interface RadioModel extends BaseModel<string | number | boolean> {
 export interface CheckboxModel extends BaseModel<(string | number)[]> {
   clear: boolean; // 是否清除不合法的值，不包含在options中的值将被清除
   options: Option<string | number>[]; // 选项列表
+  readonly: boolean; // 是否只读
   width: number; // 选项宽度，控制一行显示几个选项，12分格
 }
 
@@ -318,6 +322,7 @@ export interface CheckboxModel extends BaseModel<(string | number)[]> {
  * 多选树模型
  */
 export interface CheckboxTreeModel extends BaseModel<(string | number)[]> {
+  readonly: boolean; // 是否只读
   tree: CheckBoxTree<string | number>; // 选项树
 }
 
@@ -337,10 +342,14 @@ export interface CKEditorModel extends BaseModel<string> {
  export interface UEditorModel extends BaseModel<string> {
   editorConfig: any; // `ueditor`配置 [http://fex.baidu.com/ueditor/#start-config]
   allowDivTransToP: boolean; // 允许进入编辑器的div标签自动变成p标签
+  autoFloatEnabled: boolean; // 是否保持toolbar的位置不动
+  autoHeightEnabled: boolean; // 是否自动行高
   initialFrameHeight: number; // 初始化编辑器高度
-  initialFrameWidth: number; // 初始化编辑器宽度
   lang: string; // 语言包
+  maximumWords: number; // 最大字数
   readonly: boolean; // 是否只读
+  retainOnlyLabelPasted: boolean; // 粘贴只保留标签，去除标签所有属性
+  topOffset: number; // 浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
   wordCount: boolean; // 是否开启字数统计
   zIndex: number; // 弹出框层级
 }
@@ -403,8 +412,8 @@ export interface ImageModel extends BaseModel<ImageItem[] | string> {
  * 多媒体模型
  */
 export interface VideoModel extends BaseModel<ImageItem[] | string> {
-  kind: 'ng2-file-upload'; // 上传类别
   multiple: boolean; // 是否多文件
+  queueLimit: number; // 单次上传最大文件数目
   uploadConfig: UploadConfig; // 上传配置
 }
 
@@ -413,7 +422,6 @@ export interface VideoModel extends BaseModel<ImageItem[] | string> {
  */
 export interface SpreadsheetModel extends BaseModel<any[]> {
   header: string[]; // 表格头
-  kind: 'ng2-file-upload'; // 上传类别
   uploadConfig: UploadConfig; // 上传配置
   view: boolean; // 是否预览
 }
@@ -508,10 +516,14 @@ export interface PasswordBoxModel extends BaseModel<string> {
  * 联动下拉框模型
  */
 export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
+  readonly: true; // 只读
   root: string | number; // 根下拉框的值
   tree: LinkageBoxTree<(string | number)>; // 选项树
 }
 
+/**
+ * 关键字模型
+ */
 export interface KeywordModel extends BaseModel<string[]> {
   readonly: boolean; // 是否只读
   options: string[]; // 选项

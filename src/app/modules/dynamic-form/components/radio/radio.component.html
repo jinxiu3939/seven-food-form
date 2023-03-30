@@ -6,13 +6,14 @@
     <nb-radio *ngIf="model.all"
               [value]="null"
               class="col-{{model.width}}"
+              [disabled]="model.readonly"
               [ngClass]="{'col-deep': model.width}">
       {{ lang.all }}
     </nb-radio>
     <nb-radio *ngFor="let opt of model.options"
               [value]="opt.value"
               [title]="opt.title ? opt.title : opt.text"
-              [disabled]="model.disabled"
+              [disabled]="model.readonly"
               class="col-{{model.width}}"
               [ngClass]="{'form-badge': opt.items, 'col-deep': model.width}">
       {{ opt.text }}

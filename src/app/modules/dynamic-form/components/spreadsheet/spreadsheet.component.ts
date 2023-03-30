@@ -79,6 +79,7 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
         if (this.model.header) { // 校验内容
           if (tmp_sheets[0].length !== this.model.header.length) {
             this.alert(this.lang.vlidate_spreedsheet_error);
+            this.model.view = true;
           } else {
             this.finished = true; // 可以上传
             this.table = tmp_sheets; // 保存电子表格

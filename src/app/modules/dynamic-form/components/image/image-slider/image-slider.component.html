@@ -6,22 +6,22 @@
     <nb-action (click)="forward()" [title]="lang.preview">
       <nb-icon icon="arrow-ios-forward-outline" status="basic"></nb-icon>
     </nb-action>
-    <nb-action (click)="upward()" [title]="lang.sort">
+    <nb-action *ngIf="! readonly" (click)="upward()" [title]="lang.sort">
       <nb-icon icon="arrow-upward-outline" status="info"></nb-icon>
     </nb-action>
-    <nb-action (click)="downward()" [title]="lang.sort">
+    <nb-action *ngIf="! readonly" (click)="downward()" [title]="lang.sort">
       <nb-icon icon="arrow-downward-outline" status="info"></nb-icon>
     </nb-action>
-    <nb-action (click)="delete()" [title]="lang.delete">
+    <nb-action *ngIf="! readonly" (click)="delete()" [title]="lang.delete">
       <nb-icon icon="close" status="warning"></nb-icon>
     </nb-action>
     <nb-action>{{ +currentIndex + 1 }} / {{ items.length }}</nb-action>
   </nb-actions>
-  <div class="slider" [ngClass]="{'auto-slider': readonly}">
+  <div class="slider">
     <img [src]="items[currentIndex].url | safeURL" class="img-thumbnail" [ngClass]="{'active': active && active.includes(items[currentIndex].url)}" (click)="bigImage(imageTemplate)">
   </div>
-  <input *ngIf="! readonly"
-         #descriptionBox
+  <input #descriptionBox
+         [disabled]="readonly"
          class="form-control desciption"
          [placeholder]="lang.input_description"
          [(ngModel)]="items[currentIndex].title"

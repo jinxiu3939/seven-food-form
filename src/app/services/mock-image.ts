@@ -28,6 +28,7 @@ export const imageModels: any = [
         'Token': token,
         'App-Key': appKey,
       },
+      maxFileSize: 1024,
     },
     uploadConfig: {
       authTokenHeader: 'Token',
@@ -63,17 +64,21 @@ export const imageModels: any = [
       mode: 'async',
     },
     block: 1,
-    hideCrawl: true,
-    hideCropper: true,
+    hideUpload: true,
+    hideCropper: false,
   }).image(),
   new ImageModelFactory({
     label: '同步图片',
     name: 'zupu-1',
     repeat: true,
-    multiple: true,
+    multiple: false,
     list: images,
     searchDisplay: 'list',
     debug: true,
+    min: 2,
+    require: true,
+    disabled: true,
+    value: 'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg'
   }).instance(),
   {
     type: 'image',
@@ -81,5 +86,7 @@ export const imageModels: any = [
     name: 'animal-1',
     width: 5,
     max: 4,
+    disabled: true,
+    value: [{url:'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg'}, {url:'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg'}, {url:'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg'}]
   },
 ];

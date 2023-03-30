@@ -34,5 +34,8 @@ export class DatePickerModelFactory extends BaseModelFactory {
         this.model.value = dateFormat(new Date(), this.model.format);
       }
     };
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
+    }
   }
 }
