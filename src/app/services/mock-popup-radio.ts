@@ -50,7 +50,7 @@ export const searchConfig = {
     system_model_id: 1
   },
   endpoint: '/api/log/error/index',
-  mode: 'sync',
+  mode: 'async',
   result: [],
   size: 30,
   headers: {

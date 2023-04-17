@@ -61,7 +61,7 @@ export interface FormSetting {
   hideSubmit: boolean; // 隐藏提交按钮
   submitText: string; // 提交按钮文本
   hideReset: boolean; // 隐藏重置按钮
-  resetText: string; // 提交按钮文本
+  resetText: string; // 重置按钮文本
   blockId: string; // 块标识
   blockTitle: string; // 块标题
   blockLayout: string; // 块布局方式
@@ -250,11 +250,11 @@ export interface ImportResultRow {
  */
 export interface SearchConfig {
   additionalParameter: any; // 异步检索条件
-  conditions: ConditionField[]; // 检索条件选项
   mode: 'async' | 'sync'; // 检索方式
-  result: Option<string | number>[]; // 默认结果集
-  size: number; // 分页大小
+  conditions?: ConditionField[]; // 检索条件选项
   endpoint?: string; // 异步检索接口
+  result?: Option<string | number>[]; // 默认结果集
+  size?: number; // 分页大小
 }
 
 /**
@@ -280,6 +280,17 @@ export interface TreeNode<T> {
 }
 
 /**
+ * 键值对子项
+ */
+export interface KeyValueItemModel {
+  key: string; // 键
+  type: 'input' | 'drop-down' | 'drop-down-filter' | 'number' | 'boolean-radio' | 'textarea', // 类型
+  options?: Option<string | number>[]; // 值选项
+}
+
+
+
+/**
  * 表单项模型父类
  */
 export interface BaseModel<T> {
@@ -295,7 +306,7 @@ export interface BaseModel<T> {
   validator?: any; // 验证器
   disabled: boolean; // 是否禁用。禁用后不会做变更检查，尽管显示表单组件，但是无法作为表单值提交
   block: any; // 对应block标识
-  data?: any; // 自定义配置数据
+  payload?: any; // 自定义配置数据
 }
 
 /**
@@ -485,14 +496,12 @@ export interface PopupCheckboxModel extends BaseModel<(string | number)[]> {
  * 弹出式树模型
  */
 export interface PopupTreeModel extends BaseModel<string | number> {
-  mode: 'async' | 'sync'; // 数据获取方式
   text: string; // 显示文本
   tree: TreeNode<Option<string | number>>[]; // 同步选项树
-  endpoint?: string; // 异步检索接口
-  searchParameter?: any; // 异步检索条件
+  searchConfig: SearchConfig; // 异步检索配置
   readonly?: boolean; // 是否只读
   size?: 'tiny' | 'small' | 'medium'; // 操作按钮尺寸
-  filter?: boolean; // 是否显示检索框
+  filter?: boolean; // 是否可检索
 }
 
 /**
@@ -501,6 +510,8 @@ export interface PopupTreeModel extends BaseModel<string | number> {
 export interface ItemListModel extends BaseModel<any[]> {
   attributes: ConditionField[]; // 字段列表
   size: string; // 弹出框大小 medium | large
+  kind: 'item' | 'key-value'; // 弹出框类型
+  keyValue: KeyValueItemModel[]; // 键值对配置
 }
 
 /**

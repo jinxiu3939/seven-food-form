@@ -1,0 +1,11 @@
+@import '../../../theme/styles';
+
+@include nb-install-component() {
+  .large-dialog {
+    width: 800px;
+  }
+
+  .medium-dialog {
+    width: 500px;
+  }
+}

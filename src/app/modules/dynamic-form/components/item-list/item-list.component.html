@@ -38,8 +38,16 @@
   </div>
 </div>
 <ng-template #contentTemplate let-data>
-  <sff-item-dialog [data]="data.row"
-                   [fields]="data.fields"
-                   [size]="data.size"
-                   (finish)="receive($event, data.index)"></sff-item-dialog>
+  <ng-container [ngSwitch]="model?.kind">
+    <sff-key-value-dialog *ngSwitchCase="'key-value'"
+                          [data]="data.row"
+                          [options]="data.keyValues"
+                          [size]="data.size"
+                          (finish)="receive($event, data.index)"></sff-key-value-dialog>
+    <sff-item-dialog  *ngSwitchDefault
+                      [data]="data.row"
+                      [fields]="data.fields"
+                      [size]="data.size"
+                      (finish)="receive($event, data.index)"></sff-item-dialog>
+  </ng-container>
 </ng-template>

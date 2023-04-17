@@ -96,13 +96,13 @@ export class PopupTreeComponent implements OnInit, ComponentReset {
   }
 
   private fetchData() {
-    if (this.model.mode === 'async') { // 异步
+    if (this.model.searchConfig?.mode === 'async') { // 异步
       if (! this.data) {
         this.loading = true;
-        if (this.model.endpoint) {
-          this.provider.setApi(this.model.endpoint);
+        if (this.model.searchConfig?.endpoint) {
+          this.provider.setApi(this.model.searchConfig.endpoint);
         }
-        this.provider.getTree(this.model.searchParameter).subscribe(data => {
+        this.provider.getTree(this.model.searchConfig.additionalParameter).subscribe(data => {
           this.data = data;
           this.loadData();
           this.loading = false;

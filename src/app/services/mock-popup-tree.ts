@@ -4,6 +4,7 @@ import {
 } from '../modules/dynamic-form';
 
 import { treeData } from "./mock-tree-data";
+import { searchConfig } from './mock-popup-radio';
 
 export const PopupTreeModels: any = [
   new QuickFormFactory({
@@ -18,27 +19,29 @@ export const PopupTreeModels: any = [
     label: '族谱',
     name: 'zupu-1',
     clear: true,
-    tree: treeData,
+    tree: [],
     value: ['A', 1, 'gege'],
     // disabled: true,
     size: 'medium',
+    searchConfig: searchConfig,
+    filter: true,
   }).instance(),
   {
-    "disabled": false,
-    "mode": "sync",
-    "text": "地理",
-    "tree": treeData,
-    "value": "geographies",
-    "label": "类别",
-    "name": "cat_id",
-    "type": "popup-tree",
-    "help": "关联类别",
-    "max": 0,
-    "min": 0,
-    "order": 0,
-    "require": true,
-    "validator": "",
-    "data": "popupTree",
+    disabled: false,
+    mode: "sync",
+    text: "地理",
+    tree: treeData,
+    value: "geographies",
+    label: "类别",
+    name: "cat_id",
+    type: "popup-tree",
+    help: "关联类别",
+    max: 0,
+    min: 0,
+    order: 0,
+    require: true,
+    validator: "",
+    data: "popupTree",
     readonly: false,
     size: 'tiny',
     filter: true,

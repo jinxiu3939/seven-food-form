@@ -42,6 +42,7 @@ export class ItemListComponent implements ComponentReset {
       fields: this.model.attributes,
       size: this.model.size,
       index: false,
+      keyValues: this.model.keyValue,
     }, closeOnBackdropClick: false,});
   }
 
@@ -55,6 +56,7 @@ export class ItemListComponent implements ComponentReset {
         fields: this.model.attributes,
         size: this.model.size,
         index,
+        keyValues: this.model.keyValue,
       },
       closeOnBackdropClick: false,
     });

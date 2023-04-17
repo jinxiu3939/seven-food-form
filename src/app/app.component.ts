@@ -6,7 +6,7 @@ import { ApiService } from './services/api.service';
 import { oneLayoutModels, oneLayoutSetting } from './services/mock-one';
 import { searchModels, searchSetting } from './services/mock-model';
 import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
-import { ckeditorModels } from './services/mock-ckeditor';
+import { PopupTreeModels } from './services/mock-popup-tree';
 
 @Component({
   selector: 'ngx-app',
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.service.get().subscribe(() => {
-      this.models = ckeditorModels;
+      this.models = PopupTreeModels;
       this.setting = searchSetting;
     });
   }

@@ -30,8 +30,25 @@ export const itemListModels: any = [
     label: '条款',
     name: 'doc-1',
     clear: true,
-    value: 'gege',
+    value: [{key: 'kind', value: 'gege'}, {key: 'category', value: 'apple'}],
     accept: 'application/msword',
+    kind: 'key-value',
+    attributes: [
+      {text: '键', type: 'input', value: 'key'},
+      {text: '值', type: 'textarea', value: 'value'},
+    ],
+    keyValue: [
+      {key: 'kind', type: 'input'},
+      {key: 'number', type: 'number'},
+      {key: 'category', type: 'drop-down', options: [
+        { text: '苹果', value: 'apple', title : '一种水果' },
+        { text: '梨', value: 'pear', title : '一种水果' },
+      ]},
+      {key: 'type', type: 'drop-down-filter', options: [
+        { text: '苹果', value: 'apple', title : '一种水果' },
+        { text: '梨', value: 'pear', title : '一种水果' },
+      ]},
+    ]
   }).instance(),
   {
     type: 'item-list',

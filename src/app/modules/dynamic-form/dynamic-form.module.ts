@@ -58,6 +58,7 @@ import { ImageUploadComponent } from './components/image/image-upload/image-uplo
 import { ImageUploadCropperComponent } from './components/image/image-upload-cropper/image-upload-cropper.component';
 import { ImageWebComponent } from './components/image/image-web/image-web.component';
 import { ItemDialogComponent } from './components/item-list/item-dialog/item-dialog.component';
+import { KeyValueDialogComponent } from './components/item-list/key-value-dialog/key-value-dialog.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { LinkageBoxComponent } from './components/linkage-box/linkage-box.component';
 import { LinkageNodeComponent } from './components/linkage-box/linkage-node/linkage-node.component';
@@ -119,6 +120,7 @@ const FORM_COMPONENTS = [
   ImageUploadCropperComponent,
   ImageWebComponent,
   ItemDialogComponent,
+  KeyValueDialogComponent,
   SimpleSearchComponent,
   TreeNodeIconComponent,
   VideoSliderComponent,
