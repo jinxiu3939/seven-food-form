@@ -150,7 +150,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
     /* 获取结果 */
     if (this.config.conditions[term.key].mode === 'async') { // 异步检索
       this.provider.setApi(this.config.conditions[term.key].endpoint); // 设置检索接口
-      return this.provider.getPage(1, this.config.conditions[term.key].size, {'foreign_label': keyword, format: 'option'}).pipe(
+      return this.provider.getPage(1, this.config.conditions[term.key].size, {'associate_title': keyword, format: 'option'}).pipe(
         map(res => this.searchOptions[term.key] = res),
       );
     } else { // 同步检索

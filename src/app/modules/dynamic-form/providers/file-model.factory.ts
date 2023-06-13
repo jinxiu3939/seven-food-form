@@ -61,6 +61,11 @@ export class FileModelFactory extends BaseModelFactory {
               accept.push('.json');
               break;
             }
+            // zip
+            case 'zip': {
+              accept.push('.zip');
+              break;
+            }
           }
         }
         this.config.accept = '';

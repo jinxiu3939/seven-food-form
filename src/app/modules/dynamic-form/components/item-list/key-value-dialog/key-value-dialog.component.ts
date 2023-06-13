@@ -33,7 +33,6 @@ export class KeyValueDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     if (this.size === 'medium') {
       this.column = [4, 8];
     } else if (this.size === 'large') {

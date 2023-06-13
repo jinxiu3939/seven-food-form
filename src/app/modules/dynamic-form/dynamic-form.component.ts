@@ -19,7 +19,7 @@ export class DynamicFormComponent implements OnChanges {
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
-  @Output() public formCustom = new EventEmitter<any>(); // 其他点击事件
+  @Output() public formCustom = new EventEmitter<{form:any, name: string}>(); // 其他点击事件
 
   form: FormGroup; // 响应式表单
   complete: boolean; // 表单是否构建完毕

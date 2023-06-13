@@ -8,7 +8,7 @@ const ng2FileUploadConfig: UploadConfig = {
     tag: [],
     title: '',
   },
-  allowedFileType: ['image'],
+  allowedFileType: ['image'], // application,image,video,audio,pdf,compress,doc,xls,ppt
   authTokenHeader: '',
   authToken: '',
   itemAlias: 'image', // 表单名称

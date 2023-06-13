@@ -5,9 +5,9 @@
     </div>
     <div class="col-{{ column[1] }}">
       <nb-select [placeholder]="lang.select"
-                  [fullWidth]="true"
-                  [(selected)]="data.key"
-                  (selectedChange)="switchKey()">
+                 [fullWidth]="true"
+                 [(selected)]="data.key"
+                 (selectedChange)="switchKey()">
         <nb-option value="">{{ lang.select }}</nb-option>
         <nb-option *ngFor="let opt of options" [value]="opt.key">{{ opt.key }}</nb-option>
       </nb-select>
