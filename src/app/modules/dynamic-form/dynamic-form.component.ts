@@ -26,7 +26,7 @@ export class DynamicFormComponent implements OnChanges {
   textContainer: any; // 语言包
   reload: number; // 重新加载时间戳
   formExpand: boolean = true; // 是否展开
-  level: number; // 表单层级
+  level: number = 0; // 表单层级
   modelsTree: any[]; // 表单模型树
 
   constructor(private builder: FormBuilder, private langProvider: LangProvider) {
@@ -143,6 +143,7 @@ export class DynamicFormComponent implements OnChanges {
       }
     } else {
       this.setting = {} as FormSetting;
+      this.modelsTree = this.sort(this.models);
     }
   }
 

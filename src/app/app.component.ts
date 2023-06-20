@@ -22,9 +22,10 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
+    this.models = PopupTreeModels;
+      // this.setting = searchSetting;
     this.service.get().subscribe(() => {
-      this.models = PopupTreeModels;
-      this.setting = searchSetting;
+      
     });
   }
 
