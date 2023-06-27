@@ -33,7 +33,7 @@ export const oneLayoutModels = [
     label: '验证码',
     name: 'password-2',
     max: 10,
-    block: 1,
+    block: 39,
   }).passwordBox(),
   new KeywordModelFactory({
     label: '关键字',
@@ -316,6 +316,11 @@ export const oneLayoutSetting = {
     {
       blockId: 4,
       blockTitle: "markdown富文本",
+      validate: true,
+    },
+    {
+      blockId: 40,
+      blockTitle: "其它",
       validate: true,
     },
   ],

@@ -13,6 +13,15 @@ export const PopupCheckboxModels: any = [
     value: [],
     options: options,
     require: true,
+    searchConfig: {
+      conditions: [
+        {
+          text: '关键字',
+          type: 'input',
+          value: 'keyword',
+        },
+      ],
+    },
   }).popupCheckbox(),
   new PopupCheckboxModelFactory({
     label: '族谱',

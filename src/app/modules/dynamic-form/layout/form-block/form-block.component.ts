@@ -40,7 +40,7 @@ export class FormBlockComponent implements OnInit {
 
   invalid(name) {
     const control = this.form.controls[name];
-    return this.validate && control.invalid;
+    return this.validate !== false && control.invalid;
   }
 
   /**

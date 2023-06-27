@@ -7,6 +7,7 @@ import { oneLayoutModels, oneLayoutSetting } from './services/mock-one';
 import { searchModels, searchSetting } from './services/mock-model';
 import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
 import { PopupTreeModels } from './services/mock-popup-tree';
+import { radioModels } from './services/mock-radio';
 
 @Component({
   selector: 'ngx-app',
@@ -22,8 +23,8 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = PopupTreeModels;
-      // this.setting = searchSetting;
+    this.models = radioModels;
+    // this.setting = oneLayoutSetting;
     this.service.get().subscribe(() => {
       
     });

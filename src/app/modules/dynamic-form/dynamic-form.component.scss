@@ -160,6 +160,11 @@
       white-space: nowrap;
       text-align: right;
       text-overflow: ellipsis;
+
+      small {
+        white-space: normal;
+        word-break: break-all;
+      }
     }
   }
 

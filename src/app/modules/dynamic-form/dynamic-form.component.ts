@@ -16,6 +16,7 @@ export class DynamicFormComponent implements OnChanges {
   @Input() setting: FormSetting; // 设置
   @Input() lang: string = 'zh'; // 语言包代码
   @Input() loading: boolean; // 加载状态
+  @Input() debug: boolean = false; // 调试模式
 
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
@@ -34,6 +35,7 @@ export class DynamicFormComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.log(changes); // [debug]
     for (const propName in changes) {
       if (propName === 'models' && changes[propName].currentValue) {
         this.form = this.generateForm(); // 构造表单
@@ -60,6 +62,7 @@ export class DynamicFormComponent implements OnChanges {
   generateForm() {
     let form = this.builder.group({}); // 响应式表单
     this.complete = false; // 开始构建
+    this.log(this.models); // [debug]
     if (this.models && Array.isArray(this.models) && this.models.length > 0) {
       /* 创建表单元素 */
       form = this.createGroup(form);
@@ -210,5 +213,11 @@ export class DynamicFormComponent implements OnChanges {
     } else {
       return [];
     }
-  }  
+  }
+
+  private log(message) {
+    if (this.debug) {
+      console.log(message);
+    }
+  }
 }

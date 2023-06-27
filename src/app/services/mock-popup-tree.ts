@@ -47,4 +47,22 @@ export const PopupTreeModels: any = [
     filter: true,
     block: 3,
   },
+  {
+    clear: false,
+    disabled: false,
+    help: "驼峰命名法，模型表单的值必须和数据模型类名称相同",
+    kind: "text",
+    label: "表单名称",
+    max: "0",
+    min: "0",
+    name: "form_name",
+    order: 0,
+    payload: {method: 'englishWordTextBox'},
+    placeholder: "",
+    readonly: false,
+    require: true,
+    type: "text-box",
+    validator: "englishWord",
+    value: "",
+  }
 ];

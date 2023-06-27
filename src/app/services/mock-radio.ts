@@ -1,6 +1,7 @@
 import {
   QuickFormFactory,
   RadioModelFactory,
+  BooleanRadioModelFactory,
 } from '../modules/dynamic-form';
 
 import { options } from './mock-options';
@@ -31,4 +32,10 @@ export const radioModels: any = [
     width: 5,
     max: 4,
   },
+  new BooleanRadioModelFactory({
+    label: '是否',
+    name: 'yes-or-no',
+    value: false,
+    all: true
+  }).instance(),
 ];

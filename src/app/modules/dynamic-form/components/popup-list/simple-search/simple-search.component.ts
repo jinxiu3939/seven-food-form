@@ -116,13 +116,29 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
       // 检索，同步结果集检索条件只有一个关键字
       for (const i in this.condition) {
         if (this.condition[i]) {
-          if (item.value && (item.value + '').indexOf(this.condition[i]) >= 0) {
+          if (item.value && (
+            (item.value + '').indexOf(this.condition[i]) >= 0
+            || (item.value + '').indexOf(this.condition[i].toLowerCase()) >= 0
+            || (item.value + '').indexOf(this.condition[i].toUpperCase()) >= 0
+          )) {
             return true;
-          } else if (item.text && item.text.indexOf(this.condition[i]) >= 0) {
+          } else if (item.text && (
+            item.text.indexOf(this.condition[i]) >= 0
+            || (item.text + '').indexOf(this.condition[i].toLowerCase()) >= 0
+            || (item.text + '').indexOf(this.condition[i].toUpperCase()) >= 0
+          )) {
             return true;
-          } else if (item.title && item.title.indexOf(this.condition[i]) >= 0) {
+          } else if (item.title && (
+            item.title.indexOf(this.condition[i]) >= 0
+            || (item.title + '').indexOf(this.condition[i].toLowerCase()) >= 0
+            || (item.title + '').indexOf(this.condition[i].toUpperCase()) >= 0
+          )) {
             return true;
-          } else if (item.items && (item.items + '').indexOf(this.condition[i]) >= 0) {
+          } else if (item.items && (
+            (item.items + '').indexOf(this.condition[i]) >= 0
+            || (item.items + '').indexOf(this.condition[i].toLowerCase()) >= 0
+            || (item.items + '').indexOf(this.condition[i].toUpperCase()) >= 0
+          )) {
             return true;
           } else {
             return false;
@@ -157,7 +173,14 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
       if (keyword) {
         result = this.config.conditions[term.key].options.filter((item) => {
           for (const i in item) {
-            if (item.text.indexOf(keyword) >= 0 || (item.value+'').indexOf(keyword) >= 0) {
+            if (
+              item.text.indexOf(keyword) >= 0
+              || (item.value+'').indexOf(keyword) >= 0
+              || item.text.indexOf(keyword.toLowerCase()) >= 0
+              || (item.value+'').indexOf(keyword.toLowerCase()) >= 0
+              || item.text.indexOf(keyword.toUpperCase()) >= 0
+              || (item.value+'').indexOf(keyword.toUpperCase()) >= 0
+            ) {
               return true;
             }
           }
