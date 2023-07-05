@@ -12,6 +12,7 @@ export const SpreadsheetModels: any = [
       authToken: '1783I6aYyiOnL23yB2YJpZfODV3PTosYelfppTHaGh+MB9MQA87u',
       url: '/api/upload/spreadsheet',
     },
+    require: true,
   }).spreadsheet(),
   new SpreadsheetModelFactory({
     label: '题库',

@@ -13,8 +13,8 @@ export const searchConfig = {
       type: 'drop-down-filter',
       value: 'system_model_id',
       options: [
-        { text: '文章', value: 99, title : 'article', items: null },
-        { text: '新闻', value: 9, title : 'news', items: null },
+        { text: 'article', value: 99, title : 'article', items: null },
+        { text: 'newsArticle', value: 9, title : 'newsArticle', items: null },
         { text: '视频', value: 92, title : 'video', items: null },
       ],
       mode: 'sync',
@@ -64,7 +64,7 @@ export const PopupRadioModels: any = [
     label: '关联字段',
     name: 'field_id',
     options: [
-      { text: '文章', value: 99, title : 'article'},
+      { text: '文章', value: 99, title : 'articleOptions'},
       { text: '新闻', value: 9, items: null },
       { value: 92, title : 'video', items: null },
     ],
@@ -79,7 +79,16 @@ export const PopupRadioModels: any = [
     clear: true,
     options: options,
     value: ['A', 1, 'gege'],
-    disabled: true,
+    searchConfig: {
+      conditions: [
+        {
+          text: '关键字',
+          type: 'input',
+          value: 'keyword',
+        },
+      ],
+    },
+    disabled: false,
   }).instance(),
   {
     type: 'popup-radio',

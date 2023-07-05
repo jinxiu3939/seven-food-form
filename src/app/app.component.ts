@@ -6,8 +6,8 @@ import { ApiService } from './services/api.service';
 import { oneLayoutModels, oneLayoutSetting } from './services/mock-one';
 import { searchModels, searchSetting } from './services/mock-model';
 import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
-import { PopupTreeModels } from './services/mock-popup-tree';
-import { radioModels } from './services/mock-radio';
+import { PopupRadioModels } from './services/mock-popup-radio';
+import { SpreadsheetModels } from './services/mock-spreadsheet';
 
 @Component({
   selector: 'ngx-app',
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = radioModels;
+    this.models = SpreadsheetModels;
     // this.setting = oneLayoutSetting;
     this.service.get().subscribe(() => {
       

@@ -1,6 +1,7 @@
 <div [formGroup]="form" class="row" [nbSpinner]="loading" nbSpinnerStatus="info">
   <div class="col-12 mb-1">
-    <input type="file"
+    <input #inputFile
+           type="file"
            class="spreadsheet-file"
            ng2FileSelect
            [uploader]="uploader"
