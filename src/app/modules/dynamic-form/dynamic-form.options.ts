@@ -230,10 +230,10 @@ export interface ResourceSearchParam {
 }
 
 export const ResourceSearchConditions: ConditionField[] = [
-  { text: '时间', value: 'create_time', type: 'input' },
+  // { text: '时间', value: 'create_time', type: 'input' },
   { text: '文件名', value: 'file_name', type: 'input' },
-  { text: '标签', value: 'tag', type: 'input' },
-  { text: '标题', value: 'title', type: 'input' },
+  // { text: '标签', value: 'tag', type: 'input' },
+  { text: '描述', value: 'title', type: 'input' },
 ];
 
 /**

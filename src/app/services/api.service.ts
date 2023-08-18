@@ -9,7 +9,12 @@ export class ApiService {
   }
 
   get(): Observable<any> {
-    return this.http.get('/api/index/index/hello');
+    return this.http.get('http://localhost/qikecai-backend/api/cms/demo/index/create?timestamp=1691550109&sign=e03d965f46f98c7bf94ce88fc13fcc80', {
+      headers: {
+        Token: 'fd4fGICP/Ph+RotPbId6xb7iA79Ie3DCsWXNQgq6ucglgIx22sYx',
+        'App-Key': 'dwen-DFOeite.*hte'
+      }
+    });
   }
 
   post(form) : Observable<any> {

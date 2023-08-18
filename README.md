@@ -22,13 +22,20 @@ SfDynamicFormModule.forRoot()
 <sff-dynamic-form [models]="models" [setting]="setting" lang='zh' [loading]="loading"></sff-dynamic-form>
 ```
 
-> 如果使用ckeditor，需要导入依赖包
-
+> 使用ckeditor，需要导入依赖包
 ```
 import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // 导入`ckeditor`语言包
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'; // 导入`ckeditor`模块
 this.model.editor = ClassicEditor;
 ```
+
+> 使用mdeditor，需要预先加载
+```
+"src/assets/editor.md/css/editormd.css",
+"node_modules/jquery/dist/jquery.min.js",
+"src/assets/editor.md/editormd.min.js"
+```
+
 
 #### 表单附加内容
 

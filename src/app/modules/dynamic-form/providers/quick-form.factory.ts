@@ -33,6 +33,7 @@ import { VideoModelFactory } from './video-model.factory';
 import { KeywordModelFactory } from './keyword-model.factory';
 import { UEditorModelFactory } from './u-editor-model.factory';
 import { MdEditorModelFactory } from './md-editor-model.factory';
+import { KeyValueModelFactory } from './key-value-model.factory';
 
 /**
  * 快速表单工厂
@@ -243,6 +244,13 @@ export class QuickFormFactory {
 
   itemList() {
     return new ItemListModelFactory(this.config).instance();
+  }
+
+  /**
+   * 键值对
+   */
+  keyValue() {
+    return new KeyValueModelFactory(this.config).instance();
   }
 
   /**

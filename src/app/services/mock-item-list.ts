@@ -64,4 +64,25 @@ export const itemListModels: any = [
     size: 'large',
     min: 2,
   },
+  new QuickFormFactory({
+    label: '键值对',
+    name: 'setting-1',
+    value: [{key: 'kind', value: 'gege'}, {key: 'category', value: 'apple'}],
+    attributes: [
+      {text: '键', type: 'input', value: 'key'},
+      {text: '值', type: 'textarea', value: 'value'},
+    ],
+    keyValue: [
+      {key: 'kind', type: 'input'},
+      {key: 'number', type: 'number'},
+      {key: 'category', type: 'drop-down', options: [
+        { text: '苹果', value: 'apple', title : '一种水果' },
+        { text: '梨', value: 'pear', title : '一种水果' },
+      ]},
+      {key: 'type', type: 'drop-down-filter', options: [
+        { text: '苹果', value: 'apple', title : '一种水果' },
+        { text: '梨', value: 'pear', title : '一种水果' },
+      ]},
+    ]
+  }).keyValue(),
 ];

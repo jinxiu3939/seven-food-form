@@ -9,8 +9,8 @@
         <tr>
           <th *ngFor="let attr of model.attributes">
             {{ attr.text }}
-            <nb-icon icon="arrowhead-up" [title]="lang.asc" status='control' (click)="sort(attr.value, 1)"></nb-icon>
-            <nb-icon icon="arrowhead-down" [title]="lang.desc" status='control' (click)="sort(attr.value, 0)"></nb-icon>
+            <nb-icon *ngIf="! model.disabled" icon="arrowhead-up" [title]="lang.asc" (click)="sort(attr.value, 1)"></nb-icon>
+            <nb-icon *ngIf="! model.disabled" icon="arrowhead-down" [title]="lang.desc" (click)="sort(attr.value, 0)"></nb-icon>
           </th>
           <th *ngIf="! model.disabled">{{ lang.operate }}</th>
         </tr>

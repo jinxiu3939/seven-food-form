@@ -14,6 +14,7 @@ export * from './file-model.factory';
 export * from './file-text-box-model.factory';
 export * from './image-model.factory';
 export * from './item-list-model.factory';
+export * from './key-value-model.factory';
 export * from './keyword-model.factory';
 export * from './letter-name-text-box-model.factory';
 export * from './linkage-box-model.factory';

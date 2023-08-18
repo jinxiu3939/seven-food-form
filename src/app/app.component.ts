@@ -6,7 +6,7 @@ import { ApiService } from './services/api.service';
 import { oneLayoutModels, oneLayoutSetting } from './services/mock-one';
 import { searchModels, searchSetting } from './services/mock-model';
 import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
-import { PopupRadioModels } from './services/mock-popup-radio';
+import { mdeditorModels } from './services/mock-mdeditor';
 import { SpreadsheetModels } from './services/mock-spreadsheet';
 
 @Component({
@@ -23,10 +23,11 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = SpreadsheetModels;
+    this.models = mdeditorModels;
     // this.setting = oneLayoutSetting;
-    this.service.get().subscribe(() => {
-      
+    this.service.get().subscribe((res) => {
+      // let models = mdeditorModels;
+      // models[0].editorConfig = res.content.form.models[14].editorConfig;
     });
   }
 
