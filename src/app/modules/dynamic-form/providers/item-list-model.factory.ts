@@ -13,6 +13,7 @@ export class ItemListModelFactory extends BaseModelFactory {
     super(obj);
     this.config.attributes = [];
     this.config.disabled = false; // 默认不禁用
+    this.config.kind = 'item'; // 弹出框类型
   }
 
   format() {

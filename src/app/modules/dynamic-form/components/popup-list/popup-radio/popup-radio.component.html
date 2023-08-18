@@ -1,37 +1,24 @@
-<div [formGroup]="form" class="row">
-  <ng-container *ngIf="! model.disabled">
-    <div *ngIf="model.size==='medium'" class="col-3 left">
-      <input type="text"
-             class="form-control form-value"
-             readonly
-             [value]="model.value"
-             [formControlName]="model.name">
-    </div>
-    <div class="col-9 right" [ngClass]="{'col-value': model.size==='medium'}">
-      <div class="input-group">
-        <input class="form-control"
-               disabled
-               type="text"
-               [value]="label">
-        <span *ngIf="! model.readonly" [ngClass]="{'tiny-operation': model.size==='tiny', 'input-group-append': model.size!=='tiny'}">
-          <a nbButton [size]="model.size" status="info" (click)="choose()">{{ lang.choose }}</a>
-          <a nbButton *ngIf="model.value" [size]="model.size" status="warning" (click)="destroy()">{{ lang.clear }}</a>
-        </span>
-      </div>
-    </div>
-  </ng-container>
-  <div *ngIf="model.disabled" class="col-12">
-    <input class="form-control" disabled value="{{ model.value }} / {{ text }}">
+<div [formGroup]="form">
+  <div class="input-group">
+    <input class="form-control"
+           disabled
+           type="text"
+           [value]="label">
+    <span *ngIf="! model.readonly" [ngClass]="{'tiny-operation': model.size==='tiny', 'input-group-append': model.size!=='tiny'}">
+      <a nbButton [size]="model.size" status="info" (click)="choose()">{{ lang.choose }}</a>
+      <a nbButton *ngIf="model.value" [size]="model.size" status="warning" (click)="destroy()">{{ lang.clear }}</a>
+    </span>
   </div>
+  <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
 </div>
 
 <ng-template #contentTemplate>
-  <ngx-simple-search *ngIf="model.searchConfig"
+  <sff-simple-search *ngIf="model.searchConfig"
                      [config]="model.searchConfig"
                      [items]="model.options"
                      [page]="page"
                      (reload)="resetRecords($event)"
-                     (finish)="search($event)"></ngx-simple-search>
+                     (finish)="search($event)"></sff-simple-search>
   <nb-list *ngIf="records && records.length > 0" style="height: 500px; overflow: auto;" nbInfiniteList [threshold]="50" (bottomThreshold)="loadNext()">
     <nb-list-item *ngFor="let item of records" style="position: relative;">
       <nb-radio [checked]="item.value === model.value" [value]="item.value" (click)="selectedItem(item)">

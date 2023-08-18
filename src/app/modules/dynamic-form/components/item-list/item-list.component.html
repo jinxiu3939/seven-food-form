@@ -9,8 +9,8 @@
         <tr>
           <th *ngFor="let attr of model.attributes">
             {{ attr.text }}
-            <nb-icon icon="arrowhead-up" [title]="lang.asc" status='control' (click)="sort(attr.value, 1)"></nb-icon>
-            <nb-icon icon="arrowhead-down" [title]="lang.desc" status='control' (click)="sort(attr.value, 0)"></nb-icon>
+            <nb-icon *ngIf="! model.disabled" icon="arrowhead-up" [title]="lang.asc" (click)="sort(attr.value, 1)"></nb-icon>
+            <nb-icon *ngIf="! model.disabled" icon="arrowhead-down" [title]="lang.desc" (click)="sort(attr.value, 0)"></nb-icon>
           </th>
           <th *ngIf="! model.disabled">{{ lang.operate }}</th>
         </tr>
@@ -22,7 +22,7 @@
               {{ row[attr.value] }}
             </td>
             <td *ngIf="! model.disabled">
-              <nb-icon icon="close" [title]="lang.delete" status='warning' (click)="delete(row)"></nb-icon>
+              <nb-icon icon="close" [title]="lang.delete" status='danger' (click)="delete(row)"></nb-icon>
               <nb-icon icon="edit-outline" [title]="lang.edit" status='primary' (click)="edit(row, i)"></nb-icon>
             </td>
           </tr>
@@ -33,10 +33,21 @@
       </tbody>
     </table>
   </div>
+  <div *ngIf="invalid" class="text-error">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+  </div>
 </div>
 <ng-template #contentTemplate let-data>
-  <ngx-item-dialog [data]="data.row"
-                   [fields]="data.fields"
-                   [size]="data.size"
-                   (finish)="receive($event, data.index)"></ngx-item-dialog>
+  <ng-container [ngSwitch]="model?.kind">
+    <sff-key-value-dialog *ngSwitchCase="'key-value'"
+                          [data]="data.row"
+                          [options]="data.keyValues"
+                          [size]="data.size"
+                          (finish)="receive($event, data.index)"></sff-key-value-dialog>
+    <sff-item-dialog  *ngSwitchDefault
+                      [data]="data.row"
+                      [fields]="data.fields"
+                      [size]="data.size"
+                      (finish)="receive($event, data.index)"></sff-item-dialog>
+  </ng-container>
 </ng-template>

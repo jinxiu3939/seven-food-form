@@ -8,7 +8,7 @@ import { ComponentReset } from '../../providers/interface/component-reset';
 import { FileModel } from '../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-file',
+  selector: 'sff-file',
   templateUrl: './file.component.html',
   styleUrls: [
     '../../dynamic-form.component.scss',

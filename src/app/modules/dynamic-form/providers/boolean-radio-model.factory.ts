@@ -23,6 +23,10 @@ export class BooleanRadioModelFactory extends RadioModelFactory {
       this.model.value = null;
     }
 
+    if (this.model.options.length < 2) {
+      this.model.options = this.config.options;
+    }
+
     if (this.model.all) {
       this.model.width = 4;
     }

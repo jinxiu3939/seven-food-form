@@ -1,10 +1,10 @@
 <div [formGroup]="form">
-  <ngx-checkbox-node #tree
+  <sff-checkbox-node #tree
                      [checked]="model.value"
-                     [disabled]="model.disabled"
+                     [disabled]="model.readonly"
                      [tree]="model.tree"
                      (checkedChange)="getValue($event)">
-  </ngx-checkbox-node>
+  </sff-checkbox-node>
   <div *ngIf="invalid" class="text-error">
     <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
   </div>

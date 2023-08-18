@@ -1,13 +1,13 @@
 <div class="input-group">
   <div class="input-group-prepend">
-    <nb-select placeholder="请选择" [(selected)]="condition" (selectedChange)="changeCondition(searchBox.value)">
-      <nb-option value="">全部</nb-option>
+    <nb-select [placeholder]="lang.select" [(selected)]="condition" (selectedChange)="changeCondition(searchBox.value)">
+      <nb-option value="">{{ lang.all }}</nb-option>
       <nb-option *ngFor="let opt of conditions" [value]="opt.value">{{ opt.text }}</nb-option>
     </nb-select>
   </div>
   <input #searchBox
          class="form-control"
-         placeholder="请输入关键词"
+         [placeholder]="lang.keyword_search"
          [(ngModel)]="keyword"
          (input)="search(searchBox.value)">
   <span *ngIf="pages > 1 && config.display === 'page'" class="input-group-append">
@@ -19,19 +19,19 @@
             class="input-group-text"
             size="small"
             status="basic"
-            (click)="prev()">上</button>
+            (click)="prev()"><nb-icon icon="chevron-left-outline"></nb-icon></button>
     <button nbButton
             class="input-group-text"
             size="small"
             status="basic"
-            (click)="next()">下</button>
+            (click)="next()"><nb-icon icon="chevron-right-outline"></nb-icon></button>
   </span>
   <span *ngIf="selected.length" class="input-group-append">
     <button nbButton
             class="input-group-text"
             size="small"
             status="primary"
-            (click)="save()">插入 {{ selected.length }}</button>
+            (click)="save()">{{ lang.insert }} {{ selected.length }}</button>
   </span>
 </div>
 <ng-container *ngIf="records && records.length > 0">
@@ -66,10 +66,10 @@
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header>温馨提示</nb-card-header>
+    <nb-card-header>
+      <nb-icon icon="info-outline"></nb-icon>
+      <nb-icon icon="close-outline" style="float: right;" (click)="ref.close()"></nb-icon>
+    </nb-card-header>
     <nb-card-body>{{ data }}</nb-card-body>
-    <nb-card-footer>
-      <button nbButton (click)="ref.close()" status="info">ok</button>
-    </nb-card-footer>
   </nb-card>
 </ng-template>

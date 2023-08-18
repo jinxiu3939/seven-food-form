@@ -2,12 +2,13 @@
  * excel上传
  * depends on ng2-file-upload and xlsx module
  */
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
 import { FileUploader } from 'ng2-file-upload';
 import * as XLSX from 'xlsx';
 
+import { formatAlertMessage } from '../../helps';
 import { SpreadsheetModel } from '../../dynamic-form.options';
 import { ResourceProvider } from '../../providers/data/resource-provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
@@ -16,7 +17,7 @@ import { LangProvider } from '../../providers/data/lang.provider';
 type AOA = any[][];
 
 @Component({
-  selector: 'ngx-spreadsheet',
+  selector: 'sff-spreadsheet',
   templateUrl: './spreadsheet.component.html',
   styleUrls: ['./spreadsheet.component.scss'],
 })
@@ -26,6 +27,7 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
   @Input() form: FormGroup;
 
   @ViewChild('dialog', {static: false}) dialog;
+  @ViewChild("inputFile", { static: false }) inputFile: ElementRef; 
 
   table: AOA; // 电子表格内容
   loading: boolean;
@@ -47,6 +49,9 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
   }
 
   resetModel() {
+    this.inputFile.nativeElement.value = "";
+    this.finished = false; // 可以上传
+    this.table = null; // 保存电子表格
   }
 
   /*
@@ -54,13 +59,15 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
    */
   selectedFileOnChanged(event: any) {
     if (this.uploader.queue.length === 0) {
-      this.alert(this.lang.choose_spreedsheet_error + `（` + this.lang.type_or_size_error + this.model.uploadConfig.maxFileSize / 1024 / 1024 + `M）`);
+      this.alert(formatAlertMessage(this.lang.choose_spreadsheet_error, [
+        formatAlertMessage(this.lang.type_or_size_error, [this.model.uploadConfig.maxFileSize / 1024 / 1024 + 'M'])
+      ]));
       return ;
     }
     /* wire up file reader */
     const target: DataTransfer = (event.target) as DataTransfer;
     if (target.files.length !== 1) {
-      this.alert(this.lang.max_spreedsheet_1);
+      this.alert(this.lang.max_spreadsheet_1);
       return ;
     }
     const reader: FileReader = new FileReader();
@@ -78,7 +85,8 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
       if (tmp_sheets && tmp_sheets.length > 0) {
         if (this.model.header) { // 校验内容
           if (tmp_sheets[0].length !== this.model.header.length) {
-            this.alert(this.lang.vlidate_spreedsheet_error);
+            this.alert(this.lang.validate_spreadsheet_error);
+            this.model.view = true;
           } else {
             this.finished = true; // 可以上传
             this.table = tmp_sheets; // 保存电子表格
@@ -88,12 +96,12 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
           this.table = tmp_sheets; // 保存电子表格
         }
       } else {
-        this.alert(this.lang.read_spreedsheet_error);
+        this.alert(this.lang.read_spreadsheet_error);
       }
       this.loading = false;
     };
     reader.onerror = (e: any) => {
-      this.alert(this.lang.vlidate_spreedsheet_error_1);
+      this.alert(this.lang.validate_spreadsheet_error_1);
       this.loading = false;
     };
     reader.readAsBinaryString(target.files[0]); // 解析文件

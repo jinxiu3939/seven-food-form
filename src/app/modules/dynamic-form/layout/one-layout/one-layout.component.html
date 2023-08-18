@@ -1,0 +1,57 @@
+<div class="form-layout" [ngSwitch]="setting.blockLayout">
+  <nb-tabset *ngSwitchCase="'tab'">
+    <nb-tab *ngFor="let block of setting.children; let i = index"
+            [tabTitle]="block.blockTitle"
+            [lazyLoad]="true"
+            badgeStatus="danger"
+            [badgeText]="isBlockInvalid(i)">
+      <sff-form-block class="row"
+                      [models]="models[i]"
+                      [form]="form"
+                      [reload]="reload"
+                      [validate]="block.validate"
+                      [width]="block.width"
+                      [size]="block.size">
+      </sff-form-block>
+    </nb-tab>
+  </nb-tabset>
+  <nb-stepper *ngSwitchCase="'step'" orientation="horizontal">
+    <nb-step *ngFor="let block of setting.children; let i = index"
+             [label]="block.blockTitle"
+             [stepControl]="isStepValid(i)">
+      <sff-form-block class="row"
+                      [models]="models[i]"
+                      [form]="form"
+                      [reload]="reload"
+                      [validate]="block.validate"
+                      [width]="block.width"
+                      [size]="block.size">
+      </sff-form-block>
+    </nb-step>
+  </nb-stepper>
+  <ul *ngSwitchDefault class="block-ul">
+    <li *ngFor="let block of setting.children; let i = index">
+      <h3 *ngIf="block.blockTitle">
+        {{ block.blockTitle }}
+        <nb-badge *ngIf="isBlockInvalid(i) > 0"
+                  position="right"
+                  status="danger"
+                  [text]="blockInValid[i]">
+        </nb-badge>
+        <nb-icon [icon]="block.hideBlockBody ? 'arrow-ios-downward' : 'arrow-ios-upward'"
+                 status="info"
+                 (click)="foldBlock(i)">
+        </nb-icon>
+      </h3>
+      <sff-form-block [ngClass]="{'hidden': block.hideBlockBody}"
+                      class="row"
+                      [models]="models[i]"
+                      [form]="form"
+                      [reload]="reload"
+                      [validate]="block.validate"
+                      [width]="block.width"
+                      [size]="block.size">
+      </sff-form-block>
+    </li>
+  </ul>
+</div>

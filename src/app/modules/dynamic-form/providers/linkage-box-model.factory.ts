@@ -20,5 +20,10 @@ export class LinkageBoxModelFactory extends BaseModelFactory {
     if (! Array.isArray(this.model.value)) {
       this.model.value = [this.model.value];
     }
+
+    /* 是否只读 */
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
+    }
   }
 }

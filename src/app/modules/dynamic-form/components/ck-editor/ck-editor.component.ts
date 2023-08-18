@@ -8,11 +8,13 @@ import { FormGroup } from '@angular/forms';
 
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
+import { LangProvider } from '../../providers/data/lang.provider';
+import { formatAlertMessage } from '../../helps';
 import { ComponentReset } from '../../providers/interface/component-reset';
 import { CKEditorModel } from '../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-ck-editor',
+  selector: 'sff-ck-editor',
   templateUrl: `./ck-editor.component.html`,
   styleUrls: [
     `./ck-editor.component.scss`,
@@ -21,6 +23,12 @@ import { CKEditorModel } from '../../dynamic-form.options';
 export class CKEditorComponent implements ComponentReset {
   @Input() model: CKEditorModel;
   @Input() form: FormGroup;
+
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   resetModel() {
   }
@@ -39,9 +47,9 @@ export class CKEditorComponent implements ComponentReset {
     const message = [];
     const control = this.form.controls[this.model.name];
     if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push('最少输入' + this.model.min + '个字符');
+      message.push(formatAlertMessage(this.lang.min_input, [this.model.min]));
     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push('最多输入' + this.model.max + '个字符');
+      message.push(formatAlertMessage(this.lang.max_input, [this.model.max]));
     }
     return message;
   }

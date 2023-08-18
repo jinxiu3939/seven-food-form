@@ -11,9 +11,7 @@ export class CheckboxModelFactory extends BaseModelFactory {
   constructor(obj: any) {
     super(obj);
     this.config.clear = false; // 默认不清空数据
-    this.config.disabled = false; // 默认不禁用
     this.config.value = []; // 默认值
-    // this.config.width = 3; // 选项宽度
   }
 
   protected format(): void {
@@ -30,11 +28,9 @@ export class CheckboxModelFactory extends BaseModelFactory {
       });
       this.model.value = this.model.value.filter((val) => values.includes(val));
     }
-    /* 必填项 */
-    if (this.model.require) {
-      if (!this.model.min || this.model.min <= 0) {
-        this.model.min = 1; // 必填
-      }
+    /* 是否只读 */
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
     }
   }
 }

@@ -2,7 +2,7 @@ import { Directive, forwardRef, Input } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 @Directive({
-  selector: `[ngxInputEqualValidator]`,
+  selector: `[sffInputEqualValidator]`,
   providers: [
     {
       provide: NG_VALIDATORS,

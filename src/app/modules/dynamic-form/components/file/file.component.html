@@ -1,19 +1,16 @@
 <div [formGroup]="form">
-  <ng-container *ngIf="! model.disabled">
-    <div class="input-group">
+  <div class="input-group">
+    <ng-container *ngIf="model.download">
+      <span class="input-group-append">
+        <a nbButton status="info" [href]="model.download" target="_blank"><nb-icon icon="download-outline"></nb-icon></a>
+      </span>
+    </ng-container>
+    <ng-container *ngIf="! model.disabled">
       <input class="form-control"
-           type="file"
-           [accept]="model.accept"
-           (change)="setValue($event)">
+             type="file"
+             [accept]="model.accept"
+             (change)="setValue($event)">
       <input [formControlName]="model.name" type="hidden" [id]="model.name" />
-      <ng-container *ngIf="model.download">
-        <span class="input-group-append">
-          <a nbButton status="info" [href]="model.download" target="_blank">download</a>
-        </span>
-      </ng-container>       
-    </div>
-  </ng-container>
-  <ng-container *ngIf="model.disabled">
-    <input class="form-control" disabled [value]="model.value">
-  </ng-container>
+    </ng-container>
+  </div>
 </div>

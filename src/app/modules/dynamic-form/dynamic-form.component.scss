@@ -13,7 +13,7 @@
   }
 
   .form-control:disabled, .form-control[readonly] {
-    background-color: nb-theme(color-basic-disabled);
+    background-color: nb-theme(color-basic-transparent-default);
     color: nb-theme(text-disabled-color);
   }
 
@@ -40,35 +40,51 @@
     padding-right: 1.5rem;
   }
 
+  .operation-fixed {
+    position: fixed;
+    width: auto;
+    z-index: 2050;
+  }
+  .operation-right {
+    right: 0;
+  }
+  .operation-bottom {
+    bottom: 0;
+  }
+
+  /* 弹出框 */
+  .popup-list-window {
+    background-color: #fff;
+    position: relative;
+  }
+
   /* 默认表单样式 */
-  .dynamic-form {
-    .form-operation {
-      margin-top: 1rem;
-      text-align: center;
+  .form-operation {
+    margin-top: 1rem;
+    text-align: center;
 
-      nb-icon {
-        margin-right: 1rem;
-        float: right;
-      }
-    }
-
-    ::ng-deep nb-tabset.top-layout > .tabset {
-      background-color: nb-theme(color-basic-400);
-      .tab a {
-        color: nb-theme(color-basic-700);
-      }
-      .tab.active .tab-link {
-        color: nb-theme(text-primary-color);
-      }
+    nb-icon {
+      margin-right: 1rem;
+      float: right;
     }
   }
 
-  ngx-form-layout {
+  ::ng-deep nb-tabset.two-layout > .tabset {
+    background-color: nb-theme(color-basic-400);
+    .tab a {
+      color: nb-theme(color-basic-700);
+    }
+    .tab.active .tab-link {
+      color: nb-theme(text-primary-color);
+    }
+  }
+
+  sff-form-layout {
     display: block;
   }
 
   .form-layout {
-    .default-block {
+    .block-ul {
       padding: 0;
       margin: 0;
       list-style: none;
@@ -83,24 +99,59 @@
           padding-right: 2rem;
           border-bottom: 1px solid nb-theme(outline-color);
           font-size: 1.25rem;
-          text-align: right;
+          text-align: left;
+
+          nb-icon {
+            margin-right: 1rem;
+            float: right;
+          }
         }
       }
     }
 
-    ngx-form-block {
+    sff-form-block {
       display: flex;
       flex-wrap: wrap;
+
+      &.hidden {
+        display: none;
+      }
     }
   }
 
-  /* 行内表单样式 */
-  .inline-group {
-    width: 33%; // 每行显示3个
+  /* 表单项样式 */
+  .block-item {
     overflow: hidden;
 
-    &.date-picker-group {
+    &.block-date-picker {
       overflow: visible;
+    }
+    &.block-date-range-picker {
+      overflow: visible;
+    }
+    &.block-keyword {
+      overflow: visible;
+    }
+
+    &.block-extra-large {
+      width: 100%; // 每行显示1个
+    }
+  
+    &.block-large {
+      width: 50%; // 每行显示2个
+    }
+  
+    &.block-medium {
+      width: 33%; // 每行显示3个
+    }
+  
+    &.block-small {
+      width: 25%; // 每行显示4个
+    }
+  
+    &.block-tiny {
+      width: 20%; // 每行显示5个
+      margin-right: 0;
     }
 
     .col-form-label {
@@ -109,28 +160,16 @@
       white-space: nowrap;
       text-align: right;
       text-overflow: ellipsis;
+
+      small {
+        white-space: normal;
+        word-break: break-all;
+      }
     }
   }
 
-  .large-group, .-group {
-    width: 100%; // 每行显示1个
-  }
-
-  .medium-group {
-    width: 50%; // 每行显示2个
-  }
-
-  .small-group {
-    width: 25%; // 每行显示4个
-  }
-
-  .tiny-group {
-    width: 20%; // 每行显示5个
-    margin-right: 0;
-  }
-
-  /* 折叠样式 */
-  .fold-block {
+  /* 表单块折叠样式 */
+  .block-fold {
     height: 4.5rem;
     overflow: hidden;
   }

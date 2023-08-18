@@ -25,5 +25,9 @@ export class DropDownBoxModelFactory extends BaseModelFactory {
         this.model.options = [this.emptyOption];
       }
     }
+
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
+    }
   }
 }

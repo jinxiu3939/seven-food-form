@@ -14,7 +14,7 @@ import { SearchProvider } from '../../../providers/data/search-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-simple-search',
+  selector: 'sff-simple-search',
   templateUrl: './simple-search.component.html',
   styleUrls: [
     './simple-search.component.scss',
@@ -113,15 +113,22 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   private filter(page: number): Observable<Option<string| number>[]> {
     let result: Option<string| number>[];
     result = this.items.filter((item) => {
-      // 检索
+      // 检索，同步结果集检索条件只有一个关键字
       for (const i in this.condition) {
         if (this.condition[i]) {
-          if (!item.title) {
-            item.title = item.text;
-          }
-          if ((item.value + '').indexOf(this.condition[i]) < 0
-            && item.text.indexOf(this.condition[i]) < 0
-            && item.title.indexOf(this.condition[i]) < 0) {
+          /* 全部转换为小写进行检索 */
+          if (
+            item.value
+            && (item.value + '').toLowerCase().indexOf(this.condition[i].toLowerCase()) >= 0
+          ) {
+            return true;
+          } else if (item.text && (item.text + '').toLowerCase().indexOf(this.condition[i].toLowerCase()) >= 0) {
+            return true;
+          } else if (item.title && (item.title + '').toLowerCase().indexOf(this.condition[i].toLowerCase()) >= 0) {
+            return true;
+          } else if (item.items && (item.items + '').toLowerCase().indexOf(this.condition[i].toLowerCase()) >= 0) {
+            return true;
+          } else {
             return false;
           }
         }
@@ -147,14 +154,17 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
     /* 获取结果 */
     if (this.config.conditions[term.key].mode === 'async') { // 异步检索
       this.provider.setApi(this.config.conditions[term.key].endpoint); // 设置检索接口
-      return this.provider.getPage(1, this.config.size, {title: keyword, format: 'option'}).pipe(
+      return this.provider.getPage(1, this.config.conditions[term.key].size, {'associate_title': keyword, format: 'option'}).pipe(
         map(res => this.searchOptions[term.key] = res),
       );
     } else { // 同步检索
       if (keyword) {
         result = this.config.conditions[term.key].options.filter((item) => {
           for (const i in item) {
-            if (item.text.indexOf(keyword) >= 0 || (item.value+'').indexOf(keyword) >= 0) {
+            if (
+              item.text.toLowerCase().indexOf(keyword.toLowerCase()) >= 0
+              || (item.value+'').toLowerCase().indexOf(keyword.toLowerCase()) >= 0
+            ) {
               return true;
             }
           }

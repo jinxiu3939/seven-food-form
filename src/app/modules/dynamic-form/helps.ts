@@ -89,3 +89,17 @@ export const dateFormat = (date: Date, format: string) => {
   }
   return format;
 };
+
+export const formatWidth = (column) => {
+  return column && !isNaN(column) && column > 0 && column <=12 ? column : 12;
+}
+
+export const formatAlertMessage = (message, variable) => {
+  let alert = '';
+  const text = message.split('%s');
+  text.map((value, index) => {
+    alert += value;
+    alert += variable?.[index] ? variable?.[index] : '';
+  });
+  return alert;
+}

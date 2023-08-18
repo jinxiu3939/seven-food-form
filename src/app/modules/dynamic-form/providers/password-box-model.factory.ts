@@ -17,8 +17,12 @@ export class PasswordBoxModelFactory extends BaseModelFactory {
   }
 
   format() {
+    if (this.model.empty) {
+      this.model.value = null;
+    }
     if (this.model.value) {
       this.model.value = this.model.value + '';
     }
+    this.model.sureValue = this.model.value;
   }
 }

@@ -1,9 +1,9 @@
 <div [formGroup]="form" class="row">
-  <div *ngIf="! model.disabled" class="input-group">
+  <div *ngIf="! model.readonly" class="input-group">
     <input nbInput
            class="form-control date-input date-text"
            maxlength="10"
-           [readonly]="model.readonly"
+           readonly
            [nbDatepicker]="formpicker"
            [placeholder]="lang.select_date"
            [value]="day">
@@ -22,7 +22,7 @@
     <nb-datepicker #formpicker [date]="date" (dateChange)="handleDateChange($event)"></nb-datepicker>
     <input [formControlName]="model.name" type="hidden" [value]="model.value" />
   </div>
-  <ng-container *ngIf="model.disabled">
-    <input class="form-control date-time-input" disabled size=20 [value]="model.value">
+  <ng-container *ngIf="model.readonly">
+    <input class="form-control date-time-input" readonly size=20 [value]="model.value">
   </ng-container>
 </div>

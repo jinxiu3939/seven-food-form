@@ -30,14 +30,13 @@
 
   .time-container {
     position: relative;
+    overflow: visible;
     
     .time-popup {
       position:absolute;
-      top: 3rem;
-      right: 0;
-      padding: 1.4rem;
+      top: 0;
+      left: 4.4rem;
       display: none;
-      border: 1px solid nb-theme(border-basic-color-4);
       background: nb-theme(background-basic-color-1);
       z-index: 99;
 
@@ -45,7 +44,7 @@
         position: absolute;
         width: 1.4rem;
         height: 1.4rem;
-        right: 0;
+        left: 10rem;
         top: 0;
         color: nb-theme(color-basic-500);
       }

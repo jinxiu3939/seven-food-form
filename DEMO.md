@@ -1,6 +1,6 @@
 ## demo
 
-the demo can be used as the ModelGroup's attribute of items
+the demo can be used as the value of models
 that is the input param of DynamicFormComponent
 
 - 实例化`RadioModel`
@@ -1611,6 +1611,7 @@ tree: any = {
     validator: '',
   },
 ],
+```
 
 - 实例化`MdEditorModel`
 

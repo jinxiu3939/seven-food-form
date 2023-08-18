@@ -18,6 +18,7 @@ import { RangeTextBoxModelFactory } from './range-text-box-model.factory';
 import { TextAreaModelFactory } from './text-area-model.factory';
 import { DropDownBoxModelFactory } from './drop-down-box-model.factory';
 import { DatePickerModelFactory } from './date-picker-model.factory';
+import { DateRangePickerModelFactory } from './date-range-picker-model.factory';
 import { CKEditorModelFactory } from './ck-editor-model.factory';
 import { ImageModelFactory } from './image-model.factory';
 import { UrlTextBoxModelFactory } from './url-text-box-model.factory';
@@ -32,6 +33,7 @@ import { VideoModelFactory } from './video-model.factory';
 import { KeywordModelFactory } from './keyword-model.factory';
 import { UEditorModelFactory } from './u-editor-model.factory';
 import { MdEditorModelFactory } from './md-editor-model.factory';
+import { KeyValueModelFactory } from './key-value-model.factory';
 
 /**
  * 快速表单工厂
@@ -204,6 +206,13 @@ export class QuickFormFactory {
   }
 
   /**
+   * 日期范围选择器
+   */
+  dateRangePicker() {
+    return new DateRangePickerModelFactory(this.config).instance();
+  }
+
+  /**
    * ck-editor
    */
   ckEditor() {
@@ -235,6 +244,13 @@ export class QuickFormFactory {
 
   itemList() {
     return new ItemListModelFactory(this.config).instance();
+  }
+
+  /**
+   * 键值对
+   */
+  keyValue() {
+    return new KeyValueModelFactory(this.config).instance();
   }
 
   /**

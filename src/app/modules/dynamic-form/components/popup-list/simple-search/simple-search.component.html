@@ -11,8 +11,8 @@
         </nb-select>
         <nb-select *ngSwitchCase="'boolean-radio'" [placeholder]="lang.select" [(selected)]="condition[item.value]">
           <nb-option value="">{{ lang.all }}</nb-option>
-          <nb-option value="true">Y</nb-option>
-          <nb-option value="false">N</nb-option>
+          <nb-option value="true">{{ lang.yes }}</nb-option>
+          <nb-option value="false">{{ lang.no }}</nb-option>
         </nb-select>
         <div *ngSwitchCase="'drop-down-filter'" class="input-group">
           <input #searchBox type="text" class="form-control form-control-small" [placeholder]="lang.filter" (input)="searchConditionOption(searchBox.value, f)">

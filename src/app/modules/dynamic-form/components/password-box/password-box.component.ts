@@ -5,12 +5,13 @@
 import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { formatAlertMessage } from '../../helps';
 import { PasswordBoxModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
-  selector: 'ngx-password-box',
+  selector: 'sff-password-box',
   styleUrls: [
     '../../dynamic-form.component.scss',
   ],
@@ -30,10 +31,6 @@ export class PasswordBoxComponent implements OnInit, ComponentReset  {
   }
 
   ngOnInit() {
-    if (this.model.empty) {
-      this.model.value = null;
-      this.form.controls[this.model.name].setValue(null);
-    }
     this.inputType = this.model.visible ? 'text' : 'password';
   }
 
@@ -56,20 +53,21 @@ export class PasswordBoxComponent implements OnInit, ComponentReset  {
 
   get errors() {
     const message = [];
-    const control = this.form.controls[this.model.name];
-    if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push(this.lang.min_input + '：' + this.model.min);
-    } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push(this.lang.max_input + '：' + this.model.max);
-    } else if (control.value) {
+    const control = this.form.controls[this.model.name]; 
+    if (control.value) {
       if (control.errors[this.model.validator]) {
         message.push(control.errors[this.model.validator]);
+      } else if (this.model.min > 0 && this.model.min > control.value.length) {
+        message.push(formatAlertMessage(this.lang.min_input, [this.model.min]));
+      } else if (this.model.max > 0 && control.value.length > this.model.max) {
+        message.push(formatAlertMessage(this.lang.max_input, [this.model.max]));
       }
     }
     return message;
   }
 
   validatePassword(value: string) {
+    this.model.sureValue = value;
     if (this.password !== value) {
       this.form.controls[this.model.name].setErrors({
         inputEqual: this.lang.password_not_match,

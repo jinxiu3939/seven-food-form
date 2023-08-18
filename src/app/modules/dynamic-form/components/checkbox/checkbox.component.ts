@@ -1,15 +1,16 @@
 /**
- * 单选按钮组
- * 适用于列表项较少的按钮组
+ * 多选按钮
  */
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { formatAlertMessage } from '../../helps';
+import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
 import { CheckboxModel } from '../../dynamic-form.options';
 
 @Component({
-  selector: 'ngx-checkbox',
+  selector: 'sff-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: [
     './checkbox.component.scss',
@@ -20,8 +21,16 @@ export class CheckboxComponent implements OnInit, ComponentReset {
   @Input() form: FormGroup;
 
   checkedStatus: boolean[] = []; // 元素选中状态集合
+  lang: any;
+
+  constructor(private langProvider: LangProvider) {
+    this.lang = langProvider.lang;
+  }
 
   ngOnInit() {
+    if (! this.model.value) {
+      this.model.value = [];
+    }
     this.loadCheckedStatus();
   }
 
@@ -33,9 +42,11 @@ export class CheckboxComponent implements OnInit, ComponentReset {
    * 加载选中状态
    */
   loadCheckedStatus() {
-    this.model.options.map((option, key) => {
-      this.checkedStatus[key] = this.isChecked(option.value as string);
-    });
+    if (this.model.options && Array.isArray(this.model.options)) {
+      this.model.options.map((option, key) => {
+        this.checkedStatus[key] = this.isChecked(option.value as string);
+      });
+    }
   }
 
   get invalid() {
@@ -47,9 +58,9 @@ export class CheckboxComponent implements OnInit, ComponentReset {
     const message = [];
     const control = this.form.controls[this.model.name];
     if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
-      message.push('最少选择' + this.model.min + '项');
+      message.push(formatAlertMessage(this.lang.min_select, [this.model.min]));
     } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
-      message.push('最多选择' + this.model.max + '项');
+      message.push(formatAlertMessage(this.lang.max_select, [this.model.max]));
     }
     return message;
   }
@@ -61,12 +72,12 @@ export class CheckboxComponent implements OnInit, ComponentReset {
   switchChecked(checked: boolean, value: string) {
     this.model.value = this.model.value as string[];
     if (checked) { // 选中
-      if (this.isChecked(value) === false) {
+      if (!this.isChecked(value)) {
         this.model.value.push(value);
       }
     } else { // 取消
       if (this.isChecked(value)) {
-        this.model.value = this.model.value.filter(item => item !== value);
+        this.model.value = this.model.value.filter(item => item !== value && item !== value + '');
       }
     }
     this.form.controls[this.model.name].setValue(this.model.value);

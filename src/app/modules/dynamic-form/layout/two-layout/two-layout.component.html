@@ -1,0 +1,12 @@
+<nb-tabset class="two-layout">
+  <nb-tab *ngFor="let block of setting.children; let i = index"
+          [lazyLoad]="true"
+          [tabTitle]="block.blockTitle"
+          badgeStatus="danger"
+          [badgeText]="isBlockInvalid(i)">
+    <sff-one-layout [models]="models[i]"
+                    [form]="form"
+                    [setting]="block"
+                    [reload]="reload"></sff-one-layout>
+  </nb-tab>
+</nb-tabset>

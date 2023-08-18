@@ -11,7 +11,7 @@ export class DateTimeLocalTextBoxModelFactory extends TextBoxModelFactory {
 
   format() {
     if (this.model.clear) { // 清空不合法的日期时间格式
-      const reg = new RegExp('^\d{4}-\d{2}-\d{2}.?\d{2}:\d{2}$');
+      const reg = /^\d{4}-\d{2}-\d{2}.?\d{2}:\d{2}$/;
       if (reg.test(this.model.value) === false) {
         this.model.value = null;
       }

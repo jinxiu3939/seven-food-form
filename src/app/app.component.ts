@@ -3,9 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import '@ckeditor/ckeditor5-build-balloon-block/build/translations/zh-cn'; // 导入`ckeditor`语言包
 
 import { ApiService } from './services/api.service';
-import { defaultModels } from './services/mock';
-import { modesss } from './services/mock-model';
-import { realModels } from './services/mock-real-model';
+import { oneLayoutModels, oneLayoutSetting } from './services/mock-one';
+import { searchModels, searchSetting } from './services/mock-model';
+import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
+import { mdeditorModels } from './services/mock-mdeditor';
+import { SpreadsheetModels } from './services/mock-spreadsheet';
 
 @Component({
   selector: 'ngx-app',
@@ -16,26 +18,16 @@ export class AppComponent implements OnInit {
   title = 'seven-food-form';
   models: any;
   submitting = false;
-  buttons = [
-    {value: 'export', name: 'export'},
-    {value: 'import', name: 'import'},
-  ];
-  trees = [];
-  inlineModels: any;
-  imageTrees = [];
+  setting: any;
 
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    // this.imageTrees.push(this.checkboxTree);
-    // this.imageTrees.push(this.checkboxTree);
-    this.service.get().subscribe(() => {
-      this.trees.push({components: realModels, title: 'realModels'});
-      this.trees.push({components: defaultModels, title: 'defaultModels'});
-      // this.models = defaultModels;
-      // this.models = modesss;
-      this.inlineModels = defaultModels;
-
+    this.models = mdeditorModels;
+    // this.setting = oneLayoutSetting;
+    this.service.get().subscribe((res) => {
+      // let models = mdeditorModels;
+      // models[0].editorConfig = res.content.form.models[14].editorConfig;
     });
   }
 
@@ -47,6 +39,7 @@ export class AppComponent implements OnInit {
       formData.append(i, form[i]);
     }
     this.service.post(formData).subscribe();
+    // this.submitting = false;
   }
 
   operate(value) {

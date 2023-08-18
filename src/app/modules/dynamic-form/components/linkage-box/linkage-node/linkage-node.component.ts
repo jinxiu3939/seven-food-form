@@ -11,7 +11,7 @@ import { LinkageBoxTree, LinkageOption } from '../../../dynamic-form.options';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-linkage-node',
+  selector: 'sff-linkage-node',
   templateUrl: './linkage-node.component.html',
   styleUrls: [
     '../../../dynamic-form.component.scss',
@@ -22,6 +22,7 @@ export class LinkageNodeComponent implements OnChanges {
 
   @Input() public parent: number | string; // 父下拉框值
   @Input() public tree: LinkageBoxTree<number | string>; // 选项树，显示树形目录结构
+  @Input() public disabled: boolean;
 
   @Output() public selectedChange = new EventEmitter<any[]>(); // 下拉框改变事件
 
@@ -36,13 +37,15 @@ export class LinkageNodeComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === 'parent') {
-        this.options = this.tree.options.filter((item) => item.parent === this.parent);
-        if (this.options.length === 0) {
-          this.tree.selected = '';
-          this.clearChildren();
+        if (this.tree?.options && Array.isArray(this.tree.options)) {
+          this.options = this.tree.options.filter((item) => item.parent === this.parent);
+          if (this.options.length === 0) {
+            this.tree.selected = '';
+            this.clearChildren();
+          }
         }
       } else if (propName === 'tree') {
-        if (this.tree.selected === '') {
+        if (this.tree?.selected === '') {
           this.clearChildren();
         }
       }

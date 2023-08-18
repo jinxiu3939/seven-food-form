@@ -1,17 +1,18 @@
 import { BaseModelFactory } from './base-model.factory';
 import { CropperConfig, ModelType, ImageModel, UploadConfig, CrawlConfig, ResourceSearchConfig } from '../dynamic-form.options';
 
+const maxFileSize = 1024 * 1024 * 2; // 2M
+
 const ng2FileUploadConfig: UploadConfig = {
   additionalParameter: {
     tag: [],
     title: '',
-    topic: '',
   },
-  allowedFileType: ['image'],
+  allowedFileType: ['image'], // application,image,video,audio,pdf,compress,doc,xls,ppt
   authTokenHeader: '',
   authToken: '',
   itemAlias: 'image', // 表单名称
-  maxFileSize: 1024 * 1024 * 2, // 2M
+  maxFileSize: maxFileSize, // 2M
   method: 'POST',
   url: '', // 上传地址
 };
@@ -26,16 +27,15 @@ export class ImageModelFactory extends BaseModelFactory {
     additionalParameter: {
       tag: [],
       title: '',
-      topic: '',
     },
     url: '', // 保存地址
     headers: {}, // 保存接口请求头
+    maxFileSize: maxFileSize, // 2M
   }; // 网络图片抓取配置
   private crawlConfig: CrawlConfig = {
     additionalParameter: {
       tag: [],
       title: '',
-      topic: '',
     },
     api: '', // 保存地址
     headers: {}, // 保存接口请求头
@@ -48,7 +48,6 @@ export class ImageModelFactory extends BaseModelFactory {
       page_size: 2000,
       tag: null, // 标签
       title: null, // 标题/描述
-      topic: null, // 主题
       type: 'image', // 类型
     },
     api: '',
@@ -60,15 +59,20 @@ export class ImageModelFactory extends BaseModelFactory {
 
   constructor(obj: any) {
     super(obj);
-    this.config.crawlConfig = this.crawlConfig; // 抓取配置
-    this.config.cropperConfig = this.cropperConfig; // 裁剪配置
     this.config.disabled = false; // 默认不禁用
     this.config.display = 'image'; // 图片展示方式
-    this.config.kind = 'ng2-file-upload'; // 默认上传模块
     this.config.multiple = false; // 默认单图
+
+    /* 上传配置 */
+    this.config.uploadConfig = ng2FileUploadConfig;
+
+    /* 裁剪配置 */
+    this.config.cropperConfig = this.cropperConfig; // 裁剪配置
     this.config.aspectRatioHeight = 3; // 裁剪纵横比高度
     this.config.aspectRatioWidth = 4; // 裁剪纵横比宽度
     this.config.cropperType = 'png'; // 裁剪类型
+
+    this.config.crawlConfig = this.crawlConfig; // 抓取配置
 
     /* 检索配置 */
     if (obj.list) {
@@ -81,19 +85,6 @@ export class ImageModelFactory extends BaseModelFactory {
       this.searchConfig.mode = obj.searchMode;
     }
     this.config.searchConfig = this.searchConfig;
-
-    /* 上传配置 */
-    switch (obj.kind) {
-      case 'ng2-file-upload' : {
-        this.config.uploadConfig = ng2FileUploadConfig;
-        break;
-      }
-      // [todo] other
-      // 默认使用`ng2-file-upload`上传
-      default : {
-        this.config.uploadConfig = ng2FileUploadConfig;
-      }
-    }
   }
 
   format() {

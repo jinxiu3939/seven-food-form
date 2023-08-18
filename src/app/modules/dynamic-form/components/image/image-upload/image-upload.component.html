@@ -5,14 +5,14 @@
          [multiple]="multiple"
          [uploader]="uploader"
          (change)="selectedFileOnChanged($event)" />
-  <ngx-image-slider *ngIf="thumbnails.length"
+  <sff-image-slider *ngIf="thumbnails.length"
                     [items]="thumbnails"
                     [active]="uploaded"
                     [currentIndex]="currentIndex"
                     (currentChange)="slide($event)"
                     (destroy)="delete($event)"
                     (edit)="desc($event)">
-  </ngx-image-slider>
+  </sff-image-slider>
   <a *ngIf="uploader.queue.length"
      nbButton
      fullWidth
@@ -30,10 +30,7 @@
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header>{{ lang.tip }}</nb-card-header>
+    <nb-card-header>{{ lang.tip }}<nb-icon icon="close-outline" style="float: right;" (click)="ref.close()"></nb-icon></nb-card-header>
     <nb-card-body>{{ data }}</nb-card-body>
-    <nb-card-footer>
-      <button nbButton (click)="ref.close()" status="info">ok</button>
-    </nb-card-footer>
   </nb-card>
 </ng-template>

@@ -1,83 +1,89 @@
-<div [formGroup]="form" class="block-row">
-  <ng-container [ngSwitch]="model.display">
-    <ng-container *ngSwitchCase="'input'">
-      <div *ngIf="thumbs" class="full-image-table">
-        <div class="full-image-inputs">
-          <h5>{{ lang.picture }}</h5>
-          <h5>{{ lang.description }}</h5>
+<div [formGroup]="form">
+  <div class="block-row">
+    <ng-container [ngSwitch]="model.display">
+      <ng-container *ngSwitchCase="'input'">
+        <div *ngIf="thumbs" class="full-image-table">
+          <div class="full-image-inputs">
+            <h5>{{ lang.picture }}</h5>
+            <h5>{{ lang.description }}</h5>
+          </div>
+          <div *ngFor="let thumb of thumbs" class="full-image-inputs">
+            <input type="text" class="form-control" readonly nbInput fullWidth [value]="thumb.url" [title]="thumb.url">
+            <input type="text" class="form-control" [readonly]="model.disabled" nbInput fullWidth [value]="thumb.title" [title]="thumb.title">
+          </div>
         </div>
-        <div *ngFor="let thumb of thumbs" class="full-image-inputs">
-          <input type="text" class="form-control" readonly nbInput fullWidth [value]="thumb.url" [title]="thumb.url">
-          <input type="text" class="form-control" nbInput fullWidth [value]="thumb.title" [title]="thumb.title">
-        </div>
-      </div>
+      </ng-container>
+      <sff-image-slider *ngSwitchDefault
+                        [items]="thumbs"
+                        [currentIndex]="currentIndex"
+                        [readonly]="model.disabled"
+                        size="small"
+                        (currentChange)="slide($event)"
+                        (order)="order($event)"
+                        (destroy)="delete($event)"
+                        (edit)="desc($event)">
+      </sff-image-slider>
     </ng-container>
-    <ngx-image-slider *ngSwitchDefault
-                      [items]="thumbs"
-                      [currentIndex]="currentIndex"
-                      [readonly]="! model.multiple"
-                      size="small"
-                      (currentChange)="slide($event)"
-                      (order)="order($event)"
-                      (destroy)="delete($event)"
-                      (edit)="desc($event)">
-    </ngx-image-slider>
+
+    <span *ngIf="! model.disabled">
+      <a nbButton
+        size="tiny"
+        status="info"
+        type="button"
+        (click)="chooseImage()">{{ lang.choose }}</a>
+      <a *ngIf="model.value"
+        nbButton
+        size="tiny"
+        status="warning"
+        type="button"
+        (click)="destroyImage()">{{ lang.clear }}</a>
+      <input [formControlName]="model.name" type="hidden" [value]="model.value">
+    </span>
+  </div>
+
+  <ng-container *ngIf="invalid">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
   </ng-container>
-  
-  <span *ngIf="! model.disabled">
-    <a nbButton
-      size="tiny"
-      status="info"
-      type="button"
-      (click)="chooseImage()">{{ lang.choose }}</a>
-    <a *ngIf="model.value"
-      nbButton
-      size="tiny"
-      status="warning"
-      type="button"
-      (click)="destroyImage()">{{ lang.clear }}</a>
-    <input [formControlName]="model.name" type="hidden" [value]="model.value">
-  </span>
 </div>
 
 <ng-template #contentTemplate>
   <nb-tabset style="width: 700px; height: 600px; overflow-y: auto;">
-    <nb-tab *ngIf="!model.hideUpload" [tabTitle]="lang.local_picture">
-      <ngx-image-upload [config]="model.uploadConfig"
+    <nb-tab *ngIf="!model.hideUpload && model.uploadConfig" [tabTitle]="lang.local_picture">
+      <sff-image-upload [config]="model.uploadConfig"
                         [debug]="model.debug"
                         [multiple]="model.multiple"
                         [top]="model.queueLimit"
-                        (finish)="submitImage($event)"></ngx-image-upload>
+                        (finish)="submitImage($event)"></sff-image-upload>
     </nb-tab>
-    <nb-tab *ngIf="!model.hideCropper" [tabTitle]="lang.cropper_picture">
-      <ngx-image-upload-cropper [config]="model.cropperConfig"
+    <nb-tab *ngIf="!model.hideCropper && model.cropperConfig" [tabTitle]="lang.cropper_picture">
+      <sff-image-upload-cropper [config]="model.cropperConfig"
                                 [debug]="model.debug"
                                 [multiple]="model.multiple"
                                 [queueLimit]="model.queueLimit"
                                 [aspectRatio]="{height: model.aspectRatioHeight, width: model.aspectRatioWidth}"
                                 [format]="model.cropperType"
-                                (finish)="submitImage($event)"></ngx-image-upload-cropper>
+                                (finish)="submitImage($event)"></sff-image-upload-cropper>
     </nb-tab>
-    <nb-tab *ngIf="!model.hideCrawl" [tabTitle]="lang.network_picture">
-      <ngx-image-web [config]="model.crawlConfig"
+    <nb-tab *ngIf="!model.hideCrawl && model.crawlConfig" [tabTitle]="lang.network_picture">
+      <sff-image-web [config]="model.crawlConfig"
                      [multiple]="model.multiple"
                      [queueLimit]="model.queueLimit"
-                     (finish)="submitImage($event)"></ngx-image-web>
+                     (finish)="submitImage($event)"></sff-image-web>
     </nb-tab>
-    <nb-tab *ngIf="!model.hideSearch" [tabTitle]="lang.history_picture">
-      <ngx-image-search [config]="model.searchConfig"
+    <nb-tab *ngIf="!model.hideSearch && model.searchConfig" [tabTitle]="lang.history_picture">
+      <sff-image-search [config]="model.searchConfig"
                         [debug]="model.debug"
                         [multiple]="model.multiple"
                         [queueLimit]="model.queueLimit"
-                        (finish)="submitImage($event)"></ngx-image-search>
+                        (finish)="submitImage($event)"></sff-image-search>
     </nb-tab>
     <nb-tab [tabTitle]="lang.waiting_picture">
-      <ngx-image-cache [images]="tmpImage"
-                       (active)="changeImage($event)"></ngx-image-cache>
+      <sff-image-cache [images]="tmpImage"
+                       (active)="changeImage($event)"></sff-image-cache>
     </nb-tab>
   </nb-tabset>
   <div>
-    <button nbButton status="danger" (click)="cancelImage()"  style="margin-right: 1rem;">{{ lang.cancel }}</button>
+    <button nbButton status="warning" (click)="cancelImage()"  style="margin-right: 1rem;">{{ lang.cancel }}</button>
     <button *ngIf="tmpImage.length" nbButton status="info" (click)="sureImage()">
       {{ lang.sure }} {{ tmpFilter ? tmpFilter.length : tmpImage.length }} / {{ tmpImage.length }}
     </button>

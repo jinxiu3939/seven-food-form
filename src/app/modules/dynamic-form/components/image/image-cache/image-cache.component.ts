@@ -7,7 +7,7 @@ import { ImageItem } from '../../../dynamic-form.options';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-image-cache',
+  selector: 'sff-image-cache',
   templateUrl: './image-cache.component.html',
   styleUrls: [
     './image-cache.component.scss',

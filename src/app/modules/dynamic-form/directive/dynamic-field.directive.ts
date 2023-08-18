@@ -25,6 +25,7 @@ import { KeywordComponent } from '../components/keyword/keyword.component';
 import { FileComponent } from '../components/file/file.component';
 import { MarkDownEditorComponent } from '../components/md-editor/md-editor.component';
 import { BaiduUEditorComponent } from '../components/u-editor/u-editor.component';
+import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -32,6 +33,7 @@ const COMPONENTS = {
   'checkbox-tree': CheckboxTreeComponent,
   'ck-editor': CKEditorComponent,
   'date-picker': DatePickerComponent,
+  'date-range-picker': DateRangePickerComponent,
   'drop-down-box': DropDownBoxComponent,
   file: FileComponent,
   image: ImageComponent,
@@ -52,7 +54,7 @@ const COMPONENTS = {
 };
 
 @Directive({
-  selector: '[ngxDynamicField]',
+  selector: '[sffDynamicField]',
 })
 export class DynamicFieldDirective implements OnInit, OnChanges {
   @Input() model: BaseModel<any>; // 表单项
@@ -66,18 +68,20 @@ export class DynamicFieldDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    const component = COMPONENTS[this.model.type];
-    if (component) {
-      const factory = this.resolver.resolveComponentFactory<any>(component);
-      this.component = this.container.createComponent(factory); // 创建组件
-      this.component.instance.model = this.model;
-      this.component.instance.form = this.form;
+    if (this.model.name) {
+      const component = COMPONENTS[this.model.type];
+      if (component) {
+        const factory = this.resolver.resolveComponentFactory<any>(component);
+        this.component = this.container.createComponent(factory); // 创建组件
+        this.component.instance.model = this.model;
+        this.component.instance.form = this.form;
+      }
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.component && this.component.instance && changes.reload) {
-      this.model.value = Array.isArray(this.model.value) ? [] : null;
+      this.model.value = Array.isArray(this.model.value) ? [] : null; // 重置模型的值
       this.component.instance.model = this.model;
       this.component.instance.resetModel(); // 重置模型
     }

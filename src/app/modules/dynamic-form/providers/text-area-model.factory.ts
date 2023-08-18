@@ -11,7 +11,7 @@ export class TextAreaModelFactory extends BaseModelFactory {
 
   constructor(obj: any) {
     super(obj);
-    this.config.disabled = false; // 默认不禁用
+    this.config.disabled = false; // 默认不禁用，若禁用表单组件自动设置为disabled
     this.config.rows = 3;
   }
 }

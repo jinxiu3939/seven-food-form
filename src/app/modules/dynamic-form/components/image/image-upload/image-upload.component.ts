@@ -6,12 +6,13 @@ import { Component, EventEmitter, Input, OnInit, ViewChild, Output } from '@angu
 import { NbDialogService } from '@nebular/theme';
 import { FileUploader } from 'ng2-file-upload';
 
+import { formatAlertMessage } from '../../../helps';
 import { ImageDescription, ImageItem, ImageListOrder, UploadConfig } from '../../../dynamic-form.options';
 import { ResourceProvider } from '../../../providers/data/resource-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-image-upload',
+  selector: 'sff-image-upload',
   templateUrl: './image-upload.component.html',
   styleUrls: [
     './image-upload.component.scss',
@@ -104,7 +105,9 @@ export class ImageUploadComponent implements OnInit {
    */
   selectedFileOnChanged(event: any) {
     if (this.uploader.queue.length === 0) {
-      this.alert(this.lang.choose_image_error + `（` + this.lang.type_or_size_error + this.config.maxFileSize / 1024 / 1024 + `M）`);
+      this.alert(formatAlertMessage(this.lang.choose_image_error, [
+        formatAlertMessage(this.lang.type_or_size_error, [this.config.maxFileSize / 1024 / 1024 + 'M'])
+      ]));
       return ;
     }
     this.uploader.queue.forEach((queue, index) => {
@@ -123,6 +126,7 @@ export class ImageUploadComponent implements OnInit {
     if (this.multiple) {
       if (this.top < this.uploader.queue.length) {
         this.max = this.top; // 限制文件个数
+        this.alert(formatAlertMessage(this.lang.upload_queue_limit, [this.top]));
       } else {
         this.max = this.uploader.queue.length; // 全部文件
       }
@@ -150,7 +154,7 @@ export class ImageUploadComponent implements OnInit {
         if (status === 401) {
           $this.alert($this.lang.upload_auth_error);
         } else {
-          $this.alert($this.lang.upload_image_error + `（` + $this.lang.system_busy + `）（` + status + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+          $this.alert(formatAlertMessage($this.lang.upload_image_error, [queue._file.name.substring(0, 20), $this.lang.system_busy + status]));
         }
       };
       queue.onComplete = (response, status, headers) => {
@@ -201,10 +205,10 @@ export class ImageUploadComponent implements OnInit {
           this.uploadFinish(result, index);
         }
       } catch (e) {
-        this.alert(this.lang.upload_image_error + `（` + this.lang.system_busy + `）（ ` + file_name + ` ）`);
+        this.alert(formatAlertMessage(this.lang.upload_image_error, [file_name, this.lang.system_busy]));
       }
     } else {
-      this.alert(this.lang.upload_image_error + `（` + this.lang.type_or_size_big_error + `）（ ` + file_name + ` ）`);
+      this.alert(formatAlertMessage(this.lang.upload_image_error, [file_name, this.lang.type_or_size_big_error]));
     }
   }
 

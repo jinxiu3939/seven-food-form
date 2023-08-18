@@ -11,7 +11,7 @@ import { RadioModel } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-drop-down-box',
+  selector: 'sff-drop-down-box',
   templateUrl: './drop-down-box.component.html',
 })
 export class DropDownBoxComponent implements ComponentReset {

@@ -10,7 +10,7 @@ import { ImageItem, ImageDescription, ImageListOrder } from '../../../dynamic-fo
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-image-slider',
+  selector: 'sff-image-slider',
   templateUrl: './image-slider.component.html',
   styleUrls: [
     './image-slider.component.scss',

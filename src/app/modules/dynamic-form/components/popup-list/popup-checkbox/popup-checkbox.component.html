@@ -2,26 +2,26 @@
   <ng-container *ngIf="model.value && model.value.length > 0">
     <a *ngFor="let val of model.value" size="tiny" nbButton outline status="basic" class="btn-basic">
       {{ val }} / {{ text[val] ? text[val] : '' }}
-      <nb-icon *ngIf="! model.disabled" status="warning" icon="close" [title]="lang.delete" (click)="delete(val)"></nb-icon>
+      <nb-icon *ngIf="! model.readonly" status="warning" icon="close" [title]="lang.delete" (click)="delete(val)"></nb-icon>
     </a>
   </ng-container>
-  <ng-container *ngIf="! model.disabled">
+  <ng-container *ngIf="! model.readonly">
     <a nbButton size="tiny" status="info" (click)="choose()">{{ lang.choose }}</a>
-    <a nbButton size="tiny" status="warning" (click)="destroy()">{{ lang.clear }}</a>
-    <div *ngIf="invalid" class="text-error">
-      <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
-    </div>
-    <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
+    <a nbButton *ngIf="model.value && model.value.length>0" size="tiny" status="warning" (click)="destroy()">{{ lang.clear }}</a>
   </ng-container>
+  <div *ngIf="invalid" class="text-error">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+  </div>
+  <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
 </div>
 
 <ng-template #contentTemplate>
-  <ngx-simple-search *ngIf="model.searchConfig"
+  <sff-simple-search *ngIf="model.searchConfig"
                      [config]="model.searchConfig"
                      [items]="model.options"
                      [page]="page"
                      (reload)="resetRecords($event)"
-                     (finish)="search($event)"></ngx-simple-search>
+                     (finish)="search($event)"></sff-simple-search>
   <nb-list *ngIf="records && records.length > 0" style="height: 500px; overflow: auto;" nbInfiniteList [threshold]="50" (bottomThreshold)="loadNext()">
     <nb-list-item *ngFor="let item of records" style="position: relative;">
       <nb-checkbox [checked]="model.value.includes(item.value)"             

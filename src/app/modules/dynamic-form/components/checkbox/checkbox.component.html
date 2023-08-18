@@ -2,7 +2,7 @@
   <div *ngFor="let opt of model.options; let key = index" class="col-{{model.width}} box">
     <div class="form-check form-check-inline" [ngClass]="{'col-deep': model.width, 'form-badge': opt.items}">
       <nb-checkbox [checked]="checkedStatus[key]"             
-                   [disabled]="model.disabled"
+                   [disabled]="model.readonly"
                    [title]="opt.title ? opt.title : ''"
                    (checkedChange)="switchChecked($event, opt.value)">
         {{ opt.text }}
@@ -15,7 +15,7 @@
       </nb-badge>
     </div>
   </div>
-  <div *ngIf="invalid" class="text-error">
+  <div *ngIf="invalid" class="text-error col-12">
     <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
   </div>
   <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">

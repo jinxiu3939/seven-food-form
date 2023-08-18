@@ -1,22 +1,29 @@
-<div *ngFor="let item of models"
-     class="form-group row {{ size }}-group {{ item.type }}-group"
-     [ngClass]="{'inline-group': size && size!=='large', 'hidden': hide}">
-  <ng-container *ngIf="column && column.length >= 2">
-    <label [attr.for]="item.name" class="col-{{ column[0] }} col-form-label text-right" [title]="item.label">
-      {{ item.label }}
-      <small *ngIf="item.help" class="form-text text-muted" [title]="item.help">{{ item.help }}</small>
-      <small *ngIf="item.require" class="form-text text-status-info">{{ lang.required }}</small>
-    </label>
-    <div class="col-{{ column[1] }}">
-      <ng-container ngxDynamicField [model]="item" [form]="form" [reload]="reload">
+<div *ngFor="let model of models"
+     class="form-group row block-item block-{{ size }} block-{{ model.type }}">
+  <ng-container [ngSwitch]="labelWidth">
+    <div *ngSwitchCase="0" class="col-12">
+      <small [ngClass]="{'text-status-danger': invalid(model.name)}">{{ model.label }}</small>
+      <div sffDynamicField [model]="model" [form]="form" [reload]="reload"></div>
+      <small *ngIf="model.help" class="form-text text-muted" [title]="model.help">{{ model.help }}</small>
+      <ng-container *ngIf="invalid(model.name)">
+        <small *ngFor="let error of errors(model.name)" class="form-text text-danger">{{ error }}</small>
       </ng-container>
     </div>
+    <ng-container *ngSwitchDefault>
+      <label [attr.for]="model.name"
+             class="col-{{ labelWidth }} col-form-label text-right"
+             [ngClass]="{'text-status-danger': invalid(model.name)}"
+             [title]="model.label">
+        {{ model.label }}
+        <small *ngIf="model.help" class="form-text text-muted" [title]="model.help">{{ model.help }}</small>
+      </label>
+      <div class="col-{{ width }}">
+        <ng-container sffDynamicField [model]="model" [form]="form" [reload]="reload">
+        </ng-container>
+        <ng-container *ngIf="invalid(model.name)">
+          <small *ngFor="let error of errors(model.name)" class="form-text text-danger">{{ error }}</small>
+        </ng-container>
+      </div>
+    </ng-container>
   </ng-container>
-  <div *ngIf="!column || column.length < 2" class="col-12">
-    <small>{{ item.label }}</small>
-    <div>
-      <ng-container ngxDynamicField [model]="item" [form]="form" [reload]="reload">
-      </ng-container>
-    </div>
-  </div>
 </div>

@@ -12,11 +12,10 @@ export class DatePickerModelFactory extends BaseModelFactory {
   constructor(obj: any) {
     super(obj);
     this.config.clear = false; // 默认不清空
-    this.config.disabled = false; // 默认不禁用
     this.config.format = 'YYYY-MM-DD HH:mm:ss'; // 日期格式
     this.config.kind = 'date-time'; // 类别
     this.config.now = false; // 是否默认当前时间
-    this.config.readonly = false; // 默认不只读
+    this.config.readonly = false; // 默认非只读
   }
 
   protected format(): void {
@@ -26,14 +25,17 @@ export class DatePickerModelFactory extends BaseModelFactory {
         if (date.toString() === 'Invalid Date') {
           this.model.value = '';
         } else {
-          this.model.value = dateFormat(new Date(this.model.value), this.config.format);
+          this.model.value = dateFormat(new Date(this.model.value), this.model.format);
         }
       }
     }
     if (this.model.now) {
       if (! this.model.value) {
-        this.model.value = dateFormat(new Date(), this.config.format);
+        this.model.value = dateFormat(new Date(), this.model.format);
       }
+    };
+    if (this.model.disabled === true) {
+      this.model.readonly = true;
     }
   }
 }

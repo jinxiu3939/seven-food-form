@@ -6,12 +6,13 @@ import { Component, EventEmitter, Input, OnInit, ViewChild, Output } from '@angu
 import { NbDialogService } from '@nebular/theme';
 import { FileUploader } from 'ng2-file-upload';
 
+import { formatAlertMessage } from '../../../helps';
 import { ImageDescription, ImageItem, UploadConfig } from '../../../dynamic-form.options';
 import { ResourceProvider } from '../../../providers/data/resource-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-video-upload',
+  selector: 'sff-video-upload',
   templateUrl: './video-upload.component.html',
   styleUrls: [
     './video-upload.component.scss',
@@ -21,6 +22,7 @@ export class VideoUploadComponent implements OnInit {
 
   @Input() config: UploadConfig;
   @Input() multiple: boolean;
+  @Input() top: number = 5; // 队列极限值
 
   @Output() public finish = new EventEmitter<ImageItem>(); // 文件上传完成
 
@@ -36,7 +38,6 @@ export class VideoUploadComponent implements OnInit {
   public currentIndex: number; // 当前编号
   private tmpQueue: string[]; // 临时文件队列
 
-  private top: number = 50; // 队列极限值
   lang: any;
 
   constructor(private dialogService: NbDialogService, private provider: ResourceProvider, private langProvider: LangProvider) {
@@ -90,7 +91,9 @@ export class VideoUploadComponent implements OnInit {
    */
   selectedFileOnChanged(event: any) {
     if (this.uploader.queue.length === 0) {
-      this.alert(this.lang.choose_media_error + `（` + this.lang.type_or_size_error + this.config.maxFileSize / 1024 / 1024 + `M）`);
+      this.alert(formatAlertMessage(this.lang.choose_media_error, [
+        formatAlertMessage(this.lang.type_or_size_error, [this.config.maxFileSize / 1024 / 1024 + 'M'])
+      ]));
       return ;
     }
     this.uploader.queue.forEach((queue, index) => {
@@ -107,8 +110,12 @@ export class VideoUploadComponent implements OnInit {
     });
     /* 最大可上传个数 */
     if (this.multiple) {
-      /* 如果限制队列 this.config.queueLimit === this.uploader.queue.length */
-      this.max = this.uploader.queue.length; // 全部文件
+      if (this.top < this.uploader.queue.length) {
+        this.max = this.top; // 限制文件个数
+        this.alert(formatAlertMessage(this.lang.upload_queue_limit, [this.top]));
+      } else {
+        this.max = this.uploader.queue.length; // 全部文件
+      }
     } else {
       this.max = 1; // 单个文件
     }
@@ -139,17 +146,17 @@ export class VideoUploadComponent implements OnInit {
               $this.uploadFinish(result, index);
             }
           } catch (e) {
-            $this.alert($this.lang.upload_media_error + `（` + $this.lang.system_busy + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+            $this.alert(formatAlertMessage($this.lang.upload_media_error, [queue._file.name.substring(0, 20), $this.lang.other]));
           }
         } else {
-          $this.alert($this.lang.upload_media_error + `（` + $this.lang.type_or_size_error + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+          $this.alert(formatAlertMessage($this.lang.upload_media_error, [queue._file.name.substring(0, 20), $this.lang.type_or_size_error]));
         }
       };
       queue.onError = (response, status, headers) => {
         if (status === 401) {
           $this.alert($this.lang.upload_auth_error);
         } else {
-          $this.alert($this.lang.upload_media_error + `（` + $this.lang.system_busy + `）（ ` + queue._file.name.substring(0, 20) + ` ）`);
+          $this.alert(formatAlertMessage($this.lang.upload_media_error, [queue._file.name.substring(0, 20), $this.lang.system_busy + status]));
         }
       };
       queue.onComplete = (response, status, headers) => {

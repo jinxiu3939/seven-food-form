@@ -1,17 +1,21 @@
 /**
  * 图片
  * 支持多图片
+ * 请谨慎配置max
+ * 当multiple为true时，语义为：图片的个数；为false时，语义为文件路径的长度
+ * 正确的做法是：multiple为true时设置max，false时不设置max，只能上传一个文件，只需要设置必填即可
  */
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
+import { formatAlertMessage } from '../../helps';
 import { ComponentReset } from '../../providers/interface/component-reset';
 import { ImageDescription, ImageModel, ImageItem, ImageListOrder } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-image',
+  selector: 'sff-image',
   templateUrl: './image.component.html',
   styleUrls: [
     './image.component.scss',
@@ -82,6 +86,7 @@ export class ImageComponent implements OnInit, ComponentReset {
     if (!this.thumbnails) {
       this.thumbnails = [];
     }
+
     const tmpImage = this.tmpImage.filter((tmp, index) => {
       if (this.tmpFilter) { // 过滤取消的图片
         return this.tmpFilter.includes(index);
@@ -91,13 +96,7 @@ export class ImageComponent implements OnInit, ComponentReset {
     });
     if (tmpImage.length > 0) {
       if (this.model.multiple) { // 多图片
-        if (this.model.max) { // 限制个数
-          if (tmpImage.length <= this.model.max - this.thumbnails.length) {
-            this.insertImage(tmpImage);
-          }
-        } else { // 无限制
-          this.insertImage(tmpImage);
-        }
+        this.insertImage(tmpImage);
       } else { // 单图
         this.thumbnails = [tmpImage[0]];
       }
@@ -109,7 +108,7 @@ export class ImageComponent implements OnInit, ComponentReset {
 
   private insertImage(images: ImageItem[]) {
     if (this.model.repeat) { // 可以重复
-      this.thumbnails.concat(images);
+      this.thumbnails = this.thumbnails.concat(images);
     } else { // 不可以重复
       images.forEach((image) => {
         if (! this.tmpValues.includes(image.url)) {
@@ -142,13 +141,7 @@ export class ImageComponent implements OnInit, ComponentReset {
   submitImage(image: ImageItem) {
     if (image) {
       if (this.model.multiple) {
-        if (this.model.max) { // 限制个数
-          if (this.tmpImage.length <= this.model.max - this.thumbnails.length) {
-            this.cache(image);
-          }
-        } else { // 无限制
-          this.cache(image);
-        }
+        this.cache(image);
       } else {
         this.tmpImage = [image];
       }
@@ -227,4 +220,19 @@ export class ImageComponent implements OnInit, ComponentReset {
     }
   }
 
+  get invalid() {
+    const control = this.form.controls[this.model.name];
+    return control.value && control.invalid;
+  }
+ 
+  get errors() {
+    const message = [];
+    const control = this.form.controls[this.model.name];
+    if (this.model.min > 0 && control.value && this.model.min > control.value.length) {
+      message.push(formatAlertMessage(this.lang.choose_down, [this.model.min]));
+    } else if (this.model.max > 0 && control.value && control.value.length > this.model.max) {
+      message.push(formatAlertMessage(this.lang.choose_up, [this.model.max]));
+    }
+    return message;
+  }
 }

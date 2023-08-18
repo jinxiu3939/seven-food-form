@@ -9,7 +9,7 @@ import { ImageItem, ImageDescription } from '../../../dynamic-form.options';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-video-slider',
+  selector: 'sff-video-slider',
   templateUrl: './video-slider.component.html',
   styleUrls: [
     './video-slider.component.scss',

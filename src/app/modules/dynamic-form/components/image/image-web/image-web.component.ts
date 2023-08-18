@@ -7,12 +7,13 @@ import { NbDialogService } from '@nebular/theme';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { formatAlertMessage } from '../../../helps';
 import { ImageDescription, ImageItem, CrawlConfig } from '../../../dynamic-form.options';
 import { ResourceProvider } from '../../../providers/data/resource-provider';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 @Component({
-  selector: 'ngx-image-web',
+  selector: 'sff-image-web',
   templateUrl: './image-web.component.html',
   styleUrls: [
     './image-web.component.scss',
@@ -100,7 +101,7 @@ export class ImageWebComponent {
         if (this.thumbnails.length < this.queueLimit) {
           this.thumbnails.push(value); // 显示图片
         } else {
-          this.alert(this.lang.max_error + this.queueLimit);
+          this.alert(formatAlertMessage(this.lang.upload_queue_limit, [this.queueLimit]));
         }
       } else { // 不限制个数
         this.thumbnails.push(value); // 显示图片
@@ -146,7 +147,7 @@ export class ImageWebComponent {
           .subscribe((tempRes) => {
             const result = this.provider.parseSaveResult(tempRes);
             if (result.error) {
-              this.alert(result.error + `（` + form.title.substring(0, 20) + `）`);
+              this.alert(formatAlertMessage(this.lang.image_queue, [form.title.substring(0, 20)]) + result.error);
             } else {
               this.saveFinish(tempRes.content, key);
             }

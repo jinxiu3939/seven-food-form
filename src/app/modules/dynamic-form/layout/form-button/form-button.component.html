@@ -1,0 +1,12 @@
+<div class="form-group form-operation" [ngStyle]="{'text-align': align}">
+  <button *ngIf="!hideSubmit" type="button" class="btn btn-success" [disabled]="validate && !form.valid" (click)="onSubmit()">
+    {{ submitText }}
+  </button>
+  <ng-container *ngIf="buttons">
+    <button *ngFor="let btn of buttons" type="button" class="btn btn-primary" [disabled]="btn.validate && !form.valid" (click)="onOperate(btn)">
+      {{ btn.value }}
+    </button>
+  </ng-container>
+  <button *ngIf="!hideReset" type="button" class="btn btn-warning" (click)="onReset()">{{ resetText }}</button>
+  <nb-icon *ngIf="showFold" [icon]="foldIcon" status="info" (click)="foldForm()"></nb-icon>
+</div>

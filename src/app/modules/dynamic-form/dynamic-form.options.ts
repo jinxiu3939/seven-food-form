@@ -15,6 +15,7 @@ export declare type ModelType = 'checkbox'
                                 | 'checkbox-tree'
                                 | 'ck-editor'
                                 | 'date-picker'
+                                | 'date-range-picker'
                                 | 'drop-down-box'
                                 | 'file'
                                 | 'image'
@@ -44,22 +45,28 @@ export const VALIDATORS = {
 };
 
 /**
- * 表单类别
+ * 表单配置
  */
-export interface FormCategory {
-  components: ModelGroup; // 组件
-  title: string; // 标题
-}
-
-/**
- * 表单布局配置
- */
-export interface ModelGroup {
-  items: BaseModel<any>[]; // 表单项列表
-  column?: number[]; // 列宽度
-  title?: string; // 分组标题
-  size?: string; // 尺寸 'large' | 'medium' | 'small' | 'tiny'
-  hide?: boolean; // 内容是否隐藏
+export interface FormSetting {
+  validate: boolean; // 点击提交按钮是否校验表单
+  foldBody: boolean; // 表单体是否折叠
+  bodyWidth: number; // 表单体宽度
+  size: string; // 一行放几个表单项 'extra-large'(default)(1个) | 'large'(2个) | 'medium'(3个) | 'small'(4个) | 'tiny'(5个)
+  width: number; // 每个表单项中表单组件的宽度
+  buttonWidth: number; // 按钮宽度
+  buttons: FormButton[]; // 按钮
+  buttonAlign: string; // 按钮对齐方式
+  buttonFixed: boolean; // 按钮是否悬浮
+  buttonPosition: string; // 按钮悬浮位置
+  hideSubmit: boolean; // 隐藏提交按钮
+  submitText: string; // 提交按钮文本
+  hideReset: boolean; // 隐藏重置按钮
+  resetText: string; // 重置按钮文本
+  blockId: string; // 块标识
+  blockTitle: string; // 块标题
+  blockLayout: string; // 块布局方式
+  hideBlockBody: boolean; // 块内容是否隐藏
+  children: FormSetting[]; // 子块
 }
 
 /**
@@ -68,6 +75,7 @@ export interface ModelGroup {
 export interface FormButton {
   name: string; // 按钮标识
   value: string; // 按钮文本
+  validate: boolean; // 点击按钮是否校验表单
 }
 
 /**
@@ -75,12 +83,11 @@ export interface FormButton {
  */
 export interface FileResource {
   id: number; // 编号
-  creation_time: string; // 创建时间
+  create_time: string; // 创建时间
   file_name: string; // 文件名称
   size: number; // 大小
   tag: string[]; // 标签
   title: string; // 标题/描述
-  topic: string; // 主题
   type: string; // 类型
   url: string; // 地址
 }
@@ -89,10 +96,10 @@ export interface FileResource {
  * 选项组
  */
 export interface Option<T> {
-  text: string; // 文本
+  text: string; // 标签
   value: T; // 值
   items?: number; // 元素数量
-  title?: string; // 标题
+  title?: string; // 描述
 }
 
 /**
@@ -130,6 +137,7 @@ export interface LinkageBoxTree<T> {
  */
 export interface CropperConfig {
   additionalParameter: ResourceSaveParam; // 额外参数
+  maxFileSize: number;
   headers: {
     [header: string]: string | string[];
   }; // 上传接口请求头
@@ -206,7 +214,6 @@ export interface ImageListOrder {
 interface ResourceSaveParam {
   tag: string[]; // 标签
   title: string; // 描述
-  topic: string; // 主题
 }
 
 /**
@@ -217,18 +224,16 @@ export interface ResourceSearchParam {
   file_name: string; // 文件名称
   tag: string; // 标签
   title: string; // 标题/描述
-  topic: string; // 主题
   type: string; // 类型
   page_number?: number; // 分页页码
   page_size?: number; // 分页大小
 }
 
 export const ResourceSearchConditions: ConditionField[] = [
-  { text: '时间', value: 'creation_time', type: 'input' },
+  // { text: '时间', value: 'create_time', type: 'input' },
   { text: '文件名', value: 'file_name', type: 'input' },
-  { text: '标签', value: 'tag', type: 'input' },
-  { text: '标题', value: 'title', type: 'input' },
-  { text: '主题', value: 'topic', type: 'input' },
+  // { text: '标签', value: 'tag', type: 'input' },
+  { text: '描述', value: 'title', type: 'input' },
 ];
 
 /**
@@ -245,11 +250,11 @@ export interface ImportResultRow {
  */
 export interface SearchConfig {
   additionalParameter: any; // 异步检索条件
-  conditions: ConditionField[]; // 检索条件选项
   mode: 'async' | 'sync'; // 检索方式
-  result: Option<string | number>[]; // 默认结果集
-  size: number; // 分页大小
+  conditions?: ConditionField[]; // 检索条件选项
   endpoint?: string; // 异步检索接口
+  result?: Option<string | number>[]; // 默认结果集
+  size?: number; // 分页大小
 }
 
 /**
@@ -257,11 +262,12 @@ export interface SearchConfig {
  */
 export interface ConditionField {
   text: string; // 显示标签
-  type: 'input' | 'drop-down' | 'drop-down-filter' | 'number' | 'boolean-radio'; // 类型
-  value: string; // 条件名称
+  type: 'input' | 'drop-down' | 'drop-down-filter' | 'number' | 'boolean-radio' | 'textarea'; // 类型
+  value: string; // 条件字段名称
   options?: Option<string | number>[]; // 选项
   mode?: 'async' | 'sync'; // 选项检索方式
   endpoint?: string; // 选项异步检索接口
+  size?: number; // 选项数量
 }
 
 /**
@@ -272,6 +278,17 @@ export interface TreeNode<T> {
   children?: TreeNode<T>[];
   expanded?: boolean;
 }
+
+/**
+ * 键值对子项
+ */
+export interface KeyValueItemModel {
+  key: string; // 键
+  type: 'input' | 'drop-down' | 'drop-down-filter' | 'number' | 'boolean-radio' | 'textarea', // 类型
+  options?: Option<string | number>[]; // 值选项
+}
+
+
 
 /**
  * 表单项模型父类
@@ -287,7 +304,9 @@ export interface BaseModel<T> {
   order?: number; // 排序
   require?: boolean; // 是否必填
   validator?: any; // 验证器
-  data?: any; // 自定义配置数据
+  disabled: boolean; // 是否禁用。禁用后不会做变更检查，尽管显示表单组件，但是无法作为表单值提交
+  block: any; // 对应block标识
+  payload?: any; // 自定义配置数据
 }
 
 /**
@@ -295,7 +314,7 @@ export interface BaseModel<T> {
  */
 export interface RadioModel extends BaseModel<string | number | boolean> {
   all: boolean; // 是否显示全部
-  disabled: boolean; // 是否禁用
+  readonly: boolean; // 是否只读
   options: Option<string | number | boolean>[]; // 选项列表
   width: number; // 选项宽度
 }
@@ -304,17 +323,17 @@ export interface RadioModel extends BaseModel<string | number | boolean> {
  * 多选项模型
  */
 export interface CheckboxModel extends BaseModel<(string | number)[]> {
-  clear: boolean; // 是否清除无效的值
-  disabled: boolean; // 是否禁用
+  clear: boolean; // 是否清除不合法的值，不包含在options中的值将被清除
   options: Option<string | number>[]; // 选项列表
-  width: number; // 选项宽度
+  readonly: boolean; // 是否只读
+  width: number; // 选项宽度，控制一行显示几个选项，12分格
 }
 
 /**
  * 多选树模型
  */
 export interface CheckboxTreeModel extends BaseModel<(string | number)[]> {
-  disabled: boolean; // 是否禁用
+  readonly: boolean; // 是否只读
   tree: CheckBoxTree<string | number>; // 选项树
 }
 
@@ -322,21 +341,28 @@ export interface CheckboxTreeModel extends BaseModel<(string | number)[]> {
  * `ckeditor`富文本编辑器模型
  */
 export interface CKEditorModel extends BaseModel<string> {
-  disabled: boolean; // 是否禁用
+  // 导入`ckeditor`模块
+  // 需要安装相应的`CKEditor Build`[https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#classic-editor]
   editor: any; // 编辑器
   editorConfig: any; // `ck-editor`配置
-  // 需要安装相应的`CKEditor Build`[https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#classic-editor]
-  kind: 'classic' | 'ckfinder'; // 配置类别
-  build: string; // 构造编辑器的种类
 }
 
 /**
  * `ueditor`富文本编辑器模型
  */
  export interface UEditorModel extends BaseModel<string> {
-  disabled: boolean; // 是否禁用
   editorConfig: any; // `ueditor`配置 [http://fex.baidu.com/ueditor/#start-config]
-  kind: 'classic' | 'full'; // `u-editor`自定义按钮
+  allowDivTransToP: boolean; // 允许进入编辑器的div标签自动变成p标签
+  autoFloatEnabled: boolean; // 是否保持toolbar的位置不动
+  autoHeightEnabled: boolean; // 是否自动行高
+  initialFrameHeight: number; // 初始化编辑器高度
+  lang: string; // 语言包
+  maximumWords: number; // 最大字数
+  readonly: boolean; // 是否只读
+  retainOnlyLabelPasted: boolean; // 粘贴只保留标签，去除标签所有属性
+  topOffset: number; // 浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
+  wordCount: boolean; // 是否开启字数统计
+  zIndex: number; // 弹出框层级
 }
 
 /**
@@ -344,6 +370,8 @@ export interface CKEditorModel extends BaseModel<string> {
  */
  export interface MdEditorModel extends BaseModel<string> {
   editorConfig: any; // `markdown-editor`官网 [https://pandao.github.io/editor.md/]
+  readonly: boolean; // 是否只读
+  height: number; // 高度
 }
 
 /**
@@ -351,10 +379,18 @@ export interface CKEditorModel extends BaseModel<string> {
  */
 export interface DatePickerModel extends BaseModel<string> {
   clear: boolean; // 是否清空不合法日期
-  disabled: boolean; // 是否禁用
-  format: string; // 日期格式
-  kind: 'date' | 'date-time'; // 时间类型
-  now: boolean; // 是否默认当前时间
+  format: string; // 返回值日期格式，非显示值，显示值固定格式：'YYYY-MM-DD HH:mm:ss'
+  kind: 'date' | 'date-time'; // 日期类型
+  now: boolean; // 是否默认当前日期
+  readonly: boolean; // 是否只读
+}
+
+/**
+ * 日期范围选择器模型
+ */
+export interface DateRangePickerModel extends BaseModel<{start: string, end: string}> {
+  clear: boolean; // 是否清空不合法日期
+  format: string; // 返回值日期格式
   readonly: boolean; // 是否只读
 }
 
@@ -362,36 +398,33 @@ export interface DatePickerModel extends BaseModel<string> {
  * 图片模型
  */
 export interface ImageModel extends BaseModel<ImageItem[] | string> {
-  crawlConfig: CrawlConfig; // 抓取配置
-  cropperConfig: CropperConfig; // 裁剪配置
-  disabled: boolean; // 是否禁用
   display: 'image' | 'input'; // 展现方式
-  kind: 'ng2-file-upload'; // 上传类别
   multiple: boolean; // 是否多图片
   repeat: boolean; // 图片是否可重复
+  crawlConfig: CrawlConfig; // 抓取配置
+  cropperConfig: CropperConfig; // 裁剪配置
   searchConfig: ResourceSearchConfig; // 检索配置
   uploadConfig: UploadConfig; // 上传配置
   aspectRatioHeight?: number; // 裁剪图片纵横比高度
   aspectRatioWidth?: number; // 裁剪图片纵横比宽度
   cropperType?: string; // 裁剪图片格式
-  debug?: boolean; // 是否开启调试模式
   hideCrawl?: boolean; // 是否隐藏图片抓取组件
   hideCropper?: boolean; // 是否隐藏图片裁剪组件
   hideSearch?: boolean; // 是否隐藏图片检索组件
   hideUpload?: boolean; // 是否隐藏图片上传组件
-  list?: FileResource[]; // 同步操作时的图片资源列表
+  list?: FileResource[]; // 同步操作时的图片列表
   queueLimit?: number; // 单次操作最大图片数目
   searchDisplay?: 'page' | 'list'; // 检索结果显示方式
   searchMode?: 'async' | 'sync'; // 检索方式
+  debug?: boolean; // 是否开启调试模式
 }
 
 /**
  * 多媒体模型
  */
 export interface VideoModel extends BaseModel<ImageItem[] | string> {
-  disabled: boolean; // 是否禁用
-  kind: 'ng2-file-upload'; // 上传类别
   multiple: boolean; // 是否多文件
+  queueLimit: number; // 单次上传最大文件数目
   uploadConfig: UploadConfig; // 上传配置
 }
 
@@ -400,7 +433,6 @@ export interface VideoModel extends BaseModel<ImageItem[] | string> {
  */
 export interface SpreadsheetModel extends BaseModel<any[]> {
   header: string[]; // 表格头
-  kind: 'ng2-file-upload'; // 上传类别
   uploadConfig: UploadConfig; // 上传配置
   view: boolean; // 是否预览
 }
@@ -409,8 +441,8 @@ export interface SpreadsheetModel extends BaseModel<any[]> {
  * 文本域模型
  */
 export interface TextAreaModel extends BaseModel<string> {
-  disabled: boolean; // 是否禁用
-  rows: number;
+  readonly: boolean; // 是否只读
+  rows: number; // 行数
 }
 
 declare type TextBoxType = 'button'
@@ -434,7 +466,6 @@ declare type TextBoxType = 'button'
  */
 export interface TextBoxModel extends BaseModel<string> {
   clear: boolean; // 是否清除不合法数据
-  disabled: boolean; // 是否禁用
   kind: TextBoxType; // 文本框类型
   placeholder: string; // 提示
   readonly: boolean; // 是否只读
@@ -444,7 +475,6 @@ export interface TextBoxModel extends BaseModel<string> {
  * 弹出式单选项模型
  */
 export interface PopupRadioModel extends BaseModel<string | number> {
-  disabled: boolean; // 是否禁用
   options: Option<string | number>[]; // 选项列表
   readonly: boolean; // 是否只读
   searchConfig: SearchConfig; // 检索配置
@@ -456,7 +486,7 @@ export interface PopupRadioModel extends BaseModel<string | number> {
  * 弹出式多选项模型
  */
 export interface PopupCheckboxModel extends BaseModel<(string | number)[]> {
-  disabled: boolean; // 是否禁用
+  readonly: boolean; // 是否只读
   options: Option<string | number>[]; // 选项列表
   searchConfig: SearchConfig; // 检索配置
   text: any; // 显示文本
@@ -466,15 +496,12 @@ export interface PopupCheckboxModel extends BaseModel<(string | number)[]> {
  * 弹出式树模型
  */
 export interface PopupTreeModel extends BaseModel<string | number> {
-  disabled: boolean; // 是否禁用
-  mode: 'async' | 'sync'; // 加载方式
   text: string; // 显示文本
-  tree: TreeNode<Option<string | number>>[]; // 选项树
-  endpoint?: string; // 检索接口
-  searchParameter?: any; // 检索条件
+  tree: TreeNode<Option<string | number>>[]; // 同步选项树
+  searchConfig: SearchConfig; // 异步检索配置
   readonly?: boolean; // 是否只读
-  size?: 'tiny' | 'small' | 'medium'; // 尺寸
-  filter?: boolean; // 是否可以检索
+  size?: 'tiny' | 'small' | 'medium'; // 操作按钮尺寸
+  filter?: boolean; // 是否可检索
 }
 
 /**
@@ -482,8 +509,9 @@ export interface PopupTreeModel extends BaseModel<string | number> {
  */
 export interface ItemListModel extends BaseModel<any[]> {
   attributes: ConditionField[]; // 字段列表
-  disabled: boolean; // 是否禁用
-  size: string; // 弹出框尺寸
+  size: string; // 弹出框大小 medium | large
+  kind: 'item' | 'key-value'; // 弹出框类型
+  keyValue: KeyValueItemModel[]; // 键值对配置
 }
 
 /**
@@ -492,26 +520,30 @@ export interface ItemListModel extends BaseModel<any[]> {
 export interface PasswordBoxModel extends BaseModel<string> {
   empty: boolean; // 是否空置密码
   visible: boolean; // 密码是否可见
+  sureValue: string; // 确认密码初始值
 }
 
 /**
  * 联动下拉框模型
  */
 export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
-  root: string | number; // 根下拉框的复选项
+  readonly: true; // 只读
+  root: string | number; // 根下拉框的值
   tree: LinkageBoxTree<(string | number)>; // 选项树
 }
 
+/**
+ * 关键字模型
+ */
 export interface KeywordModel extends BaseModel<string[]> {
   readonly: boolean; // 是否只读
-  options: string[]; // 文件类型
+  options: string[]; // 选项
 }
 
 /**
  * 文件框模型
  */
 export interface FileModel extends BaseModel<any> {
-  disabled: boolean; // 是否禁用
   kind: string[]; // 文件类型
   accept: string; // 可上传文件类型
   download: string; // 下载地址
