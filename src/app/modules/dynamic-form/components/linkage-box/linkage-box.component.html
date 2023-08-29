@@ -1,5 +1,12 @@
 <div [formGroup]="form">
-  <sff-linkage-node [parent]="model.root" [disabled]="model.readonly" [tree]="model.tree" (selectedChange)="getValue($event)">
+  <input *ngIf="model.filter"
+         #searchBox
+         type="text"
+         class="form-control form-control-small"
+         style="max-width: 4rem; display: inline;"
+         [placeholder]="lang.filter"
+         (input)="filter(searchBox.value)">
+  <sff-linkage-node [parent]="model.root" [disabled]="model.readonly" [tree]="model.tree" [filterOptions]="searchOptions" (selectedChange)="getValue($event)">
   </sff-linkage-node>
   <input [formControlName]="model.name" type="hidden" [id]="model.name" [value]="model.value" />
 </div>

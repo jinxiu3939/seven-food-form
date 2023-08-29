@@ -3,7 +3,7 @@ import { BaseModelFactory } from './base-model.factory';
 import { dateFormat } from '../helps';
 
 /**
- * 多选项模型工厂
+ * 时间选择框模型工厂
  */
 export class DatePickerModelFactory extends BaseModelFactory {
   protected model: DatePickerModel;

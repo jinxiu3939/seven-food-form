@@ -6,8 +6,8 @@ import { ApiService } from './services/api.service';
 import { oneLayoutModels, oneLayoutSetting } from './services/mock-one';
 import { searchModels, searchSetting } from './services/mock-model';
 import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
-import { mdeditorModels } from './services/mock-mdeditor';
-import { SpreadsheetModels } from './services/mock-spreadsheet';
+import { linkageModels } from './services/mock-linkage-box';
+import { clockModels } from './services/mock-clock';
 
 @Component({
   selector: 'ngx-app',
@@ -18,12 +18,12 @@ export class AppComponent implements OnInit {
   title = 'seven-food-form';
   models: any;
   submitting = false;
-  setting: any;
+  setting: any = {};
 
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = mdeditorModels;
+    this.models = clockModels;
     // this.setting = oneLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;

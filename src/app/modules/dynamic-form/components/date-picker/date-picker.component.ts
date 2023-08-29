@@ -109,7 +109,7 @@ export class DatePickerComponent implements OnInit, ComponentReset {
 
   setFormValue() {
     if (this.date) {
-      const str_date = this.date.setHours(+this.tmpHour, +this.tmpMinute); // 设置事件
+      const str_date = this.date.setHours(+this.tmpHour, +this.tmpMinute); // 设置时间
       this.model.value = dateFormat(new Date(str_date), this.model.format); // 返回值根据参数format格式化
       this.form.controls[this.model.name].setValue(this.model.value); // 表单赋值
     }

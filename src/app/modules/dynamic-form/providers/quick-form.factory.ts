@@ -34,6 +34,9 @@ import { KeywordModelFactory } from './keyword-model.factory';
 import { UEditorModelFactory } from './u-editor-model.factory';
 import { MdEditorModelFactory } from './md-editor-model.factory';
 import { KeyValueModelFactory } from './key-value-model.factory';
+import { PopupCustomModelFactory } from './popup-custom-model.factory';
+import { CustomModelFactory } from './custom-model.factory';
+import { ClockModelFactory } from './clock-model.factory';
 
 /**
  * 快速表单工厂
@@ -294,5 +297,26 @@ export class QuickFormFactory {
    */
   mdEditor() {
     return new MdEditorModelFactory(this.config).instance();
+  }
+
+  /**
+   * popup-custom
+   */
+  popupCustom() {
+    return new PopupCustomModelFactory(this.config).instance();
+  }
+
+  /**
+   * custom
+   */
+  custom() {
+    return new CustomModelFactory(this.config).instance();
+  }
+
+  /**
+   * 时钟
+   */
+  clock() {
+    return new ClockModelFactory(this.config).instance();
   }
 }

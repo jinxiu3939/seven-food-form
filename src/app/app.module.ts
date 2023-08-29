@@ -13,12 +13,16 @@ import { SfDynamicFormModule } from './modules/dynamic-form/dynamic-form.module'
 import { TestFormModule } from './modules/test-form/test-form.module';
 import { ApiService } from './services/api.service';
 import { AppComponent } from './app.component';
+import { DateConfigComponent } from './pages/date-config.component';
+import { MapConfigComponent } from './pages/map.component';
 
 const routes: Routes = [];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DateConfigComponent,
+    MapConfigComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,10 @@ const routes: Routes = [];
   providers: [
     ApiService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    DateConfigComponent,
+    MapConfigComponent,
+  ]
 })
 export class AppModule { }

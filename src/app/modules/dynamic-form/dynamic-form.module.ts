@@ -52,7 +52,7 @@ import { DateRangePickerComponent } from './components/date-range-picker/date-ra
 import { DropDownBoxComponent } from './components/drop-down-box/drop-down-box.component';
 import { ImageComponent } from './components/image/image.component';
 import { ImageCacheComponent } from './components/image/image-cache/image-cache.component';
-import { ImageSearchComponent } from './components/image/image-search/image-search.compomemt';
+import { ImageSearchComponent } from './components/image/image-search/image-search.component';
 import { ImageSliderComponent } from './components/image/image-slider/image-slider.component';
 import { ImageUploadComponent } from './components/image/image-upload/image-upload.component';
 import { ImageUploadCropperComponent } from './components/image/image-upload-cropper/image-upload-cropper.component';
@@ -64,6 +64,7 @@ import { LinkageBoxComponent } from './components/linkage-box/linkage-box.compon
 import { LinkageNodeComponent } from './components/linkage-box/linkage-node/linkage-node.component';
 import { PasswordBoxComponent } from './components/password-box/password-box.component';
 import { PopupCheckBoxComponent } from './components/popup-list/popup-checkbox/popup-checkbox.component';
+import { PopupCustomComponent } from './components/popup-list/popup-custom/popup-custom.component';
 import { PopupRadioComponent } from './components/popup-list/popup-radio/popup-radio.component';
 import { PopupTreeComponent } from './components/popup-list/popup-tree/popup-tree.component';
 import { SimpleSearchComponent } from './components/popup-list/simple-search/simple-search.component';
@@ -79,6 +80,8 @@ import { KeywordComponent } from './components/keyword/keyword.component';
 import { FileComponent } from './components/file/file.component';
 import { BaiduUEditorComponent } from './components/u-editor/u-editor.component';
 import { MarkDownEditorComponent } from './components/md-editor/md-editor.component';
+import { CustomComponent } from './components/custom/custom.component';
+import { ClockComponent } from './components/date-picker/clock.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -105,6 +108,9 @@ const ENTRY_COMPONENTS = [
   KeywordComponent,
   BaiduUEditorComponent,
   MarkDownEditorComponent,
+  PopupCustomComponent,
+  CustomComponent,
+  ClockComponent,
 ];
 
 const FORM_COMPONENTS = [

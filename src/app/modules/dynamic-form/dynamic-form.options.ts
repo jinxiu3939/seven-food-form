@@ -13,7 +13,9 @@ import {
  */
 export declare type ModelType = 'checkbox'
                                 | 'checkbox-tree'
+                                | 'clock'
                                 | 'ck-editor'
+                                | 'custom'
                                 | 'date-picker'
                                 | 'date-range-picker'
                                 | 'drop-down-box'
@@ -25,6 +27,7 @@ export declare type ModelType = 'checkbox'
                                 | 'md-editor'
                                 | 'password-box'
                                 | 'popup-checkbox'
+                                | 'popup-custom'
                                 | 'popup-radio'
                                 | 'popup-tree'
                                 | 'radio'
@@ -527,9 +530,10 @@ export interface PasswordBoxModel extends BaseModel<string> {
  * 联动下拉框模型
  */
 export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
-  readonly: true; // 只读
+  readonly: boolean; // 只读
   root: string | number; // 根下拉框的值
   tree: LinkageBoxTree<(string | number)>; // 选项树
+  filter: boolean; // 是否可检索
 }
 
 /**
@@ -547,4 +551,31 @@ export interface FileModel extends BaseModel<any> {
   kind: string[]; // 文件类型
   accept: string; // 可上传文件类型
   download: string; // 下载地址
+}
+
+/**
+ * 自定义对话框模型
+ */
+export interface PopupCustomModel extends BaseModel<any> {
+  readonly: boolean; // 是否只读
+  renderComponent: any; // 对话框组件
+  text: string; // 显示文本
+  size: 'tiny' | 'small' | 'medium'; // 尺寸
+}
+
+/**
+ * 自定义模型
+ */
+export interface CustomModel extends BaseModel<any> {
+  renderComponent: any; // 自定义组件
+  onComponentInitFunction: Function;
+}
+
+/**
+ * 时钟模型
+ */
+export interface ClockModel extends BaseModel<{h: string, i: string, a: string}> {
+  now: boolean; // 是否默认当前时间
+  readonly: boolean; // 是否只读
+  kind: 12 | 24; // 12小时制或者24小时制
 }

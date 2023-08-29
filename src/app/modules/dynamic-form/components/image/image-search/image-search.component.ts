@@ -6,6 +6,7 @@ import { NbDialogService } from '@nebular/theme';
 import { Subject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 
+import { formatAlertMessage } from '../../../helps';
 import { LangProvider } from '../../../providers/data/lang.provider';
 
 import {
@@ -49,7 +50,7 @@ export class ImageSearchComponent implements OnInit {
   public records: FileResource[]; // 显示的资源。异步数据，records.length === files$.subscribe().length
   private files$: Observable<FileResource[]>; // 检索结果
   private items: FileResource[]; // 所有结果集
-  private tmpItmes: FileResource[][]; // 异步检索临时结果集
+  private tmpItems: FileResource[][]; // 异步检索临时结果集
   lang: any;
 
   private searchTerms = new Subject<string>(); // 检索对象
@@ -65,7 +66,7 @@ export class ImageSearchComponent implements OnInit {
       this.items = this.config.result; // 同步检索所有结果集
     } else {
       this.items = []; // 异步检索所有结果集动态增长
-      this.tmpItmes = []; // 存放每次检索页码，防止结果集重复
+      this.tmpItems = []; // 存放每次检索页码，防止结果集重复
     }
     this.size = this.config.additionalParameter.page_size;
     this.resetResult();
@@ -143,8 +144,8 @@ export class ImageSearchComponent implements OnInit {
             this.message = tempRes.error;
           } else {
             this.last = tempRes.total; // 设置分页
-            if (!this.tmpItmes[this.page]) {
-              this.tmpItmes[this.page] = tempRes.list; // 临时结果集
+            if (!this.tmpItems[this.page]) {
+              this.tmpItems[this.page] = tempRes.list; // 临时结果集
             }
             result = tempRes.list; // 本次检索结果
             
@@ -219,7 +220,7 @@ export class ImageSearchComponent implements OnInit {
         if (this.selected.length < this.queueLimit) {
           this.selected.push(file);
         } else {
-          this.alert(this.lang.choose_up + '：' + this.queueLimit);
+          this.alert(formatAlertMessage(this.lang.choose_up, [this.queueLimit]));
         }
       } else { // 不限个数
         this.selected.push(file);
@@ -264,7 +265,7 @@ export class ImageSearchComponent implements OnInit {
    * 异步全部检索结果
    */
   private asyncItems() {
-    this.tmpItmes.map((result) => this.items.push(...result));
+    this.tmpItems.map((result) => this.items.push(...result));
   }
 
   /**

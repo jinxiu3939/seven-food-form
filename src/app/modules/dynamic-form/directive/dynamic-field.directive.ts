@@ -26,6 +26,9 @@ import { FileComponent } from '../components/file/file.component';
 import { MarkDownEditorComponent } from '../components/md-editor/md-editor.component';
 import { BaiduUEditorComponent } from '../components/u-editor/u-editor.component';
 import { DateRangePickerComponent } from '../components/date-range-picker/date-range-picker.component';
+import { PopupCustomComponent } from '../components/popup-list/popup-custom/popup-custom.component';
+import { CustomComponent } from '../components/custom/custom.component';
+import { ClockComponent } from '../components/date-picker/clock.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -51,6 +54,9 @@ const COMPONENTS = {
   video: VideoComponent,
   'u-editor': BaiduUEditorComponent,
   'md-editor': MarkDownEditorComponent,
+  'popup-custom': PopupCustomComponent,
+  'custom': CustomComponent,
+  'clock': ClockComponent,
 };
 
 @Directive({

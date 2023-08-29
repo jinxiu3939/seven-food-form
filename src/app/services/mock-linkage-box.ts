@@ -7,13 +7,13 @@ import { tree } from './mock-linkage-tree-data';
 
 export const linkageModels: any = [
     new QuickFormFactory({
-    label: '族谱',
+    label: '族谱2',
     name: 'zupu-2',
     tree: tree,
     root: 10,
   }).linkageBox(),
   new LinkageBoxModelFactory({
-    label: '族谱',
+    label: '族谱1',
     name: 'zupu-1',
     value: ['gege', 'A'],
     disabled: true,
@@ -21,7 +21,7 @@ export const linkageModels: any = [
     root: 0,
   }).instance(),
   {
-    label: '族谱',
+    label: '族谱3',
     name: 'zupu-3',
     type: 'linkage-box',
     value: ['111'],
@@ -29,5 +29,6 @@ export const linkageModels: any = [
     order: 1,
     tree: tree,
     root: 0,
+    filter: true,
   },
 ];
