@@ -82,6 +82,7 @@ import { BaiduUEditorComponent } from './components/u-editor/u-editor.component'
 import { MarkDownEditorComponent } from './components/md-editor/md-editor.component';
 import { CustomComponent } from './components/custom/custom.component';
 import { ClockComponent } from './components/date-picker/clock.component';
+import { TextCombineComponent } from './components/text-combine/text-combine.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -111,6 +112,7 @@ const ENTRY_COMPONENTS = [
   PopupCustomComponent,
   CustomComponent,
   ClockComponent,
+  TextCombineComponent,
 ];
 
 const FORM_COMPONENTS = [

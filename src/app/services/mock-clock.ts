@@ -14,7 +14,7 @@ export const clockModels: any = [
   new ClockModelFactory({
     label: '开始时间',
     name: 'start-1',
-    kind: 12,
+    kind: '12',
     value: {h: '23', i: '59'},
   }).instance(),
   {
@@ -24,6 +24,6 @@ export const clockModels: any = [
     width: 5,
     value: '',
     readonly: true,
-    kind: 12,
+    kind: '12',
   },
 ];

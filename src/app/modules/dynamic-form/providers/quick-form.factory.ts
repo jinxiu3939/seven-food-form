@@ -37,6 +37,7 @@ import { KeyValueModelFactory } from './key-value-model.factory';
 import { PopupCustomModelFactory } from './popup-custom-model.factory';
 import { CustomModelFactory } from './custom-model.factory';
 import { ClockModelFactory } from './clock-model.factory';
+import { TextCombineModelFactory } from './text-combine-model.factory';
 
 /**
  * 快速表单工厂
@@ -318,5 +319,12 @@ export class QuickFormFactory {
    */
   clock() {
     return new ClockModelFactory(this.config).instance();
+  }
+
+  /**
+   * 组合输入框
+   */
+  textCombine() {
+    return new TextCombineModelFactory(this.config).instance();
   }
 }

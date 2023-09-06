@@ -36,7 +36,7 @@ export class CustomComponent implements OnInit, ComponentReset {
   }
 
   ngOnInit() {
-    if (this.model && !this.customComponent) {
+    if (this.model && !this.customComponent && this.model.renderComponent) {
       this.createCustomComponent();
       this.callOnComponentInit();
       this.patchInstance();
@@ -54,7 +54,7 @@ export class CustomComponent implements OnInit, ComponentReset {
   }
 
   resetModel() {
-    if (this.customComponent.instance) {
+    if (this.customComponent?.instance) {
       this.patchInstance(); // 实例重置
     }
   }
@@ -76,12 +76,11 @@ export class CustomComponent implements OnInit, ComponentReset {
   protected subscribeComponent() {
     if (this.customComponent?.instance) {
       /* 表单值改变事件 */
-      if (this.customComponent.instance.hasOwnProperty('change')) {
-        const subject = this.customComponent.instance['change'];
+      if (this.customComponent.instance.hasOwnProperty('update')) {
+        const subject = this.customComponent.instance['update'];
         if (subject instanceof EventEmitter) {
           this.componentSubjects.push(
             subject.subscribe(value => {
-              console.log(value);
               // 不能过滤空值，否则无法清空
               this.model.value = value;
               this.form.controls[this.model.name].setValue(this.model.value);

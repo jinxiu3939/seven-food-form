@@ -15,14 +15,14 @@ export class MapConfigComponent implements OnInit {
 
   value: any;
   payload: any;
-  @Output() change = new EventEmitter<any>();
+  @Output() update = new EventEmitter<any>();
 
   ngOnInit() {
     console.log(this.payload);
   }
 
   formChange() {
-    this.change.emit('let\'s go');
+    this.update.emit('let\'s go');
   }
 
 }

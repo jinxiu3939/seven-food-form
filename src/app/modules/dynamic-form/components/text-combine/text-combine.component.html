@@ -1,0 +1,25 @@
+<div [formGroup]="form" class="row">
+  <div class="col-12 vertical-scroll table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th *ngFor="let attr of model.attributes">
+            {{ attr.text }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td *ngFor="let attr of model.attributes">
+            <input class="form-control"
+                   [type]="model.kind"
+                   [readonly]="model.readonly"
+                   [value]="model.value?.[attr.value] ? model.value?.[attr.value] : null"
+                   (change)="receive($event, attr.value)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
+</div>

@@ -6,7 +6,7 @@ import { ApiService } from './services/api.service';
 import { oneLayoutModels, oneLayoutSetting } from './services/mock-one';
 import { searchModels, searchSetting } from './services/mock-model';
 import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
-import { linkageModels } from './services/mock-linkage-box';
+import { customModels } from './services/mock-custom';
 import { clockModels } from './services/mock-clock';
 
 @Component({
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = clockModels;
+    this.models = customModels;
     // this.setting = oneLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;

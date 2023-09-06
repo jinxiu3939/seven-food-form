@@ -37,7 +37,7 @@ export class ClockComponent implements OnInit, ComponentReset {
   minutes = AllMinutes;
   hour = '00';
   minute = '00';
-  twelve = 'am';
+  twelve = '';
   lang: any;
   isTwelve = false; // 是否为12小时制
 
@@ -46,10 +46,11 @@ export class ClockComponent implements OnInit, ComponentReset {
   }
 
   ngOnInit() {
-    if (this.model.kind === 12) {
+    if (this.model.kind === '12') {
       this.isTwelve = true;
+      this.twelve = 'am';
     }
-    this.hours = AllHours.slice(0, this.model.kind);
+    this.hours = AllHours.slice(0, +this.model.kind);
     this.loadDate();
   }
 
@@ -63,7 +64,7 @@ export class ClockComponent implements OnInit, ComponentReset {
       const hour = parseInt(this.model.value.h);
       if (hour > 0 && hour < 10) {
         this.hour = '0' + hour;
-      } else if (hour > 9 && hour < this.model.kind) {
+      } else if (hour > 9 && hour < +this.model.kind) {
         this.hour = hour + '';
       }
 

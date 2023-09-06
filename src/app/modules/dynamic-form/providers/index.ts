@@ -35,6 +35,7 @@ export * from './range-text-box-model.factory';
 export * from './spreadsheet-model.factory';
 export * from './text-area-model.factory';
 export * from './text-box-model.factory';
+export * from './text-combine-model.factory';
 export * from './time-text-box-model.factory';
 export * from './u-editor-model.factory';
 export * from './url-text-box-model.factory';

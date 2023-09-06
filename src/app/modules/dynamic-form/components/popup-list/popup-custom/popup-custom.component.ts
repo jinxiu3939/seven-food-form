@@ -45,7 +45,8 @@ export class PopupCustomComponent implements OnInit, ComponentReset {
    * 选择
    */
   choose() {
-    this.dialogService
+    if (this.model.renderComponent) {
+      this.dialogService
       .open(this.model.renderComponent, {context: this.model})
       .onClose.subscribe(event => {
         if (event) {
@@ -58,6 +59,7 @@ export class PopupCustomComponent implements OnInit, ComponentReset {
           }
         }
       });
+    }
   }
 
   /**

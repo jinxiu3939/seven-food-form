@@ -34,6 +34,7 @@ export declare type ModelType = 'checkbox'
                                 | 'spreadsheet'
                                 | 'text-area'
                                 | 'text-box'
+                                | 'text-combine'
                                 | 'u-editor'
                                 | 'video';
 
@@ -577,5 +578,14 @@ export interface CustomModel extends BaseModel<any> {
 export interface ClockModel extends BaseModel<{h: string, i: string, a: string}> {
   now: boolean; // 是否默认当前时间
   readonly: boolean; // 是否只读
-  kind: 12 | 24; // 12小时制或者24小时制
+  kind: '12' | '24'; // 12小时制或者24小时制
+}
+
+/**
+ * 组合输入框模型
+ */
+export interface TextCombineModel extends BaseModel<any> {
+  attributes: ConditionField[]; // 字段列表
+  kind: TextBoxType; // 文本框类型
+  readonly: boolean; // 是否只读
 }

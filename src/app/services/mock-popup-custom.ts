@@ -11,7 +11,6 @@ export const PopupCustomModels: any = [
     name: 'yes_no1',
     value: [],
     require: true,
-    renderComponent: DateConfigComponent,
     size: 'small',
     onComponentInitFunction: function (e) {
       console.log(e);

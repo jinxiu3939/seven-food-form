@@ -5,13 +5,13 @@ import {
 
 import { MapConfigComponent } from '../pages/map.component';
 
-export const CustomModels: any = [
+export const customModels: any = [
   new QuickFormFactory({
     label: '时间设置',
     name: 'yes_no1',
     value: [],
-    require: true,
-    renderComponent: MapConfigComponent,
+    require: false,
+    renderComponent: null,
     onComponentInitFunction: function (e) {
       console.log(e);
     }
@@ -32,9 +32,7 @@ export const CustomModels: any = [
     order: 0,
     payload: {method: 'custom'},
     readonly: false,
-    require: true,
     type: "custom",
-    value: "",
-    renderComponent: MapConfigComponent
+    value: ""
   }
 ];

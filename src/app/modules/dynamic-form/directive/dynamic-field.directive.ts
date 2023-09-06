@@ -29,6 +29,7 @@ import { DateRangePickerComponent } from '../components/date-range-picker/date-r
 import { PopupCustomComponent } from '../components/popup-list/popup-custom/popup-custom.component';
 import { CustomComponent } from '../components/custom/custom.component';
 import { ClockComponent } from '../components/date-picker/clock.component';
+import { TextCombineComponent } from '../components/text-combine/text-combine.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -51,6 +52,7 @@ const COMPONENTS = {
   spreadsheet: SpreadsheetComponent,
   'text-area': TextAreaComponent,
   'text-box': TextBoxComponent,
+  'text-combine': TextCombineComponent,
   video: VideoComponent,
   'u-editor': BaiduUEditorComponent,
   'md-editor': MarkDownEditorComponent,

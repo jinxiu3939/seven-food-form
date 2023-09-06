@@ -5,7 +5,7 @@
            type="text"
            [value]="text">
     <span *ngIf="! model.readonly" [ngClass]="{'tiny-operation': model.size==='tiny', 'input-group-append': model.size!=='tiny'}">
-      <a nbButton [size]="model.size" status="info" (click)="choose()">{{ lang.choose }}</a>
+      <a nbButton *ngIf="model.renderComponent" [size]="model.size" status="info" (click)="choose()">{{ lang.choose }}</a>
       <a nbButton *ngIf="model.value" [size]="model.size" status="warning" (click)="destroy()">{{ lang.clear }}</a>
     </span>
   </div>

@@ -10,7 +10,7 @@ export class ClockModelFactory extends BaseModelFactory {
 
   constructor(obj: any) {
     super(obj);
-    this.config.kind = 24; // 类别
+    this.config.kind = '24'; // 类别
     this.config.now = false; // 是否默认当前时间
     this.config.readonly = false; // 默认非只读
   }
@@ -28,7 +28,7 @@ export class ClockModelFactory extends BaseModelFactory {
     if (this.model.disabled === true) {
       this.model.readonly = true;
     }
-    if (this.model.kind === 12) {
+    if (this.model.kind === '12') {
       if (parseInt(this.model.value.h) > 11) {
         this.model.value.h = parseInt(this.model.value.h) % 12 + '';
         this.model.value.a = 'pm';
