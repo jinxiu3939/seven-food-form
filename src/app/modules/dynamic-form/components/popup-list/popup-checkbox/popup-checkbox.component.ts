@@ -4,6 +4,7 @@
  */
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 import { Subject, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -207,4 +208,13 @@ export class PopupCheckBoxComponent implements OnInit, ComponentReset {
     }
   }
 
+  /**
+   * 拖动排序
+   * @param event 
+   */
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.model.value, event.previousIndex, event.currentIndex);
+
+    this.form.controls[this.model.name].setValue(this.model.value);
+  }  
 }

@@ -3,6 +3,7 @@
  */
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { formatAlertMessage } from '../../helps';
 import { ComponentReset } from '../../providers/interface/component-reset';
@@ -79,5 +80,16 @@ export class KeywordComponent implements ComponentReset {
       message.push(formatAlertMessage(this.lang.input_up, [this.model.max]));
     }
     return message;
+  }
+
+
+  /**
+   * 拖动排序
+   * @param event 
+   */
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.model.value, event.previousIndex, event.currentIndex);
+
+    this.form.controls[this.model.name].setValue(this.model.value);
   }
 }

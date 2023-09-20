@@ -2,6 +2,7 @@
  * 多选按钮
  */
 import { Component, Input, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { FormGroup } from '@angular/forms';
 
 import { formatAlertMessage } from '../../helps';
@@ -23,7 +24,7 @@ export class CheckboxComponent implements OnInit, ComponentReset {
   checkedStatus: boolean[] = []; // 元素选中状态集合
   lang: any;
 
-  constructor(private langProvider: LangProvider) {
+  constructor(langProvider: LangProvider) {
     this.lang = langProvider.lang;
   }
 
@@ -90,5 +91,24 @@ export class CheckboxComponent implements OnInit, ComponentReset {
     this.model.value = this.model.value as string[];
     // 数字字符串和数字等同
     return this.model.value && (this.model.value.indexOf(value) > -1 || this.model.value.indexOf(value + '') > -1);
+  }
+
+  /**
+   * 拖动排序
+   * @param event 
+   */
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.model.options, event.previousIndex, event.currentIndex);
+    
+    /* 值排序 */
+    const sort = [];
+    this.model.options.map((option) => {
+      if (this.isChecked(option.value as string)) {
+        sort.push(option.value);
+      }
+    });
+    this.model.value.sort((x, y) => sort.indexOf(x) - sort.indexOf(y));
+
+    this.form.controls[this.model.name].setValue(this.model.value);
   }
 }

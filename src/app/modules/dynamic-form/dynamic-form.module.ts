@@ -2,6 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import {
   NbRadioModule,
   NbCardModule,
@@ -147,6 +148,7 @@ const FORM_DIRECTIVE = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DragDropModule,
     NbRadioModule,
     NbCardModule,
     NbCheckboxModule,

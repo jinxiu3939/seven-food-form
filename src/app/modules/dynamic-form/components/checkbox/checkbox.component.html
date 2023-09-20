@@ -1,21 +1,31 @@
-<div [formGroup]="form" class="row boxes">
-  <div *ngFor="let opt of model.options; let key = index" class="col-{{model.width}} box">
-    <div class="form-check form-check-inline" [ngClass]="{'col-deep': model.width, 'form-badge': opt.items}">
-      <nb-checkbox [checked]="checkedStatus[key]"             
-                   [disabled]="model.readonly"
-                   [title]="opt.title ? opt.title : ''"
-                   (checkedChange)="switchChecked($event, opt.value)">
-        {{ opt.text }}
-      </nb-checkbox>
-      <nb-badge *ngIf="opt.items"
-                [position]="model.width ? 'left' : 'right'"
-                [status]="opt.items > 99 ? 'danger' : 'info'"
-                [title]="opt.items"
-                [text]="opt.items > 99 ? '99+' : opt.items">
-      </nb-badge>
+<div [formGroup]="form">
+  <div class="row boxes"
+       [ngClass]="{'drag-container': model.drag}"
+       cdkDropList
+       cdkDropListOrientation="horizontal"
+       (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let opt of model.options; let key = index"
+         class="col-{{model.width}} box"
+         cdkDrag
+         [cdkDragDisabled]="!model.drag">
+      <div class="drag-placeholder" *cdkDragPlaceholder></div>
+      <div class="form-check form-check-inline" [ngClass]="{'col-deep': model.width, 'form-badge': opt.items}">
+        <nb-checkbox [checked]="checkedStatus[key]"             
+                    [disabled]="model.readonly"
+                    [title]="opt.title ? opt.title : ''"
+                    (checkedChange)="switchChecked($event, opt.value)">
+          {{ opt.text }}
+        </nb-checkbox>
+        <nb-badge *ngIf="opt.items"
+                  [position]="model.width ? 'left' : 'right'"
+                  [status]="opt.items > 99 ? 'danger' : 'info'"
+                  [title]="opt.items"
+                  [text]="opt.items > 99 ? '99+' : opt.items">
+        </nb-badge>
+      </div>
     </div>
   </div>
-  <div *ngIf="invalid" class="text-error col-12">
+  <div *ngIf="invalid" class="text-error">
     <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
   </div>
   <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">

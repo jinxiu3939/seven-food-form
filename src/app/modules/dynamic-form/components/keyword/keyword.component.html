@@ -1,14 +1,20 @@
 <div [formGroup]="form" class="keyword" [ngClass]="{'keyword-list': isOption}">
-  <ng-container *ngIf="model.value && model.value.length > 0">
-    <a *ngFor="let v of model.value" nbButton size="tiny">
+  <span *ngIf="model.value && model.value.length > 0"
+        class="word-list"
+        [ngClass]="{'drag-container': model.drag}"
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)">
+    <span *ngFor="let v of model.value" class="item" cdkDrag [cdkDragDisabled]="!model.drag">
+      <div class="drag-placeholder" *cdkDragPlaceholder></div>
       {{ v }}
       <nb-icon *ngIf="! model.readonly" status="danger" icon="close-square" (click)="delete(v)"></nb-icon>
-    </a>
-  </ng-container>
+    </span>
+  </span>
   <ng-container *ngIf="! model.value || model.value.length === 0">
-    <a>{{ lang.no_data }}</a>
+    <span>{{ lang.no_data }}</span>
   </ng-container>
-  <span *ngIf="! model.readonly">
+  <span *ngIf="! model.readonly" class="operate">
     <input #keyword type="text" class="form-control-sm form-value" (focus)="showOption()">
     <a nbButton class="btn-add" status="info" size="tiny" (click)="add(keyword)">{{ lang.add }}</a>
   </span>

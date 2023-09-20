@@ -22,6 +22,7 @@ export const PopupCheckboxModels: any = [
         },
       ],
     },
+    drag: false,
   }).popupCheckbox(),
   new PopupCheckboxModelFactory({
     label: '族谱',
@@ -41,5 +42,6 @@ export const PopupCheckboxModels: any = [
     max: 4,
     value: ['A-1', 1, 'gege'],
     text: {'A-1': 'A', 1: 1, gege: 'gege'},
+    drag: true,
   },
 ];

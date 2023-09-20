@@ -1,14 +1,20 @@
-<div [formGroup]="form">
-  <ng-container *ngIf="model.value && model.value.length > 0">
-    <a *ngFor="let val of model.value" size="tiny" nbButton outline status="basic" class="btn-basic">
-      {{ val }} / {{ text[val] ? text[val] : '' }}
+<div [formGroup]="form" class="popup-checkbox">
+  <span *ngIf="model.value && model.value.length > 0"
+        class="text-list"
+        [ngClass]="{'drag-container': model.drag}"
+        cdkDropList
+        cdkDropListOrientation="horizontal"
+        (cdkDropListDropped)="drop($event)">
+    <span *ngFor="let val of model.value" class="item" cdkDrag [cdkDragDisabled]="!model.drag">
+      <div class="drag-placeholder" *cdkDragPlaceholder></div>
+      <span>{{ val }} / {{ text[val] ? text[val] : '' }}</span>
       <nb-icon *ngIf="! model.readonly" status="warning" icon="close" [title]="lang.delete" (click)="delete(val)"></nb-icon>
-    </a>
-  </ng-container>
-  <ng-container *ngIf="! model.readonly">
+    </span>
+  </span>
+  <span *ngIf="! model.readonly" class="operate">
     <a nbButton size="tiny" status="info" (click)="choose()">{{ lang.choose }}</a>
     <a nbButton *ngIf="model.value && model.value.length>0" size="tiny" status="warning" (click)="destroy()">{{ lang.clear }}</a>
-  </ng-container>
+  </span>
   <div *ngIf="invalid" class="text-error">
     <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
   </div>

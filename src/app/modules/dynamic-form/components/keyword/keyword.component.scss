@@ -21,6 +21,7 @@
     display: none;
 
     a {
+      margin-right: 0.3rem;
       color: nb-theme(background-basic-color-1);
     }
 
@@ -48,11 +49,17 @@
     display: block;
   }
 
-  a {
+  .item {
     position: relative;
-    margin-right: .5rem;
+    margin-right: .75rem;
     margin-bottom: .25rem;
     margin-top: .25rem;
+    padding: 0.3125rem 0.625rem;
+    background-color: nb-theme(background-basic-color-3);
+    border-color: nb-theme(border-basic-color-3);
+    border-radius: 0.2rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
 
     nb-icon {
       position: absolute;
@@ -70,5 +77,32 @@
 
   .btn-add {
     margin: 0;
+  }
+
+  .word-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .operate {
+    padding-top: 3px;
+  }
+
+  .drag-placeholder {
+    min-height: 1rem;
+    min-width: 2rem;
+    background: nb-theme(color-basic-500);
+    border: dotted 3px nb-theme(color-basic-600);
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .drag-container {
+    width: auto;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
+    .box {
+      overflow: visible;
+    }
   }
 }

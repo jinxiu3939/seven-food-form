@@ -40,6 +40,7 @@
 - readonly: boolean; // 是否只读
 - options: Option<string | number>[]; // 选项列表
 - width: number; // 选项宽度
+- drag: boolean; // 是否可拖动
 
 #### CheckboxTreeModel
 
@@ -252,6 +253,7 @@
 - options: Option<string | number>[]; // 选项列表
 - searchConfig: SearchConfig; // 检索配置
 - text: string[]; // 显示文本
+- drag: boolean; // 是否可拖动
 
 > 应该自定义服务实现检索提供者接口：`SearchProvider`
 
@@ -367,6 +369,7 @@
 - validator?: any; // 验证器
 - readonly: boolean; // 是否只读
 - options: string[]; // 选项
+- drag: boolean; // 是否可拖动
 
 #### UEditorModel
 

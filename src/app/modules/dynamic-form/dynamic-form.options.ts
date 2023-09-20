@@ -331,6 +331,7 @@ export interface CheckboxModel extends BaseModel<(string | number)[]> {
   options: Option<string | number>[]; // 选项列表
   readonly: boolean; // 是否只读
   width: number; // 选项宽度，控制一行显示几个选项，12分格
+  drag: boolean; // 是否可拖动
 }
 
 /**
@@ -494,6 +495,7 @@ export interface PopupCheckboxModel extends BaseModel<(string | number)[]> {
   options: Option<string | number>[]; // 选项列表
   searchConfig: SearchConfig; // 检索配置
   text: any; // 显示文本
+  drag: boolean; // 是否可拖动
 }
 
 /**
@@ -543,6 +545,7 @@ export interface LinkageBoxTreeModel extends BaseModel<(string | number)[]> {
 export interface KeywordModel extends BaseModel<string[]> {
   readonly: boolean; // 是否只读
   options: string[]; // 选项
+  drag: boolean; // 是否可拖动
 }
 
 /**
