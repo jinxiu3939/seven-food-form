@@ -1,4 +1,4 @@
-<a name="4.1.1"></a>[dev]
+<a name="4.1.1"></a>
 ## 4.1.1
 
 - 优化组件`attachment`样式，使用`input-group-append`和`input-group-prepend`

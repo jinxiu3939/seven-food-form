@@ -8,7 +8,7 @@ import { options } from './mock-options';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon-block'; // 导入`ckeditor`模块
 
 export const appKey = 'dwen-DFOeite.*hte';
-export const token = '1be6hvpD0exgGzTq9ztZ1KpcE52DBljIzrS5K6c0tSKRhIeciHQs';
+export const token = 'add2NYgWI89T9WA7Tk0AGaaJivi31BQr7GGeoveYmQd+4/P8OLex';
 export const oneLayoutModels = [
   {
     label: '日期范围选择',

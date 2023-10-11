@@ -4,23 +4,7 @@
 
 @include nb-install-component() {
   .file {
-    position: relative;
     margin-top: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-
-    .icon {
-      font-size: 2rem;
-    }
-
-    .delete {
-      position: absolute;
-      top: -0.5rem;
-      left: 0.5rem;
-    }
-
   }
 
   .drag-placeholder {

@@ -17,8 +17,9 @@ export const searchConfig = {
         { text: 'newsArticle', value: 9, title : 'newsArticle', items: null },
         { text: '视频', value: 92, title : 'video', items: null },
       ],
-      mode: 'sync',
-      endpoint: '/api/frame/form/index',
+      mode: 'async',
+      endpoint: '/api/index/test/index',
+      param: 'model_name'
     },
     {
       text: '是否隐藏',
@@ -49,7 +50,7 @@ export const searchConfig = {
     format: "option",
     system_model_id: 1
   },
-  endpoint: '/api/log/error/index',
+  endpoint: '/api/index/test/index',
   mode: 'async',
   result: [],
   size: 30,

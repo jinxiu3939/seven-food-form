@@ -28,7 +28,7 @@ export class AttachmentModelFactory extends BaseModelFactory {
       creation_time: null, // 创建时间
       file_name: null, // 文件名称
       page_number: 1,
-      page_size: 2000,
+      page_size: 200,
       tag: null, // 标签
       title: null, // 标题/描述
       type: 'file', // 类型
@@ -49,9 +49,13 @@ export class AttachmentModelFactory extends BaseModelFactory {
     /* 上传配置 */
     this.config.uploadConfig = ng2FileUploadConfig;
     if (obj.allowedUploadFileType) {
-      this.config.uploadConfig.allowedFileType = obj.allowedUploadFileType;
+      if (typeof obj.allowedUploadFileType === 'string') {
+        this.config.uploadConfig.allowedFileType = obj.allowedUploadFileType.split(",");
+      } else if (Array.isArray(obj.allowedUploadFileType)) {
+        this.config.uploadConfig.allowedFileType = obj.allowedUploadFileType;
+      }
     }
-    if (obj.allowedUploadFileType) {
+    if (obj.maxUploadFileSize) {
       this.config.uploadConfig.maxFileSize = obj.maxUploadFileSize;
     }
 
@@ -71,7 +75,7 @@ export class AttachmentModelFactory extends BaseModelFactory {
 
   format() {
     if (this.model.searchConfig.display === 'page') {
-      this.model.searchConfig.additionalParameter.page_size = 30;
+      this.model.searchConfig.additionalParameter.page_size = 16;
     }
     if (this.model.multiple && !this.model.queueLimit) {
       this.model.queueLimit = 10;

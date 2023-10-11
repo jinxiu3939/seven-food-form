@@ -8,7 +8,7 @@ import { searchModels, searchSetting } from './services/mock-model';
 import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
 import { attachmentModels } from './services/mock-attachment';
 import { imageModels } from './services/mock-image';
-import { keywordModels } from './services/mock-keyword';
+import { PopupRadioModels } from './services/mock-popup-radio';
 
 @Component({
   selector: 'ngx-app',
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = attachmentModels.concat(imageModels).concat(keywordModels);
+    this.models = attachmentModels.concat(imageModels).concat(PopupRadioModels);
     // this.setting = oneLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;

@@ -156,7 +156,8 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
     if (this.config.conditions[term.key].mode === 'async') { // 异步检索
       this.provider.setApi(this.config.conditions[term.key].endpoint); // 设置检索接口
       const param = this.config.conditions[term.key]?.param ? this.config.conditions[term.key].param : 'title';
-      return this.provider.getPage(1, this.config.conditions[term.key].size, {[param]: keyword, format: 'option'})
+      const size = this.config.conditions[term.key]?.size ? this.config.conditions[term.key].size : 10;
+      return this.provider.getPage(1, size, {[param]: keyword, format: 'option'})
         .pipe(
           map(res => this.searchOptions[term.key] = res && res.length > 0 ? res : [{text: this.lang.search_no_data, value: ''}]),
         ); // 检索

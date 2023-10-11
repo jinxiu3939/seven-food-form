@@ -14,6 +14,8 @@ export const attachmentModels: any = [
     queueLimit: 2,
     searchDisplay: 'page',
     debug: true,
+    allowedUploadFileType: 'pdf,compress',
+    maxUploadFileSize: 3000,
     uploadConfig: {
       authTokenHeader: 'Token',
       authToken: token,
@@ -44,11 +46,13 @@ export const attachmentModels: any = [
     repeat: true,
     multiple: true,
     list: images,
-    searchDisplay: 'list',
+    searchDisplay: 'page',
     searchMode: 'sync',
     debug: true,
     min: 2,
     require: true,
+    allowedUploadFileType: ['pdf','compress'],
+    maxUploadFileSize: 3000,
     disabled: false,
     value: [{url: 'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg', title: ''}]
   }).instance(),

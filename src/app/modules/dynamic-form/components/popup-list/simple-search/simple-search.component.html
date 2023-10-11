@@ -18,7 +18,7 @@
           <input #searchBox
                  type="text"
                  class="form-control form-control-small"
-                 [placeholder]="condition.mode === 'sync' ? lang.filter : lang.search"
+                 [placeholder]="item.mode === 'sync' ? lang.filter : lang.search"
                  (input)="searchConditionOption(searchBox.value, f)">
           <div class="input-group-append">
             <nb-select [placeholder]="lang.select"
