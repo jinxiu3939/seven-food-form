@@ -1,3 +1,17 @@
+<a name="4.1.1"></a>[dev]
+## 4.1.1
+
+- 优化组件`attachment`样式，使用`input-group-append`和`input-group-prepend`
+- 优化组件`attachment`配置，`allowedFileType`支持字符串拆分成数组
+- 优化组件`SimpleSearchComponent`异步检索选项
+
+<a name="4.1.0"></a>
+## 4.1.0
+
+- 增加多文件组件`attachment`
+- 去掉`keyword`选项大写转换
+- 优化图片组件
+
 <a name="4.0.9"></a>
 ## 4.0.9
 

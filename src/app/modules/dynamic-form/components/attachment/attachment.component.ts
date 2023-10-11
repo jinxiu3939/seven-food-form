@@ -1,47 +1,46 @@
 /**
- * 多媒体文件上传
+ * 附件文件上传
  * 支持多文件
  * 请谨慎配置max
- * 当multiple为true时，语义为：视频的个数；为false时，语义为文件路径的长度
- * 正确的做法是：multiple为true时设置max，false时不设置max；multiple为false时，只能上传一个文件，只需要设置必填即可
+ * 当multiple为true时，语义为：附件的个数；为false时，语义为文件路径的长度
+ * 正确的做法是：multiple为true时设置max，false时不设置max，必须上传一个文件时，只需要设置必填即可
  */
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
 import { formatAlertMessage } from '../../helps';
-import { ImageDescription, VideoModel, ImageItem } from '../../dynamic-form.options';
+import { ImageDescription, AttachmentModel, ImageItem } from '../../dynamic-form.options';
 import { LangProvider } from '../../providers/data/lang.provider';
 import { ComponentReset } from '../../providers/interface/component-reset';
 
 @Component({
-  selector: 'sff-video',
-  templateUrl: './video.component.html',
+  selector: 'sff-attachment',
+  templateUrl: './attachment.component.html',
   styleUrls: [
-    './video.component.scss',
+    './attachment.component.scss',
   ],
 })
-export class VideoComponent implements OnInit, ComponentReset {
+export class AttachmentComponent implements OnInit, ComponentReset {
 
-  @Input() model: VideoModel;
+  @Input() model: AttachmentModel;
   @Input() form: FormGroup;
 
   @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
 
   public thumbnails: ImageItem[]; // 显示多媒体，表单值和模型值
-  public tmpImage: ImageItem[]; // 已选择的文件
-  public tmpFilter: number[]; // 筛选编号
-  private tmpValues: string[]; // 已确认的文件地址
+  public tmpFile: ImageItem[]; // 已选择的文件
+  private tmpValues: string[]; // 已确认的文件地址，防重
   private windowRef: NbWindowRef;
   lang: any;
 
-  constructor(private windowService: NbWindowService, private langProvider: LangProvider) {
+  constructor(private windowService: NbWindowService, langProvider: LangProvider) {
     this.lang = langProvider.lang;
   }
 
   ngOnInit() {
     this.loadThumbnails();
-    this.tmpImage = [];
+    this.tmpFile = [];
     this.tmpValues = [];
   }
 
@@ -50,56 +49,49 @@ export class VideoComponent implements OnInit, ComponentReset {
   }
 
   loadThumbnails() {
-    if (this.model.value && typeof this.model.value === 'string') {
-      this.thumbnails = [{url: this.model.value, title: ''}];
-    } else if (this.model.value) {
-      this.thumbnails = this.model.value as ImageItem[];
-    } else {
+    if (!Array.isArray(this.model.value)) {
       this.thumbnails = [];
+    } else {
+      this.thumbnails = this.model.value;
     }
   }
 
   /**
-   * 选择多媒体
+   * 选择文件
    */
-  chooseVideo() {
-    this.windowRef = this.windowService.open(this.contentTemplate, { title: this.lang.choose_media });
+  chooseFile() {
+    this.windowRef = this.windowService.open(this.contentTemplate, { title: this.lang.choose_file });
   }
 
   /**
    * 清空
    */
-  destroyVideo() {
+  destroyFile() {
+    this.tmpValues = []; // 清空已确认地址
     this.thumbnails = [];
-    this.model.value = null;
+    this.model.value = [];
     this.form.controls[this.model.name].setValue(null); // 清空表单值
   }
 
   /**
    * 确认
    */
-  sureVideo() {
+  sureFile() {
     if (!this.thumbnails) {
       this.thumbnails = [];
     }
-    const tmpImage = this.tmpImage.filter((tmp, index) => {
-      if (this.tmpFilter) {
-        return this.tmpFilter.includes(index);
-      } else { // 不过滤
-        return true;
-      }
-    });
-    if (tmpImage.length > 0) {
+    const tmp_file = this.tmpFile;
+    if (tmp_file.length > 0) {
       if (this.model.multiple) { // 多文件
         if (this.model.max) { // 限制个数
-          if (tmpImage.length <= this.model.max - this.thumbnails.length) {
-            this.insertVideo(tmpImage);
+          if (tmp_file.length <= this.model.max - this.thumbnails.length) {
+            this.insertFile(tmp_file);
           }
         } else { // 无限制
-          this.insertVideo(tmpImage);
+          this.insertFile(tmp_file);
         }
       } else { // 单文件
-        this.thumbnails = [tmpImage[0]];
+        this.thumbnails = [tmp_file[0]];
       }
       this.save(); // 保存文件
       this.clear(); // 清空临时文件
@@ -107,7 +99,7 @@ export class VideoComponent implements OnInit, ComponentReset {
     this.windowRef.close();
   }
 
-  private insertVideo(images: ImageItem[]) {
+  private insertFile(images: ImageItem[]) {
     // 重复多媒体过滤
     images.forEach((image) => {
       if (! this.tmpValues.includes(image.url)) {
@@ -118,41 +110,41 @@ export class VideoComponent implements OnInit, ComponentReset {
   }
 
   /**
-   * 取消临时多媒体
+   * 取消临时文件
    */
-  cancelVideo() {
-    this.tmpFilter = null; // 取消临时选择操作
+  cancelFile() {
     this.windowRef.close();
   }
 
+  /**
+   * 去除已确认的文件
+   */
   private clear() {
-    // 去除已确认的多媒体文件
-    this.tmpImage = this.tmpImage.filter((value) => !this.thumbnails.includes(value));
-    this.tmpFilter = null; // 清空临时选择操作
+    this.tmpFile = [];
   }
 
   /**
-   * 多媒体选择完成
-   * 监听子组件的完成事件，将选择的多媒体临时保存起来
+   * 文件选择完成
+   * 监听子组件的完成事件，将选择的文件临时保存起来
    */
-  submitVideo(image: ImageItem) {
+  submitFile(image: ImageItem) {
     if (image) {
       if (this.model.multiple) {
         if (this.model.max) { // 限制个数
-          if (this.tmpImage.length <= this.model.max - this.thumbnails.length) {
-            this.tmpImage.push(image);
+          if (this.tmpFile.length <= this.model.max - this.thumbnails.length) {
+            this.tmpFile.push(image);
           }
         } else { // 无限制
-          this.tmpImage.push(image);
+          this.tmpFile.push(image);
         }
       } else {
-        this.tmpImage = [image];
+        this.tmpFile = [image];
       }
     }
   }
 
   /**
-   * 更改多媒体描述
+   * 更改文件描述
    */
   desc(description: ImageDescription) {
     this.thumbnails[description.index].title = description.title;
@@ -160,10 +152,18 @@ export class VideoComponent implements OnInit, ComponentReset {
   }
 
   /**
-   * 删除多媒体
+   * 删除文件
    */
   delete(index: number) {
     this.thumbnails = this.thumbnails.filter((item, key) => index !== key);
+    this.save();
+  }
+
+  /**
+   * 文件排序
+   */
+  order(list: ImageItem[]) {
+    this.thumbnails = list;
     this.save();
   }
 
@@ -175,17 +175,10 @@ export class VideoComponent implements OnInit, ComponentReset {
       this.model.value = this.thumbnails; // 模型赋值
     } else { // 单
       if (this.thumbnails.length > 0) {
-        this.model.value = this.thumbnails[0].url; // 第一个多媒体的地址
+        this.model.value = this.thumbnails.slice(0, 1); // 第一个文件
       }
     }
     this.form.controls[this.model.name].setValue(this.model.value); // 表单赋值
-  }
-
-  /**
-   * 更改临时多媒体
-   */
-  changeVideo(list: number[]) {
-    this.tmpFilter = list;
   }
 
   get invalid() {

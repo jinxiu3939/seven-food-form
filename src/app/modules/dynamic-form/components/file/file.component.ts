@@ -1,5 +1,6 @@
 /**
  * 文件
+ * 即时或多文件上传推荐使用附件attachment
  */
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';

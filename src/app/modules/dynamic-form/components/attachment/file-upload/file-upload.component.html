@@ -1,19 +1,16 @@
 <div [nbSpinner]="loading" nbSpinnerStatus="info">
-  <input class="form-control-file image-file"
+  <input class="form-control-file attachment-file"
          type="file"
          ng2FileSelect
          [multiple]="multiple"
          [uploader]="uploader"
          (change)="selectedFileOnChanged($event)" />
   <div *ngIf="thumbnails.length === 0" class="tip">{{ tip }}</div>
-  <sff-image-slider *ngIf="thumbnails.length"
-                    [items]="thumbnails"
-                    [active]="uploaded"
-                    [currentIndex]="currentIndex"
-                    (currentChange)="slide($event)"
-                    (destroy)="delete($event)"
-                    (edit)="desc($event)">
-  </sff-image-slider>
+  <sff-file-list *ngIf="thumbnails.length"
+                 [items]="thumbnails"
+                 (destroy)="delete($event)"
+                 (edit)="desc($event)">
+  </sff-file-list>
   <a *ngIf="uploader.queue.length"
      nbButton
      fullWidth
@@ -31,7 +28,10 @@
 
 <ng-template #dialog let-data let-ref="dialogRef">
   <nb-card>
-    <nb-card-header>{{ lang.tip }}<nb-icon icon="close-outline" style="float: right;" (click)="ref.close()"></nb-icon></nb-card-header>
+    <nb-card-header>{{ lang.tip }}</nb-card-header>
     <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close()" status="info">ok</button>
+    </nb-card-footer>
   </nb-card>
 </ng-template>

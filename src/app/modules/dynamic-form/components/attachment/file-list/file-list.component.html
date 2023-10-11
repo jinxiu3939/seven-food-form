@@ -1,0 +1,16 @@
+<div *ngIf="items && items.length > 0"
+     class="row"
+     cdkDropList
+     (cdkDropListDropped)="drop($event)">
+  <div *ngFor="let item of items; let i = index" class="col-12 file" cdkDrag [cdkDragDisabled]="!drag">
+    <div class="drag-placeholder" *cdkDragPlaceholder></div>
+    <nb-icon *ngIf="! readonly" class="delete" icon="close" status="warning" (click)="delete(i)"></nb-icon>
+    <nb-icon class="icon" icon="file-outline" [title]="item.url"></nb-icon>
+    <input #descriptionBox
+            [disabled]="readonly"
+            class="form-control form-control-sm"
+            [placeholder]="lang.input_description"
+            [(ngModel)]="item.title"
+            (input)="desc(descriptionBox.value, i)">
+  </div>
+</div>

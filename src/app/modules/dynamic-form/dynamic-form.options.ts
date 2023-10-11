@@ -11,7 +11,8 @@ import {
  * 表单项类型
  * 即组件类型
  */
-export declare type ModelType = 'checkbox'
+export declare type ModelType = 'attachment'
+                                |'checkbox'
                                 | 'checkbox-tree'
                                 | 'clock'
                                 | 'ck-editor'
@@ -271,7 +272,8 @@ export interface ConditionField {
   options?: Option<string | number>[]; // 选项
   mode?: 'async' | 'sync'; // 选项检索方式
   endpoint?: string; // 选项异步检索接口
-  size?: number; // 选项数量
+  size?: number; // 选项异步检索数量
+  param?: string; // 选项异步检索参数名称
 }
 
 /**
@@ -591,4 +593,18 @@ export interface TextCombineModel extends BaseModel<any> {
   attributes: ConditionField[]; // 字段列表
   kind: TextBoxType; // 文本框类型
   readonly: boolean; // 是否只读
+}
+
+/**
+ * 附件模型
+ */
+export interface AttachmentModel extends BaseModel<ImageItem[]> {
+  debug: boolean; // 是否开启调试模式
+  drag: boolean; // 是否可拖动排序
+  multiple: boolean; // 是否多文件
+  queueLimit: number; // 单次上传最大文件数目
+  searchConfig: ResourceSearchConfig; // 检索配置
+  uploadConfig: UploadConfig; // 上传配置
+  allowedUploadFileType: string[]; // 允许上传的文件类型
+  maxUploadFileSize: number; // 允许上传文件大小最大值
 }

@@ -1,0 +1,51 @@
+<div [formGroup]="form" [ngClass]="{'form-control-success': valid, 'form-control-danger': invalid}">
+  <span *ngIf="! model.disabled">
+    <a nbButton
+       size="tiny"
+       status="info"
+       type="button"
+       (click)="chooseFile()">{{ lang.choose }}</a>
+    <a *ngIf="model.value"
+       nbButton
+       size="tiny"
+       status="warning"
+       type="button"
+       (click)="destroyFile()">{{ lang.clear }}</a>
+    <input [formControlName]="model.name" type="hidden" [value]="model.value">
+  </span>
+  <sff-file-list [items]="thumbnails"
+                 [drag]="model.drag"
+                 [readonly]="model.disabled"
+                 (order)="order($event)"
+                 (destroy)="delete($event)"
+                 (edit)="desc($event)">
+  </sff-file-list>
+
+  <ng-container *ngIf="invalid">
+    <small *ngFor="let error of errors" class="form-text text-danger">{{ error }}</small>
+  </ng-container>
+</div>
+
+<ng-template #contentTemplate>
+  <nb-tabset style="width: 600px; height: 500px;">
+    <nb-tab *ngIf="model.uploadConfig" [tabTitle]="lang.local_file">
+      <sff-file-upload [config]="model.uploadConfig"
+                       [multiple]="model.multiple"
+                       [top]="model.queueLimit"
+                       (finish)="submitFile($event)"></sff-file-upload>
+    </nb-tab>
+    <nb-tab *ngIf="model.searchConfig" [tabTitle]="lang.history_file">
+      <sff-file-search [config]="model.searchConfig"
+                       [debug]="model.debug"
+                       [multiple]="model.multiple"
+                       [queueLimit]="model.queueLimit"
+                       (finish)="submitFile($event)"></sff-file-search>
+    </nb-tab>
+  </nb-tabset>
+  <div>
+    <button nbButton status="danger" (click)="cancelFile()"  style="margin-right: 1rem;">{{ lang.cancel }}</button>
+    <button *ngIf="tmpFile.length" nbButton status="info" (click)="sureFile()">
+      {{ lang.sure }} {{ tmpFile.length }}
+    </button>
+  </div>
+</ng-template>

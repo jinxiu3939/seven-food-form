@@ -8,7 +8,7 @@ export const keywordModels: any = [
     label: '标签',
     name: 'tag',
     value: ['三国2', '武当', '三维', '射雕', '魅惑', '汉'],
-    options: ['汉', '三维', '射雕22', '魅惑', '汉3', '三维2', '射雕3', '魅惑2', '汉3', '三维1', '射雕2', '魅惑2'],
+    options: ['汉', '三维', '射雕22', '魅惑', '汉3', '三维2', '射雕3', '魅惑2', '汉3', '三维1', '射雕2', '魅惑2', 'tie', 'hello world', 'I`m', 'ala', 'kilo', 'Where Is php'],
     block: 1,
     drag: true,
   }).keyword(),

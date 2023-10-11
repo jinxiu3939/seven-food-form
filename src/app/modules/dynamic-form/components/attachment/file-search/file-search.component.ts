@@ -18,20 +18,20 @@ import {
 import { ResourceProvider } from '../../../providers/data/resource-provider';
 
 @Component({
-  selector: 'sff-image-search',
-  templateUrl: './image-search.component.html',
+  selector: 'sff-file-search',
+  templateUrl: './file-search.component.html',
   styleUrls: [
-    './image-search.component.scss',
+    './file-search.component.scss',
   ],
 })
-export class ImageSearchComponent implements OnInit {
+export class FileSearchComponent implements OnInit {
 
   @Input() config: ResourceSearchConfig;
   @Input() debug: boolean;
   @Input() multiple: boolean;
-  @Input() queueLimit: number; // 多选图片限制
+  @Input() queueLimit: number; // 多选文件限制
 
-  @Output() public finish = new EventEmitter<ImageItem>(); // 提交选择的图片
+  @Output() public finish = new EventEmitter<ImageItem>(); // 提交选择的文件
 
   @ViewChild('dialog', {static: false}) dialog;
 
@@ -39,33 +39,34 @@ export class ImageSearchComponent implements OnInit {
   public condition: string; // 检索条件
   public keyword: string; // 检索关键字
   public loading: boolean; // 加载标志
-  private finished = false; // 下拉加载是否已获取全部
   public message: string; // 提示信息
-  private size: number; // 每页个数
   public page: number = 1; // 当前页码
   public pages: number = 1; // 总页码
+  private finished = false; // 下拉加载是否已获取全部
+  private size: number; // 每页个数
   private total: number = 0; // 总数
+  lang: any;
+
   /* 数组由小到大依次如下 */
   public selected: number[]; // 选中的资源
   public records: FileResource[]; // 显示的资源。异步数据，records.length === files$.subscribe().length
   private files$: Observable<FileResource[]>; // 检索结果
   private items: FileResource[]; // 所有结果集
   private tmpItems: FileResource[][]; // 异步检索临时结果集
-  lang: any;
 
   private searchTerms = new Subject<string>(); // 检索对象
 
-  constructor(private provider: ResourceProvider, private dialogService: NbDialogService, private langProvider: LangProvider) {
+  constructor(private provider: ResourceProvider, private dialogService: NbDialogService, langProvider: LangProvider) {
     this.loading = false;
     this.lang = langProvider.lang;
-    this.message = this.lang.default_image;
+    this.message = this.lang.default_file;
   }
 
   ngOnInit() {
     if (this.config.mode === 'sync') {
       this.items = this.config.result; // 同步检索所有结果集
     } else {
-      this.items = []; // 异步检索所有结果集动态增长
+      this.items = []; // 异步检索所有结果集，动态增长
       this.tmpItems = []; // 存放每次检索页码，防止结果集重复
     }
     this.size = this.config.additionalParameter.page_size;
@@ -81,7 +82,7 @@ export class ImageSearchComponent implements OnInit {
       switchMap((term: string) => this.files$ = this.getResult(term)), // 获取检索结果
     ).subscribe(() => this.show()); // 显示检索结果
     if (this.debug) {
-      console.log('ImageSearchComponent initialization completed.');
+      console.log('FileSearchComponent initialization completed.');
     }
   }
 
@@ -113,7 +114,7 @@ export class ImageSearchComponent implements OnInit {
    */
   private getResult(condition: string): Observable<FileResource[]> {
     this.resetResult();
-    const keyword = condition.substr(condition.indexOf('::') + 2); // 检索关键字
+    const keyword = condition.substring(condition.indexOf('::') + 2); // 检索关键字
     if (this.config.mode === 'async') {
       return this.fetch(keyword); // 异步获取数据
     } else {
@@ -200,7 +201,7 @@ export class ImageSearchComponent implements OnInit {
 
   /**
    * 选择
-   * @param id 图片编号
+   * @param id 编号
    */
   choose(id: number) {
     if (this.selected.indexOf(id) >= 0) {
@@ -212,7 +213,7 @@ export class ImageSearchComponent implements OnInit {
 
   /**
    * 选中
-   * @param file 图片编号
+   * @param file 编号
    */
   private select(file: number) {
     if (this.multiple) { // 多选

@@ -146,17 +146,20 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
   }
 
   /**
-   * 检索条件过滤结果
+   * 过滤检索条件选项
    */
   private filterConditionOption(term: {value: string, key: number}): Observable<any[]> {
     let result: any[];
-    const keyword = term.value;
+    const keyword = term.value; // 检索关键字
+
     /* 获取结果 */
     if (this.config.conditions[term.key].mode === 'async') { // 异步检索
       this.provider.setApi(this.config.conditions[term.key].endpoint); // 设置检索接口
-      return this.provider.getPage(1, this.config.conditions[term.key].size, {'associate_title': keyword, format: 'option'}).pipe(
-        map(res => this.searchOptions[term.key] = res),
-      );
+      const param = this.config.conditions[term.key]?.param ? this.config.conditions[term.key].param : 'title';
+      return this.provider.getPage(1, this.config.conditions[term.key].size, {[param]: keyword, format: 'option'})
+        .pipe(
+          map(res => this.searchOptions[term.key] = res && res.length > 0 ? res : [{text: this.lang.search_no_data, value: ''}]),
+        ); // 检索
     } else { // 同步检索
       if (keyword) {
         result = this.config.conditions[term.key].options.filter((item) => {

@@ -1,4 +1,5 @@
 export * from './base-model.factory';
+export * from './attachment-model.factory';
 export * from './boolean-radio-model.factory';
 export * from './checkbox-model.factory';
 export * from './checkbox-tree-model.factory';

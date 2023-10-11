@@ -3,7 +3,7 @@
 @import '../../../theme/styles';
 
 @include nb-install-component() {
-  .image-file {
+  .attachment-file {
     margin-bottom: 0.5rem;
   }
 
@@ -34,4 +34,5 @@
     line-height: 2rem;
     font-size: 0.8rem;
   }
+
 }

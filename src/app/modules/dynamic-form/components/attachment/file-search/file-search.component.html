@@ -1,0 +1,77 @@
+<div class="input-group">
+  <div class="input-group-prepend">
+    <nb-select [placeholder]="lang.select" [(selected)]="condition" (selectedChange)="changeCondition(searchBox.value)">
+      <nb-option value="">{{ lang.all }}</nb-option>
+      <nb-option *ngFor="let opt of conditions" [value]="opt.value">{{ opt.text }}</nb-option>
+    </nb-select>
+  </div>
+  <input #searchBox
+         class="form-control"
+         [placeholder]="lang.keyword_search"
+         [(ngModel)]="keyword"
+         (input)="search(searchBox.value)">
+  <span *ngIf="pages > 1 && config.display === 'page'" class="input-group-append">
+    <button nbButton
+            class="input-group-text"
+            size="small"
+            status="basic">{{ page }} / {{ pages }}</button>
+    <button nbButton
+            class="input-group-text"
+            size="small"
+            status="basic"
+            (click)="prev()"><nb-icon icon="chevron-left-outline"></nb-icon></button>
+    <button nbButton
+            class="input-group-text"
+            size="small"
+            status="basic"
+            (click)="next()"><nb-icon icon="chevron-right-outline"></nb-icon></button>
+  </span>
+  <span *ngIf="selected.length" class="input-group-append">
+    <button nbButton
+            class="input-group-text"
+            size="small"
+            status="primary"
+            (click)="save()">{{ lang.insert }} {{ selected.length }}</button>
+  </span>
+</div>
+<ng-container *ngIf="records && records.length > 0">
+  <ng-container [ngSwitch]="config.display">
+    <div *ngSwitchCase="'page'" class="row show-grid infinite-grid" [nbSpinner]="loading" nbSpinnerStatus="info">
+      <div *ngFor="let item of records"
+           class="col-md-3"
+           [ngClass]="{'active': selected.indexOf(item.id) >= 0}"
+           [title]="item.url"
+           (click)="choose(item.id)">
+        <span>
+          <nb-icon icon="file-outline"></nb-icon>
+          {{ item.title ? item.title : item.url }}
+        </span>
+      </div>
+    </div>
+    <div *ngSwitchDefault>
+      <div class="row show-grid infinite-grid" nbInfiniteList [threshold]="500" (bottomThreshold)="loadNext()">
+        <div *ngFor="let item of records"
+             class="col-md-3"
+             [ngClass]="{'active': selected.indexOf(item.id) >= 0}"
+             [title]="item.url"
+             (click)="choose(item.id)">
+          <span>
+            <nb-icon icon="file-outline"></nb-icon>
+            {{ item.title ? item.title : item.url }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<nb-alert *ngIf="!records || records.length === 0" outline="info">{{ message }}</nb-alert>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <nb-icon icon="info-outline"></nb-icon>
+      <nb-icon icon="close-outline" style="float: right;" (click)="ref.close()"></nb-icon>
+    </nb-card-header>
+    <nb-card-body>{{ data }}</nb-card-body>
+  </nb-card>
+</ng-template>

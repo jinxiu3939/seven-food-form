@@ -1,0 +1,10 @@
+@import '~bootstrap/scss/mixins/forms';
+@import '~bootstrap/scss/mixins/image';
+@import '../../theme/styles';
+
+@include nb-install-component() {
+  a {
+    margin-left: 1rem;
+    margin-top: calc(0.375rem + 1px);
+  }
+}

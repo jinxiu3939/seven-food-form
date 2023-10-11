@@ -1,3 +1,7 @@
+export * from './attachment/attachment.component';
+export * from './attachment/file-list/file-list.component';
+export * from './attachment/file-search/file-search.component';
+export * from './attachment/file-upload/file-upload.component';
 export * from './checkbox/checkbox.component';
 export * from './checkbox-tree/checkbox-tree.component';
 export * from './checkbox-tree/checkbox-node/checkbox-node.component';

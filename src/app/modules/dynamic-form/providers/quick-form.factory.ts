@@ -38,6 +38,7 @@ import { PopupCustomModelFactory } from './popup-custom-model.factory';
 import { CustomModelFactory } from './custom-model.factory';
 import { ClockModelFactory } from './clock-model.factory';
 import { TextCombineModelFactory } from './text-combine-model.factory';
+import { AttachmentModelFactory } from './attachment-model.factory';
 
 /**
  * 快速表单工厂
@@ -326,5 +327,12 @@ export class QuickFormFactory {
    */
   textCombine() {
     return new TextCombineModelFactory(this.config).instance();
+  }
+
+  /**
+   * 附件
+   */
+  attachment() {
+    return new AttachmentModelFactory(this.config).instance();
   }
 }

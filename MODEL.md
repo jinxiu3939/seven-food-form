@@ -439,3 +439,103 @@
 - kind: string[]; // 文件类型 xls | word | txt | image | video | audio | pdf | json
 - accept: string; // 可上传文件具体类型
 - download: string; // 已上传文件下载地址
+
+#### PopupCustomModel
+
+自定义对话框
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- readonly: boolean; // 是否只读
+- renderComponent: any; // 对话框组件
+- text: string; // 显示文本
+- size: 'tiny' | 'small' | 'medium'; // 尺寸
+
+#### CustomModel
+
+自定义表单组件
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- renderComponent: any; // 自定义组件
+- onComponentInitFunction: Function;
+
+#### ClockModel
+
+时钟
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- now: boolean; // 是否默认当前时间
+- readonly: boolean; // 是否只读
+- kind: '12' | '24'; // 12小时制或者24小时制
+
+#### TextCombineModel
+
+组合输入框
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- attributes: ConditionField[]; // 字段列表
+- kind: TextBoxType; // 文本框类型
+- readonly: boolean; // 是否只读
+
+#### AttachmentModel
+
+附件
+
+- label: string; // 标签
+- name: string; // 名称
+- type: ModelType; // 类型
+- value: string; // 值
+- help?: string; // 说明
+- max?: number; // 最大长度
+- min?: number; // 最小长度
+- order?: number; // 排序
+- require?: boolean; // 是否必填
+- validator?: any; // 验证器
+- disabled: boolean; // 是否禁用
+- debug: boolean; // 是否开启调试模式
+- drag: boolean; // 是否可拖动排序
+- multiple: boolean; // 是否多文件
+- queueLimit: number; // 单次上传最大文件数目
+- searchConfig: ResourceSearchConfig; // 检索配置
+- uploadConfig: UploadConfig; // 上传配置
+- allowedUploadFileType: string[]; // 允许上传的文件类型
+- maxUploadFileSize: number; // 允许上传文件大小最大值

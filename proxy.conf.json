@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://api.qikecai.localhost",
+    "target": "http://api8.qikecai.localhost",
     "secure": false,
     "pathRewrite": {
       "^/api": ""

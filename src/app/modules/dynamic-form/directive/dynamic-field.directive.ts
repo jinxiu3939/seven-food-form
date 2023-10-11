@@ -30,6 +30,7 @@ import { PopupCustomComponent } from '../components/popup-list/popup-custom/popu
 import { CustomComponent } from '../components/custom/custom.component';
 import { ClockComponent } from '../components/date-picker/clock.component';
 import { TextCombineComponent } from '../components/text-combine/text-combine.component';
+import { AttachmentComponent } from '../components/attachment/attachment.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -59,6 +60,7 @@ const COMPONENTS = {
   'popup-custom': PopupCustomComponent,
   'custom': CustomComponent,
   'clock': ClockComponent,
+  'attachment': AttachmentComponent,
 };
 
 @Directive({

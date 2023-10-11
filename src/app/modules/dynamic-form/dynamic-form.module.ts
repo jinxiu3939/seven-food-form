@@ -84,6 +84,10 @@ import { MarkDownEditorComponent } from './components/md-editor/md-editor.compon
 import { CustomComponent } from './components/custom/custom.component';
 import { ClockComponent } from './components/date-picker/clock.component';
 import { TextCombineComponent } from './components/text-combine/text-combine.component';
+import { AttachmentComponent } from './components/attachment/attachment.component';
+import { FileListComponent } from './components/attachment/file-list/file-list.component';
+import { FileSearchComponent } from './components/attachment/file-search/file-search.component';
+import { FileUploadComponent } from './components/attachment/file-upload/file-upload.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -114,6 +118,7 @@ const ENTRY_COMPONENTS = [
   CustomComponent,
   ClockComponent,
   TextCombineComponent,
+  AttachmentComponent,
 ];
 
 const FORM_COMPONENTS = [
@@ -134,6 +139,9 @@ const FORM_COMPONENTS = [
   TreeNodeIconComponent,
   VideoSliderComponent,
   VideoUploadComponent,
+  FileListComponent,
+  FileSearchComponent,
+  FileUploadComponent,
   ...ENTRY_COMPONENTS,
 ];
 
