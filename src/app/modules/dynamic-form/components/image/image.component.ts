@@ -54,7 +54,7 @@ export class ImageComponent implements OnInit, ComponentReset {
 
   loadThumbnails() {
     if (this.model.value && typeof this.model.value === 'string') {
-      this.thumbnails = [{url: this.model.value, title: ''}];
+      this.thumbnails = [{url: this.model.value, title: '', thumb: this.model.value}];
     } else if (this.model.value) {
       this.thumbnails = this.model.value as ImageItem[];
     } else {

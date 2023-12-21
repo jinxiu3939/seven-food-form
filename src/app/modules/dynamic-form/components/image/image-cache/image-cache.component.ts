@@ -22,7 +22,7 @@ export class ImageCacheComponent {
   public deleted: number[] = []; // 取消的资源
   lang: any;
 
-  constructor(private langProvider: LangProvider) {
+  constructor(langProvider: LangProvider) {
     this.lang = langProvider.lang;
   }
 

@@ -13,6 +13,7 @@ export const checkboxModels: any = [
     options: options,
     require: true,
     drag: true,
+    all: true
   }).checkbox(),
   new CheckboxModelFactory({
     label: '族谱',
@@ -36,7 +37,8 @@ export const checkboxModels: any = [
     width: 5,
     max: 4,
     readonly: false,
-    value: 'A'
+    value: 'A',
+    all: true
   },
   new QuickFormFactory({
     label: '拖动',

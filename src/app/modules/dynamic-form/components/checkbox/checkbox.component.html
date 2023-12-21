@@ -4,6 +4,18 @@
        cdkDropList
        cdkDropListOrientation="horizontal"
        (cdkDropListDropped)="drop($event)">
+    <div *ngIf="model.all" class="col-{{model.width}} box">
+      <div class="form-check form-check-inline form-badge" [ngClass]="{'col-deep': model.width}">
+        <nb-checkbox [checked]="checkedAllStatus"
+                     (checkedChange)="switchAllChecked($event)">
+          {{ lang.all }}
+        </nb-checkbox>
+        <nb-badge [position]="model.width ? 'left' : 'right'"
+                  [status]="model.options.length > 99 ? 'danger' : 'info'"
+                  [text]="model.options.length > 99 ? '99+' : model.options.length">
+        </nb-badge>
+      </div>
+    </div>
     <div *ngFor="let opt of model.options; let key = index"
          class="col-{{model.width}} box"
          cdkDrag

@@ -21,6 +21,7 @@ export class CheckboxComponent implements OnInit, ComponentReset {
   @Input() model: CheckboxModel;
   @Input() form: FormGroup;
 
+  checkedAllStatus: boolean = false; // 是否全部选中
   checkedStatus: boolean[] = []; // 元素选中状态集合
   lang: any;
 
@@ -111,4 +112,22 @@ export class CheckboxComponent implements OnInit, ComponentReset {
 
     this.form.controls[this.model.name].setValue(this.model.value);
   }
+
+  /**
+   * 切换全选状态
+   */
+  switchAllChecked(checked: boolean) {
+    this.model.value = [];
+    if (checked) { // 选中
+      this.model.options.forEach((v, k) => {
+        this.checkedStatus[k] = true; // 全选
+        this.model.value.push(this.model.options[k].value); // 赋值
+      });
+    } else { // 取消
+      this.model.options.forEach((v, k) => {
+        this.checkedStatus[k] = false;
+      });
+    }
+    this.form.controls[this.model.name].setValue(this.model.value);
+  }  
 }

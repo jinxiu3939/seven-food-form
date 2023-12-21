@@ -66,8 +66,6 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
     for (const propName in changes) {
       if (propName === 'page' && changes[propName].currentValue) {
         this.finishSearch(changes[propName].currentValue); // 分页变化后，发起检索
-      } else if (propName === 'config') {
-        this.provider.setApi(this.config.endpoint); // 设置检索接口
       }
     }
   }
@@ -104,6 +102,7 @@ export class SimpleSearchComponent implements OnInit, OnChanges {
    */
   private fetch(page: number): Observable<Option<string| number>[]> {
     const param = deepExtend({}, this.config.additionalParameter, this.condition);
+    this.provider.setApi(this.config.endpoint); // 设置检索接口，每次检索都需要设置检索结果，防止选项异步检索接口冲突
     return this.provider.getPage(page, this.config.size, param);
   }
 

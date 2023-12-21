@@ -18,7 +18,7 @@ export const searchConfig = {
         { text: '视频', value: 92, title : 'video', items: null },
       ],
       mode: 'async',
-      endpoint: '/api/index/test/index',
+      endpoint: '/api/index/index/index',
       param: 'model_name'
     },
     {

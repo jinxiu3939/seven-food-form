@@ -95,6 +95,7 @@ export interface FileResource {
   title: string; // 标题/描述
   type: string; // 类型
   url: string; // 地址
+  thumb_url?: string; // 缩略图地址
 }
 
 /**
@@ -194,6 +195,7 @@ export interface ResourceSearchConfig {
 export interface ImageItem {
   title: string; // 描述
   url: any; // 地址
+  thumb?: string; // 缩略图
 }
 
 /**
@@ -334,6 +336,7 @@ export interface CheckboxModel extends BaseModel<(string | number)[]> {
   readonly: boolean; // 是否只读
   width: number; // 选项宽度，控制一行显示几个选项，12分格
   drag: boolean; // 是否可拖动
+  all?: boolean; // 是否可全选
 }
 
 /**

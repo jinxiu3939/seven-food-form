@@ -193,9 +193,10 @@ export class ImageUploadCropperComponent implements OnInit {
   /**
    * 上传图片完成
    */
-  private uploadFinish(content, index) {
-    this.finish.emit({url: content.url, title: this.thumbnails[index].title}); // 通知父组件上传完成
+  private uploadFinish(content: { url: string, thumb?: string }, index: number) {
+    this.finish.emit({url: content.url, title: this.thumbnails[index].title, thumb: content.thumb}); // 通知父组件上传完成
     this.thumbnails[index].url = content.url; // 更新图片地址
+    this.thumbnails[index].thumb = content.thumb; // 缩略图地址
     this.uploaded.push(content.url); // 保存已上传地址，子组件更新样式
     this.progress(); // 更新进度
   }

@@ -6,7 +6,7 @@ import { ApiService } from './services/api.service';
 import { oneLayoutModels, oneLayoutSetting } from './services/mock-one';
 import { searchModels, searchSetting } from './services/mock-model';
 import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
-import { attachmentModels } from './services/mock-attachment';
+import { checkboxModels } from './services/mock-checkbox';
 import { imageModels } from './services/mock-image';
 import { PopupRadioModels } from './services/mock-popup-radio';
 
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = attachmentModels.concat(imageModels).concat(PopupRadioModels);
+    this.models = checkboxModels.concat(imageModels).concat(PopupRadioModels);
     // this.setting = oneLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;

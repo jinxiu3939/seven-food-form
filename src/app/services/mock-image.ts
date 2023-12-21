@@ -38,7 +38,7 @@ export const imageModels: any = [
         tag: ['参数吧'],
         title: '',
         topic: '在这儿呢',
-        'app-key': appKey
+        'App-Key': appKey
       },
     },
     crawlConfig: {

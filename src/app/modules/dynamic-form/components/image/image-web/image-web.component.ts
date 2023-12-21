@@ -94,6 +94,7 @@ export class ImageWebComponent {
     const value = {
       url: this.url,
       title: this.url.substring(this.url.lastIndexOf('/') + 1), // 获取文件名称做默认标题
+      thumb: this.url,
     };
 
     if (this.multiple) { // 多选
@@ -139,6 +140,7 @@ export class ImageWebComponent {
       /* 输入值 */
       form.url = image.url;
       form.title = image.title;
+      form.thumb_url = image.url; // 缩略图同原图
       if (! this.submits.includes(form.url)) { // 避免重复保存
         this.http.post<any>(this.config.api, form, {headers: this.config.headers})
           .pipe(

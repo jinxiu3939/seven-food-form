@@ -55,7 +55,7 @@ export class ImageSearchComponent implements OnInit {
 
   private searchTerms = new Subject<string>(); // 检索对象
 
-  constructor(private provider: ResourceProvider, private dialogService: NbDialogService, private langProvider: LangProvider) {
+  constructor(private provider: ResourceProvider, private dialogService: NbDialogService, langProvider: LangProvider) {
     this.loading = false;
     this.lang = langProvider.lang;
     this.message = this.lang.default_image;
@@ -148,7 +148,6 @@ export class ImageSearchComponent implements OnInit {
               this.tmpItems[this.page] = tempRes.list; // 临时结果集
             }
             result = tempRes.list; // 本次检索结果
-            
           }
           this.loading = false;
           return result;
@@ -193,7 +192,7 @@ export class ImageSearchComponent implements OnInit {
   save() {
     const selected = this.items.filter((k) => this.selected.includes(k.id));
     selected.map((item) => {
-      const result = {url: item.url, title: item.title};
+      const result = {url: item.url, title: item.title, thumb: item.thumb_url};
       this.finish.emit(result);
     });
   }

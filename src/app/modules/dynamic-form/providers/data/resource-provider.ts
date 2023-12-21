@@ -16,13 +16,13 @@ export abstract class ResourceProvider {
    * 解析上传结果
    * @param response `json`解析后的上传结果
    */
-  abstract parseUploadResult(response: any): { error: string, url: string };
+  abstract parseUploadResult(response: any): { error: string, url: string, thumb?: string };
 
   /**
    * 解析保存结果
    * @param response `json`解析后的上传结果
    */
-  abstract parseSaveResult(response: any): { error: string, url: string };
+  abstract parseSaveResult(response: any): { error: string, url: string, thumb?: string };
 
   /**
    * 获取检索结果
@@ -45,11 +45,12 @@ export class DemoResourceProvider extends ResourceProvider {
    * 解析上传结果
    * @param response `json`解析后的上传结果
    */
-  parseUploadResult(response: any): { error: string, url: string } {
-    const result = { error: '', url: ''};
+  parseUploadResult(response: any): { error: string, url: string, thumb?: string } {
+    const result = { error: '', url: '', thumb: '' };
     if (response && response.status !== null && response.content !== null) {
       if (response.status.code === 200) {
-        result.url = response.content.url;
+        result.url = response.content?.url;
+        result.thumb = response.content?.thumb_url;
       } else {
         result.error = response.status.message
           + (response.status.sub_message ? '（' + response.status.sub_message + '）' : '');
@@ -64,8 +65,8 @@ export class DemoResourceProvider extends ResourceProvider {
    * 解析保存结果
    * @param response `json`解析后的上传结果
    */
-  parseSaveResult(response: any): { error: string, url: string } {
-    const result = { error: '', url: ''};
+  parseSaveResult(response: any): { error: string, url: string, thumb?: string } {
+    const result = { error: '', url: '', thumb: '' };
     if (response !== false) {
       if (response && response.status !== null && response.content !== null) {
         if (response.status.code !== 200) {
@@ -74,6 +75,7 @@ export class DemoResourceProvider extends ResourceProvider {
         } else {
           /* 保存成功 */
           result.url = response.content.url;
+          result.thumb = response.content.thumb_url;
         }
       } else {
         result.error = `保存失败（系统错误）`;
@@ -99,28 +101,28 @@ export class DemoResourceProvider extends ResourceProvider {
     }
     /* 检索 */
     return this.http.get<any>(api, { params: http_params, headers })
-    .pipe(
-      catchError(this.handleHttpError), // 首先捕获异常，然后处理异常
-      map((tempRes) => {
-        const result = { error: '', total: 0, list: [] };
-        if (tempRes !== false) {
-          if (tempRes && tempRes.status !== null && tempRes.content !== null) {
-            if (tempRes.status.code !== 200) {
-              result.error = tempRes.status.message
-                + (tempRes.status.sub_message ? '（' + tempRes.status.sub_message + '）' : '');
+      .pipe(
+        catchError(this.handleHttpError), // 首先捕获异常，然后处理异常
+        map((tempRes) => {
+          const result = { error: '', total: 0, list: [] };
+          if (tempRes !== false) {
+            if (tempRes && tempRes.status !== null && tempRes.content !== null) {
+              if (tempRes.status.code !== 200) {
+                result.error = tempRes.status.message
+                  + (tempRes.status.sub_message ? '（' + tempRes.status.sub_message + '）' : '');
+              } else {
+                result.total = tempRes.content.total; // 设置分页
+                result.list = tempRes.content.list; // 本次检索结果
+              }
             } else {
-              result.total = tempRes.content.total; // 设置分页
-              result.list = tempRes.content.list; // 本次检索结果
+              result.error = `获取结果失败（系统错误）`;
             }
           } else {
-            result.error = `获取结果失败（系统错误）`;
+            result.error = `获取结果失败（系统繁忙）`;
           }
-        } else {
-          result.error = `获取结果失败（系统繁忙）`;
-        }
-        return result;
-      }),
-    );
+          return result;
+        }),
+      );
   }
 
   private handleHttpError() {

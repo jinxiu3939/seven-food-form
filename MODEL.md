@@ -41,6 +41,7 @@
 - options: Option<string | number>[]; // 选项列表
 - width: number; // 选项宽度
 - drag: boolean; // 是否可拖动
+- all: boolean; // 是否可全选
 
 #### CheckboxTreeModel
 
