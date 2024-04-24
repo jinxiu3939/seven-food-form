@@ -322,6 +322,7 @@ export interface BaseModel<T> {
  */
 export interface RadioModel extends BaseModel<string | number | boolean> {
   all: boolean; // 是否显示全部
+  empty: boolean; // 是否显示无
   readonly: boolean; // 是否只读
   options: Option<string | number | boolean>[]; // 选项列表
   width: number; // 选项宽度
@@ -523,6 +524,7 @@ export interface ItemListModel extends BaseModel<any[]> {
   size: string; // 弹出框大小 medium | large
   kind: 'item' | 'key-value'; // 弹出框类型
   keyValue: KeyValueItemModel[]; // 键值对配置
+  height: string; // 列表大小 small | medium | large
 }
 
 /**

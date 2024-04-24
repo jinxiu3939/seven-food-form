@@ -9,6 +9,8 @@ import { twoLayoutModels, twoLayoutSetting } from './services/mock-two';
 import { checkboxModels } from './services/mock-checkbox';
 import { imageModels } from './services/mock-image';
 import { PopupRadioModels } from './services/mock-popup-radio';
+import { radioModels } from './services/mock-radio';
+import { itemListModels } from './services/mock-item-list';
 
 @Component({
   selector: 'ngx-app',
@@ -24,7 +26,7 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = checkboxModels.concat(imageModels).concat(PopupRadioModels);
+    this.models = itemListModels.concat(imageModels).concat(radioModels);
     // this.setting = oneLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;

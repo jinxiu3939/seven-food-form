@@ -22,6 +22,7 @@ export const radioModels: any = [
     clear: true,
     options: options,
     value: 'gege',
+    empty: true,
   }).instance(),
   {
     type: 'radio',

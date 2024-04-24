@@ -3,7 +3,7 @@
     <a nbButton status="info" size="tiny" (click)="add()">{{ lang.add }}</a>
     <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
   </div>
-  <div class="col-12 vertical-scroll table-responsive">
+  <div class="col-12 vertical-scroll table-responsive table-item-{{ model.height }}">
     <table class="table table-striped table-bordered">
       <thead>
         <tr>

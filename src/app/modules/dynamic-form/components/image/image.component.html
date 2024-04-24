@@ -8,8 +8,8 @@
             <h5>{{ lang.description }}</h5>
           </div>
           <div *ngFor="let thumb of thumbs" class="full-image-inputs">
-            <input type="text" class="form-control" readonly nbInput fullWidth [value]="thumb.url" [title]="thumb.url">
-            <input type="text" class="form-control" [readonly]="model.disabled" nbInput fullWidth [value]="thumb.title" [title]="thumb.title">
+            <input type="text" class="form-control form-control-sm" readonly nbInput fullWidth [value]="thumb.url" [title]="thumb.url">
+            <input type="text" class="form-control form-control-sm" [readonly]="model.disabled" nbInput fullWidth [value]="thumb.title" [title]="thumb.title">
           </div>
         </div>
       </ng-container>

@@ -54,6 +54,7 @@
   delete: '删除',
   input: '请输入...',
   required: '必填',
+  empty: '无',
   input_description: '请输入描述',
   choose_image_error: '选择图片失败（%s）',
   type_or_size_error: '文件类型错误/文件大小超过%s',

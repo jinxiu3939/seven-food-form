@@ -16,7 +16,8 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; // 是否禁用
-- all?: boolean; // 是否显示`全部`项
+- all?: boolean; // 是否显示`全部`选项
+- empty?: boolean; // 是否显示`无`选项
 - readonly: boolean; // 是否只读
 - options: Option<string | number | boolean>[]; // 选项列表
 - width: number; // 选项宽度
@@ -297,7 +298,10 @@
 - require?: boolean; // 是否必填
 - validator?: any; // 验证器
 - disabled: boolean; //  是否禁用
-- attributes: ConditionField[]; // 属性列表
+- attributes: ConditionField[]; // 字段列表
+- kind: 'item' | 'key-value'; // 弹出框类型
+- keyValue: KeyValueItemModel[]; // 键值对配置
+- height: string; // 列表大小 small | medium | large
 - size: string; //  弹出框尺寸 '' | 'medium' | 'large'
 
 #### PasswordBoxModel

@@ -34,6 +34,7 @@
   upload: 'upload',
   tip: 'tip',
   grab: 'grab',
+  empty: 'empty',
   upload_success: 'upload success',
   cropper_picture: 'cropper picture',
   local_picture: 'local picture',

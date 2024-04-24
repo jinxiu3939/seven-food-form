@@ -63,6 +63,7 @@ export const itemListModels: any = [
     value: [],
     size: 'large',
     min: 2,
+    height: 'large',
   },
   new QuickFormFactory({
     label: '键值对',

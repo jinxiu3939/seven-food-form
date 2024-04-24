@@ -10,6 +10,13 @@
               [ngClass]="{'col-deep': model.width}">
       {{ lang.all }}
     </nb-radio>
+    <nb-radio *ngIf="model.empty"
+              [value]="null"
+              class="col-{{model.width}}"
+              [disabled]="model.readonly"
+              [ngClass]="{'col-deep': model.width}">
+      {{ lang.empty }}
+    </nb-radio>
     <nb-radio *ngFor="let opt of model.options"
               [value]="opt.value"
               [title]="opt.title ? opt.title : opt.text"

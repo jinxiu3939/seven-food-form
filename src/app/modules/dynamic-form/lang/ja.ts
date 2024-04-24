@@ -34,6 +34,7 @@
   required: '必須',
   grab: '抓取',
   confirm: '确认',
+  empty: '无',
   upload_success: '上传成功',
   cropper_picture: '裁剪图片',
   local_picture: '本地图片',
