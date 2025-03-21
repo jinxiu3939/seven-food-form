@@ -11,6 +11,8 @@ import { imageModels } from './services/mock-image';
 import { PopupRadioModels } from './services/mock-popup-radio';
 import { radioModels } from './services/mock-radio';
 import { itemListModels } from './services/mock-item-list';
+import { textCombineModels } from './services/mock-text-combine';
+import { TextrangeModels } from './services/mock-text-range';
 
 @Component({
   selector: 'ngx-app',
@@ -26,7 +28,7 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = itemListModels.concat(imageModels).concat(radioModels);
+    this.models = TextrangeModels.concat(textCombineModels).concat(radioModels);
     // this.setting = oneLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;

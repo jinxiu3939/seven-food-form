@@ -9,7 +9,7 @@ export const textCombineModels: any = [
     name: 'combine-3',
     value: null,
     attributes: [
-      {text: '名称种颜色一种颜色一种颜色一种颜色', value: 'name'},
+      {text: '名称', value: 'name'},
       {text: '数量', value: 'number'},
       {text: '禁用', value: 'disabled'},
       {text: '描述', value: 'description'},

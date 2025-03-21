@@ -286,7 +286,7 @@ export const oneLayoutModels = [
 ];
 export const oneLayoutSetting = {
   foldBody: false,
-  bodyWidth: 9,
+  bodyWidth: 12,
   validate: true,
   buttonFixed: false,
   buttonPosition: 'right',
@@ -301,6 +301,7 @@ export const oneLayoutSetting = {
       blockTitle: "活命1",
       validate: true,
       hideBlockBody: true,
+      width: 12,
     },
     {
       blockId: 2,
@@ -315,6 +316,11 @@ export const oneLayoutSetting = {
     },
     {
       blockId: 4,
+      blockTitle: "markdown富文本",
+      validate: true,
+    },
+    {
+      blockId: 5,
       blockTitle: "markdown富文本",
       validate: true,
     },

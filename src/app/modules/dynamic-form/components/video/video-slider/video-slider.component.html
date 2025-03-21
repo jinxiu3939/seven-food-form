@@ -12,7 +12,7 @@
     <nb-action>{{ +currentIndex + 1 }} / {{ items.length }}</nb-action>
   </nb-actions>
   <div class="slider">
-    <video #mediaContainer width='100%' height="auto" controls  class="img-thumbnail" [ngClass]="{'active': active && active.includes(items[currentIndex].url)}">
+    <video #mediaContainer width='100%' height="auto" controls class="img-thumbnail" [ngClass]="{'active': active && active.includes(items[currentIndex].url)}">
       <source [src]="items[currentIndex].url | safeURL">
     </video>
   </div>

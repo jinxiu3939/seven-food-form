@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   NbRadioModule,
   NbCardModule,
@@ -23,6 +24,7 @@ import {
   NbDatepickerModule,
   NbDialogModule,
   NbWindowModule,
+  NbTooltipModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
@@ -88,6 +90,7 @@ import { AttachmentComponent } from './components/attachment/attachment.componen
 import { FileListComponent } from './components/attachment/file-list/file-list.component';
 import { FileSearchComponent } from './components/attachment/file-search/file-search.component';
 import { FileUploadComponent } from './components/attachment/file-upload/file-upload.component';
+import { TextRangeComponent } from './components/text-range/text-range.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -142,6 +145,7 @@ const FORM_COMPONENTS = [
   FileListComponent,
   FileSearchComponent,
   FileUploadComponent,
+  TextRangeComponent,
   ...ENTRY_COMPONENTS,
 ];
 
@@ -157,6 +161,7 @@ const FORM_DIRECTIVE = [
     ReactiveFormsModule,
     HttpClientModule,
     DragDropModule,
+    BrowserAnimationsModule,
     NbRadioModule,
     NbCardModule,
     NbCheckboxModule,
@@ -177,6 +182,7 @@ const FORM_DIRECTIVE = [
     NbDatepickerModule,
     NbDialogModule,
     NbWindowModule,
+    NbTooltipModule,
     CKEditorModule,
     FileUploadModule,
     UEditorModule.forRoot({

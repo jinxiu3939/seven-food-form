@@ -1,10 +1,11 @@
 <div *ngFor="let model of models"
      class="form-group row block-item block-{{ size }} block-{{ model.type }}">
   <ng-container [ngSwitch]="labelWidth">
-    <div *ngSwitchCase="0" class="col-12">
+    <div *ngSwitchCase="0" class="block-row-full col-12">
       <small [ngClass]="{'text-status-danger': invalid(model.name)}">{{ model.label }}</small>
+      <nb-icon *ngIf="model.tooltip && model.help" [nbTooltip]="model.help" nbTooltipStatus="control" icon="question-mark-circle-outline"></nb-icon>
       <div sffDynamicField [model]="model" [form]="form" [reload]="reload"></div>
-      <small *ngIf="model.help" class="form-text text-muted" [title]="model.help">{{ model.help }}</small>
+      <small *ngIf="!model.tooltip && model.help" class="form-text text-muted" [title]="model.help">{{ model.help }}</small>
       <ng-container *ngIf="invalid(model.name)">
         <small *ngFor="let error of errors(model.name)" class="form-text text-danger">{{ error }}</small>
       </ng-container>
@@ -15,7 +16,8 @@
              [ngClass]="{'text-status-danger': invalid(model.name)}"
              [title]="model.label">
         {{ model.label }}
-        <small *ngIf="model.help" class="form-text text-muted" [title]="model.help">{{ model.help }}</small>
+        <nb-icon *ngIf="model.tooltip && model.help" [nbTooltip]="model.help" nbTooltipStatus="control" icon="question-mark-circle-outline"></nb-icon>
+        <small *ngIf="!model.tooltip && model.help" class="form-text text-muted" [title]="model.help">{{ model.help }}</small>
       </label>
       <div class="col-{{ width }}">
         <ng-container sffDynamicField [model]="model" [form]="form" [reload]="reload">

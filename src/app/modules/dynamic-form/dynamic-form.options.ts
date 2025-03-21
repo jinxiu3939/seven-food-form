@@ -36,6 +36,7 @@ export declare type ModelType = 'attachment'
                                 | 'text-area'
                                 | 'text-box'
                                 | 'text-combine'
+                                | 'text-range'
                                 | 'u-editor'
                                 | 'video';
 
@@ -315,6 +316,7 @@ export interface BaseModel<T> {
   disabled: boolean; // 是否禁用。禁用后不会做变更检查，尽管显示表单组件，但是无法作为表单值提交
   block: any; // 对应block标识
   payload?: any; // 自定义配置数据
+  tooltip?: boolean; // 是否显示提示
 }
 
 /**
@@ -612,4 +614,15 @@ export interface AttachmentModel extends BaseModel<ImageItem[]> {
   uploadConfig: UploadConfig; // 上传配置
   allowedUploadFileType: string[]; // 允许上传的文件类型
   maxUploadFileSize: number; // 允许上传文件大小最大值
+}
+
+/**
+ * 范围输入框模型
+ */
+export interface TextRangeModel extends BaseModel<{op: string, text: any}> {
+  kind: TextBoxType; // 文本框类型
+  placeholder: string; // 提示
+  readonly: boolean; // 是否只读
+  operations: Option<string>[]; // 操作符列表
+  position: 'left' | 'right'; // 操作符位置
 }

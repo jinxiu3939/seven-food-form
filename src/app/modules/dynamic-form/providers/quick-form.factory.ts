@@ -39,6 +39,7 @@ import { CustomModelFactory } from './custom-model.factory';
 import { ClockModelFactory } from './clock-model.factory';
 import { TextCombineModelFactory } from './text-combine-model.factory';
 import { AttachmentModelFactory } from './attachment-model.factory';
+import { TextRangeModelFactory } from './text-range-model.factory';
 
 /**
  * 快速表单工厂
@@ -334,5 +335,12 @@ export class QuickFormFactory {
    */
   attachment() {
     return new AttachmentModelFactory(this.config).instance();
+  }
+
+  /**
+   * 范围输入框
+   */
+  textRange() {
+    return new TextRangeModelFactory(this.config).instance();
   }
 }
