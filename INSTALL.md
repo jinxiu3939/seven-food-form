@@ -62,11 +62,11 @@ models = [{
 
 ## form model
 
-You can get form model details from [src\app\dynamic-form\READEME.md](https://github.com/jinxiu3939/seven-food-form/tree/master/src/app/modules/dynamic-form)
+You can get form model details from [READEME.md](https://github.com/jinxiu3939/seven-food-form/tree/master/)
 
-and the form model demo from [src\app\dynamic-form\DEMO.md](https://github.com/jinxiu3939/seven-food-form/blob/master/src/app/modules/dynamic-form/DEMO.md)
+and the form model demo from [DEMO.md](https://github.com/jinxiu3939/seven-food-form/blob/master/DEMO.md)
 
-## deploy
+## publish
 
 add blow package
 
