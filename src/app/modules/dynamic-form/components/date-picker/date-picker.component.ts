@@ -100,6 +100,7 @@ export class DatePickerComponent implements OnInit, ComponentReset {
 
   handleDateChange(date: Date) {
     this.date = date;
+    // 只选择年份和月份时有bug
     this.setFormValue();
   }
 

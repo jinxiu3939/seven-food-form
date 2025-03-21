@@ -31,11 +31,15 @@
   .time-container {
     position: relative;
     overflow: visible;
+
+    a {
+      padding-left: 0;
+    }
     
     .time-popup {
       position:absolute;
       top: 0;
-      left: 4.4rem;
+      left: 3.4rem;
       display: none;
       background: nb-theme(background-basic-color-1);
       z-index: 99;

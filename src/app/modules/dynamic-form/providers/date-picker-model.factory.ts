@@ -37,5 +37,8 @@ export class DatePickerModelFactory extends BaseModelFactory {
     if (this.model.disabled === true) {
       this.model.readonly = true;
     }
+    if (this.model.kind === 'date' && this.model.format === 'YYYY-MM-DD HH:mm:ss') {
+      this.model.format = 'YYYY-MM-DD';
+    }
   }
 }

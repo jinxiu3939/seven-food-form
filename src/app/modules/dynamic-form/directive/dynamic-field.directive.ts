@@ -32,6 +32,7 @@ import { ClockComponent } from '../components/date-picker/clock.component';
 import { TextCombineComponent } from '../components/text-combine/text-combine.component';
 import { AttachmentComponent } from '../components/attachment/attachment.component';
 import { TextRangeComponent } from '../components/text-range/text-range.component';
+import { TextDiffComponent } from '../components/text-diff/text-diff.component';
 
 // 组件集合
 const COMPONENTS = {
@@ -63,6 +64,7 @@ const COMPONENTS = {
   'clock': ClockComponent,
   'attachment': AttachmentComponent,
   'text-range': TextRangeComponent,
+  'text-diff': TextDiffComponent,
 };
 
 @Directive({

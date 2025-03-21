@@ -126,7 +126,7 @@ export const searchSetting = {
   buttonAlign: 'left',
   bodyWidth: 12,
   buttonWidth: 2,
-  size: 'extra-large',
+  size: 'small',
   width: 10,
   buttons: [{name: 'export', value: '导出', validate: true}, {name: 'import', value: '导入'}],
   hideSubmit: false,

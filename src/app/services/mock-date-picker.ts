@@ -26,4 +26,12 @@ export const datePickerModels: any = [
     value: '32',
     format: 'YYYY-MM',
   },
+  new QuickFormFactory({
+    label: '下单时间',
+    name: 'created-1',
+    value: null,
+    require: true,
+    kind: 'date',
+    format: 'YYYY-MM',
+  }).datePicker(),
 ];

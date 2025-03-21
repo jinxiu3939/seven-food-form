@@ -91,6 +91,7 @@ import { FileListComponent } from './components/attachment/file-list/file-list.c
 import { FileSearchComponent } from './components/attachment/file-search/file-search.component';
 import { FileUploadComponent } from './components/attachment/file-upload/file-upload.component';
 import { TextRangeComponent } from './components/text-range/text-range.component';
+import { TextDiffComponent } from './components/text-diff/text-diff.component';
 
 const ENTRY_COMPONENTS = [
   CheckboxComponent,
@@ -146,6 +147,7 @@ const FORM_COMPONENTS = [
   FileSearchComponent,
   FileUploadComponent,
   TextRangeComponent,
+  TextDiffComponent,
   ...ENTRY_COMPONENTS,
 ];
 

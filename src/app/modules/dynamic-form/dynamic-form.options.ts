@@ -36,6 +36,7 @@ export declare type ModelType = 'attachment'
                                 | 'text-area'
                                 | 'text-box'
                                 | 'text-combine'
+                                | 'text-diff'
                                 | 'text-range'
                                 | 'u-editor'
                                 | 'video';
@@ -617,12 +618,19 @@ export interface AttachmentModel extends BaseModel<ImageItem[]> {
 }
 
 /**
- * 范围输入框模型
+ * 比较输入框模型
  */
-export interface TextRangeModel extends BaseModel<{op: string, text: any}> {
+export interface TextDiffModel extends BaseModel<{op: string, text: any}> {
   kind: TextBoxType; // 文本框类型
   placeholder: string; // 提示
-  readonly: boolean; // 是否只读
   operations: Option<string>[]; // 操作符列表
   position: 'left' | 'right'; // 操作符位置
+}
+
+/**
+ * 范围输入框模型
+ */
+export interface TextRangeModel extends BaseModel<{start: any, end: any}> {
+  kind: TextBoxType; // 文本框类型
+  placeholder: {start: string, end: string}; // 提示
 }

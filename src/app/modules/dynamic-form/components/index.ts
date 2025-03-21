@@ -36,6 +36,7 @@ export * from './spreadsheet/spreadsheet.component';
 export * from './text-area/text-area.component';
 export * from './text-box/text-box.component';
 export * from './text-combine/text-combine.component';
+export * from './text-diff/text-diff.component';
 export * from './text-range/text-range.component';
 export * from './u-editor/u-editor.component';
 export * from './video/video.component';

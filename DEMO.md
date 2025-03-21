@@ -1412,7 +1412,7 @@ data = [
 ],
 ```
 
-- 实例化`linkageBoxModel`
+- 实例化`LinkageBoxTreeModel`
 
 ```
 tree: any = {
@@ -1642,3 +1642,308 @@ tree: any = {
     validator: '',
   },
 ],
+```
+
+- 实例化`PopupCustomModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '蔬菜',
+    name: 'yes_no1',
+    value: [],
+    require: true,
+    size: 'small',
+    onComponentInitFunction: function (e) {
+      console.log(e);
+    }
+  }).popupCustom(),
+  new PopupCustomModelFactory({
+    label: '族谱',
+    name: 'zupu-1',
+    value: ['A', 1, 'gege'],
+    // disabled: true,
+    size: 'medium',
+    rawData: 'endpoint',
+    renderComponent: DateConfigComponent
+  }).instance(),
+  {
+    disabled: false,
+    help: "自定义配置",
+    label: "配置",
+    max: "0",
+    min: "0",
+    name: "setting",
+    order: 0,
+    payload: {method: 'popupCustom'},
+    placeholder: "",
+    readonly: false,
+    require: true,
+    type: "popup-custom",
+    validator: "englishWord",
+    value: "",
+    text: "hello world",
+    renderComponent: DateConfigComponent
+  }
+],
+```
+
+- 实例化`CustomModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '时间设置',
+    name: 'yes_no1',
+    value: [],
+    require: false,
+    renderComponent: null,
+    onComponentInitFunction: function (e) {
+      console.log(e);
+    }
+  }).custom(),
+  new CustomModelFactory({
+    label: '自定义设置',
+    name: 'zupu-1',
+    value: ['A', 1, 'gege'],
+    renderComponent: MapConfigComponent
+  }).instance(),
+  {
+    disabled: false,
+    help: "网络配置",
+    label: "配置",
+    max: "0",
+    min: "0",
+    name: "setting",
+    order: 0,
+    payload: {method: 'custom'},
+    readonly: false,
+    type: "custom",
+    value: ""
+  }
+]
+```
+
+- 实例化`ClockModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '截止时间',
+    name: 'deadline-1',
+    value: null,
+    require: true,
+    // now: true,
+  }).clock(),
+  new ClockModelFactory({
+    label: '开始时间',
+    name: 'start-1',
+    kind: '12',
+    value: {h: '23', i: '59'},
+  }).instance(),
+  {
+    type: 'clock',
+    label: '结束事件',
+    name: 'end-1',
+    width: 5,
+    value: '',
+    readonly: true,
+    kind: '12',
+  },
+]
+```
+
+- 实例化`TextCombineModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '颜色',
+    name: 'combine-3',
+    value: null,
+    attributes: [
+      {text: '名称', value: 'name'},
+      {text: '数量', value: 'number'},
+      {text: '禁用', value: 'disabled'},
+      {text: '描述', value: 'description'},
+    ],
+    block: 1,
+    max: 4,
+  }).textCombine(),
+  new TextCombineModelFactory({
+    label: '条款',
+    name: 'combine-2',
+    value: {key: 1, value: 5},
+    kind: 'number',
+    attributes: [
+      {text: '键', value: 'key'},
+      {text: '值', value: 'value'},
+    ]
+  }).instance(),
+  {
+    type: 'text-combine',
+    label: '项目',
+    name: 'combine-1',
+    disabled: false,
+    attributes: [
+      {text: '键', value: 'key'},
+      {text: '值', value: 'value'},
+    ],
+    value: [],
+    min: 2,
+  },
+]
+```
+
+- 实例化`AttachmentModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '附件2',
+    multiple: true,
+    name: 'attachment-2',
+    queueLimit: 2,
+    searchDisplay: 'page',
+    debug: true,
+    allowedUploadFileType: 'pdf,compress',
+    maxUploadFileSize: 3000,
+    uploadConfig: {
+      authTokenHeader: 'Token',
+      authToken: token,
+      url: '/api/home/file/index?App-Key=' + encodeURIComponent(appKey),
+      additionalParameter: {
+        tag: ['参数吧'],
+        // title: '是我的',
+        topic: '在这儿呢',
+        'app-key': appKey
+      },
+    },
+    searchConfig: {
+      additionalParameter: {
+        page_size: 9.0,
+      },
+      api: '/api/home/file/index',
+      headers: {
+        'Token': token,
+        'App-Key': appKey,
+      },
+      mode: 'async',
+    },
+    block: 1,
+  }).attachment(),
+  new AttachmentModelFactory({
+    label: '同步文件',
+    name: 'sync-file-1',
+    repeat: true,
+    multiple: true,
+    list: images,
+    searchDisplay: 'page',
+    searchMode: 'sync',
+    debug: true,
+    min: 2,
+    require: true,
+    allowedUploadFileType: ['pdf','compress'],
+    maxUploadFileSize: 3000,
+    disabled: false,
+    value: [{url: 'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg', title: ''}]
+  }).instance(),
+  {
+    type: 'attachment',
+    display: 'input',
+    name: 'animal-1',
+    width: 5,
+    max: 4,
+    drag: true,
+    disabled: false,
+    value: [{url:'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg'}, {url:'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg'}, {url:'https://imgcache.qq.com/open_proj/proj_qcloud_v2/tc-console/discuz/templet/css/index/img/features/features-1-3.svg'}]
+  },
+]
+```
+
+- 实例化`TextDiffModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '分数',
+    name: 'score-1',
+    value: {'op': '>=', text: 90},
+    block: 1,
+  }).textDiff(),
+  new TextDiffModelFactory({
+    label: '浏览量',
+    max: 5,
+    name: 'views-2',
+    help: "hahahhhhh",
+    value: '',
+    disabled: false,
+    view: false,
+    block: 1,
+    tooltip: true,
+  }).instance(),
+  {
+    "clear": false,
+    "disabled": false,
+    "kind": "text",
+    "placeholder": "请输入订单总数",
+    "readonly": false,
+    "value": {op: "-", text: "40-50"},
+    "label": "名称",
+    "name": "orders",
+    "type": "text-diff",
+    "help": "订单总数",
+    "max": 100,
+    "min": 0,
+    "order": 0,
+    "require": true,
+    "validator": "",
+    "data": "textBox",
+    block: 5,
+    operations: OperationList1,
+    position: 'right',
+    tooltip: true,
+  },
+]
+```
+
+- 实例化`TextRangeModel`
+
+```
+[
+  new QuickFormFactory({
+    label: '分数',
+    name: 'score-1',
+    value: {start: 60, end: 90},
+    block: 1,
+  }).textRange(),
+  new TextRangeModelFactory({
+    label: '浏览量',
+    max: 5,
+    name: 'views-2',
+    help: "hahahhhhh",
+    value: '',
+    disabled: false,
+    block: 1,
+  }).instance(),
+  {
+    "clear": false,
+    "disabled": false,
+    "kind": "text",
+    "placeholder": {start: "请输入最小订单数", end: "请输入最大订单数"},
+    "readonly": false,
+    "value": {start: "", end: 3000},
+    "label": "名称",
+    "name": "orders",
+    "type": "text-range",
+    "help": "订单总数",
+    "max": 100,
+    "min": 0,
+    "order": 0,
+    "require": true,
+    "validator": "",
+    "data": "1-200",
+    block: 5,
+  },
+]
+```

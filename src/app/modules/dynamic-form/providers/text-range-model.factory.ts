@@ -13,26 +13,14 @@ export class TextRangeModelFactory extends BaseModelFactory {
     super(obj);
     this.config.disabled = false; // 默认不禁用，若禁用表单组件自动设置为disabled
     this.config.kind = 'text'; // 文本框类型
-    this.config.placeholder = ''; // 默认无提示
-    this.config.readonly = false; // 默认非只读
-    this.config.value = {op: '', text: ''}; // 默认值
-    this.config.operations = [
-        { text: '>', value: '>' },
-        { text: '>=', value: '>=' },
-        { text: '<', value: '<' },
-        { text: '<=', value: '<=' },
-        { text: '!=', value: '!=' },
-    ]; // 操作符
-    this.config.position = 'left'; // 位置
+    this.config.placeholder = {start: '', end: ''}; // 默认无提示
+    this.config.value = {start: '', end: ''}; // 默认值
   }
 
   format() {
-    /* 值为数组 */
+    /* 值为对象 */
     if (! this.model.value) {
-      this.model.value = {op: '', text: ''};
-    }
-    if (this.model.disabled === true) {
-      this.model.readonly = true;
+      this.model.value = {start: '', end: ''};
     }
   }
 }

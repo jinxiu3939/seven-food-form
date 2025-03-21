@@ -13,6 +13,8 @@ import { radioModels } from './services/mock-radio';
 import { itemListModels } from './services/mock-item-list';
 import { textCombineModels } from './services/mock-text-combine';
 import { TextrangeModels } from './services/mock-text-range';
+import { TextdiffModels } from './services/mock-text-diff';
+import { datePickerModels } from './services/mock-date-picker';
 
 @Component({
   selector: 'ngx-app',
@@ -28,8 +30,8 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = TextrangeModels.concat(textCombineModels).concat(radioModels);
-    // this.setting = oneLayoutSetting;
+    this.models = TextrangeModels.concat(datePickerModels).concat(TextdiffModels);
+    this.setting = searchSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;
       // models[0].editorConfig = res.content.form.models[14].editorConfig;
