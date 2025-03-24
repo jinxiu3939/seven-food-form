@@ -6,7 +6,7 @@ import {
 export const itemListModels: any = [
   new QuickFormFactory({
     label: '颜色',
-    name: 'place-1',
+    name: 'itemlist-1',
     value: null,
     attributes: [
       {text: '名称种颜色一种颜色一种颜色一种颜色', type: 'input', value: 'name'},
@@ -28,7 +28,7 @@ export const itemListModels: any = [
   }).itemList(),
   new ItemListModelFactory({
     label: '条款',
-    name: 'doc-1',
+    name: 'itemlist-doc-1',
     clear: true,
     value: [{key: 'kind', value: 'gege'}, {key: 'category', value: 'apple'}],
     accept: 'application/msword',
@@ -53,7 +53,7 @@ export const itemListModels: any = [
   {
     type: 'item-list',
     label: '项目',
-    name: 'item-1',
+    name: 'itemlist-item-1',
     download: 'http://www.shaimobao.com',
     disabled: false,
     attributes: [
@@ -67,7 +67,7 @@ export const itemListModels: any = [
   },
   new QuickFormFactory({
     label: '键值对',
-    name: 'setting-1',
+    name: 'itemlist-setting-1',
     value: [{key: 'kind', value: 'gege'}, {key: 'category', value: 'apple'}],
     attributes: [
       {text: '键', type: 'input', value: 'key'},

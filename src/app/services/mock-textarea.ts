@@ -5,14 +5,14 @@ import {
 
 export const TextareaModels: any = [
   new QuickFormFactory({
-    label: '文件',
-    name: 'spreadsheet-1',
+    label: '简介',
+    name: 'textarea-1',
   }).textArea(),
   new TextAreaModelFactory({
     label: '题库',
     max: 5,
     multiple: true,
-    name: 'spreadsheet-2',
+    name: 'textarea-2',
     value: '<p>卡尼哪里啦</p>就是',
     view: false,
     disabled: true,
@@ -21,7 +21,7 @@ export const TextareaModels: any = [
     "disabled": false,
     "rows": 30,
     "label": "备注",
-    "name": "description",
+    "name": "textarea-description",
     "type": "text-area",
     "value": "",
     "help": "",

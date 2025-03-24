@@ -54,7 +54,7 @@ const ckfinderEditorConfig = {
 export const ckeditorModels: any = [
   new QuickFormFactory({
     label: '新闻',
-    name: 'content-1',
+    name: 'ckeditor-1',
     value: null,
     require: true,
     editor: ClassicEditor,
@@ -62,7 +62,7 @@ export const ckeditorModels: any = [
   }).ckEditor(),
   new CKEditorModelFactory({
     label: '评论',
-    name: 'comment-1',
+    name: 'ckeditor-2',
     clear: true,
     value: 'shenmeqingkuang',
     // disabled: true,

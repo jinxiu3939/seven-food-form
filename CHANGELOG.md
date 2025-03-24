@@ -1,3 +1,10 @@
+<a name="4.1.8"></a>[dev]
+## 4.1.8
+
+- 优化`TextRange`组件`placeholder`属性
+- 修复`BrowserAnimationsModule`重复导入的问题
+- 时间选择框增加范围操作符
+
 <a name="4.1.7"></a>
 ## 4.1.7
 

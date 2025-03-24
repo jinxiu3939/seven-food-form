@@ -8,7 +8,7 @@ import { MapConfigComponent } from '../pages/map.component';
 export const customModels: any = [
   new QuickFormFactory({
     label: '时间设置',
-    name: 'yes_no1',
+    name: 'custom-time-setting',
     value: [],
     require: false,
     renderComponent: null,
@@ -18,7 +18,7 @@ export const customModels: any = [
   }).custom(),
   new CustomModelFactory({
     label: '自定义设置',
-    name: 'zupu-1',
+    name: 'custom-1',
     value: ['A', 1, 'gege'],
     renderComponent: MapConfigComponent
   }).instance(),
@@ -28,7 +28,7 @@ export const customModels: any = [
     label: "配置",
     max: "0",
     min: "0",
-    name: "setting",
+    name: "custom-network-setting",
     order: 0,
     payload: {method: 'custom'},
     readonly: false,

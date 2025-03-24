@@ -13,7 +13,6 @@ export class TextRangeModelFactory extends BaseModelFactory {
     super(obj);
     this.config.disabled = false; // 默认不禁用，若禁用表单组件自动设置为disabled
     this.config.kind = 'text'; // 文本框类型
-    this.config.placeholder = {start: '', end: ''}; // 默认无提示
     this.config.value = {start: '', end: ''}; // 默认值
   }
 

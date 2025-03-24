@@ -6,7 +6,7 @@ import {
 export const textCombineModels: any = [
   new QuickFormFactory({
     label: '颜色',
-    name: 'combine-3',
+    name: 'textcombine-1',
     value: null,
     attributes: [
       {text: '名称', value: 'name'},
@@ -19,7 +19,7 @@ export const textCombineModels: any = [
   }).textCombine(),
   new TextCombineModelFactory({
     label: '条款',
-    name: 'combine-2',
+    name: 'textcombine-2',
     value: {key: 1, value: 5},
     kind: 'number',
     attributes: [
@@ -30,7 +30,7 @@ export const textCombineModels: any = [
   {
     type: 'text-combine',
     label: '项目',
-    name: 'combine-1',
+    name: 'textcombine-3',
     disabled: false,
     attributes: [
       {text: '键', value: 'key'},

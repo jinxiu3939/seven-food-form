@@ -9,7 +9,7 @@ import { searchConfig } from './mock-popup-radio';
 export const PopupCheckboxModels: any = [
   new QuickFormFactory({
     label: '蔬菜',
-    name: 'yes_no1',
+    name: 'popupcheckbox-yes_no1',
     value: [],
     options: options,
     require: true,
@@ -26,7 +26,7 @@ export const PopupCheckboxModels: any = [
   }).popupCheckbox(),
   new PopupCheckboxModelFactory({
     label: '族谱',
-    name: 'zupu-1',
+    name: 'popupcheckbox-zupu-1',
     clear: true,
     options: options,
     value: ['A', 1, 'gege'],
@@ -37,7 +37,7 @@ export const PopupCheckboxModels: any = [
   {
     type: 'popup-checkbox',
     options: options,
-    name: 'animal-1',
+    name: 'popupcheckbox-animal-1',
     label: '动物',
     max: 4,
     value: ['A-1', 1, 'gege'],

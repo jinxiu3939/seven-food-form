@@ -1,13 +1,13 @@
 <div [formGroup]="form" class="input-group">
     <input class="form-control"
            [type]="model.kind"
-           [placeholder]="model.placeholder?.start"
+           [placeholder]="startPlaceholder"
            [value]="model.value?.start"
            (change)="receive($event, 'start')">
     <nb-icon style="height: auto;" icon="minus-outline"></nb-icon>
     <input class="form-control"
            [type]="model.kind"
-           [placeholder]="model.placeholder?.end"
+           [placeholder]="endPlaceholder"
            [value]="model.value?.end"
            (change)="receive($event, 'end')">
     <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">

@@ -7,15 +7,15 @@ import { options } from './mock-options';
 
 export const dropDownModels: any = [
   new QuickFormFactory({
-    label: '蔬菜',
-    name: 'yes_no1',
+    label: '选择题',
+    name: 'dropdown-1',
     value: null,
     options: options,
     require: true,
   }).dropDownBox(),
   new DropDownBoxModelFactory({
-    label: '族谱',
-    name: 'zupu-1',
+    label: '单选题',
+    name: 'dropdown-2',
     clear: true,
     options: options,
     disabled: true,
@@ -23,9 +23,9 @@ export const dropDownModels: any = [
   }).instance(),
   {
     type: 'drop-down-box',
-    label: '动物',
+    label: '选择',
     options: options,
-    name: 'animal-1',
+    name: 'dropdown-3',
     readonly: true,
     require: true,
   },

@@ -7,7 +7,7 @@ export const videoModels: any = [
   new QuickFormFactory({
     label: '服务器多媒体',
     multiple: true,
-    name: 'image-2',
+    name: 'video-1',
     queueLimit: 2,
     require: true,
     uploadConfig: null,
@@ -18,7 +18,7 @@ export const videoModels: any = [
   }).video(),
   new VideoModelFactory({
     label: '同步多媒体',
-    name: 'zupu-1',
+    name: 'video-2',
     multiple: true,
     searchDisplay: 'list',
     debug: true,
@@ -27,7 +27,7 @@ export const videoModels: any = [
   {
     type: 'video',
     display: 'input',
-    name: 'video-1',
+    name: 'video-3',
     label: '哪来的small',
     width: 5,
     value: [1,2,3],

@@ -6,7 +6,7 @@ import {
 export const PasswordModels: any = [
   new QuickFormFactory({
     label: '验证码',
-    name: 'capture-1',
+    name: 'pwd-capture-1',
     require: true,
     kind: 'pdf',
     visible: true,
@@ -14,7 +14,7 @@ export const PasswordModels: any = [
   }).passwordBox(),
   new PasswordBoxModelFactory({
     label: '密码',
-    name: 'password-1',
+    name: 'pwd-password-1',
     clear: true,
     value: '443',
     empty: true,
@@ -23,7 +23,7 @@ export const PasswordModels: any = [
   {
     type: 'password-box',
     label: 'zip',
-    name: 'password-2',
+    name: 'pwd-password-2',
     visible: true,
     sureValue: '',
     value: '',

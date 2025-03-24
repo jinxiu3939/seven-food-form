@@ -394,7 +394,7 @@ export interface CKEditorModel extends BaseModel<string> {
 export interface DatePickerModel extends BaseModel<string> {
   clear: boolean; // 是否清空不合法日期
   format: string; // 返回值日期格式，非显示值，显示值固定格式：'YYYY-MM-DD HH:mm:ss'
-  kind: 'date' | 'date-time'; // 日期类型
+  kind: 'date' | 'date-time'; // 类型，date-time有时间组件
   now: boolean; // 是否默认当前日期
   readonly: boolean; // 是否只读
 }
@@ -632,5 +632,5 @@ export interface TextDiffModel extends BaseModel<{op: string, text: any}> {
  */
 export interface TextRangeModel extends BaseModel<{start: any, end: any}> {
   kind: TextBoxType; // 文本框类型
-  placeholder: {start: string, end: string}; // 提示
+  placeholder: string; // 提示，-分割
 }

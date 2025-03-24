@@ -6,7 +6,7 @@ import {
 export const mdeditorModels: any = [
   new QuickFormFactory({
     label: '富文本内容',
-    name: 'content-body-3',
+    name: 'mdeditor-content-body-3',
     value: '```hello```',
     editorConfig: {
       readOnly: false,

@@ -8,13 +8,13 @@ import { tree } from './mock-linkage-tree-data';
 export const linkageModels: any = [
     new QuickFormFactory({
     label: '族谱2',
-    name: 'zupu-2',
+    name: 'linkage-zupu-2',
     tree: tree,
     root: 10,
   }).linkageBox(),
   new LinkageBoxModelFactory({
     label: '族谱1',
-    name: 'zupu-1',
+    name: 'linkage-zupu-1',
     value: ['gege', 'A'],
     disabled: true,
     tree: tree,
@@ -22,7 +22,7 @@ export const linkageModels: any = [
   }).instance(),
   {
     label: '族谱3',
-    name: 'zupu-3',
+    name: 'linkage-zupu-3',
     type: 'linkage-box',
     value: ['111'],
     help: 'this is a password',

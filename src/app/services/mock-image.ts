@@ -69,7 +69,7 @@ export const imageModels: any = [
   }).image(),
   new ImageModelFactory({
     label: '同步图片',
-    name: 'zupu-1',
+    name: 'image-sync-1',
     repeat: true,
     multiple: true,
     list: images,
@@ -83,7 +83,8 @@ export const imageModels: any = [
   {
     type: 'image',
     display: 'input',
-    name: 'animal-1',
+    name: 'image-2',
+    lable: "封面",
     width: 5,
     max: 4,
     disabled: true,

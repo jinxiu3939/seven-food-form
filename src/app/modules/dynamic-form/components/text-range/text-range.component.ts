@@ -29,4 +29,18 @@ export class TextRangeComponent implements ComponentReset {
     this.model.value[field] = result.target.value; // 更新
     this.form.controls[this.model.name].setValue(this.model.value);
   }
+
+  /**
+   * 开始范围提示
+   */
+  get startPlaceholder() {
+    return this.model?.placeholder && this.model.placeholder.indexOf('-') > -1 ? this.model.placeholder.split('-')[0] : '';
+  }
+
+  /**
+   * 结束范围提示
+   */
+  get endPlaceholder() {
+    return this.model?.placeholder && this.model.placeholder.indexOf('-') > -1 ? this.model.placeholder.split('-')[1] : '';
+  }
 }

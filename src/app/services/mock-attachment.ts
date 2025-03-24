@@ -8,9 +8,9 @@ import { token, appKey } from './mock-one';
 
 export const attachmentModels: any = [
   new QuickFormFactory({
-    label: '附件2',
+    label: '异步附件',
     multiple: true,
-    name: 'attachment-2',
+    name: 'attach-1',
     queueLimit: 2,
     searchDisplay: 'page',
     debug: true,
@@ -42,7 +42,7 @@ export const attachmentModels: any = [
   }).attachment(),
   new AttachmentModelFactory({
     label: '同步文件',
-    name: 'sync-file-1',
+    name: 'attach-sync-file',
     repeat: true,
     multiple: true,
     list: images,
@@ -59,7 +59,8 @@ export const attachmentModels: any = [
   {
     type: 'attachment',
     display: 'input',
-    name: 'animal-1',
+    name: 'attach-2',
+    label: '附件',
     width: 5,
     max: 4,
     drag: true,

@@ -8,7 +8,7 @@ import { options } from './mock-options';
 export const searchModels: any = [
   new QuickFormFactory({
     label: '是否禁用',
-    name: 'yes_no1',
+    name: 'boolradio-search-yes_no1',
     value: null,
     options: null,
     all: true,
@@ -23,7 +23,7 @@ export const searchModels: any = [
     label: "结束日期",
     max: 0,
     min: 1,
-    name: "creation_date",
+    name: "datepicker-search-creation_date",
     now: false,
     readonly: false,
     order: 0,
@@ -34,7 +34,7 @@ export const searchModels: any = [
   }).datePicker(),
   new LinkageBoxModelFactory({
     label: '族谱',
-    name: 'zupu-1',
+    name: 'linkage-search-zupu-1',
     require: true,
     tree: tree,
     root: 0,
@@ -55,7 +55,7 @@ export const searchModels: any = [
   // }).image(),
   new QuickFormFactory({
     label: '吃的',
-    name: 'radio-2',
+    name: 'radio-search-2',
     options: options,
     searchConfig: {},
     value: '1',
@@ -65,7 +65,7 @@ export const searchModels: any = [
   }).popupRadio(),
   new QuickFormFactory({
     label: '喝的',
-    name: 'radio-3',
+    name: 'popupradio-search-3',
     options: options,
     searchConfig: {},
     value: '1',
@@ -75,7 +75,7 @@ export const searchModels: any = [
   }).popupRadio(),
   new QuickFormFactory({
     label: '用的',
-    name: 'radio-4',
+    name: 'popupradio-search-4',
     options: options,
     searchConfig: {},
     value: '1',
@@ -85,7 +85,7 @@ export const searchModels: any = [
   }).popupRadio(),
   new QuickFormFactory({
     label: '模型',
-    name: 'model-1',
+    name: 'textbox-search-model-1',
     value: '',
     text: '只读',
     min: 0,
@@ -97,7 +97,7 @@ export const searchModels: any = [
     label: '视频-test-lang-and-lang',
     multiple: true,
     max: 2,
-    name: 'video-1',
+    name: 'video-search-1',
     uploadConfig: {
       authTokenHeader: 'Token',
       authToken: '3031PAtouX6FtY6u9FPvGsxnZyfG2iWSEBncgHYeFtBV9KZvI28a',
@@ -106,7 +106,7 @@ export const searchModels: any = [
   }).video(),
   new QuickFormFactory({
     label: '多选测试',
-    name: 'popup-checkbox-2',
+    name: 'popupcheckbox-search-2',
     require: true,
     value: ['A', 1],
     text: {A: '看你的选项', 1: '选项1'},
@@ -114,7 +114,7 @@ export const searchModels: any = [
   }).popupCheckbox(),
   new QuickFormFactory({
     label: '多选测试-2',
-    name: 'popup-checkbox-3',
+    name: 'popupcheckbox-search-3',
     require: false,
     value: ['A', 1],
     text: {A: '看你的选项', 1: '选项1'},

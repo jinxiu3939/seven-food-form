@@ -8,7 +8,7 @@ import { checkboxTree } from './mock-checkbox-tree-data';
 export const checkboxTreeModels: any = [
   new QuickFormFactory({
     label: '地区',
-    name: 'tree-1',
+    name: 'chk-tree-1',
     value: null,
     tree: checkboxTree,
     require: true,
@@ -16,7 +16,7 @@ export const checkboxTreeModels: any = [
   }).checkboxTree(),
   new CheckboxTreeModelFactory({
     label: '族谱',
-    name: 'zupu-1',
+    name: 'chk-tree-zupu',
     clear: true,
     tree: checkboxTree,
     value: ['A', 1, 'gege'],
@@ -25,7 +25,8 @@ export const checkboxTreeModels: any = [
   {
     type: 'checkbox-tree',
     tree: checkboxTree,
-    name: 'area-1',
+    name: 'chk-tree-area',
+    label: '地区',
     width: 5,
     max: 4,
     min: 2,

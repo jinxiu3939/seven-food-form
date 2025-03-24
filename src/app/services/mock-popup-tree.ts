@@ -9,7 +9,7 @@ import { searchConfig } from './mock-popup-radio';
 export const PopupTreeModels: any = [
   new QuickFormFactory({
     label: '蔬菜',
-    name: 'yes_no1',
+    name: 'popuptree-yes_no1',
     value: [],
     tree: treeData,
     require: true,
@@ -17,7 +17,7 @@ export const PopupTreeModels: any = [
   }).popupTree(),
   new PopupTreeModelFactory({
     label: '族谱',
-    name: 'zupu-1',
+    name: 'popuptree-zupu-1',
     clear: true,
     tree: [],
     value: ['A', 1, 'gege'],
@@ -33,7 +33,7 @@ export const PopupTreeModels: any = [
     tree: treeData,
     value: "geographies",
     label: "类别",
-    name: "cat_id",
+    name: "popuptree-cat_id",
     type: "popup-tree",
     help: "关联类别",
     max: 0,
@@ -55,7 +55,7 @@ export const PopupTreeModels: any = [
     label: "表单名称",
     max: "0",
     min: "0",
-    name: "form_name",
+    name: "popuptree-form_name",
     order: 0,
     payload: {method: 'englishWordTextBox'},
     placeholder: "",

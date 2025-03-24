@@ -8,7 +8,7 @@ import { DateConfigComponent } from '../pages/date-config.component';
 export const PopupCustomModels: any = [
   new QuickFormFactory({
     label: '蔬菜',
-    name: 'yes_no1',
+    name: 'popupcustom-yes_no1',
     value: [],
     require: true,
     size: 'small',
@@ -18,7 +18,7 @@ export const PopupCustomModels: any = [
   }).popupCustom(),
   new PopupCustomModelFactory({
     label: '族谱',
-    name: 'zupu-1',
+    name: 'popupcustom-zupu-1',
     value: ['A', 1, 'gege'],
     // disabled: true,
     size: 'medium',
@@ -31,7 +31,7 @@ export const PopupCustomModels: any = [
     label: "配置",
     max: "0",
     min: "0",
-    name: "setting",
+    name: "popupcustom-setting",
     order: 0,
     payload: {method: 'popupCustom'},
     placeholder: "",

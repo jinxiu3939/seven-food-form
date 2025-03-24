@@ -63,7 +63,7 @@ export const searchConfig = {
 export const PopupRadioModels: any = [
   new QuickFormFactory({
     label: '关联字段',
-    name: 'field_id',
+    name: 'popupradio-field_id',
     options: [
       { text: '文章', value: 99, title : 'articleOptions'},
       { text: '新闻', value: 9, items: null },
@@ -76,7 +76,7 @@ export const PopupRadioModels: any = [
   }).popupRadio(),
   new PopupRadioModelFactory({
     label: '族谱',
-    name: 'zupu-1',
+    name: 'popupradio-zupu-1',
     clear: true,
     options: options,
     value: ['A', 1, 'gege'],
@@ -94,7 +94,7 @@ export const PopupRadioModels: any = [
   {
     type: 'popup-radio',
     options: options,
-    name: 'animal-1',
+    name: 'popupradio-animal-1',
     label: '动物',
     value: 'cattle',
     text: '牛',

@@ -9,7 +9,7 @@ import { options } from './mock-options';
 export const radioModels: any = [
   new QuickFormFactory({
     label: '蔬菜',
-    name: 'yes_no1',
+    name: 'radio-1',
     all: true,
     options: options,
     require: true,
@@ -18,7 +18,7 @@ export const radioModels: any = [
   }).radio(),
   new RadioModelFactory({
     label: '族谱',
-    name: 'zupu-1',
+    name: 'radio-2',
     clear: true,
     options: options,
     value: 'gege',
@@ -29,13 +29,13 @@ export const radioModels: any = [
     label: '动物',
     disabled: true,
     options: options,
-    name: 'animal-1',
+    name: 'radio-animal-1',
     width: 5,
     max: 4,
   },
   new BooleanRadioModelFactory({
     label: '是否',
-    name: 'yes-or-no',
+    name: 'radio-yes-or-no',
     value: false,
     all: true
   }).instance(),
