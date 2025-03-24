@@ -27,6 +27,17 @@ export class TextDiffComponent implements ComponentReset {
   }
 
   resetModel() {
+    if (this.model) {
+      if (!this.model.value) {
+        this.model.value = {op: '', text: ''};
+      } else if (!this.model.value?.op && !this.model.value?.text) {
+        this.model.value = {op: '', text: ''};
+      } else if (this.model.value?.op === undefined) {
+        this.model.value.op = '';
+      } else if (this.model.value?.text === undefined) {
+        this.model.value.text = '';
+      }
+    }
   }
 
   /*

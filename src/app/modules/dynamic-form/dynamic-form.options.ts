@@ -623,7 +623,7 @@ export interface AttachmentModel extends BaseModel<ImageItem[]> {
 export interface TextDiffModel extends BaseModel<{op: string, text: any}> {
   kind: TextBoxType; // 文本框类型
   placeholder: string; // 提示
-  operations: Option<string>[]; // 操作符列表
+  operators: Option<string>[]; // 操作符列表
   position: 'left' | 'right'; // 操作符位置
 }
 

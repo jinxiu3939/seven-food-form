@@ -1,4 +1,9 @@
-<a name="4.1.8"></a>[dev]
+<a name="4.1.9"></a>
+## 4.1.9
+
+- 修复`TextDiff`和`TextRange`组件重置异常的问题
+
+<a name="4.1.8"></a>
 ## 4.1.8
 
 - 优化`TextRange`组件`placeholder`属性

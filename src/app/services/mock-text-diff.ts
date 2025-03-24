@@ -35,7 +35,7 @@ export const TextdiffModels: any = [
     view: false,
     block: 1,
     tooltip: true,
-    operations: OperationList2,
+    operators: OperationList2,
   }).instance(),
   {
     "clear": false,
@@ -55,7 +55,7 @@ export const TextdiffModels: any = [
     "validator": "",
     "data": "textBox",
     block: 5,
-    operations: OperationList1,
+    operators: OperationList1,
     position: 'right',
     tooltip: true,
   },

@@ -1900,7 +1900,7 @@ tree: any = {
     "validator": "",
     "data": "textBox",
     block: 5,
-    operations: [
+    operators: [
         { text: '>', value: '>' },
         { text: '>=', value: '>=' },
         { text: '<', value: '<' },

@@ -20,6 +20,17 @@ export class TextRangeComponent implements ComponentReset {
   @Input() form: FormGroup;
 
   resetModel() {
+    if (this.model) {
+      if (!this.model.value) {
+        this.model.value = {start: '', end: ''};
+      } else if (!this.model.value?.start && !this.model.value?.end) {
+        this.model.value = {start: '', end: ''};
+      } else if (this.model.value?.start === undefined) {
+        this.model.value.start = '';
+      } else if (this.model.value?.end === undefined) {
+        this.model.value.end = '';
+      }
+    }
   }
 
   /*

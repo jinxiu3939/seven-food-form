@@ -15,7 +15,7 @@ export class TextDiffModelFactory extends BaseModelFactory {
     this.config.kind = 'text'; // 文本框类型
     this.config.placeholder = ''; // 默认无提示
     this.config.value = {op: '', text: ''}; // 默认值，操作符-的值请使用***-***的格式
-    this.config.operations = [
+    this.config.operators = [
         { text: '=', value: '=' },
         { text: '!=', value: '!=' },
         { text: '>', value: '>' },
