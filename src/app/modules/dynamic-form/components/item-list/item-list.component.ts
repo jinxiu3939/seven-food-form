@@ -50,7 +50,7 @@ export class ItemListComponent implements ComponentReset {
    * 编辑子项目
    */
   edit(row, index) {
-    const tmp_row = deepExtend({}, row);
+    const tmp_row = deepExtend({}, row); // 深度拷贝
     this.windowRef = this.service.open(this.contentTemplate, { title: this.lang.edit + ' - ' + this.model.label, context: {
         row: tmp_row,
         fields: this.model.attributes,

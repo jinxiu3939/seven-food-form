@@ -59,6 +59,8 @@ export const itemListModels: any = [
     attributes: [
       {text: '键', type: 'input', value: 'key'},
       {text: '值', type: 'textarea', value: 'value'},
+      {text: '有效期', type: 'date', value: 'deadline'},
+      {text: '开始时间', type: 'datetime', value: 'start'},
     ],
     value: [],
     size: 'large',

@@ -68,6 +68,7 @@ export const TextboxModels: any = [
   new QuickFormFactory({
     label: '时间范围',
     name: 'text-time-range-1',
+    help: 'deprecated',
   }).rangeTextBox(),
   new QuickFormFactory({
     label: '数字',

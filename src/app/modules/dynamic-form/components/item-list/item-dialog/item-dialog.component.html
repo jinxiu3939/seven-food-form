@@ -28,6 +28,8 @@
       </div>
       <input *ngSwitchCase="'number'" [placeholder]="lang.input" class="form-control" type="number" [(ngModel)]="data[field.value]" />
       <textarea *ngSwitchCase="'textarea'" class="form-control" [placeholder]="lang.input" [(ngModel)]="data[field.value]"></textarea>
+      <input *ngSwitchCase="'datetime'" type="datetime-local" class="form-control" [(ngModel)]="data[field.value]" />
+      <input *ngSwitchCase="'date'" type="date" class="form-control" [(ngModel)]="data[field.value]" />
       <input *ngSwitchDefault [placeholder]="lang.input" class="form-control" [(ngModel)]="data[field.value]" />
     </div>
   </div>

@@ -1,3 +1,8 @@
+<a name="4.2.0"></a>
+## 4.2.0
+
+- 组件`ItemList`增加`date`和`datetime`类型
+
 <a name="4.1.9"></a>
 ## 4.1.9
 

@@ -15,6 +15,7 @@ import { textCombineModels } from './services/mock-text-combine';
 import { TextrangeModels } from './services/mock-text-range';
 import { TextdiffModels } from './services/mock-text-diff';
 import { datePickerModels } from './services/mock-date-picker';
+import { TextboxModels } from './services/mock-textbox';
 
 @Component({
   selector: 'ngx-app',
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = TextrangeModels.concat(datePickerModels).concat(TextdiffModels);
+    this.models = TextrangeModels.concat(TextboxModels).concat(itemListModels);
     this.setting = searchSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;

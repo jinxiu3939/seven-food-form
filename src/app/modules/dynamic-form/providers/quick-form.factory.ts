@@ -164,6 +164,7 @@ export class QuickFormFactory {
   }
 
   /**
+   * 手机号码文本框
    * 手机号码验证器
    */
   mobileTextBox() {
@@ -171,6 +172,7 @@ export class QuickFormFactory {
   }
 
   /**
+   * url文本框
    * `url`验证器
    */
   urlTextBox() {
@@ -233,22 +235,37 @@ export class QuickFormFactory {
     return new ImageModelFactory(this.config).instance();
   }
 
+  /**
+   * 电子表格
+   */
   spreadsheet() {
     return new SpreadsheetModelFactory(this.config).instance();
   }
 
+  /**
+   * 弹出单选框
+   */
   popupRadio() {
     return new PopupRadioModelFactory(this.config).instance();
   }
 
+  /**
+   * 弹出多选框
+   */
   popupCheckbox() {
     return new PopupCheckboxModelFactory(this.config).instance();
   }
 
+  /**
+   * 弹出树
+   */
   popupTree() {
     return new PopupTreeModelFactory(this.config).instance();
   }
 
+  /**
+   * 列表
+   */
   itemList() {
     return new ItemListModelFactory(this.config).instance();
   }
@@ -268,16 +285,22 @@ export class QuickFormFactory {
   }
 
   /**
-   * 联动框
+   * 联动下拉框
    */
   linkageBox() {
     return new LinkageBoxModelFactory(this.config).instance();
   }
 
+  /**
+   * 视频
+   */
   video() {
     return new VideoModelFactory(this.config).instance();
   }
 
+  /**
+   * 关键字
+   */
   keyword() {
     return new KeywordModelFactory(this.config).instance();
   }
