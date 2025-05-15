@@ -72,12 +72,29 @@ export class ItemListComponent implements ComponentReset {
 
   /**
    * 排序
+   * @param order 排序字段
+   * @param direction 排序方向
+   * @param type 排序类型
    */
-  sort(order, direction) {
-    if (direction === 1) { // 升序
-      this.model.value = this.model.value.sort((a, b) => +a[order] - +b[order]);
-    } else { // 降序
-      this.model.value = this.model.value.sort((a, b) => +b[order] - +a[order]);
+  sort(order, direction, type) {
+    if (type === 'number') {
+      if (direction === 1) { // 升序
+        this.model.value = this.model.value.sort((a, b) => +a[order] - +b[order]);
+      } else { // 降序
+        this.model.value = this.model.value.sort((a, b) => +b[order] - +a[order]);
+      }
+    } else if (type === 'datetime' || type === 'date') {
+      if (direction === 1) { // 升序
+        this.model.value = this.model.value.sort((a, b) => new Date(a[order]).getTime() - new Date(b[order]).getTime());
+      } else { // 降序
+        this.model.value = this.model.value.sort((a, b) => new Date(b[order]).getTime() - new Date(a[order]).getTime());
+      }
+    } else {
+      if (direction === 1) { // 升序
+        this.model.value = this.model.value.sort();
+      } else { // 降序
+        this.model.value = this.model.value.sort().reverse();
+      }
     }
     this.form.controls[this.model.name].setValue(this.model.value);
   }

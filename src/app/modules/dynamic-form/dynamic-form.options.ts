@@ -294,7 +294,7 @@ export interface TreeNode<T> {
  */
 export interface KeyValueItemModel {
   key: string; // 键
-  type: 'input' | 'drop-down' | 'drop-down-filter' | 'number' | 'boolean-radio' | 'textarea', // 类型
+  type: 'input' | 'drop-down' | 'drop-down-filter' | 'number' | 'boolean-radio' | 'textarea' | 'datetime' | 'date', // 类型
   options?: Option<string | number>[]; // 值选项
 }
 

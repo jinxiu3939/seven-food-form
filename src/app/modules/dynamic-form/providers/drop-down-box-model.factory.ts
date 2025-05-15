@@ -9,10 +9,6 @@ export class DropDownBoxModelFactory extends BaseModelFactory {
   protected type: ModelType = 'drop-down-box';
   private emptyOption: Option<any> = {text: '请选择', value: ''};
 
-  constructor(obj: any) {
-    super(obj);
-  }
-
   protected format(): void {
     // 非必填追加空值
     if (!this.model.require) {

@@ -11,9 +11,9 @@ export const itemListModels: any = [
     attributes: [
       {text: '名称种颜色一种颜色一种颜色一种颜色', type: 'input', value: 'name'},
       {text: '数量', type: 'number', value: 'number'},
-      {text: '类型', type: 'drop-down', value: 'type', options: [
-        { text: '苹果', value: 'apple', title : '一种水果' },
-        { text: '梨', value: 'pear', title : '一种水果' },
+      {text: '类型', type: 'drop-down-filter', value: 'type', options: [
+        { text: '恐龙', value: 'dinosaur', title : '一种动物' },
+        { text: '蜥蜴', value: 'lizard', title : '一种爬行动物' },
       ]},
       {text: '分类', type: 'drop-down-filter', value: 'taxonomy', options: [
         { text: '苹果', value: 'apple', title : '一种水果' },
@@ -78,7 +78,7 @@ export const itemListModels: any = [
     keyValue: [
       {key: 'kind', type: 'input'},
       {key: 'number', type: 'number'},
-      {key: 'category', type: 'drop-down', options: [
+      {key: 'category', type: 'drop-down-filter', options: [
         { text: '苹果', value: 'apple', title : '一种水果' },
         { text: '梨', value: 'pear', title : '一种水果' },
       ]},
@@ -86,6 +86,8 @@ export const itemListModels: any = [
         { text: '苹果', value: 'apple', title : '一种水果' },
         { text: '梨', value: 'pear', title : '一种水果' },
       ]},
+      {key: 'deadline', type: 'date'},
+      {key: 'starttime', type: 'datetime'},
     ]
   }).keyValue(),
 ];

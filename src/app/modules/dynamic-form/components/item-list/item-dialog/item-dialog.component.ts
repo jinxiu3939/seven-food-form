@@ -64,8 +64,10 @@ export class ItemDialogComponent implements OnInit {
 
   /**
    * 检索
+   * @param term 关键字
+   * @param f 字段索引
    */
-  search(term: string, f): void {
+  search(term: string, f: number): void {
     this.searchTerms.next({value: term, key: f});
   }
 
@@ -77,12 +79,7 @@ export class ItemDialogComponent implements OnInit {
     const keyword = term.value;
     if (keyword) {
       result = this.fields[term.key].options.filter((item) => {
-        for (const i in item) {
-          if (item.text.indexOf(keyword) >= 0 || (item.value + '').indexOf(keyword) >= 0) {
-            return true;
-          }
-        }
-        return false;
+        return item.text.indexOf(keyword) >= 0 || (item.value + '').indexOf(keyword) >= 0;
       });
     } else {
       result = this.fields[term.key].options; // 默认显示全部

@@ -15,14 +15,14 @@ import { LangProvider } from '../../../providers/data/lang.provider';
 })
 export class KeyValueDialogComponent implements OnInit {
   @Input() data: {key: string, value: any}; // 值
-  @Input() options: KeyValueItemModel[]; // 选项
+  @Input() options: KeyValueItemModel[]; // 键值对配置列表
   @Input() size: string = ''; // 表单组件的尺寸
 
   @Output() public finish = new EventEmitter<object>(); // 提交
   
   private searchTerms = new Subject<{value: string, key: string}>(); // 检索对象
   files$: Observable<any[]>;
-  searchOptions: Option<string | number>[][] = [];
+  searchOptions: Option<string | number>[][] = []; // 显示值
   objectKeys = Object.keys;
   column = [3, 9];
   lang: any;
@@ -89,17 +89,13 @@ export class KeyValueDialogComponent implements OnInit {
   private filter(term: {value: string, key: string}): Observable<any[]> {
     let result: any[];
     const keyword = term.value;
+    const key_value = this.options.find((row) => row.key === term.key);
     if (keyword) {
-      result = this.options[term.key].options.filter((item) => {
-        for (const i in item) {
-          if (item.text.indexOf(keyword) >= 0 || (item.value + '').indexOf(keyword) >= 0) {
-            return true;
-          }
-        }
-        return false;
+      result = key_value.options.filter((item) => {
+        return item.text.indexOf(keyword) >= 0 || (item.value + '').indexOf(keyword) >= 0;
       });
     } else {
-      result = this.options[term.key].options; // 默认显示全部
+      result = key_value.options; // 默认显示全部
     }
     this.searchOptions[term.key] = result;
     return of(result);

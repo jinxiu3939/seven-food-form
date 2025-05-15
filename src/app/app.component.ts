@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.models = TextrangeModels.concat(TextboxModels).concat(itemListModels);
-    this.setting = searchSetting;
+    // this.setting = oneLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;
       // models[0].editorConfig = res.content.form.models[14].editorConfig;

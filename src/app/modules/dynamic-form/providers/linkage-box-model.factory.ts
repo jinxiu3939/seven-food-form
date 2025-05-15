@@ -8,10 +8,6 @@ export class LinkageBoxModelFactory extends BaseModelFactory {
   protected model: LinkageBoxTreeModel;
   protected type: ModelType = 'linkage-box';
 
-  constructor(obj: any) {
-    super(obj);
-  }
-
   protected format(): void {
     /* 值为数组 */
     if (! this.model.value) {

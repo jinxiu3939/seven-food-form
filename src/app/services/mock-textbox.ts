@@ -55,8 +55,23 @@ export const TextboxModels: any = [
     block: 5,
   },
   new QuickFormFactory({
-    label: '链接',
-    name: 'text-url-1',
+    block: "0_zh-Hans",
+    clear: false,
+    disabled: false,
+    help: "",
+    kind: "url",
+    label: "外链",
+    max: "0",
+    min: "0",
+    name: "link_i18n_zh-Hans",
+    order: 0,
+    payload: {method: 'urlTextBox'},
+    placeholder: "",
+    readonly: false,
+    require: false,
+    type: "text-box",
+    "validator": "",
+    value: ""
   }).urlTextBox(),
   new QuickFormFactory({
     label: '时间',
@@ -95,7 +110,7 @@ export const TextboxModels: any = [
   new QuickFormFactory({
     label: '邮箱',
     name: 'text-email-1',
-    require: true,
+    require: false,
   }).emailTextBox(),
   new QuickFormFactory({
     label: '本地时间',
