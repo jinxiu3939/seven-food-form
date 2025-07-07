@@ -8,8 +8,8 @@ export const TextboxModels: any = [
     label: '文本',
     name: 'text-1',
     readonly: true,
-    min: 12,
-    value: '1',
+    min: 2,
+    value: '13333',
   }).textBox(),
   new TextBoxModelFactory({
     label: '题库',
@@ -122,4 +122,10 @@ export const TextboxModels: any = [
     label: '中文',
     name: 'text-zh-word-1',
   }).chineseWordTextBox(),
+  new QuickFormFactory({
+    label: '日期',
+    name: 'date-text-1',
+    clear: true,
+    value: '2022-11-12'
+  }).dateTextBox(),
 ];

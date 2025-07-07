@@ -8,6 +8,26 @@
     overflow: auto;
   }
 
+  .top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .search-group {
+      width: auto;
+    }
+  }
+
+  .total {
+    padding-left: 1rem;
+    align-items: center;
+  }
+
+  .search-box {
+    max-width: 8rem;
+  }
+
   .table-item-medium {
     max-height: 360px;
   }
@@ -36,6 +56,11 @@
 
   nb-icon {
     font-size: 0.75rem;
+    cursor: pointer;
+
+    &.current {
+      color: nb-theme(color-info-500);
+    }
   }
 
   sff-item-dialog {

@@ -1,6 +1,27 @@
 <div [formGroup]="form" class="row">
-  <div *ngIf="! model.disabled" class="col-12">
+  <div *ngIf="! model.disabled" class="top col-12">
     <a nbButton status="info" size="tiny" (click)="add()">{{ lang.add }}</a>
+    <div *ngIf="model.value && model.value.length > 5" class="input-group search-group">
+      <div class="input-group-prepend">
+        <nb-select size="small" [(selected)]="searchAttribute">
+          <nb-option *ngFor="let opt of model.attributes" [value]="opt.value">{{ opt.text }}</nb-option>
+        </nb-select>
+      </div>
+      <input #searchBox
+          size="tiny"
+          class="form-control form-control-sm search-box"
+          [placeholder]="lang.keyword_search">
+      <span class="input-group-append">
+        <button nbButton
+                size="tiny"
+                class="input-group-text"
+                status="basic"
+                (click)="search(searchBox.value)">{{ lang.search }}</button>
+      </span>
+      <span class="total input-group-append">
+        {{ searchResult.length }} / {{ model.value.length }}
+      </span>
+    </div>
     <input [formControlName]="model.name" type="hidden" [name]="model.name" [value]="model.value">
   </div>
   <div class="col-12 vertical-scroll table-responsive table-item-{{ model.height }}">
@@ -9,15 +30,15 @@
         <tr>
           <th *ngFor="let attr of model.attributes">
             {{ attr.text }}
-            <nb-icon *ngIf="! model.disabled" icon="arrowhead-up" [title]="lang.asc" (click)="sort(attr.value, 1, attr.type)"></nb-icon>
-            <nb-icon *ngIf="! model.disabled" icon="arrowhead-down" [title]="lang.desc" (click)="sort(attr.value, 0, attr.type)"></nb-icon>
+            <nb-icon *ngIf="! model.disabled" [ngClass]="{current: sortDirection===1 && sortType===attr.value}" icon="arrowhead-up" [title]="lang.asc" (click)="sort(attr.value, 1, attr.type)"></nb-icon>
+            <nb-icon *ngIf="! model.disabled" [ngClass]="{current: sortDirection===0 && sortType===attr.value}" icon="arrowhead-down" [title]="lang.desc" (click)="sort(attr.value, 0, attr.type)"></nb-icon>
           </th>
           <th *ngIf="! model.disabled">{{ lang.operate }}</th>
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf="model.value && model.value.length > 0">
-          <tr *ngFor="let row of model.value; let i = index">
+        <ng-container *ngIf="searchResult && searchResult.length > 0">
+          <tr *ngFor="let row of searchResult; let i = index">
             <td *ngFor="let attr of model.attributes" [title]="row[attr.value]">
               {{ row[attr.value] }}
             </td>
@@ -27,7 +48,7 @@
             </td>
           </tr>
         </ng-container>
-        <ng-container *ngIf="! model.value || model.value.length === 0">
+        <ng-container *ngIf="! searchResult || searchResult.length === 0">
           <tr><td>{{ lang.no_data }}</td></tr>
         </ng-container>
       </tbody>

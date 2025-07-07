@@ -1,7 +1,7 @@
 /**
  * 子项目选择
  */
-import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NbWindowService, NbWindowRef } from '@nebular/theme';
 
@@ -15,12 +15,17 @@ import { ComponentReset } from '../../providers/interface/component-reset';
   templateUrl: `./item-list.component.html`,
   styleUrls: ['./item-list.component.scss'],
 })
-export class ItemListComponent implements ComponentReset {
+export class ItemListComponent implements ComponentReset, OnInit {
 
   @Input() form: FormGroup;
   @Input() model: ItemListModel;
 
   lang: any;
+  searchAttribute: string; // 检索属性
+  searchResult: any[] = []; // 检索结果
+  sortDirection: number; // 排序方向
+  sortType: string; // 排序类型
+  keyword: string; // 检索条件
 
   @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
 
@@ -31,6 +36,11 @@ export class ItemListComponent implements ComponentReset {
   }
 
   resetModel() {
+  }
+
+  ngOnInit(): void {
+      this.searchResult = this.model.value;
+      this.model.attributes.forEach(attribute => this.searchAttribute = attribute.value);
   }
 
   /*
@@ -79,23 +89,26 @@ export class ItemListComponent implements ComponentReset {
   sort(order, direction, type) {
     if (type === 'number') {
       if (direction === 1) { // 升序
-        this.model.value = this.model.value.sort((a, b) => +a[order] - +b[order]);
+        this.model.value.sort((a, b) => +a[order] - +b[order]);
       } else { // 降序
-        this.model.value = this.model.value.sort((a, b) => +b[order] - +a[order]);
+        this.model.value.sort((a, b) => +b[order] - +a[order]);
       }
     } else if (type === 'datetime' || type === 'date') {
       if (direction === 1) { // 升序
-        this.model.value = this.model.value.sort((a, b) => new Date(a[order]).getTime() - new Date(b[order]).getTime());
+        this.model.value.sort((a, b) => new Date(a[order]).getTime() - new Date(b[order]).getTime());
       } else { // 降序
-        this.model.value = this.model.value.sort((a, b) => new Date(b[order]).getTime() - new Date(a[order]).getTime());
+        this.model.value.sort((a, b) => new Date(b[order]).getTime() - new Date(a[order]).getTime());
       }
-    } else {
+    } else { // 字符串
       if (direction === 1) { // 升序
-        this.model.value = this.model.value.sort();
+        this.model.value.sort((a, b) => (a[order]+'').localeCompare(b[order]+''));
       } else { // 降序
-        this.model.value = this.model.value.sort().reverse();
+        this.model.value.sort((a, b) => (a[order]+'').localeCompare(b[order]+'')).reverse();
       }
     }
+    this.doSearch(); // 重新检索
+    this.sortDirection = direction; // 排序方向
+    this.sortType = order; // 排序类型
     this.form.controls[this.model.name].setValue(this.model.value);
   }
 
@@ -109,6 +122,7 @@ export class ItemListComponent implements ComponentReset {
       } else {
         this.model.value.push(result); // 新增
       }
+      this.searchResult = this.model.value; // 重置结果
       this.form.controls[this.model.name].setValue(this.model.value);
     }
     this.windowRef.close(); // 关闭弹窗
@@ -128,5 +142,19 @@ export class ItemListComponent implements ComponentReset {
       message.push(formatAlertMessage(this.lang.input_up, [this.model.max]));
     }
     return message;
+  }
+
+  /**
+   * 检索
+   */
+  search(keyword: string) {
+    this.keyword = keyword;
+    this.doSearch();
+  }
+
+  private doSearch() {
+    if (this.keyword !== undefined) {
+      this.searchResult = this.model.value.filter(r => (r[this.searchAttribute]+'').indexOf(this.keyword) > -1);
+    }
   }
 }

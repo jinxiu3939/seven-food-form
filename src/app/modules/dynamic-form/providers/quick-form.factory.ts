@@ -41,6 +41,7 @@ import { TextCombineModelFactory } from './text-combine-model.factory';
 import { AttachmentModelFactory } from './attachment-model.factory';
 import { TextRangeModelFactory } from './text-range-model.factory';
 import { TextDiffModelFactory } from './text-diff-model.factory';
+import { DateTextBoxModelFactory} from './date-text-box-model.factory';
 
 /**
  * 快速表单工厂
@@ -373,5 +374,12 @@ export class QuickFormFactory {
    */
   textDiff() {
     return new TextDiffModelFactory(this.config).instance();
+  }
+
+  /**
+   * 日期文本框
+   */
+  dateTextBox() {
+    return new DateTextBoxModelFactory(this.config).instance();
   }
 }
