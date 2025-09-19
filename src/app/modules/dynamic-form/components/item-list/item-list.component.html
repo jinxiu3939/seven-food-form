@@ -1,7 +1,7 @@
 <div [formGroup]="form" class="row">
   <div *ngIf="! model.disabled" class="top col-12">
     <a nbButton status="info" size="tiny" (click)="add()">{{ lang.add }}</a>
-    <div *ngIf="model.value && model.value.length > 5" class="input-group search-group">
+    <div *ngIf="(model.value && model.value.length > 5) || keyword" class="input-group search-group">
       <div class="input-group-prepend">
         <nb-select size="small" [(selected)]="searchAttribute">
           <nb-option *ngFor="let opt of model.attributes" [value]="opt.value">{{ opt.text }}</nb-option>
@@ -38,13 +38,13 @@
       </thead>
       <tbody>
         <ng-container *ngIf="searchResult && searchResult.length > 0">
-          <tr *ngFor="let row of searchResult; let i = index">
-            <td *ngFor="let attr of model.attributes" [title]="row[attr.value]">
-              {{ row[attr.value] }}
+          <tr *ngFor="let sr of searchResult">
+            <td *ngFor="let attr of model.attributes" [title]="sr.data[attr.value]">
+              {{ sr.data[attr.value] }}
             </td>
             <td *ngIf="! model.disabled">
-              <nb-icon icon="close" [title]="lang.delete" status='danger' (click)="delete(row)"></nb-icon>
-              <nb-icon icon="edit-outline" [title]="lang.edit" status='primary' (click)="edit(row, i)"></nb-icon>
+              <nb-icon icon="close" [title]="lang.delete" status='danger' (click)="delete(sr.data)"></nb-icon>
+              <nb-icon icon="edit-outline" [title]="lang.edit" status='primary' (click)="edit(sr.data, sr.index)"></nb-icon>
             </td>
           </tr>
         </ng-container>

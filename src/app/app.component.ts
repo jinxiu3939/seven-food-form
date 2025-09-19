@@ -24,14 +24,14 @@ import { TextboxModels } from './services/mock-textbox';
 })
 export class AppComponent implements OnInit {
   title = 'seven-food-form';
-  models: any;
+  models: any = TextboxModels.slice(0, 3);
   submitting = false;
-  setting: any = {};
+  setting: any = {hideSubmit: true, hideReset: true, size: "medium"};
 
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = TextrangeModels.concat(TextboxModels).concat(itemListModels);
+    // this.models = PopupRadioModels.concat(TextboxModels).concat(itemListModels);
     // this.setting = oneLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;
@@ -56,5 +56,9 @@ export class AppComponent implements OnInit {
 
   reset(flag) {
     console.log(flag);
+  }
+
+  valueChange(data) {
+    console.log(data);
   }
 }

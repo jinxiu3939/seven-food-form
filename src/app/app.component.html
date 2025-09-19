@@ -10,6 +10,7 @@
         <sff-dynamic-form [loading]="submitting"
                           [setting]="setting"
                           [models]="models"
+                          (formValueChange)="valueChange($event)"
                           (formCustom)="operate($event)"
                           (formReset)="reset($event)"
                           (formSubmit)="submit($event)">

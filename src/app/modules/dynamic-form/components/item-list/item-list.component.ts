@@ -22,7 +22,7 @@ export class ItemListComponent implements ComponentReset, OnInit {
 
   lang: any;
   searchAttribute: string; // 检索属性
-  searchResult: any[] = []; // 检索结果
+  searchResult: {index: number, data: any}[] = []; // 检索结果
   sortDirection: number; // 排序方向
   sortType: string; // 排序类型
   keyword: string; // 检索条件
@@ -39,8 +39,8 @@ export class ItemListComponent implements ComponentReset, OnInit {
   }
 
   ngOnInit(): void {
-      this.searchResult = this.model.value;
-      this.model.attributes.forEach(attribute => this.searchAttribute = attribute.value);
+    this.syncValue(); // 显示
+    this.model.attributes.forEach(attribute => this.searchAttribute = attribute.value);
   }
 
   /*
@@ -77,6 +77,7 @@ export class ItemListComponent implements ComponentReset, OnInit {
    */
   delete(row) {
     this.model.value = this.model.value.filter(r => r !== row);
+    this.syncValue(); // 同步显示结果
     this.form.controls[this.model.name].setValue(this.model.value);
   }
 
@@ -106,7 +107,7 @@ export class ItemListComponent implements ComponentReset, OnInit {
         this.model.value.sort((a, b) => (a[order]+'').localeCompare(b[order]+'')).reverse();
       }
     }
-    this.doSearch(); // 重新检索
+    this.syncValue(); // 同步显示结果
     this.sortDirection = direction; // 排序方向
     this.sortType = order; // 排序类型
     this.form.controls[this.model.name].setValue(this.model.value);
@@ -122,7 +123,8 @@ export class ItemListComponent implements ComponentReset, OnInit {
       } else {
         this.model.value.push(result); // 新增
       }
-      this.searchResult = this.model.value; // 重置结果
+      console.log(this.model.value);
+      this.syncValue(); // 同步显示结果
       this.form.controls[this.model.name].setValue(this.model.value);
     }
     this.windowRef.close(); // 关闭弹窗
@@ -149,12 +151,23 @@ export class ItemListComponent implements ComponentReset, OnInit {
    */
   search(keyword: string) {
     this.keyword = keyword;
-    this.doSearch();
+    this.syncValue(); // 同步显示结果
   }
 
-  private doSearch() {
+  /**
+   * 同步显示结果
+   */
+  private syncValue() {
     if (this.keyword !== undefined) {
-      this.searchResult = this.model.value.filter(r => (r[this.searchAttribute]+'').indexOf(this.keyword) > -1);
+      let tmpValue = [];
+      this.model.value.map((r, k) => {
+        if ((r[this.searchAttribute]+'').indexOf(this.keyword) > -1) {
+          tmpValue.push({index: k, data: r});
+        }
+      });
+      this.searchResult = tmpValue;
+    } else {
+      this.searchResult = this.model.value.map((row, index) => {return {index, data: row}});
     }
   }
 }

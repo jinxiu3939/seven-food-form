@@ -33,6 +33,16 @@
                class="form-control"
                type="number"
                [(ngModel)]="condition[item.value]">
+        <input *ngSwitchCase="'datetime'"
+               [placeholder]="lang.input"
+               class="form-control"
+               type="datetime-local"
+               [(ngModel)]="condition[item.value]">
+        <input *ngSwitchCase="'date'"
+               [placeholder]="lang.input"
+               class="form-control"
+               type="date"
+               [(ngModel)]="condition[item.value]">
         <input *ngSwitchDefault
                class="form-control"
                [placeholder]="lang.input"

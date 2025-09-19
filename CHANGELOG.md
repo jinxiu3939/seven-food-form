@@ -1,3 +1,15 @@
+<a name="4.2.4"></a>
+## 4.2.4
+
+- 修复`ItemList`组件编辑和删除的问题
+- 增加`Form`表单`formValueChange`事件
+
+<a name="4.2.3"></a>
+## 4.2.3
+
+- 增加`DateText`工厂方法
+- 优化`ItemList`组件，增加提示
+
 <a name="4.2.2"></a>
 ## 4.2.2
 

@@ -111,6 +111,7 @@ this.model.editor = ClassicEditor;
 - formSubmit，提交事件，返回表单值
 - formReset，重置事件，返回`boolean`值
 - formCustom，自定义事件，返回表单值和操作名称
+- formValueChange，表单值改变事件，返回表单值和当前改变项
 
 ### 示例
 

@@ -9,7 +9,7 @@ export const itemListModels: any = [
     name: 'itemlist-1',
     value: null,
     attributes: [
-      {text: '名称种颜色一种颜色一种颜色一种颜色', type: 'input', value: 'name'},
+      {text: '名称种颜色一种颜色一种颜色一种颜色', type: 'input', value: 'name', help: "看看我，我是新加的颜色"},
       {text: '数量', type: 'number', value: 'number'},
       {text: '类型', type: 'drop-down-filter', value: 'type', options: [
         { text: '恐龙', value: 'dinosaur', title : '一种动物' },
@@ -30,7 +30,14 @@ export const itemListModels: any = [
     label: '条款',
     name: 'itemlist-doc-1',
     clear: true,
-    value: [{key: 'kind', value: 'gege'}, {key: 'category', value: 'apple'}],
+    value: [
+      {key: 'kind', value: 'gege'},
+      {key: 'kind', value: 'gege'},
+      {key: 'category', value: 'apple'},
+      {key: 'category', value: 'apple'},
+      {key: 'category', value: 'apple'},
+      {key: 'category', value: 'apple'}
+    ],
     accept: 'application/msword',
     kind: 'key-value',
     attributes: [

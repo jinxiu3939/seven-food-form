@@ -20,7 +20,7 @@ export const oneLayoutModels = [
     order: 1,
     require: true,
     validator: '',
-    block: 1,   
+    block: 1,
   },
   new QuickFormFactory({
     label: '族谱',
@@ -141,7 +141,7 @@ export const oneLayoutModels = [
     order: 1,
     require: true,
     validator: '',
-    block: 1,   
+    block: 1,
   },
   new QuickFormFactory({
     label: '下拉框',
@@ -290,6 +290,8 @@ export const oneLayoutSetting = {
   validate: true,
   buttonFixed: false,
   buttonPosition: 'right',
+  hideSubmit: false,
+  hideReset: false,
   buttons: [
     {value: 'export', name: 'export'},
     {value: 'import', name: 'import'},

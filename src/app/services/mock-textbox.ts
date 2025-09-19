@@ -3,7 +3,7 @@ import {
   TextBoxModelFactory,
 } from '../modules/dynamic-form';
 
-export const TextboxModels: any = [
+export const TextboxModels: any[] = [
   new QuickFormFactory({
     label: '文本',
     name: 'text-1',

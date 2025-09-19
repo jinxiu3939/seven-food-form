@@ -21,6 +21,7 @@ export class DynamicFormComponent implements OnChanges {
   @Output() public formSubmit = new EventEmitter<any>(); // 表单提交事件
   @Output() public formReset = new EventEmitter<boolean>(); // 表单重置事件
   @Output() public formCustom = new EventEmitter<{form:any, name: string}>(); // 其他点击事件
+  @Output() public formValueChange = new EventEmitter<{form:any, name: string, value: any}>(); // 表单值改变事件
 
   form: FormGroup; // 响应式表单
   complete: boolean; // 表单是否构建完毕
@@ -78,13 +79,17 @@ export class DynamicFormComponent implements OnChanges {
   /*
    * 创建表单元素
    */
-  createGroup(form) {
+  createGroup(form: FormGroup) {
     this.models.map(model => {
       if (model.name) {
         form.addControl(model.name, this.builder.control(
           {value: model.value, disabled: model.disabled}, // 默认值
           this.fetchValidator(model),
         ));
+        // 监听表单值的变化
+        form.controls[model.name].valueChanges.subscribe(value => {
+          this.formValueChange.emit({form: this.form.value, name: model.name, value});
+        });
       }
     });
 
@@ -115,7 +120,7 @@ export class DynamicFormComponent implements OnChanges {
       /* 二级表单 */
       if (this.setting.children && Array.isArray(this.setting.children) && this.setting.children.length > 0) {
           this.level = 1;
-          
+
           this.setting.children.map((children) => {
             /* 三级表单 */
             if (children.children && Array.isArray(children.children) && children.children.length > 0) {
@@ -185,7 +190,7 @@ export class DynamicFormComponent implements OnChanges {
   /**
    * 构造表单验证器
    * @param model 模型
-   * @returns 
+   * @returns
    */
   private fetchValidator(model: BaseModel<any>) {
     const validator = [];

@@ -273,6 +273,7 @@ export interface ConditionField {
   text: string; // 显示标签
   type: 'input' | 'drop-down' | 'drop-down-filter' | 'number' | 'boolean-radio' | 'textarea' | 'datetime' | 'date'; // 类型
   value: string; // 条件字段名称
+  help?: string; // 备注
   options?: Option<string | number>[]; // 选项
   mode?: 'async' | 'sync'; // 选项检索方式
   endpoint?: string; // 选项异步检索接口

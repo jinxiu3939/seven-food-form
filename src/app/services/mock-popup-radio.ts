@@ -45,6 +45,16 @@ export const searchConfig = {
         { text: '板块', value: 9, items: null },
       ],
     },
+    {
+      text: '开始时间',
+      type: 'datetime',
+      value: 'starttime',
+    },
+    {
+      text: '结束日期',
+      type: 'date',
+      value: 'deadline',
+    },
   ],
   additionalParameter: {
     format: "option",

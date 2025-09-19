@@ -1,7 +1,10 @@
 <div class="item-dialog {{ size }}-dialog">
   <div *ngFor="let field of fields; let f = index" class="form-group row">
     <div class="col-{{ column[0] }} text-right">
-      <label>{{ field.text }}</label>
+      <label>
+        {{ field.text }}
+        <nb-icon *ngIf="field.help" class="help-icon" [nbTooltip]="field.help" nbTooltipStatus="control" icon="question-mark-circle-outline"></nb-icon>
+      </label>
     </div>
     <div [ngSwitch]="field.type" class="col-{{ column[1] }}">
       <nb-select *ngSwitchCase="'drop-down'"
