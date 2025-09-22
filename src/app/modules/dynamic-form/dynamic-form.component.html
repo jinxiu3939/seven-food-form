@@ -1,6 +1,5 @@
 <div *ngIf="debug" class="tip">Enter</div>
-<form *ngIf="form"
-      [formGroup]="form">
+<form *ngIf="form" [formGroup]="form" class="container">
   <div *ngIf="complete" class="row" [nbSpinner]="loading" nbSpinnerStatus="info">
     <ng-container [ngSwitch]="level">
       <sff-two-layout *ngSwitchCase="2"
@@ -19,7 +18,7 @@
                       [setting]="setting"
                       [reload]="reload">
       </sff-one-layout>
-      <sff-form-block *ngSwitchDefault class="row col-{{ setting.bodyWidth }}"
+      <sff-form-block *ngSwitchDefault class="col-{{ setting.bodyWidth }}"
                       [ngClass]="{'block-fold': !formExpand}"
                       [models]="modelsTree"
                       [form]="form"

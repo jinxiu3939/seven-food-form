@@ -1,6 +1,6 @@
 <div *ngFor="let model of models"
-     class="form-group row block-item block-{{ size }} block-{{ model.type }}">
-  <ng-container [ngSwitch]="labelWidth">
+     class="container block-item block-{{ size }} block-{{ model.type }}">
+  <div [ngSwitch]="labelWidth" class="form-group row">
     <div *ngSwitchCase="0" class="block-row-full col-12">
       <small [ngClass]="{'text-status-danger': invalid(model.name)}">{{ model.label }}</small>
       <nb-icon *ngIf="model.tooltip && model.help" [nbTooltip]="model.help" nbTooltipStatus="control" icon="question-mark-circle-outline"></nb-icon>
@@ -27,5 +27,5 @@
         </ng-container>
       </div>
     </ng-container>
-  </ng-container>
+  </div>
 </div>
