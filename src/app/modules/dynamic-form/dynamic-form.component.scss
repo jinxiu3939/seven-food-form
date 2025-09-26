@@ -190,6 +190,16 @@
     }
   }
 
+  @media screen and (width <= 768px) {
+    .block-item {
+      &.block-extra-large, &.block-large, &.block-medium, &.block-small, &.block-tiny {
+        // width: 100%; // 每行显示1个
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
   /* 表单块折叠样式 */
   .block-fold {
     height: 4.5rem;
