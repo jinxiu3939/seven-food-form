@@ -318,7 +318,7 @@ export const oneLayoutSetting = {
     },
     {
       blockId: 4,
-      blockTitle: "markdown富文本",
+      blockTitle: "markdown富文本很长很长的样子",
       validate: true,
     },
     {

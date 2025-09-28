@@ -27,11 +27,11 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
   @Input() form: FormGroup;
 
   @ViewChild('dialog', {static: false}) dialog;
-  @ViewChild("inputFile", { static: false }) inputFile: ElementRef; 
+  @ViewChild("inputFile", { static: false }) inputFile: ElementRef;
 
   table: AOA; // 电子表格内容
   loading: boolean;
-  finished: boolean; // 校验是否有效
+  validated: boolean; // 校验是否有效
   status: string; // 状态
   lang: any;
 
@@ -39,7 +39,7 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
 
   constructor(private dialogService: NbDialogService, private provider: ResourceProvider, private langProvider: LangProvider) {
     this.uploader = new FileUploader({});
-    this.finished = false;
+    this.validated = false;
     this.lang = langProvider.lang;
   }
 
@@ -50,14 +50,16 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
 
   resetModel() {
     this.inputFile.nativeElement.value = "";
-    this.finished = false; // 可以上传
-    this.table = null; // 保存电子表格
+    this.validated = false; // 不可以上传
+    this.table = null; // 清空电子表格
+    this.uploader.clearQueue(); // 清空队列
   }
 
   /*
    * 选择文件
    */
   selectedFileOnChanged(event: any) {
+    this.validated = false; // 默认不可以上传
     if (this.uploader.queue.length === 0) {
       this.alert(formatAlertMessage(this.lang.choose_spreadsheet_error, [
         formatAlertMessage(this.lang.type_or_size_error, [this.model.uploadConfig.maxFileSize / 1024 / 1024 + 'M'])
@@ -88,17 +90,20 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
             this.alert(this.lang.validate_spreadsheet_error);
             this.model.view = true;
           } else {
-            this.finished = true; // 可以上传
+            this.validated = true; // 可以上传
             this.table = tmp_sheets; // 保存电子表格
           }
         } else { // 不校验内容
-          this.finished = true; // 可以上传
+          this.validated = true; // 可以上传
           this.table = tmp_sheets; // 保存电子表格
         }
       } else {
         this.alert(this.lang.read_spreadsheet_error);
       }
       this.loading = false;
+      if (this.validated === false) {
+        this.uploader.clearQueue(); // 清空队列
+      }
     };
     reader.onerror = (e: any) => {
       this.alert(this.lang.validate_spreadsheet_error_1);
@@ -125,7 +130,7 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
               $this.alert(result.error);
             } else {
               $this.uploadFinish(result);
-              $this.finished = false;
+              $this.validated = false;
               $this.status = 'success';
               $this.alert($this.lang.upload_success);
             }
@@ -147,6 +152,8 @@ export class SpreadsheetComponent implements OnInit, ComponentReset {
       };
       this.uploader.queue[0].upload(); // 只上传一个文件
       this.loading = true;
+    } else {
+      this.alert(this.lang.max_spreadsheet_1);
     }
   }
 

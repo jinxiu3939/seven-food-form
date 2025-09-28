@@ -16,6 +16,7 @@ import { TextrangeModels } from './services/mock-text-range';
 import { TextdiffModels } from './services/mock-text-diff';
 import { datePickerModels } from './services/mock-date-picker';
 import { TextboxModels } from './services/mock-textbox';
+import { SpreadsheetModels } from './services/mock-spreadsheet';
 
 @Component({
   selector: 'ngx-app',
@@ -26,13 +27,14 @@ export class AppComponent implements OnInit {
   title = 'seven-food-form';
   models: any = TextdiffModels.slice(0, 3);
   submitting = false;
-  setting: any = {hideSubmit: true, hideReset: true, size: "medium"};
+  setting: any = {hideSubmit: true, hideReset: false};
 
   constructor(private service: ApiService) {}
 
   ngOnInit() {
-    this.models = PopupRadioModels.concat(TextboxModels).concat(itemListModels);
-    // this.setting = oneLayoutSetting;
+    this.models = PopupRadioModels.concat(TextboxModels).concat(radioModels);
+    // this.models = SpreadsheetModels;
+    this.setting = twoLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;
       // models[0].editorConfig = res.content.form.models[14].editorConfig;

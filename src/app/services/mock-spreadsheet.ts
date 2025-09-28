@@ -13,6 +13,7 @@ export const SpreadsheetModels: any = [
       url: '/api/upload/spreadsheet',
     },
     require: true,
+    header: ["标题", "类型"],
   }).spreadsheet(),
   new SpreadsheetModelFactory({
     label: '题库',

@@ -165,6 +165,7 @@
     }
 
     .col-form-label {
+      padding-left: 0;
       padding-right: 0;
       overflow: hidden;
       white-space: nowrap;
@@ -192,10 +193,22 @@
 
   @media screen and (width <= 768px) {
     .block-item {
+      padding: 0;
+
+      .row {
+        margin-left: 0;
+      }
+
       &.block-extra-large, &.block-large, &.block-medium, &.block-small, &.block-tiny {
         // width: 100%; // 每行显示1个
         flex: 0 0 100%;
         max-width: 100%;
+      }
+
+      .col-form-label {
+        small {
+          display: none;
+        }
       }
     }
   }

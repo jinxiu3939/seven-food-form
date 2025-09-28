@@ -108,5 +108,6 @@ export const PopupRadioModels: any = [
     label: '动物',
     value: 'cattle',
     text: '牛',
+    size: 'medium',
   },
 ];

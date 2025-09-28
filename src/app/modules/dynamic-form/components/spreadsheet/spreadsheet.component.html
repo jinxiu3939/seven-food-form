@@ -6,7 +6,7 @@
            ng2FileSelect
            [uploader]="uploader"
            (change)="selectedFileOnChanged($event)" />
-    <a *ngIf="finished"
+    <a *ngIf="validated"
        nbButton
        size="tiny"
        type="button"
