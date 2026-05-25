@@ -27,14 +27,14 @@ export class AppComponent implements OnInit {
   title = 'seven-food-form';
   models: any = TextdiffModels.slice(0, 3);
   submitting = false;
-  setting: any = {hideSubmit: true, hideReset: false};
+  setting: any = {hideSubmit: true, hideReset: false, width: 12};
 
   constructor(private service: ApiService) {}
 
   ngOnInit() {
     this.models = PopupRadioModels.concat(TextboxModels).concat(radioModels);
     // this.models = SpreadsheetModels;
-    this.setting = twoLayoutSetting;
+    // this.setting = twoLayoutSetting;
     this.service.get().subscribe((res) => {
       // let models = mdeditorModels;
       // models[0].editorConfig = res.content.form.models[14].editorConfig;

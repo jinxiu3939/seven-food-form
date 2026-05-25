@@ -19,7 +19,7 @@
         <nb-icon *ngIf="model.tooltip && model.help" [nbTooltip]="model.help" nbTooltipStatus="control" icon="question-mark-circle-outline"></nb-icon>
         <small *ngIf="!model.tooltip && model.help" class="form-text text-muted" [title]="model.help">{{ model.help }}</small>
       </label>
-      <div class="col-{{ width }}">
+      <div class="col-{{ width }} col-form-value">
         <ng-container sffDynamicField [model]="model" [form]="form" [reload]="reload">
         </ng-container>
         <ng-container *ngIf="invalid(model.name)">
