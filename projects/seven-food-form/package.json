@@ -1,0 +1,31 @@
+{
+  "name": "seven-food-form",
+  "version": "5.0.0",
+  "description": "The dynamic form of angular based on nebular",
+  "peerDependencies": {
+    "@angular/cdk": "^21.0.0",
+    "@angular/common": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@nebular/theme": "^17.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jinxiu3939/seven-food-form.git"
+  },
+  "keywords": [
+    "dynamic form",
+    "angular",
+    "typescript",
+    "nebular",
+    "seven food"
+  ],
+  "author": "hans <xiujixin@163.com> (http://xindejob.qikecai.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/jinxiu3939/seven-food-form"
+}

@@ -1,0 +1,63 @@
+<!-- Vertical Layout -->
+<div *ngIf="layout === 'vertical'" class="sf-vertical-layout">
+  <div *ngIf="title" class="sf-group-title">{{ title }}</div>
+  <div *ngFor="let model of models; trackBy: trackByTitle" class="sf-group-field">
+    <sf-group
+      *ngIf="isGroupModel(model)"
+      [formGroup]="getGroupFormGroup(model)"
+      [title]="model.title"
+      [models]="model.models"
+      [layout]="getGroupLayout(model)">
+    </sf-group>
+
+    <sf-array
+      *ngIf="isArrayModel(model)"
+      [formArray]="getArrayFormArray(model)"
+      [model]="model">
+    </sf-array>
+
+    <div *ngIf="isControlModel(model)" class="sf-control-grid" [style.grid-template-columns]="'repeat(' + getControlColumns(model) + ', 1fr)'">
+      <sf-control
+        [control]="formGroup.get(model.name)"
+        [model]="model">
+      </sf-control>
+    </div>
+  </div>
+</div>
+
+<!-- Tab Layout -->
+<nb-tabset *ngIf="layout === 'tab'" [fullWidth]="true">
+  <nb-tab *ngFor="let tabGroup of getTabGroups(); trackBy: trackByTitle" [tabTitle]="getTabTitle(tabGroup)">
+    <sf-group
+      [formGroup]="getGroupFormGroup(tabGroup)"
+      [models]="tabGroup.models"
+      layout="vertical">
+    </sf-group>
+  </nb-tab>
+</nb-tabset>
+
+<!-- Default Layout -->
+<ng-container *ngIf="layout === ''">
+  <ng-container *ngFor="let model of models; trackBy: trackByTitle">
+    <sf-group
+      *ngIf="isGroupModel(model)"
+      [formGroup]="getGroupFormGroup(model)"
+      [title]="model.title"
+      [models]="model.models"
+      [layout]="getGroupLayout(model)">
+    </sf-group>
+
+    <sf-array
+      *ngIf="isArrayModel(model)"
+      [formArray]="getArrayFormArray(model)"
+      [model]="model">
+    </sf-array>
+
+    <div *ngIf="isControlModel(model)" class="sf-control-grid" [style.grid-template-columns]="'repeat(' + getControlColumns(model) + ', 1fr)'">
+      <sf-control
+        [control]="formGroup.get(model.name)"
+        [model]="model">
+      </sf-control>
+    </div>
+  </ng-container>
+</ng-container>

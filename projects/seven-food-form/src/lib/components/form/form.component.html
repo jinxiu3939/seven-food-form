@@ -1,0 +1,28 @@
+<form [formGroup]="formGroup">
+  <sf-group
+    [formGroup]="formGroup"
+    [models]="model.models"
+    [title]="formTitle"
+    [layout]="model.layout || 'vertical'">
+  </sf-group>
+
+  <div class="sf-form-actions">
+    <button
+      nbButton
+      status="primary"
+      type="button"
+      [disabled]="formGroup.invalid"
+      (click)="onSubmit()">
+      {{ submitButtonText }}
+    </button>
+
+    <button
+      *ngIf="showReset"
+      nbButton
+      status="basic"
+      type="button"
+      (click)="onReset()">
+      {{ resetButtonText }}
+    </button>
+  </div>
+</form>

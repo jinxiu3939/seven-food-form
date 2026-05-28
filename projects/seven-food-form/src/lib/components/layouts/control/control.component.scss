@@ -1,0 +1,39 @@
+.sf-control-container {
+  margin-bottom: 1rem;
+
+  .sf-control-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+
+    .sf-required-star {
+      color: #ff3d71;
+      margin-left: 0.25rem;
+    }
+
+    .sf-hint-icon {
+      margin-left: 0.5rem;
+      cursor: help;
+      font-size: 0.875rem;
+      color: #8f9bb3;
+
+      &:hover {
+        color: #598bff;
+      }
+    }
+  }
+
+  .sf-error-message {
+    color: #ff3d71;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  &.has-error {
+    .sf-control-input {
+      input, textarea, select {
+        border-color: #ff3d71;
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+<div class="sf-array-container">
+  <div class="sf-array-header">
+    <label *ngIf="model.title" class="sf-array-label">{{ model.title }}</label>
+    <button
+      nbButton
+      status="primary"
+      size="small"
+      (click)="addItem()"
+      [disabled]="!canAddItem()">
+      + 添加项
+    </button>
+  </div>
+
+  <!-- List Layout -->
+  <div *ngIf="layout === 'list'" class="sf-array-list">
+    <div *ngFor="let item of formArray.controls; let i = index; trackBy: trackByIndex" class="sf-array-item">
+      <div class="sf-array-item-content">
+        <div *ngFor="let childModel of model.models; let j = index; trackBy: trackByIndex" class="sf-array-field">
+          <sf-control
+            *ngIf="isControlModel(childModel)"
+            [control]="item.get(childModel.name)"
+            [model]="childModel">
+          </sf-control>
+        </div>
+      </div>
+      <button
+        nbButton
+        status="danger"
+        size="tiny"
+        (click)="removeItem(i)"
+        [disabled]="!canRemoveItem(i)"
+        class="sf-array-remove-btn">
+        删除
+      </button>
+    </div>
+  </div>
+
+  <!-- Cards Layout -->
+  <div *ngIf="layout === 'cards'" class="sf-array-cards">
+    <div *ngFor="let item of formArray.controls; let i = index; trackBy: trackByIndex" class="sf-array-card">
+      <nb-card>
+        <nb-card-header class="sf-card-header">
+          <span>{{ model.title }} {{ i + 1 }}</span>
+          <button
+            nbButton
+            status="danger"
+            size="tiny"
+            (click)="removeItem(i)"
+            [disabled]="!canRemoveItem(i)">
+            删除
+          </button>
+        </nb-card-header>
+        <nb-card-body>
+          <div *ngFor="let childModel of model.models; let i = index; trackBy: trackByIndex" class="sf-array-field">
+            <sf-control
+              *ngIf="isControlModel(childModel)"
+              [control]="item.get(childModel.name)"
+              [model]="childModel">
+            </sf-control>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

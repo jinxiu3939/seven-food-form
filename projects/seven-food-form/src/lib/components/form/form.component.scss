@@ -1,0 +1,26 @@
+.sf-form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #edf1f7;
+}
+
+:host ::ng-deep {
+  nb-layout {
+    background: transparent;
+
+    .layout {
+      background: transparent;
+    }
+  }
+
+  nb-card {
+    margin: 0;
+    box-shadow: none;
+  }
+
+  nb-card-body {
+    padding: 1.5rem;
+  }
+}

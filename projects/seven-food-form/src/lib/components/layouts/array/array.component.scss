@@ -1,0 +1,51 @@
+.sf-array-container {
+  margin-bottom: 1rem;
+
+  .sf-array-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .sf-array-label {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+  }
+
+  .sf-array-list {
+    .sf-array-item {
+      border: 1px solid #edf1f7;
+      border-radius: 4px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+
+      .sf-array-item-content {
+        margin-right: 80px;
+      }
+
+      .sf-array-remove-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+    }
+  }
+
+  .sf-array-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+
+    .sf-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .sf-array-field {
+    margin-bottom: 0.5rem;
+  }
+}

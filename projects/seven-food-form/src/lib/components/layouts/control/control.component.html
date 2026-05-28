@@ -1,0 +1,20 @@
+<div class="sf-control-container" [class.has-error]="hasError()">
+  <label *ngIf="model.label" class="sf-control-label">
+    {{ model.label }}
+    <span *ngIf="model.required" class="sf-required-star">*</span>
+    <nb-icon
+      *ngIf="model.hint"
+      [nbTooltip]="model.hint"
+      icon="question-mark-circle-outline"
+      class="sf-hint-icon">
+    </nb-icon>
+  </label>
+
+  <div class="sf-control-input">
+    <ng-container [sfControlCreator]="control" [sfControlModel]="model"></ng-container>
+  </div>
+
+  <div *ngIf="hasError()" class="sf-error-message">
+    {{ getErrorMessage() }}
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.sf-vertical-layout,
+.sf-default-layout {
+  .sf-group-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #edf1f7;
+  }
+
+  .sf-group-field {
+    margin-bottom: 1rem;
+  }
+
+  .sf-control-grid {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+:host ::ng-deep {
+  .sf-group-field {
+    .sf-group-field {
+      margin-left: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid #edf1f7;
+    }
+  }
+}
