@@ -34,7 +34,3 @@ npm pack
 npm publish
 ```
 
-## 鸣谢
-
-- [Nebular](https://akveo.github.io/nebular/docs/components/components-overview)
-- [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli)

@@ -13,6 +13,10 @@
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "private": false,
   "repository": {
     "type": "git",
